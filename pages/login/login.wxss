@@ -1,0 +1,41 @@
+/* pages/login/login.wxss */
+
+/* const URL_IMG = require('../../config') */
+
+.login{
+  height:100vh;
+  color:#fff;
+}
+.login image {
+  width: 100%;
+  height:100%;
+}
+.title{
+  text-align: center;
+  margin-bottom: 40rpx;
+  color:#fff;
+}
+.container{
+  /* background:url('http://test.wesign.zqsign.com/cloud.jpg') */
+}
+.usermotto{
+  position:absolute;
+  left:50%;
+  top:50%;
+  transform: translate(-50%,-50%)
+}
+.section  label{
+  font-size: 28rpx;
+  float: left;
+}
+.section input{
+  border-bottom: 1px solid #fff;
+  font-size: 14px;
+}
+.section{
+  float:left;
+  margin-bottom: 20rpx;
+}
+.weui_btn{
+  float: left;
+}

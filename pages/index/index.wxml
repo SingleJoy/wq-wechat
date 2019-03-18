@@ -1,0 +1,22 @@
+<!--index.wxml-->
+<view class="container">
+    
+   <swiper class="swiper_box"  autoplay="{{autoplay}}" circular="true" interval="{{interval}}" duration="{{duration}}" bindchange="swiperchange">
+        <block wx:for="{{banners}}" wx:key="id">
+            <swiper-item>
+                <image bindtap="tapBanner"  src="{{item.picUrl}}" data-list="{{item.picUrl}}" class="slide-image"  width="750rpx" height="562.5rpx"/>
+            </swiper-item>
+        </block>
+    </swiper>
+    <view class="dots" wx:if="{{swiperCurrent + 1 < swiperMaxNumber}}">
+      <view wx:for="{{banners}}" wx:key="id" class="dot{{index == swiperCurrent ? ' active' : ''}}"></view>  
+    </view> 
+    <view class="usermotto">
+        <text class="user-motto">{{motto}}</text>
+        <text>特尔特特 </text>
+    </view>
+    
+    <view class="slide-box" animation="{{animationData}}" style="height:{{slideHeight}}px">
+        
+    </view>
+</view>

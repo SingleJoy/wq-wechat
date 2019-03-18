@@ -1,0 +1,9 @@
+<!-- pages/account/account.wxml -->
+<!-- index.wxml -->
+<view class="container">
+    <view class="userinfo">
+        <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+        <text class="userinfo-nickname" bindtap="getUserInfo">{{userInfo.nickName || '点击登录'}}</text>
+    </view>
+    
+</view>

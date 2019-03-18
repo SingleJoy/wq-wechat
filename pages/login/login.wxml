@@ -1,0 +1,19 @@
+<!--pages/login/login.wxml-->
+<view class="container login">
+  <image src="../../images/cloud.jpg"></image>
+  <view class="usermotto">
+    <form bindsubmit="formSubmit" bindreset="formReset">
+        <view class="title">用户登录</view>
+        <view class="section">
+          <label>账号：</label>
+          <input placeholder="请输入手机号" auto-focus class="login-account" cursor-spacing='10'/>
+        </view>
+        <view class="section">
+          <label>密码：</label>
+          <input placeholder="请输入密码" auto-focus class="login-account"  cursor-spacing='10' type="password"/>
+        </view>
+         <button class="weui-btn" type="primary" bindtap="login">登陆</button>
+    </form>
+  </view>
+</view>
+
