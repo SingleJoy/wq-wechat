@@ -2,12 +2,12 @@
 const WXAPI = require('./config.js')
 App({
   onLaunch: function () {
-    console.log(11111111)
     var that =this;
+        that.getOpenId()
     // 展示本地存储能力
-    var logs = wx.getStorageSync('logs') || []
-    logs.unshift(Date.now())
-    wx.setStorageSync('logs', logs)
+    // var logs = wx.getStorageSync('logs') || []
+    // logs.unshift(Date.now())
+    // wx.setStorageSync('logs', logs)
     // 获取用户信息
     wx.getSetting({
       success: res => {
@@ -36,22 +36,23 @@ App({
     secret: 'e0dassdadef2424234209bwqqweqw123ccqwa',//secret需自己提供，此处的secret随机编写
 
   },
-  getToken:function(){
-    return new Promise((resolve,reject) =>{
+  //全局可通过app.getApp().getOpenId()获取openId, sessionKey, unionId 等信息
+  getOpenId: function () { 
+    return new Promise((resolve, reject) => {
       wx.login({
-        success:res=>{
-          if(res.code) {
+        success: res => {
+          if (res.code) {
             console.log(res.code)
             //发送code到后台获取 openId, sessionKey, unionId
             // wx.request({
             //   url: WXAPI.API_BASE_URL,
-            //   method:'GET',
-            //   data:{
-            //     code:res.code
+            //   method: 'GET',
+            //   data: {
+            //     code: res.code
             //   },
             //   success(res) {
             //     //成功返回数据后，将token值存储到localStorage中
-            //     console.log(res) 
+            //     console.log(res)
             //     wx.setStorage({
             //       key: 'wesignToken',
             //       data: res.data.token

@@ -32,51 +32,21 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    app.globalData.appid = '33333333'
-    console.log(app.globalData.appid )
-
-
-    app.getToken().then(function () {
-        that.setData({
-          token: wx.getStorageSync('wesignToken')
-        });
-        console.log(that.data.token)
-    })
-    //判断是否登录（不一定用此接口判断）
-    util.checkSession().then((res) => {
-      console.log(res)
-      if(res){
-        console.log(res)
-        wx.switchTab({
-          url: '/pages/index/index'
-        })
-      }else{   //未登录则显示登录窗口
-
-
-        //   wx.showModal({
-        //     title: '弹窗标题',
-        //     content: '弹窗内容，告知当前状态、信息和解决方法，描述文字尽量控制在三行内',
-        //     confirmText: "主操作",
-        //     cancelText: "辅助操作",
-        //     success: function (res) {
-        //       console.log(res);
-        //       if (res.confirm) {
-        //         console.log('用户点击主操作')
-        //       } else {
-        //         console.log('用户点击辅助操作')
-        //       }
-        //     }
-        // });
-      }
-
-    }).catch((err) => {
-        console.log(err)
-    })
-    
+    let hasLogin = wx.getStorageSync('token')
+    if(hasLogin){
+      wx.switchTab({
+        url: '/pages/index/index'
+      })
+    }else{
+      this.setData({
+        showModalStatus:true
+      })
+    }
   },
   //显示弹框
   powerDrawer:function(e){
     var currentStatus = e.currentTarget.dataset.status;
+    console.log(currentStatus)
     this.init(currentStatus)
   },
   //弹框初始化
@@ -107,14 +77,12 @@ Page({
         })
       }
 
-    },2000)
+    },500)
     // 显示
     if (currentStatus == "open") {
-      this.setData(
-        {
-          showModalStatus: true
-        }
-      );
+      this.setData({
+        showModalStatus: true
+      });
     }
   },
 
@@ -135,7 +103,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+  
   },
   swiperchange: function (e) {
     console.log(e.detail.current)
@@ -150,7 +118,12 @@ Page({
       })
     }
   },
-  goToIndex: function (e) {
+  toLogin:function(){
+    wx.navigateTo({
+      url: '/pages/login/login'
+    })
+  },
+  toIndex: function (e) {
     wx.switchTab({
       url: '/pages/index/index'
     })

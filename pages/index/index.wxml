@@ -16,7 +16,7 @@
         <text>特尔特特 </text>
     </view>
     
-    <view class="slide-box" animation="{{animationData}}" style="height:{{slideHeight}}px">
+    <!-- <view class="slide-box" animation="{{animationData}}" style="height:{{slideHeight}}">
         
-    </view>
+    </view> -->
 </view>

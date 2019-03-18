@@ -51,41 +51,11 @@ function checkLogin() {
 
 }
 
-function getToken(){
-    return new Promise((resolve,reject) =>{
-      wx.login({
-        success:res=>{
-          if(res.code) {
-            console.log(res.code)
-            //发送code到后台获取 openId, sessionKey, unionId
-            // wx.request({
-            //   url: WXAPI.API_BASE_URL,
-            //   method:'GET',
-            //   data:{
-            //     code:res.code
-            //   },
-            //   success(res) {
-            //     //成功返回数据后，将token值存储到localStorage中
-            //     console.log(res) 
-            //     wx.setStorage({
-            //       key: 'wesignToken',
-            //       data: res.data.token
-            //     });
-            //   }
-            // })
-          }
-        }
-      })
-    })
-  }
-
-
 module.exports = {
   formatTime,
   checkSession,
   loginByWeiXin,
   checkLogin,
-  getToken
 }
 
 

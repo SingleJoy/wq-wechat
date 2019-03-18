@@ -16,6 +16,7 @@ const request = (url,method,data,header) => {
                 'token': wx.getStorageSync('token')
             },
             success(res) {
+              console.log(res)
                 if(res.status == 200){
                     if(res.data.sessionStatus == '000000'){
                         return util.getToken() 
