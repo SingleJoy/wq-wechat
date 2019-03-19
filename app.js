@@ -32,8 +32,8 @@ App({
 
   globalData: {
     userInfo: null,
-    appid: 'wx7107b2770f8db4b6',//appid需自己提供，此处的appid我随机编写
-    secret: 'e0dassdadef2424234209bwqqweqw123ccqwa',//secret需自己提供，此处的secret随机编写
+    appid: 'wx7107b2770f8db4b6',//appid需自己提供
+    secret: 'e0dassdadef2424234209bwqqweqw123ccqwa',//secret需自己提供
 
   },
   //全局可通过app.getApp().getOpenId()获取openId, sessionKey, unionId 等信息

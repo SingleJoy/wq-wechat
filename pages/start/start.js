@@ -1,5 +1,7 @@
 // pages/start/start.js
-const util = require('../../utils/util.js');
+//ES6引入
+import util from '../../utils/util.js'
+import {queryMobileLocation} from '../../wxapi/home.js'
 const app = getApp()
 Page({
 
@@ -32,6 +34,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log(queryMobileLocation,util)
+    util.checkSession().then(res=>{
+      console.log(res)
+    }).catch(err=>{
+
+    })
     let hasLogin = wx.getStorageSync('token')
     if(hasLogin){
       wx.switchTab({

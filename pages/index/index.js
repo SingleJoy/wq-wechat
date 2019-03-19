@@ -1,5 +1,5 @@
 // pages/index/index.js
-const util = require('../../utils/util.js');
+import util from '../../utils/util.js'
 const app = getApp()
 Page({
   data: {

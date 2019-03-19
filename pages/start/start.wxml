@@ -25,7 +25,7 @@
        <view class="btn_ok btn_cancel" bindtap="toLogin" data-status="close">拒绝</view>
        <view class="btn_ok" bindtap="toIndex" data-status="close">允许</view>
     </view>
- 
+    
 </view>
 </view>
 </view>

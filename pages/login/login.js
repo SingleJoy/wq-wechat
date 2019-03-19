@@ -1,5 +1,5 @@
 // pages/login/login.js
-const WXAPI = require('../../wxapi/main')
+import { loginWesign} from '../../wxapi/home.js'
 
 Page({
 
@@ -13,7 +13,7 @@ Page({
     let data={
       username:'13341081511'
     }
-    WXAPI.loginWesign(data).then((res)=>{
+    loginWesign(data).then((res)=>{
       console.log(res)
     })
   },
