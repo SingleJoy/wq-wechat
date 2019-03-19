@@ -1,7 +1,7 @@
 // pages/start/start.js
 //ES6引入
 import util from '../../utils/util.js'
-import {queryMobileLocation} from '../../wxapi/home.js'
+import {queryMobileLocation} from '../../wxapi/api.js'
 const app = getApp()
 Page({
 
@@ -46,8 +46,8 @@ Page({
         url: '/pages/index/index'
       })
     }else{
-      this.setData({
-        showModalStatus:true
+      wx.redirectTo({
+        url: '/pages/login/login'
       })
     }
   },

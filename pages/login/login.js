@@ -1,5 +1,5 @@
 // pages/login/login.js
-import { loginWesign} from '../../wxapi/home.js'
+import { loginWesign} from '../../wxapi/api.js'
 
 Page({
 
