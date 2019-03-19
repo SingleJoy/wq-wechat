@@ -1,10 +1,5 @@
 <view class="container">
   <view class="swiper-container">
-        <!-- <swiper class="swiper_box" bindchange="swiperchange">
-          <swiper-item wx:for="{{banners}}" wx:key="id">
-            <image bindtap="tapBanner" src="{{item.picUrl}}"/>
-          </swiper-item>
-        </swiper> -->
 <!--mask-->
 <view class="drawer_screen" bindtap="powerDrawer" data-status="close" wx:if="{{showModalStatus}}"></view>
 <!--content-->

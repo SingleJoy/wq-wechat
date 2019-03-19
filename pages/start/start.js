@@ -41,7 +41,7 @@ Page({
 
     })
     let hasLogin = wx.getStorageSync('token')
-    if(hasLogin){
+    if(!hasLogin){
       wx.switchTab({
         url: '/pages/index/index'
       })

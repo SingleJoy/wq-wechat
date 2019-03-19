@@ -17,7 +17,7 @@
   },
   "tabBar": {
     "color": "#6e6d6b",
-    "selectedColor": "#e64340",
+    "selectedColor": "#66b1ff",
     "borderStyle": "white",
     "backgroundColor": "#fafafa",
     "list": [
@@ -29,14 +29,14 @@
       },
       {
         "pagePath": "pages/template/template",
-        "iconPath": "images/nav/order-off.png",
-        "selectedIconPath": "images/nav/order-on.png",
+        "iconPath": "images/nav/template-off.png",
+        "selectedIconPath": "images/nav/template-on.png",
         "text": "模板"
       },
       {
         "pagePath": "pages/contract/contract",
-        "iconPath": "images/nav/ic_catefory_normal.png",
-        "selectedIconPath": "images/nav/ic_catefory_pressed.png",
+        "iconPath": "images/nav/contract-off.png",
+        "selectedIconPath": "images/nav/contract-on.png",
         "text": "合同"
       },
       {

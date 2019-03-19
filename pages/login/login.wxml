@@ -1,6 +1,6 @@
 <!--pages/login/login.wxml-->
 <view class="container login">
-  <image src="../../images/cloud.jpg"></image>
+  
   <view class="usermotto">
     <form bindsubmit="formSubmit" bindreset="formReset">
         <view class="title">用户登录</view>
