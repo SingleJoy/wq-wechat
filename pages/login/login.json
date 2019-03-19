@@ -1,1 +1,8 @@
-{}
+{
+  
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "微签",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#f4f4f4"
+  
+}

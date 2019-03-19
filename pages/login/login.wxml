@@ -1,18 +1,19 @@
 <!--pages/login/login.wxml-->
-<view class="container login">
-  
-  <view class="usermotto">
+<view class="container login-content">
+  <image class="login-logo" src="../../images/logo.png"></image>
+  <view class="form-box">
     <form bindsubmit="formSubmit" bindreset="formReset">
-        <view class="title">用户登录</view>
-        <view class="section">
-          <label>账号：</label>
-          <input placeholder="请输入手机号" auto-focus class="login-account" cursor-spacing='10'/>
+        <view class="form-item">
+          <image class="login-phone" src="../../images/phone.png"></image>
+          <input placeholder="请输入手机号" placeholder="请输入手机号" class="login-account" cursor-spacing='10'  name='username'/>
         </view>
-        <view class="section">
+        <view class="form-item">
           <label>密码：</label>
-          <input placeholder="请输入密码" auto-focus class="login-account"  cursor-spacing='10' type="password"/>
+          <input placeholder="请输入密码" placeholder="请输入密码" class="login-account"  cursor-spacing='10'  name="pwd" type="password"/>
         </view>
-         <button class="weui-btn" type="primary" bindtap="login">登陆</button>
+         <view class="btn-area">
+          <button form-type="submit">登录</button>
+        </view>
     </form>
   </view>
 </view>

@@ -14,6 +14,16 @@ const formatNumber = n => {
   return n[1] ? n : '0' + n
 }
 
+/**
+ * @param {*moblie} str
+*/
+function checkPhone(str){
+  const reg = /^0?(13[0-9]|15[0123456789]|18[0123456789]|14[135789]|17[0123467859]|16[6]|19[89])[0-9]{8}$/
+  return reg.test(str)
+}
+
+
+
 //检查微信会话是否过期
 function checkSession() {
   return new Promise(function (resolve, reject) {
@@ -46,16 +56,15 @@ function loginByWeiXin() {
   });
 }
 //判断是否登录
-
 function checkLogin() {
 
 }
-
 module.exports = {
   formatTime,
   checkSession,
   loginByWeiXin,
   checkLogin,
+  checkPhone
 }
 
 

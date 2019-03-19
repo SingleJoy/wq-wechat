@@ -9,15 +9,6 @@ Page({
   data: {
 
   },
-  login:function (e) {
-    let data={
-      username:'13341081511'
-    }
-    loginWesign(data).then((res)=>{
-      console.log(res)
-    })
-  },
-
   /**
    * 生命周期函数--监听页面加载
    */
@@ -72,5 +63,8 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  formSubmit:function(e){
+    console.log(e)
   }
 })

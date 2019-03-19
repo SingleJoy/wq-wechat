@@ -34,14 +34,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(queryMobileLocation,util)
-    util.checkSession().then(res=>{
-      console.log(res)
-    }).catch(err=>{
-
-    })
     let hasLogin = wx.getStorageSync('token')
-    if(!hasLogin){
+    if(hasLogin){
       wx.switchTab({
         url: '/pages/index/index'
       })
