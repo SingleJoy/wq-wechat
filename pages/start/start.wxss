@@ -63,15 +63,15 @@ swiper-item image {
  
 /*content*/
 .drawer_box {
-  width: 650rpx;
+  width: 600rpx;
   overflow: hidden;
   position: fixed;
   top: 50%;
-  left: 0;
+  left: 50%;
   z-index: 1001;
   background: #FAFAFA;
-  margin: -150px 50rpx 0 50rpx;
   border-radius: 3px;
+  transform: translate(-50%, -50%);
 }
  
 .drawer_title{
@@ -101,9 +101,12 @@ swiper-item image {
     flex:1;
 }
 .login-select{
-  font-size:32rpx;
+  font-size:30rpx;
   color:#999;
-  padding:0 20rpx
+  padding:20rpx 20rpx
+}
+.login-code{
+  color:#66b1ff;
 }
  
 .top{

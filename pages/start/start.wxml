@@ -5,10 +5,6 @@
             <image bindtap="tapBanner" src="{{item.picUrl}}"/>
           </swiper-item>
         </swiper> -->
-        <button type="primary" bindtap="toIndex" size="mini" form-type="submit" class="weui-btn mini-btn">进入主页</button>
- <button type="primary" bindtap="powerDrawer" size="mini"  data-status="open" form-type="submit" class="weui-btn mini-btn">
- 点我</button>
- 
 <!--mask-->
 <view class="drawer_screen" bindtap="powerDrawer" data-status="close" wx:if="{{showModalStatus}}"></view>
 <!--content-->
@@ -18,10 +14,10 @@
   <!--drawer content-->
   <view class="drawer_title"></view>
     <view class="login-select">
-        <view class="">
+        <view class="login-wxphone">
            是否允许使用当前手机号登录
         </view>
-        <view class="" bindtap='toLogin'>
+        <view class="login-code" bindtap='toLogin'>
             使用其他手机号登录
         </view>
     </view>

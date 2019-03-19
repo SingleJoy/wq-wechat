@@ -6,8 +6,9 @@
     "pages/login/login",
     "pages/account/account",
     "pages/contract/contract",
-    "pages/template/template"
-    
+    "pages/template/template",
+    "pages/roles/roles",
+    "pages/canvas/canvas"
   ],
   "window": {
     "backgroundTextStyle": "dark",
