@@ -1,0 +1,14 @@
+<view class='containter common-box'>
+  <view class='main-content'>
+    <view class=''>
+      <form bindsubmit="formSubmit" bindreset="formReset">
+        <view class='sign-set'>
+          <label class='contract-name'>合同名称:</label>
+          <input class='contract-content' placeholder='请输入合同名称'>模板数据</input>
+        </view>
+      </form>
+    </view>
+    <view></view>
+    <view></view>
+  </view>
+</view>

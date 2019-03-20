@@ -1,0 +1,13 @@
+.sign-set {
+  display: flex;
+  padding: 0 32rpx;
+}
+.contract-name {
+  font-size: 28rpx;
+  color: #333333;
+}
+.contract-content {
+  font-size: 28rpx;
+  vertical-align: middle;
+  flex: auto;
+}

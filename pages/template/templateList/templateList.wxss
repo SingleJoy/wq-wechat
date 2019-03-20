@@ -1,0 +1,49 @@
+/**index.wxss**/
+.template-select {
+  height: 80rpx;
+  line-height: 80rpx;
+  padding: 0 30rpx;
+  font-size: 24rpx;
+  color: #4091FB;
+  border-bottom: 1px solid #ddd;
+  display: flex;
+  justify-content: space-between ;
+}
+.change-switch {
+  margin-right: -6rpx;
+  margin-top: -2rpx;
+}
+.template-lists {
+  display: flex;
+  justify-content: space-between ;
+  /* height: 120rpx; */
+  border-bottom: 1px solid #ddd;
+  padding: 0 30rpx;
+}
+.template-title {
+  font-size: 32rpx;
+  color: #333333;
+  margin-top: 20rpx;
+  width: 410rpx;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+  height: 50rpx;
+}
+.template-time {
+  font-size: 24rpx;
+  color: #666666;
+  margin-bottom: 20rpx;
+}
+.examine button{
+  width: 116rpx;
+  height: 56rpx;
+  line-height: 56rpx;
+  text-align: center;
+  font-size: 28rpx;
+  color: #4091FB;
+  background: #ffffff;
+  border: 1px solid #4091FB;
+  border-radius: 30rpx;
+  margin-top: 32rpx;
+}
