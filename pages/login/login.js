@@ -68,6 +68,9 @@ Page({
   },
   formSubmit:function(e){
     console.log(e)
+    wx.navigateTo({
+        url:'/pages/roles/roles'
+    })
   },
   //输入框事件
   bindUsernameInput: function (e) {
