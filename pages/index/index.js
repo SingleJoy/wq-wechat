@@ -1,5 +1,5 @@
 // pages/index/index.js
-import util from '../../utils/util.js'
+import {login} from '../../wxapi/api'
 const app = getApp()
 Page({
   data: {
@@ -9,7 +9,6 @@ Page({
     duration: 1000,
     loadingHidden: false, // loading
     userInfo: {},
-    swiperCurrent: 0,
     selectCurrent: 0,
     categories: [],
     activeCategoryId: 0,
@@ -47,12 +46,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // util.checkSession().then(()=>{
-    //   resolve(true);
-    // }).catch(()=>{
-    //   reject(false)
-    // })
-    console.log(app.globalData.appid)
+
   },
 
   /**

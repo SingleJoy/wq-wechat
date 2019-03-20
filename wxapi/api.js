@@ -4,12 +4,12 @@ function queryMobileLocation (data){
     return request ('/common/','get',data)
 }
 
-function loginWesign (data) {
+function login (data) {
   return request ('/login','get', data )
 }
 
 module.export = {
-  loginWesign,
+    login,
   queryMobileLocation
 
 }
