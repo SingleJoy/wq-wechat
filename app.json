@@ -9,6 +9,7 @@
     "pages/template/template",
     "pages/canvas/canvas",
     "pages/roles/roles"
+   
   ],
   "window": {
     "backgroundTextStyle": "dark",

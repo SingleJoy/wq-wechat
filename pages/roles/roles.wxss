@@ -1,1 +1,63 @@
 /* pages/roles/roles.wxss */
+.main-content{
+  padding:20rpx 32rpx 0 32rpx;
+}
+.business-account{
+  padding: 20rpx 32rpx 0 32rpx;
+}
+.sub-account{
+    margin-top:20rpx;
+}
+.business-line{
+    width:100%;
+    background: #f7f7f7;
+    height: 20rpx;
+    margin-top:24rpx;
+}
+.account-title{
+  font-size: 32rpx;
+  color:#4091fb;
+}
+.account-list{
+  padding: 0 20rpx 50rpx 20rpx;
+  box-sizing: border-box;
+  border-radius: 10rpx;
+  box-shadow: rgba(228, 228, 228, 0.5) 0px 1px 4px 2px;
+  margin-top:36rpx;
+}
+.account-item{
+  display: flex;
+  border-bottom:2rpx solid #dddddd;
+  height:100rpx;
+  vertical-align: middle;
+  justify-content: space-between;
+}
+.account-name{
+  font-size: 28rpx;
+  line-height:100rpx;
+}
+.account-status{
+  float:left;
+  font-size:28rpx;
+  width:126rpx;
+  border-radius: 40rpx;
+  color:#fff;
+  height: 56rpx;
+  line-height: 56prx;
+  vertical-align: middle;
+  text-align: center;
+  margin-top:20rpx;
+  margin-right:16rpx;
+  padding-top:10rpx;
+}
+.unreal-name{
+  background:#999999;
+}
+.real-name{
+  background:#ff1111;
+}
+.account-option{
+  font-size:28rpx;
+  color:#4091fb;
+  line-height: 100rpx;
+}
