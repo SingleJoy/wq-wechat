@@ -1,0 +1,60 @@
+.sign-set {
+  display: flex;
+  padding: 0 32rpx;
+  padding-top: 36rpx;
+}
+.hide-placeholder {
+  visibility: hidden;
+}
+.contract-name {
+  font-size: 28rpx;
+  line-height: 66rpx;
+  color: #333333;
+}
+.contract-content {
+  font-size: 28rpx;
+  flex: auto;
+  height: 66rpx;
+  border: 1px solid #ddd;
+}
+.section {
+  flex: auto;
+}
+.picker-time {
+  width: 270rpx;
+  border: 1px solid #ddd;
+  font-size: 28rpx;
+  height: 66rpx;
+  padding-left: 20rpx;
+}
+.select-time {
+  flex: auto;
+  font-size: 28rpx;
+  color: #333333;
+  line-height: 66rpx;
+}
+.gray-line {
+  height: 20rpx;
+  background: #f5f5f5;
+  margin-top: 36rpx;
+}
+.add-contract {
+  width: 552rpx;
+  height: 80rpx;
+  text-align: center;
+  line-height: 80rpx;
+  border: 1px solid #4091FB;
+  margin:160rpx auto 0 auto;
+  border-radius: 15rpx;
+}
+.add-contract image{
+  height: 50rpx;
+  width: 50rpx;
+  background: #4091FB;
+  vertical-align: middle;
+}
+.add-contract-text {
+  color: #4091FB;
+  font-size: 28rpx;
+  margin-left: 20rpx;
+}

@@ -1,13 +1,18 @@
 {
   "pages": [
+
     "pages/search/search",
     "pages/account/account",
+
+    "pages/template/templateList/templateList",
+    "pages/template/templateSet/templateSet",
+    "pages/template/templateDetail/templateDetail",
+
     "pages/index/index",
-    "pages/logs/logs",
+    "pages/account/account",
     "pages/start/start",
     "pages/login/login",
     "pages/contract/contract",
-    "pages/template/template",
     "pages/canvas/canvas",
     "pages/roles/roles"
   ],
@@ -30,7 +35,7 @@
         "text": "首页"
       },
       {
-        "pagePath": "pages/template/template",
+        "pagePath": "pages/template/templateList/templateList",
         "iconPath": "images/nav/template-off.png",
         "selectedIconPath": "images/nav/template-on.png",
         "text": "模板"

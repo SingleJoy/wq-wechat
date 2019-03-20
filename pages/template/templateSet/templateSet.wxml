@@ -1,0 +1,39 @@
+<view class='containter common-box'>
+  <view class='main-content'>
+    <view class=''>
+      <form bindsubmit="formSubmit" bindreset="formReset">
+        <view class='sign-set'>
+          <label class='contract-name'><span class="hide-placeholder">签</span>合同名称：</label>
+          <input class='contract-content' placeholder='请输入合同名称' value='111'></input>
+        </view>
+        <view class='sign-set'>
+          <label class='contract-name'>签署截止日：</label>
+          <view class="section">
+            <picker
+              mode="date"
+              value="{{date}}"
+              start="2015-09-01"
+              end="2017-09-01"
+              bindchange="bindDateChange"
+            >
+              <input class="picker picker-time" placeholder='请选择签署截止日' value='{{date}}'></input>
+            </picker>
+          </view>
+          <view class='select-time'>
+            <checkbox-group bindchange="checkboxChange">
+              <label class="checkbox">
+                <checkbox />
+                永久有效
+              </label>
+            </checkbox-group>
+          </view>
+        </view>
+      </form>
+    </view>
+    <view class='gray-line'></view>
+    <view class='add-contract'>
+      <image src='../../../images/sponsor-contact.png'></image>
+      <text class='add-contract-text'>添加签署人</text>
+    </view>
+  </view>
+</view>
