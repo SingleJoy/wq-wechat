@@ -1,4 +1,4 @@
-/* pages/search/search.wxss */
+/* pages/serach/serach.wxss */
 .weui-search-bar{
   width:100%;
 }

@@ -16,7 +16,6 @@
 .main-content{
   width:100%;
   background: #fff;
-  padding:0 20rpx;
 }
 
 view,text{

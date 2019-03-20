@@ -1,18 +1,24 @@
-// pages/template/templateSet/tempalteSet.js
+// pages/template/templateAddInfo/templateAddInfo.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    infoList:[
+      {
+        name:'价格',
+      },
+      {
+        name:"金额",
+      },
+      {
+        name:'位置'
+      }
+    ],
+    fillVal:'',
   },
 
-  ImmediatelyStart: function() {
-    wx.redirectTo({
-      url: '../templateAddInfo/templateAddInfo',
-    })
-  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -67,5 +73,17 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  signSetting:function(e){
+    wx.navigateTo({
+      url: '/pages/template/templateSet/templateSet',
+    })
+  },
+  bindUsernameInput:function(e){
+    console.log(e.detail.value,e.target.dataset.key)
+    var fill_val = e.detail.value;
+    var fill_key = e.target.dataset.key;
+    var obj = {};
+    console.log(obj)
   }
 })
