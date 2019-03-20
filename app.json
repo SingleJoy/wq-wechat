@@ -1,13 +1,19 @@
 {
   "pages": [
+<<<<<<< HEAD
     "pages/template/templateSet/templateSet",
     "pages/template/templateList/templateList",
     "pages/template/templateDetail/templateDetail",
     "pages/index/index",
     "pages/start/start",
     "pages/login/login",
-    "pages/logs/logs",
+=======
     "pages/account/account",
+    "pages/index/index",
+>>>>>>> 3b8c95eab13c4ab49984d4428692f13d3fe80829
+    "pages/logs/logs",
+    "pages/start/start",
+    "pages/login/login",
     "pages/contract/contract",
     "pages/canvas/canvas",
     "pages/roles/roles"

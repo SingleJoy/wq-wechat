@@ -1,33 +1,117 @@
-/* pages/account/account.wxss */
-page{
+.account{
+    position: relative;
+    width: 100%;
     height: 100%;
-    width: 100%;
-    background: #f4f4f4;
+    background-color: #f4f4f4;
 }
-.container{
-    background: #f4f4f4;
-    height: auto;
-    overflow: hidden;
-    width: 100%;
+
+.title{
+    font-size: 18px;
+    font-weight:bold;
+    padding: 20rpx 0 0 32rpx;
 }
-.userinfo {
-  width: 100%;
-  height: 300rpx;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: flex-start;
-  padding: 0 30.25rpx;
-  background: #4091fb;
-  color:#fff;
+
+.account-info{
+    position: relative;
+   margin-top: 20rpx;
+   background-color: #fff;
 }
-.userinfo-avatar {
-  width: 128rpx;
-  height: 128rpx;
-  margin: 20rpx;
-  border-radius: 50%;
+
+.account-info .info-list{
+    margin:0 20rpx 0 20rpx;
+    box-sizing: border-box;
+    border: 1px solid #ddd;
+    border-radius: 5px;
 }
-.userinfo-nickname {
-  color: #fff;
-  font-size: 32rpx;
+
+.account-info .info-list image.real-name{
+    position: absolute;
+    width: 128rpx;
+    height: 100rpx;
+    right:80rpx;
+    top:170rpx;
+}
+
+.account-info .info-list .list-item view{
+    padding: 16rpx 0 16rpx 32rpx;
+}
+
+.account-info .info-list .list-item view text{
+    font-size: 28rpx;
+}
+
+.contract-num ,.digital-certificate,.signature-style{
+     padding-top:24rpx;
+    background-color: #fff;
+ }
+
+.contract-num .contract-info,.digital-certificate .digital-info,.signature-style .signature-image{
+    margin:0 20rpx 0 20rpx;
+    box-sizing: border-box;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+/*.contract-num .contract-info view{*/
+    /*font-size: 16px;*/
+    /*padding: 50rpx 0 0 30rpx;*/
+/*}*/
+ .contract-num-list{
+     display: flex;
+     flex-direction: row;
+     margin-top: 58rpx;
+     text-align: center;
+}
+
+.contract-num-list .contract-left,.contract-num-list .contract-right{
+  width: 50%;
+  padding-bottom: 24rpx;
+  text-align: center;
+}
+
+.contract-num-list image,.contract-num-list image{
+    width: 48rpx;
+    height: 48rpx;
+    display: block;
+    margin: 0 auto;
+}
+
+.contract-num-list .contract-left text,.contract-num-list .contract-right text{
+    display: block;
+    font-size: 24rpx;
+    color: #666;
+    margin: 20px auto 0;
+}
+.digital-info-list view{
+    padding: 16rpx 0 16rpx 32rpx;
+}
+.digital-info-list view text{
+    color: #666;
+    font-size: 28rpx;
+}
+
+.digital-info-list view .left-side{
+   margin-right: 10rpx;
+}
+
+.signature-style image{
+    width: 190rpx;
+    height: 190rpx;
+    display: block;
+    margin: 40rpx auto;
+}
+.sign-out{
+     margin: 0 auto 20rpx auto;
+    padding: 30rpx 0;
+    background-color: #fff;
+ }
+.sign-out button{
+   width: 552rpx;
+    height: 80rpx;
+    font-size: 36rpx;
+    line-height: 80rpx;
+    text-align: center;
+    border-radius: 5px;
+    background-color: #4d90f8;
+    color: #fff;
 }

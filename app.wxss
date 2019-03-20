@@ -18,3 +18,9 @@
   background: #fff;
 }
 
+view,text{
+  font-family: PingFangSC-Light,helvetica,'Heiti SC';
+  font-size: 32rpx;
+  color: #333;
+}
+
