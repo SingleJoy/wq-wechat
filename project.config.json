@@ -13,8 +13,8 @@
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.6.1",
-	"appid": "wx7107b2770f8db4b6",
-	"projectname": "wesign-zqsign",
+	"appid": "wx1ee5aa9056037e8e",
+	"projectname": "wx-wesign-zqsign",
 	"debugOptions": {
 		"hidedInDevtools": []
 	},
