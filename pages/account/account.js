@@ -1,80 +1,29 @@
 //index.js
 //获取应用实例
-const app = getApp()
+//获取系统信息
+let width;
+wx.getSystemInfo({
+    success: function (res) {
+        width=res.screenWidth;
+    },
+})
 
 Page({
   data: {
-    motto: 'Hello World',
-    userInfo: {},
-    hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
+      accountName: "北京众签科技",
+      phone: "13341081511",
+      userName: "测试---",
+      email: "zhongqiankeji@51signing.com",
+      width:width-40+'px',
+
   },
   //事件处理函数
-  bindViewTap: function () {
-    wx.navigateTo({
-      url: '../logs/logs'
-    })
-  },
+
   onLoad: function () {
-    console.log(app)
-    if (app.globalData.userInfo) {
-      console.log(wx.login())
-      this.setData({
-        userInfo: {
-            avatarUrl:'http://yanxuan.nosdn.127.net/8945ae63d940cc42406c3f67019c5cb6.png',
-            nickName:'点击登录'
 
-        },
-        hasUserInfo: true
-      })
-    } else if (this.data.canIUse) {
-      // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-      // 所以此处加入 callback 以防止这种情况
-    //   app.userInfoReadyCallback = res => {
-    //     this.setData({
-    //       userInfo: res.userInfo,
-    //       hasUserInfo: true
-    //     })
-    //   }
-    } else {
-      // 在没有 open-type=getUserInfo 版本的兼容处理
-      wx.getUserInfo({
-        success: res => {
-          app.globalData.userInfo = res.userInfo
-        //   this.setData({
-        //     userInfo: res.userInfo,
-        //     hasUserInfo: true
-        //   })
-        }
-      })
-    }
-    wx.login({
-      success(res) {
-        if (res.code) {
-          // 发起网络请求
-          wx.request({
-            url: 'https://test.com/onLogin',
-            data: {
-              code: res.code
-            },
-            success:function(res){
-              console.log(res)
-            }
-          })
 
-        } else {
-          console.log('登录失败！' + res.errMsg)
-        }
-      }
-    })
   },
 
-  getUserInfo: function (e) {
-    console.log(e)
-    app.globalData.userInfo = e.detail.userInfo
-    this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true
-    })
-  }
+
+
 })

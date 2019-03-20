@@ -1,9 +1,41 @@
 <!-- pages/account/account.wxml -->
 <!-- index.wxml -->
-<view class="container">
-    <view class="userinfo">
-        <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-        <text class="userinfo-nickname" bindtap="getUserInfo">{{userInfo.nickName || '点击登录'}}</text>
+<view class="account">
+    <view class="account-info">
+        <view class="info-list" style="width:{{width}}">
+            <view class="title">
+                <text >账户信息</text>
+            </view>
+
+            <view class="account-name">
+                <text >{{accountName}}</text>
+            </view>
+
+            <view class="phone">
+                <text >{{phone}}</text>
+            </view>
+
+            <view class="user-name">
+                <text >{{userName}}</text>
+            </view>
+
+            <view class="email">
+                <text >{{email}}</text>
+            </view>
+        </view>
+
     </view>
-    
+
+    <view class="contract-num">
+
+    </view>
+
+    <view class="digital-certificate">
+
+    </view>
+
+    <view class="signature-style">
+
+    </view>
+
 </view>
