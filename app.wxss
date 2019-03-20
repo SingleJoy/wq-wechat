@@ -16,7 +16,6 @@
 .main-content{
   width:100%;
   background: #fff;
-  text-align:center;
 }
 view,image,text,navigator{
   box-sizing: border-box;

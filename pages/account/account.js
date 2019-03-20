@@ -14,7 +14,13 @@ Page({
       phone: "13341081511",
       userName: "测试---",
       email: "zhongqiankeji@51signing.com",
-      width:width-40+'px',
+      width:width-40,
+      b2c:40,
+      b2b:20,
+      identificationCode:'wqreqwr21423423',
+      awardOwer:'众签科技-测试人员',
+      startTime:'2019-01-01',
+      endTime:'2020-01-01',
 
   },
   //事件处理函数

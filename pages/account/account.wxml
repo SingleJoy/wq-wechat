@@ -1,41 +1,94 @@
-<!-- pages/account/account.wxml -->
-<!-- index.wxml -->
-<view class="account">
-    <view class="account-info">
-        <view class="info-list" style="width:{{width}}">
-            <view class="title">
-                <text >账户信息</text>
+<view class="container common-box">
+    <view class="main-content">
+        <view class="account">
+            <view class="account-info">
+                <view class="info-list">
+                    <view class="title">
+                        <text >账户信息</text>
+                    </view>
+                    <view class="list-item">
+                        <view class="account-name">
+                            <text >{{accountName}}</text>
+                        </view>
+
+                        <view class="phone">
+                            <text >{{phone}}</text>
+                        </view>
+
+                        <view class="user-name">
+                            <text >{{userName}}</text>
+                        </view>
+
+                        <view class="email">
+                            <text >{{email}}</text>
+                        </view>
+                    </view>
+
+                    <image src="../../images/real-name@2x.png" class="real-name"></image>
+                </view>
+
             </view>
 
-            <view class="account-name">
-                <text >{{accountName}}</text>
+            <view class="contract-num">
+                <view class="contract-info" >
+
+                    <view class="title">
+                        <text >合同余量</text>
+                    </view>
+                    <view class="contract-num-list">
+                        <view class="contract-left" >
+                            <image src="../../images/b2c@2x.png" class="real-name"></image>
+                            <text>对个人合同数量 : {{b2c}}</text>
+                        </view>
+                        <view class="contract-right" >
+                            <image src="../../images/b2b@2x.png" class="real-name"></image>
+                            <text>对个人合同数量 : {{b2b}}</text>
+                        </view>
+                    </view>
+
+                </view>
             </view>
 
-            <view class="phone">
-                <text >{{phone}}</text>
+            <view class="digital-certificate">
+                <view class="digital-info" >
+                    <view class="title">
+                        <text >数字证书</text>
+                    </view>
+                    <view class="digital-info-list">
+                        <view>
+                            <text class="left-side">识别码:</text>
+                            <text >{{identificationCode}}</text>
+                        </view>
+                        <view>
+                            <text class="left-side">颁发给:</text>
+                            <text>{{awardOwer}}</text>
+                        </view>
+                        <view>
+                            <text class="left-side">有效起始时间:</text>
+                            <text>{{startTime}}</text>
+                        </view>
+                        <view>
+                            <text class="left-side">有效截止时间:</text>
+                            <text>{{endTime}}</text>
+                        </view>
+                    </view>
+
+                </view>
             </view>
 
-            <view class="user-name">
-                <text >{{userName}}</text>
+            <view class="signature-style">
+                <view class="signature-image">
+                    <view class="title">
+                        <text >签章样式</text>
+                    </view>
+                    <image src="../../images/sinature-image@2x.png"></image>
+                </view>
             </view>
 
-            <view class="email">
-                <text >{{email}}</text>
+            <view class="sign-out">
+
+                <button type="button">退出</button>
             </view>
         </view>
-
     </view>
-
-    <view class="contract-num">
-
-    </view>
-
-    <view class="digital-certificate">
-
-    </view>
-
-    <view class="signature-style">
-
-    </view>
-
 </view>
