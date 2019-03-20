@@ -1,33 +1,41 @@
 <!--pages/login/login.wxml-->
-<view class="container login-content">
-    <image class="login-logo" src="../../images/logox3.png"></image>
-    <view class="form-box">
-        <form bindsubmit="formSubmit" bindreset="formReset">
-            <view class="form-item">
-                <image class="login-icon" src="../../images/phone.png"></image>
-                <view class="section">
-                    <input class="username" placeholder="请输入手机号" value="{{username}}" bindinput="bindUsernameInput" />
-                    <image class="clear" id="clear-username" wx:if="{{username.length>0}}"  src="../../images/clear.png" catchtap="clearInput"></image>
-                    <text wx:if="usernameErr" class="errMsg">{{usernameErr}}</text>
+<view class="container common-box">
+    <view class="main-content">
+        <image class="login-logo" src="../../images/logox3.png"></image>
+        <view class="form-box">
+            <form bindsubmit="formSubmit" bindreset="formReset">
+                <view class="form-item">
+                    <image class="login-icon" src="../../images/phone.png"></image>
+                    <view class="section">
+                        <input class="username" placeholder="请输入手机号" value="{{username}}" bindinput="bindUsernameInput" />
+                        <image class="clear" id="clear-username" wx:if="{{username.length>0}}"  src="../../images/clear.png" catchtap="clearInput"></image>
+                        <text wx:if="usernameErr" class="errMsg">{{usernameErr}}</text>
+                    </view>
                 </view>
-            </view>
-            <view class="form-item">
-                <image class="login-icon" src="../../images/pwd.png"></image>
-                <view class="section">
-                    <input class="password" placeholder="请输入密码"   value="{{password}}" bindinput="bindPasswordInput" password />
-                    <image class="clear" id="clear-password"  wx:if="{{password.length>0}}" src="/images/clear.png" catchtap="clearInput"></image>
-                    <text wx:if="passwordErr" class="errMsg">{{passwordErr}}</text>
+                <view class="form-item">
+                    <image class="login-icon" src="../../images/pwd.png"></image>
+                    <view class="section">
+                        <input class="password" placeholder="请输入密码"   value="{{password}}" bindinput="bindPasswordInput" password />
+                        <image class="clear" id="clear-password"  wx:if="{{password.length>0}}" src="/images/clear.png" catchtap="clearInput"></image>
+                        <text wx:if="passwordErr" class="errMsg">{{passwordErr}}</text>
+                    </view>
                 </view>
-            </view>
-            <view class="btn-area">
-                <button form-type="submit">登录</button>
-            </view>
+                <view class="btn-area">
+                    <button form-type="submit">登录</button>
+                </view>
+            </form>
+            
             <view class="QR-code">
                 <image class="QRimg" src="https://img.fetow.com/Public/Index/images/shewm.jpg" data-src="https://img.fetow.com/Public/Index/images/shewm.jpg" bindtap="previewImage"></image>
                 <text class="scan-QRcode">长按识别图中二维码</text>
-                <text class="">关注众签公众号</text>
             </view>
-        </form>
+            <view class="login-link">
+            <text>关注众签公众号</text>
+            </view>
+            <view class="login-link">
+            <text>实时了解电子合同最新资讯</text>
+            </view>
+        </view>
     </view>
 </view>
 

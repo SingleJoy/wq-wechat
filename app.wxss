@@ -9,6 +9,15 @@
   /* padding: 200rpx 0; */
   box-sizing: border-box;
 } 
+.common-box{
+  background: #f5f5f5;
+  padding-top:20rpx;
+}
+.main-content{
+  width:100%;
+  background: #fff;
+  text-align:center;
+}
 view,image,text,navigator{
   box-sizing: border-box;
   padding:0;
