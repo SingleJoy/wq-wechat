@@ -1,4 +1,7 @@
 <!--index.wxml-->
 <view class="container">
-  
+  <view class="contract">
+    <text class='sponsor-contract'>发起合同</text>
+    <image class='contract-img' src='../../images/sponsor-contact.png'></image>
+  </view>
 </view>
