@@ -1,6 +1,6 @@
 /* pages/login/login.wxss */
+
 .form-box{
-  width:100%;
   height:auto;
   overflow:hidden;
   padding:0 40rpx;
@@ -17,14 +17,12 @@
   width: 260rpx;
   height:212rpx;
   margin-top: 54rpx;
+  display: inline-block;
 }
 
 .form-item{
   display: flex;
   margin-bottom:30rpx;
-  /* position: relative; */
-  /* flex-direction: column;
-  justify-content: space-between */
  
 }
 .form-item .section{
@@ -42,8 +40,6 @@
     display: block;
     position: absolute;
     margin-top:16px;
-    /* bottom: 0; */
-    /* float: left; */
 }
 .form-item .errMsg{
     position: absolute;
@@ -73,12 +69,13 @@
   background:#fff;
   color:#333;
   font-size:30rpx;
+  text-align: left;
 
 }
 .btn-area{
     width:80%;
     margin:0 auto;
-    margin-top:210rpx;
+    margin-top:150rpx;
 
 }
 .btn-area button{
@@ -89,13 +86,20 @@
 }
 .QR-code{
     text-align: center;
-    margin-top:120rpx;
+    margin-top:100rpx;
     display: block;
 }
 .QRimg{
-    width:112rpx;
-    height:112rpx;
+    width:130rpx;
+    height:130rpx;
     margin: 0 auto;
     display: block;
+}
+.login-link {
+  text-align: center;
+}
+.login-link text{
+  text-align: center;
+  color:#4091fb;
 }
 
