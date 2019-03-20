@@ -1,4 +1,49 @@
 <!--index.wxml-->
-<view class="container">
-  
+<!-- <view class="container">
+  <view class="contract">
+    <text class='sponsor-contract'>发起合同</text>
+    <image class='contract-img' src='../../images/sponsor-contact.png'></image>
+  </view>
+</view> -->
+<view class="container common-box">
+  <view class="main-content">
+    <view class='main'>
+      <view class='contract'>
+        <text class='sponsor-contract'>发起合同</text>
+        <view class='contract-img'>
+          <image src='../../images/sponsor-contact.png'></image>
+        </view>
+      </view> 
+      <view class='contact-state'>
+        <view class='contact-list'>
+          <image src='../../images/became-effective.png'></image>
+          <view class='content'>
+            <view class='content-title'>已生效</view>
+            <view class='content-num'>100</view>
+          </view>
+        </view>
+        <view class='contact-list'>
+          <image src='../../images/became-effective.png'></image>
+          <view class='content'>
+            <view class='content-title'>代他人签署</view>
+            <view class='content-num sign-num01'>100</view>
+          </view>
+        </view>
+        <view class='contact-list'>
+          <image src='../../images/became-effective.png'></image>
+          <view class='content'>
+            <view class='content-title'>带我签署</view>
+            <view class='content-num sign-num02'>100</view>
+          </view>
+        </view>
+        <view class='contact-list'>
+          <image src='../../images/became-effective.png'></image>
+          <view class='content'>
+            <view class='content-title'>已截止</view>
+            <view class='content-num sign-num03'>100</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
 </view>
