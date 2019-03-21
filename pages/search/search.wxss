@@ -1,28 +1,31 @@
+
+.page-content{
+    border-bottom: 1px solid #ddd;
+}
 .search{
     width: 90%;
     margin: 20rpx auto;
     background-color:#f7f7f7;
 }
-.search_arr {
-    border: 1px solid #d0d0d0;
+.search-arr {
+    border: 1px solid #ddd;
     border-radius: 10rpx;
-    
+
 }
-.search_arr input{
+.search-arr input{
     margin-left: 60rpx;
     height: 60rpx;
     border-radius: 5px;
 }
-.search_arr .clear {
+.search-arr .clear {
     display: block;
     position: absolute;
     width: 60rpx;
     height: 60rpx;
     right: 10rpx;
     top:56rpx;
-    /*background: url("../../images/clear.png");*/
 }
-.search_arr .clear image {
+.search-arr .clear image {
     display: block;
     width: 60rpx;
     height: 60rpx;
@@ -36,4 +39,66 @@
     width: 20px;
     height: 20px;
     text-align: center;
+}
+/*搜索列表数据列表显示*/
+.search-data{
+    position: relative;
+}
+.search-data .data-lists{
+    box-sizing: border-box;
+    height: 160rpx;
+    overflow: hidden;
+    padding-left: 20rpx;
+    border-bottom: 1px solid #ddd;
+    position: relative;
+}
+.search-data .data-lists .contract-name{
+    width: 500rpx;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+    color: #333;
+    font-size: 32rpx;
+    font-weight: bold;
+    padding-top: 10rpx;
+}
+.search-data .data-lists .sign-user{
+    width: 500rpx;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+    color: #666;
+    font-size: 28rpx;
+    margin-top: 16rpx;
+}
+.search-data .data-lists .time{
+    color: #999;
+    font-size: 24rpx;
+    margin: 12rpx 0;
+}
+.operate {
+    position: absolute;
+    right: 48rpx;
+    top: 60rpx;
+}
+.operate button{
+    width: 124rpx;
+    height:48rpx;
+    line-height: 48rpx;
+    text-align: center;
+    border-radius: 30px;
+    font-size: 28rpx;
+    background: transparent;
+}
+.operate button.download{
+     border: 1px solid red;
+     color: red;
+ }
+.operate button.default{
+    border: 1px solid #419ef9;
+    color: #419ef9;
+}
+.operate button.remind {
+   background: red;
+    color: #fff;
 }
