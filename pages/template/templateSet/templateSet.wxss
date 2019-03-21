@@ -49,13 +49,12 @@
   text-align: center;
   line-height: 80rpx;
   border: 1px solid #4091FB;
-  margin:160rpx auto 100rpx auto;
+  margin:160rpx auto 120rpx auto;
   border-radius: 15rpx;
 }
 .add-contract image{
   height: 50rpx;
   width: 50rpx;
-  background: #4091FB;
   vertical-align: middle;
 }
 .add-contract-text {

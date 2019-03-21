@@ -38,11 +38,11 @@
           </view>
         </view>
         <view wx:for="{{dataList}}" wx:key="key" class="signtory-list">
-          <view class='list-content' bindtap='showDialogBtn'>
+          <view class='list-content'>
             <view class='list-name' data-id="{{index}}">{{item.name}}</view>
             <view class='list-idcard' data-id="{{index}}">{{item.idCode}}</view>
             <view class='list-mobile' data-id="{{index}}">{{item.phone}}</view>
-            <view class='list-operate' data-id="{{index}}">编辑</view>
+            <view class='list-operate' data-id="{{index}}" bindtap='showDialogBtn'>编辑</view>
           </view>
         </view>
         <button class='create-contract' form-type="submit">生成合同</button>
@@ -53,7 +53,7 @@
 
     </view>
     <view class='add-contract' bindtap="showDialogBtn">
-      <image src='../../../images/sponsor-contact.png'></image>
+      <image src='../../../images/add-signtory.png'></image>
       <text class='add-contract-text'>添加签署人</text>
     </view>
   </view>
@@ -61,7 +61,7 @@
   <form bindsubmit="formSubmitModel">
     <view class="modal-dialog" wx:if="{{showModal}}">
       <view class="modal-title">
-        <text>添加签署人</text>
+        <text>{{model.addSignature}}</text>
         <image bindtap='hideModal' src='../../../images/close-model.png'></image>
       </view>
       <view class="modal-content">

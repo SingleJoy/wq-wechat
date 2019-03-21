@@ -17,6 +17,7 @@ Page({
     listIndex: "",
     //model弹框验证
     model: {
+      addSignature: "添加签署人",
       nameHint: "请输入姓名",
       isShowNameHint: false,
       idcardHint: "请输入身份证",
@@ -41,6 +42,7 @@ Page({
     this.setData({
       showModal: true
     });
+    //添加签署人
     if (value == "添加签署人") {
       this.setData({
         listValue: {
@@ -49,6 +51,7 @@ Page({
           namePhone: ""
         },
         model: {
+          addSignature: "添加签署人信息",
           nameHint: "请输入姓名",
           isShowNameHint: false,
           idcardHint: "请输入身份证",
@@ -57,11 +60,10 @@ Page({
           isShowMobileHint: false,
         }
       })
-      console.log(11132344)
       return;
     } 
+    //修改签署人
     let modelList = this.data.dataList[e.target.dataset.id];
-    console.log(e.target.dataset.id)
     this.setData({
       listIndex: e.target.dataset.id
     })
@@ -72,6 +74,7 @@ Page({
         namePhone: modelList.phone
       },
       model: {
+        addSignature: "修改签署人信息",
         nameHint: modelList.name,
         isShowNameHint: false,
         idcardHint: modelList.idCode,
@@ -147,7 +150,6 @@ Page({
       this.setData({
         dataList
       })
-      console.log(222)
       this.hideModal()
     } else {
       let dataList = this.data.dataList;
