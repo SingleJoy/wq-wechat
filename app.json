@@ -1,15 +1,11 @@
 {
   "pages": [
-
+    "pages/template/templateSet/templateSet",
     "pages/search/search",
     "pages/account/account",
-
     "pages/template/templateList/templateList",
-    "pages/template/templateSet/templateSet",
     "pages/template/templateDetail/templateDetail",
-
     "pages/index/index",
-    "pages/account/account",
     "pages/start/start",
     "pages/login/login",
     "pages/contract/contract",
