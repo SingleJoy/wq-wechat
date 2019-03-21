@@ -15,10 +15,7 @@
     
   ],
   "window": {
-    "backgroundTextStyle": "dark",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "微签",
-    "navigationBarTextStyle": "black"
+      "navigationStyle": "custom"
   },
   "tabBar": {
     "color": "#6e6d6b",

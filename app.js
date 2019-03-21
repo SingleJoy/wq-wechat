@@ -28,12 +28,22 @@ App({
         }
       }
     })
+    wx.getSystemInfo({
+      success: res => {
+        //导航高度
+        this.globalData.navHeight = res.statusBarHeight + 46;
+        console.log(this.globalData.navHeight)
+      }, fail(err) {
+        console.log(err);
+      }
+    })
   },
 
   globalData: {
     userInfo: null,
     appid: 'wx7107b2770f8db4b6',//appid需自己提供
     secret: 'e0dassdadef2424234209bwqqweqw123ccqwa',//secret需自己提供
+    navHeight:0,
 
   },
   //全局可通过app.getApp().getOpenId()获取openId, sessionKey, unionId 等信息

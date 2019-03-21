@@ -1,4 +1,7 @@
 <!--pages/template/templateAddInfo/templateAddInfo.wxml-->
+<view class='nav bg-white' style='height:{{navH}}px'>
+  <view class='nav-title'>填充信息</view>
+</view>
 <view class="container common-box">
   <view class="main-content">
       <view class="form-info-list">
