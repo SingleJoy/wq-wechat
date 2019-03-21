@@ -1,29 +1,39 @@
-/* pages/search/search.wxss */
-.weui-search-bar{
-  width:100%;
+.search{
+    width: 90%;
+    margin: 20rpx auto;
+    background-color:#f7f7f7;
 }
-.searchbar-result{
-    margin-top: 0;
-    font-size: 14px;
+.search_arr {
+    border: 1px solid #d0d0d0;
+    border-radius: 10rpx;
+    
 }
-.searchbar-result:before{
-    display: none;
+.search_arr input{
+    margin-left: 60rpx;
+    height: 60rpx;
+    border-radius: 5px;
 }
-.weui-cell{
-    padding: 12px 15px 12px 35px;
+.search_arr .clear {
+    display: block;
+    position: absolute;
+    width: 60rpx;
+    height: 60rpx;
+    right: 10rpx;
+    top:56rpx;
+    /*background: url("../../images/clear.png");*/
 }
-.good-list{
-  width:100%;
+.search_arr .clear image {
+    display: block;
+    width: 60rpx;
+    height: 60rpx;
 }
-.good-item{
-  border-bottom:2rpx dashed #fafafa;
-  
-}
-.navigator-hover{
-  display: flex;
-  justify-content: space-between;
-  flex-direction: column;
-  align-items: center;
-  border-bottom:2rpx solid #333;
 
+.searchcion {
+    margin: 10rpx 10rpx 10rpx 10rpx;
+    position: absolute;
+    left:5%;
+    z-index: 2;
+    width: 20px;
+    height: 20px;
+    text-align: center;
 }
