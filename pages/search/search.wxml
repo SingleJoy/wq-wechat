@@ -1,13 +1,34 @@
 <view class="container common-box">
     <view class="main-content">
-        <view class="page_row" >
+
+        <view class="page-content" >
             <view class="search">
-                <view class="df search_arr">
+                <view class="df search-arr">
                     <icon class="searchcion" size='20' type='search'  ></icon>
                     <input focus="{true}"  placeholder="搜索" confirm-type='搜索' value="{{searchValue}}" bindconfirm="inputSearch" bindinput="changeInput"/>
                 </view>
             </view>
-          
+
+        </view>
+
+        <view class="search-data">
+            <view class="data-lists">
+
+                <view class="contract-name">{{contractName}}</view>
+                <view class="sign-user">{{signUser}}</view>
+                <view class="time">提交时间: {{time}}</view>
+
+                <!--<view class="operate">-->
+                    <!--<button type="button" class="download">下载</button>-->
+                    <!--<button type="button" class="default">签署</button>-->
+                    <!--<button type="button" class="default">延期</button>-->
+                    <!--<button type="button" class="remind">提醒</button>-->
+                <!--</view>-->
+            </view>
+
+
+
+
         </view>
 
     </view>
