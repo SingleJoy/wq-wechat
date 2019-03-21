@@ -5,7 +5,7 @@
             <text class="account-title">企业账号</text>
             <view class="account-list">
                 <view class="account-item" wx:for="{{accountList}}" wx:key="item.name">
-                <text class="account-name">{{item.name}}</text>
+                    <text class="account-name">{{item.name}}</text>
                     <view class="">
                         <block wx:if="{{item.status==0}}">
                             <view class="account-status unreal-name">未实名</view>

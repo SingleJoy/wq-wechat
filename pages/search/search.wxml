@@ -1,0 +1,14 @@
+<view class="container common-box">
+    <view class="main-content">
+        <view class="page_row" >
+            <view class="search">
+                <view class="df search_arr">
+                    <icon class="searchcion" size='20' type='search'  ></icon>
+                    <input focus="{true}"  placeholder="搜索" confirm-type='搜索' value="{{searchValue}}" bindconfirm="inputSearch" bindinput="changeInput"/>
+                </view>
+            </view>
+          
+        </view>
+
+    </view>
+</view>

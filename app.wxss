@@ -26,8 +26,8 @@ view,text{
 .nav{
   width: 100%;
   overflow: hidden;
-  position: relative;
-  top: 0;
+  position: fixed;
+  top: 100rpx;
   left: 0;
   z-index: 10;
 }
@@ -41,19 +41,20 @@ view,text{
   left: 0;
   z-index: 10;
   font-family:PingFang-SC-Medium;
-  font-size:28rpx;
+  font-size:32rpx;
   letter-spacing:2px;
 }
 .nav .back{
-  width: 22px;
   height: 22px;
   position: absolute;
   bottom: 0;
   left: 0;
+  font-size:32rpx; 
   padding: 10px 15px;
+  color:#4091FB
 }
 .bg-white{
-  background-color: #ffffff;
+  background-color: #fff;
 }
 .bg-gray{
   background-color: #f7f7f7;

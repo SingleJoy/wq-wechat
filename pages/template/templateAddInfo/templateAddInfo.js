@@ -87,5 +87,10 @@ Page({
     var fill_key = e.target.dataset.key;
     var obj = {};
     console.log(obj)
-  }
+  },
+  goBack:function(){
+    wx.navigateBack({
+        delta: 1
+    })
+  },
 })

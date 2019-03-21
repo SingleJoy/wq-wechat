@@ -9,7 +9,7 @@ Page({
   },
 
   ImmediatelyStart: function() {
-    wx.redirectTo({
+    wx.navigateTo({
       url: '../templateAddInfo/templateAddInfo',
     })
   },

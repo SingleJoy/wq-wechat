@@ -1,18 +1,37 @@
-// pages/serach/serach.js
+// pages/template/templateSuccess/templateSuccess.js
+const App = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    contractName:'北京众签科技',
+    contractStatus:0,
+    validTime:'2019-3-23 23:59',
+    signList:[
+        {
+            name:'测试1',
+            status:'0'
+        },
+        {
+            name:'测试2',
+            status:'1'
+        },
+        {
+            name:'测试3',
+            status:'1'
+        },
+    ]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.setData({
+      navH: App.globalData.navHeight
+    })
   },
 
   /**
