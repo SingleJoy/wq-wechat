@@ -6,7 +6,10 @@ Page({
      */
     data: {
         focus: false,
-        inputValue: ''
+        inputValue: '',
+        contractName:'合同名称合同名称',
+        signUser:'签署人签署人',
+        time:'2019-01-01',
     },
 
     /**
@@ -19,12 +22,14 @@ Page({
     //输入框根据查询条件搜索点击事件
     inputSearch(e) {
         // 获取用户输入框中的值
-        console.log(e)
+        console.log(e);
         let inputValue = e.detail.value['search-input'] ? e.detail.value['search-input'] : e.detail.value;
+        if(inputValue){
+            this.requestData(inputValue);
+        }else{
+            return false
+        }
 
-        console.log(inputValue)
-
-        this.requestData(inputValue);
     },
     //请求后端数据方法
     requestData(inputValue){
