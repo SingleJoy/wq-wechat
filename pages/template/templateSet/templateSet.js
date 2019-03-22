@@ -1,6 +1,5 @@
 // pages/template/templateSet/tempalteSet.js
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -15,9 +14,10 @@ Page({
     identification: "",
     //编辑/添加签署人数据索引
     listIndex: "",
+    //弹框标题
+    addSignature: "添加签署人",
     //model弹框验证
     model: {
-      addSignature: "添加签署人",
       nameHint: "请输入姓名",
       isShowNameHint: false,
       idcardHint: "请输入身份证",
@@ -30,8 +30,57 @@ Page({
       { name: "小明", idCode: "545214552233663321", phone: "15685474458" },
       { name: "大明", idCode: "545214552233663321", phone: "15545454545" }
     ],
-    nameHint: "请输入姓名",
-    showModal: false
+    showModal: false,
+    //删除样式
+    delate: "9",
+  },
+  //右滑开始
+  touchStart(e) {
+    console.log(e.target)
+    this.setData({
+      "touch.x": e.changedTouches[0].clientX,
+      "touch.y": e.changedTouches[0].clientY
+    });
+  },
+  //右滑操作
+  getTouchData (endX, endY, startX, startY){
+    let _this = this;
+    // console.log(_this.data.listIndex);
+    let turn = "";
+    if (endX - startX > 50 && Math.abs(endY - startY) < 50) {      //右滑
+      turn = "right";
+      this.setData({
+        delate: "100"
+      })
+    } else if (endX - startX < -50 && Math.abs(endY - startY) < 50) {   //左滑
+      turn = "left";
+      this.setData({
+        delate: _this.data.listIndex
+      })
+    }
+    return turn;
+  },
+  //右滑结束
+  touchEnd(e) {
+    this.setData({
+      listIndex: e.target.dataset.id
+    })
+    let x = e.changedTouches[0].clientX;
+    let y = e.changedTouches[0].clientY;
+    this.getTouchData(x, y, this.data.touch.x, this.data.touch.y);
+  },
+  //删除签署人
+  delDialogBtn: function(e) {
+    let dataList = this.data.dataList;
+    this.setData({
+      delate: "100"
+    })
+    dataList.splice(this.data.listIndex, 1)
+    this.setData({
+      dataList
+    });
+    return false;
+    console.log(this.data.listIndex)
   },
   //添加签署人（显示弹框）操作
   showDialogBtn: function (e) {
@@ -50,8 +99,8 @@ Page({
           nameIdcard: "",
           namePhone: ""
         },
+        addSignature: "添加签署人",
         model: {
-          addSignature: "添加签署人信息",
           nameHint: "请输入姓名",
           isShowNameHint: false,
           idcardHint: "请输入身份证",
@@ -73,8 +122,8 @@ Page({
         nameIdcard: modelList.idCode,
         namePhone: modelList.phone
       },
+      addSignature: "修改签署人",
       model: {
-        addSignature: "修改签署人信息",
         nameHint: modelList.name,
         isShowNameHint: false,
         idcardHint: modelList.idCode,
@@ -83,6 +132,7 @@ Page({
         isShowMobileHint: false,
       }
     })
+    return false;
   },
   //弹框关闭操作
   hideModal: function () {
@@ -96,6 +146,7 @@ Page({
   },
   //提交表单数据
   formSubmitModel: function(e) {
+    //验证姓名
     if (!e.detail.value.name) {
       this.setData({
         model: {
@@ -112,6 +163,7 @@ Page({
         }
       })
     }
+    //验证身份证
     if (!e.detail.value.idCode) {
       this.setData({
         model: {
@@ -128,6 +180,7 @@ Page({
         }
       })
     }
+    //验证手机号
     if (!e.detail.value.phone) {
       this.setData({
         model: {
@@ -144,6 +197,7 @@ Page({
         }
       })
     }
+    //添加签署人提交/修改签署人提交
     if (this.data.identification == "添加签署人") {
       let dataList = this.data.dataList;
       dataList.push(e.detail.value)
@@ -160,6 +214,7 @@ Page({
       this.hideModal()
     }
   },
+  //多选框操作
   checkboxChange: function(e) {
     console.log(e.detail.value)
   }, 
@@ -171,64 +226,7 @@ Page({
   onConfirm: function (e) {
     
   },
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-    
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  },
-  /**
-   * 日期时间选择控件
-   */
+  //日期时间选择控件
   bindDateChange(e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({

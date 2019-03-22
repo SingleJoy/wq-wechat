@@ -1,4 +1,5 @@
 <view class='containter common-box'>
+<!-- 合同内容 -->
   <view class='main-content'>
     <view class='contact-img'>
       <image src='../../../images/zqsign-01.jpg'></image>
@@ -7,24 +8,27 @@
       <image src='../../../images/zqsign-01.jpg'></image>
       <image src='../../../images/zqsign-01.jpg'></image>
     </view>
+    <!-- 顶部操作按钮 -->
     <view class='operateBtn'>
       <button class='contact-start cancel' bindtap='ImmediatelyCancel'>取消</button>
       <button class='contact-start sure' bindtap='ImmediatelySure'>确定</button>
     </view>
+    <!-- 弹框 -->
     <view class="modal-mask" bindtap="hideModal" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
-      <form bindsubmit="formSubmitModel">
-        <view class="modal-dialog" wx:if="{{showModal}}">
-          <view class="modal-title">
-            <text>请输入签署密码</text>
-            <image bindtap='hideModal' src='../../../images/close-model.png'></image>
-          </view>
-          <view class="modal-content">
-            <input></input>
-          </view>
-          <view class="modal-footer">
-            <button form-type="submit" class="btn-confirm" bindtap="onConfirm" data-status="confirm">确定</button>
-          </view>
+    <form bindsubmit="formSubmitModel">
+      <view class="modal-dialog" wx:if="{{showModal}}">
+        <view class="modal-title">
+          <text>请输入签署密码</text>
+          <image bindtap='hideModal' src='../../../images/close-model.png'></image>
         </view>
-      </form>
+        <view class="modal-content">
+          <input name="input" maxlength='6' placeholder='请输入签署密码'></input>
+        </view>
+        <view class='psd-hint' wx-if="{{psdHint}}">签署密码不能为空</view>
+        <view class="modal-footer">
+          <button form-type="submit" class="btn-confirm" data-status="confirm">确定</button>
+        </view>
+      </view>
+    </form>
   </view>
 </view>

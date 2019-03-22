@@ -62,10 +62,17 @@
   margin-top: -40rpx;
 }
 .modal-content input {
-  width: 360rpx;
+  width: 340rpx;
   height: 50rpx;
   border: 2rpx solid #ddd;
-  margin: 40rpx auto 70rpx auto;
+  margin: 40rpx auto 24rpx auto;
+  font-size: 24rpx;
+  padding-left: 20rpx;
+}
+.psd-hint {
+  font-size: 24rpx;
+  color: #FF0000;
+  text-align: center;
 }
 input-holder {
   /* color: #666; */

@@ -2,13 +2,13 @@
   "pages": [
     "pages/auth/login/login",
     "pages/contract/contractSign/contractSign",
+    "pages/template/templateSet/templateSet",
+    "pages/search/search",
     "pages/contract/contractDetail/contractDetail",
     "pages/template/templateSuccess/templateSuccess",
     "pages/template/templateAddInfo/templateAddInfo",
     "pages/contract/contract",
     "pages/template/templateSign/templateSign",
-    "pages/template/templateSet/templateSet",
-    "pages/search/search",
     "pages/start/start",
     "pages/template/templateList/templateList",
     "pages/template/templateDetail/templateDetail",
@@ -16,14 +16,16 @@
     "pages/account/account",
     "pages/logs/logs",
     "pages/canvas/canvas",
-    "pages/auth/roles/roles"
+    "pages/auth/roles/roles",
+    "pages/canvasImg/canvasImg"
     
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#4091FB",
+    "navigationBarBackgroundColor": "#ffffff",
     "navigationBarTitleText": "微签",
-    "navigationBarTextStyle": "white"
+    "navigationBarTextStyle": "white",
+    "pageOrientation": "auto"
   },
   "tabBar": {
     "color": "#6e6d6b",

@@ -1,6 +1,7 @@
 <view class='containter common-box'>
   <view class='main-content'>
     <view class=''>
+      <!-- 签署信息表单 -->
       <form bindsubmit="formSubmit" bindreset="formReset">
         <view class='sign-set'>
           <label class='contract-name contract-style'>合同名称：</label>
@@ -28,7 +29,7 @@
             </checkbox-group>
           </view>
         </view>
-        <!-- <view class='gray-line'></view> -->
+        <view class='line-gray'></view>
         <view class="signtory-list" >
           <view class='list-content list-title'>
             <view class='list-name'>姓名</view>  
@@ -38,30 +39,28 @@
           </view>
         </view>
         <view wx:for="{{dataList}}" wx:key="key" class="signtory-list">
-          <view class='list-content'>
+          <view animation="{{animationData}}" class='list-content {{delate == index ? "right-slide" : "restore"}}' data-id="{{index}}" capture-bind:touchstart='touchStart' capture-bind:touchend="touchEnd">
             <view class='list-name' data-id="{{index}}">{{item.name}}</view>
             <view class='list-idcard' data-id="{{index}}">{{item.idCode}}</view>
             <view class='list-mobile' data-id="{{index}}">{{item.phone}}</view>
-            <view class='list-operate' data-id="{{index}}" bindtap='showDialogBtn'>编辑</view>
+            <view wx-if='{{delate !== index ? "delate" : ""}}' class='list-operate {{delate == index ? "edit" : ""}}' data-id="{{index}}" bindtap='showDialogBtn'>编辑</view>
+            <view class='delate-style del' data-id="{{index}}" bindtap='delDialogBtn'>删除</view>
           </view>
         </view>
         <button class='create-contract' form-type="submit">生成合同</button>
       </form>
-    </view>
-    <!-- <view class='gray-line'></view> -->
-    <view>
-
     </view>
     <view class='add-contract' bindtap="showDialogBtn">
       <image src='../../../images/add-signtory.png'></image>
       <text class='add-contract-text'>添加签署人</text>
     </view>
   </view>
+  <!-- 添加/修改签署人弹框 -->
   <view class="modal-mask" bindtap="hideModal" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
   <form bindsubmit="formSubmitModel">
     <view class="modal-dialog" wx:if="{{showModal}}">
       <view class="modal-title">
-        <text>{{model.addSignature}}</text>
+        <text>{{addSignature}}</text>
         <image bindtap='hideModal' src='../../../images/close-model.png'></image>
       </view>
       <view class="modal-content">

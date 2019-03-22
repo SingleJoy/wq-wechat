@@ -4,30 +4,33 @@
 }
 .main-content{
     position: absolute;
+    height: 100%;
+    width: 100%;
 }
-.swiper-tab-container{
-  position: fixed;
+#swiper-tab-container{
+    position: fixed;
+    width: 100%;
+    border-bottom: 1px solid #ddd;
 }
 .swiper-tab{
-     position: relative;
-    box-sizing: border-box;
-    overflow: hidden;
-    padding-top:34rpx;
+    position: relative;
+
 }
 .swiper-tab view {
     overflow: hidden;
-    font-size: 30rpx;
+    font-size: 28rpx;
     display: inline-block;
     width: 33%;
     color: #666;
     border-bottom: 0rpx;
     position: relative;
     text-align: center;
-    height: 60rpx;
+    height:80rpx;
+    line-height: 80rpx;
 }
 .swiper-tab view i{
     position: absolute;
-    top: 16rpx;
+    top: 30rpx;
     right: 10rpx;
     width: 0;
     height: 0;
@@ -39,30 +42,50 @@
 
 }
 .swiper-tab view.on{
-
+    color: #4091fb;
+}
+.swiper-tab view.on i{
+    top: 20rpx;
+    border: 12rpx solid #4091fb;
+    border-bottom-color: #4091fb;
+    border-top-color: transparent;
+    border-left-color: transparent;
+    border-right-color: transparent;
 }
 .model{
     width: 100%;
     height:100%;
-    position: fixed;
-    background-color: rgba(0,0,0,0.3);
-    z-index: 1;
+    position: absolute;
+    background-color: rgba(0,0,0,0.2);
+    z-index: 9;
+    top:80px;
 }
-.swiper-item{
+.swiper{
+    position: absolute;
     width: 100%;
     height: auto;
     max-height: 420rpx;
     overflow-y: scroll;
-    top: 104rpx;
+    top:100rpx;
     left: 0;
     z-index: 9999;
     background-color: #fff;
 }
-#rights {
+.swiper-item {
     width: 100%;
     font-size:28rpx;
     overflow-y: auto;
     overflow-x: hidden;
+}
+.swiper-item view view{
+    width: 100%;
+    display: block;
+    font-size: 28rpx;
+    height: 70rpx;
+    line-height: 70rpx;
+    border-bottom: 1rpx solid #ddd;
+    color: #666;
+    padding-left: 60rpx;
 }
 
 .show {
@@ -75,22 +98,38 @@
     display: none;
 }
 
-.list-item {
-    width: 100%;
-    display: block;
-    font-size: 28rpx;
-    height: 70rpx;
-    line-height: 70rpx;
-    border-bottom: 1rpx solid #ddd;
-    color: #000;
-    padding-left: 40rpx;
-}
-
 .list-item-on {
-    font-size: 28rpx;
-    height: 70rpx;
-    line-height: 70rpx;
     border-bottom: 1rpx solid #4091fb;
     color: #4091fb;
-    padding-left: 40rpx;
+}
+.tab-list{
+    position:relative ;
+    z-index: 1;
+    width: 100%;
+    margin-top: 100rpx;
+    background-color: #fff;
+}
+
+.tab-list .tab-item{
+    margin:0 40rpx;
+    border: 1px solid #ddd;
+
+    border-radius: 5px;
+    height: 80rpx;
+}
+.tab-list .tab-item view{
+     display: inline-block;
+     width: 25%;
+     height: 40rpx;
+    text-align: center;
+    font-size: 28rpx;
+    box-sizing: border-box;
+    overflow: hidden;
+    margin-top: 20rpx;
+ }
+.tab-list .tab-item view.border-right{
+    border-right: 1px solid #ddd;
+}
+.tab-list .tab-item view.on{
+    color: #4091fb;
 }

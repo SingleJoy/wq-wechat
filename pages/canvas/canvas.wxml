@@ -1,2 +1,21 @@
-<!--pages/canvas/canvas.wxml-->
-<text>pages/canvas/canvas.wxml</text>
+<view class="canvasBox" style="width:{{width}}px;height:100vh;">
+    <view class="sign-tips">
+        <text>{{tips}}</text>
+    </view>
+
+    <view class="sign-operation">
+        <button type="button" value="" bindtouchstart="clearClick" bindtap="clearClick" class="btn-style clear-sign">清屏</button>
+        <button type="button" value="提交" bindtouchstart="saveClick" bindtap="saveClick" class="btn-style sign-submit">提交</button>
+    </view>
+
+    <canvas class="firstCanvas" style="width:{{canvasWidth}}px;height:{{canvasHeight}}px;border: 1px solid transparent;"
+            canvas-id="firstCanvas"
+            bindtouchmove="move"
+            bindtouchstart="start"
+            bindtouchend="end"
+            bindtouchcancel="cancel"
+            bindlongtap="tap"
+            disable-scroll="true"
+            binderror="error">
+    </canvas>
+</view>
