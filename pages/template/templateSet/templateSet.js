@@ -72,9 +72,9 @@ Page({
   //删除签署人
   delDialogBtn: function(e) {
     let dataList = this.data.dataList;
-    // this.setData({
-    //   delate: "100"
-    // })
+    this.setData({
+      delate: "100"
+    })
     dataList.splice(this.data.listIndex, 1)
     this.setData({
       dataList

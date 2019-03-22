@@ -227,4 +227,5 @@ input-holder {
   flex: auto;
   width: 120rpx;
   margin-right: -200rpx;
+  margin-top: -2rpx;
 }

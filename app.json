@@ -21,9 +21,9 @@
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#ffffff",
-    "navigationBarBackgroundColor": "#4091FB",
     "navigationBarTitleText": "微签",
-    "navigationBarTextStyle": "white"
+    "navigationBarTextStyle": "white",
+    "pageOrientation": "auto"
   },
   "tabBar": {
     "color": "#6e6d6b",
