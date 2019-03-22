@@ -10,11 +10,7 @@ Page({
 
   ImmediatelyStart: function() {
     wx.navigateTo({
-<<<<<<< HEAD
       url: '../templateSet/templateSet',
-=======
-      url: '../templateAddInfo/templateAddInfo',
->>>>>>> f7d31cafd50b3d985ee54b6a30232fd1f969089c
     })
   },
   /**
