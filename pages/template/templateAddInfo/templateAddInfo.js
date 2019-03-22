@@ -1,30 +1,31 @@
-// pages/roles/roles.js
+// pages/template/templateAddInfo/templateAddInfo.js
+const App = getApp();
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
-    accountList:[
+    infoList:[
       {
-        name:'测试一',
-        status:'1'
-      }, {
-        name: '测试二',
-        status: '0'
+        name:'价格',
       },
       {
-        name: '测试三',
-        status: '2'
+        name:"金额",
+      },
+      {
+        name:'位置'
       }
-    ]
+    ],
+    fillVal:'',
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.setData({
+      navH: App.globalData.navHeight
+    })
   },
 
   /**
@@ -75,10 +76,21 @@ Page({
   onShareAppMessage: function () {
 
   },
-  goIndex:function(e){
-      console.log(e.target.dataset.account)
-      wx.switchTab({
-          url:'/pages/index/index'
-      })
-  }
+  signSetting:function(e){
+    wx.navigateTo({
+      url: '/pages/template/templateSet/templateSet',
+    })
+  },
+  bindUsernameInput:function(e){
+    console.log(e.detail.value,e.target.dataset.key)
+    var fill_val = e.detail.value;
+    var fill_key = e.target.dataset.key;
+    var obj = {};
+    console.log(obj)
+  },
+  goBack:function(){
+    wx.navigateBack({
+        delta: 1
+    })
+  },
 })

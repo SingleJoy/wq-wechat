@@ -71,6 +71,9 @@ Page({
     },
     formSubmit:function(e){
         console.log(e)
+        wx.redirectTo({
+            url:'/pages/roles/roles'
+        })
     },
     //输入框事件
     bindUsernameInput: function (e) {

@@ -9,8 +9,8 @@ Page({
   },
 
   ImmediatelyStart: function() {
-    wx.redirectTo({
-      url: '../templateSet/templateSet',
+    wx.navigateTo({
+      url: '../templateAddInfo/templateAddInfo',
     })
   },
   /**

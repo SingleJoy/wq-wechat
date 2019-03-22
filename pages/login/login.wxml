@@ -1,7 +1,9 @@
 <!--pages/login/login.wxml-->
 <view class="container common-box">
     <view class="main-content">
-        <image class="login-logo" src="../../images/logox3.png"></image>
+        <view class="logo">
+          <image class="login-logo" src="../../images/logox3.png"></image>
+        </view>
         <view class="form-box">
             <form bindsubmit="formSubmit" bindreset="formReset">
                 <view class="form-item">
@@ -30,10 +32,10 @@
                 <text class="scan-QRcode">长按识别图中二维码</text>
             </view>
             <view class="login-link">
-            <text>关注众签公众号</text>
+              <text>关注众签公众号</text>
             </view>
-            <view class="login-link">
-            <text>实时了解电子合同最新资讯</text>
+            <view class="login-link link-news">
+              <text>实时了解电子合同最新资讯</text>
             </view>
         </view>
     </view>

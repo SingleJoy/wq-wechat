@@ -3,8 +3,8 @@
     <view class=''>
       <form bindsubmit="formSubmit" bindreset="formReset">
         <view class='sign-set'>
-          <label class='contract-name'><span class="hide-placeholder">签</span>合同名称：</label>
-          <input class='contract-content' placeholder='请输入合同名称' value='111'></input>
+          <label class='contract-name contract-style'>合同名称：</label>
+          <input name="input" class='contract-content' placeholder='请输入合同名称' value='111'></input>
         </view>
         <view class='sign-set'>
           <label class='contract-name'>签署截止日：</label>
@@ -16,24 +16,89 @@
               end="2017-09-01"
               bindchange="bindDateChange"
             >
-              <input class="picker picker-time" placeholder='请选择签署截止日' value='{{date}}'></input>
+              <input name="time" class="picker picker-time" placeholder='请选择签署截止日' value='{{date}}'></input>
             </picker>
           </view>
           <view class='select-time'>
             <checkbox-group bindchange="checkboxChange">
               <label class="checkbox">
-                <checkbox />
+                <checkbox value="{{item.name}}" checked="checked"/>
                 永久有效
               </label>
             </checkbox-group>
           </view>
         </view>
+        <!-- <view class='gray-line'></view> -->
+        <view class="signtory-list" >
+          <view class='list-content list-title'>
+            <view class='list-name'>姓名</view>  
+            <view class='list-idcard'>身份证号</view>  
+            <view class='list-mobile'>手机号</view> 
+            <view class='list-operate'></view> 
+          </view>
+        </view>
+        <view wx:for="{{dataList}}" wx:key="key" class="signtory-list">
+          <view class='list-content'>
+            <view class='list-name' data-id="{{index}}">{{item.name}}</view>
+            <view class='list-idcard' data-id="{{index}}">{{item.idCode}}</view>
+            <view class='list-mobile' data-id="{{index}}">{{item.phone}}</view>
+            <view class='list-operate' data-id="{{index}}" bindtap='showDialogBtn'>编辑</view>
+          </view>
+        </view>
+        <button class='create-contract' form-type="submit">生成合同</button>
       </form>
     </view>
-    <view class='gray-line'></view>
-    <view class='add-contract'>
-      <image src='../../../images/sponsor-contact.png'></image>
+    <!-- <view class='gray-line'></view> -->
+    <view>
+
+    </view>
+    <view class='add-contract' bindtap="showDialogBtn">
+      <image src='../../../images/add-signtory.png'></image>
       <text class='add-contract-text'>添加签署人</text>
     </view>
   </view>
+  <view class="modal-mask" bindtap="hideModal" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
+  <form bindsubmit="formSubmitModel">
+    <view class="modal-dialog" wx:if="{{showModal}}">
+      <view class="modal-title">
+        <text>{{model.addSignature}}</text>
+        <image bindtap='hideModal' src='../../../images/close-model.png'></image>
+      </view>
+      <view class="modal-content">
+        <view>
+          <view class="modal-input">
+            <label>姓名：</label>
+            <input name="name" placeholder-class="input-holder" value="{{listValue.nameValue}}" type="number" maxlength="10" bindinput="inputChange" placeholder="请输入姓名"></input>
+          </view>
+          <view class="modal-input model-hint">
+            <label></label>
+            <view wx-if="{{model.isShowNameHint}}">{{model.nameHint}}</view>
+          </view>
+        </view>
+        <view>
+          <view class="modal-input">
+            <label>身份证：</label>
+            <input name="idCode" placeholder-class="input-holder" value="{{listValue.nameIdcard}}" type="number" maxlength="18" bindinput="inputChange" placeholder="请输入身份证"></input>
+          </view>
+          <view class="modal-input model-hint">
+            <label></label>
+            <view wx-if="{{model.isShowIdcardHint}}">{{model.idcardHint}}</view>
+          </view>
+        </view>
+        <view>
+          <view class="modal-input">
+            <label>手机号码：</label>
+            <input name="phone" placeholder-class="input-holder" value="{{listValue.namePhone}}" type="number" maxlength="11" bindinput="inputChange" placeholder="请输入手机号码"></input>
+          </view>
+          <view class="modal-input model-hint">
+            <label></label>
+            <view wx-if="{{model.isShowMobileHint}}">{{model.mobileHint}}</view>
+          </view>
+        </view>
+      </view>
+      <view class="modal-footer">
+        <button form-type="submit" class="btn-confirm" bindtap="onConfirm" data-status="confirm">确定</button>
+      </view>
+    </view>
+  </form>
 </view>

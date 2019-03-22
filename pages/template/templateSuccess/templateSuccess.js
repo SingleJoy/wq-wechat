@@ -1,22 +1,27 @@
-// pages/roles/roles.js
+// pages/template/templateSuccess/templateSuccess.js
+const App = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    accountList:[
-      {
-        name:'测试一',
-        status:'1'
-      }, {
-        name: '测试二',
-        status: '0'
-      },
-      {
-        name: '测试三',
-        status: '2'
-      }
+    contractName:'北京众签科技',
+    contractStatus:0,
+    validTime:'2019-3-23 23:59',
+    signList:[
+        {
+            name:'测试1',
+            status:'0'
+        },
+        {
+            name:'测试2',
+            status:'1'
+        },
+        {
+            name:'测试3',
+            status:'1'
+        },
     ]
   },
 
@@ -24,7 +29,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.setData({
+      navH: App.globalData.navHeight
+    })
   },
 
   /**
@@ -74,11 +81,5 @@ Page({
    */
   onShareAppMessage: function () {
 
-  },
-  goIndex:function(e){
-      console.log(e.target.dataset.account)
-      wx.switchTab({
-          url:'/pages/index/index'
-      })
   }
 })

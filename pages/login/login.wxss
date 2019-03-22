@@ -4,7 +4,7 @@
   height:auto;
   overflow:hidden;
   padding:0 40rpx;
-  margin-top:96rpx;
+  margin-top:80rpx;
   background:#fff;
 
 }
@@ -14,12 +14,14 @@
   color:#fff;
 }
 .login-logo{
-  width: 260rpx;
-  height:212rpx;
+  width: 122rpx;
+  height:106rpx;
   margin-top: 54rpx;
   display: inline-block;
 }
-
+.logo{
+  text-align: center;
+}
 .form-item{
   display: flex;
   margin-bottom:30rpx;
@@ -32,7 +34,6 @@
     height:80rpx;
     border-bottom:1px solid #d9d9d9;
     margin-left:64rpx;
-    /* float:left; */
 }
 .login-icon{
     width:35rpx;
@@ -68,14 +69,14 @@
   height:44rpx;
   background:#fff;
   color:#333;
-  font-size:30rpx;
+  font-size:28rpx;
   text-align: left;
 
 }
 .btn-area{
     width:80%;
     margin:0 auto;
-    margin-top:150rpx;
+    margin-top:210rpx;
 
 }
 .btn-area button{
@@ -83,6 +84,7 @@
     color:#fff;
     height:80rpx;
     line-height: 80rpx;
+    width:520rpx;
 }
 .QR-code{
     text-align: center;
@@ -95,11 +97,20 @@
     margin: 0 auto;
     display: block;
 }
+.scan-QRcode{
+  font-size: 28rpx;
+  line-height: 28rpx;
+  margin-top:20rpx;
+}
 .login-link {
   text-align: center;
 }
 .login-link text{
   text-align: center;
   color:#4091fb;
+  font-size: 24rpx;
+}
+.link-news{
+  margin-top:44rpx;
 }
 
