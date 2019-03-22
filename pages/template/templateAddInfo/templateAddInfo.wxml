@@ -1,0 +1,13 @@
+
+<view class="container common-box">
+  <view class="main-content">
+      <view class="form-info-list">
+        <view wx:for="{{infoList}}" wx:key="{{item.name}}" class="form-item">
+            <label>{{item.name}}</label>
+            <input  class="userame" value="{{fillVal}}" data-key="{{item.name}}" bindinput="bindUsernameInput" placeholder="{{'请输入'+item.name}}"></input>
+        </view>
+        <view class="line"></view>
+      </view>
+      <button class='contact-setting' bindtap='signSetting'>签署设置</button>
+  </view>
+</view>

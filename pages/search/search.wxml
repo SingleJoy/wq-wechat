@@ -19,10 +19,10 @@
                 <view class="time">提交时间: {{time}}</view>
 
                 <!--<view class="operate">-->
-                    <!--<button type="button" class="download">下载</button>-->
-                    <!--<button type="button" class="default">签署</button>-->
-                    <!--<button type="button" class="default">延期</button>-->
-                    <!--<button type="button" class="remind">提醒</button>-->
+                <!--<button type="button" class="download">下载</button>-->
+                <!--<button type="button" class="default">签署</button>-->
+                <!--<button type="button" class="default">延期</button>-->
+                <!--<button type="button" class="remind">提醒</button>-->
                 <!--</view>-->
             </view>
 

@@ -1,8 +1,43 @@
 <!--pages/roles/roles.wxml-->
 <view class="container common-box">
     <view class="main-content">
-   
-
-        
+        <view class="business-account">
+            <text class="account-title">企业账号</text>
+            <view class="account-list">
+                <view class="account-item" wx:for="{{accountList}}" wx:key="item.name">
+                    <text class="account-name">{{item.name}}</text>
+                    <view class="">
+                        <block wx:if="{{item.status==0}}">
+                            <view class="account-status unreal-name">未实名</view>
+                        </block>
+                        <block wx:elif="{{item.status==1}}">
+                            <view class="account-status real-name">已实名</view>
+                        </block>  
+                        <block wx:elif="{{item.status==2}}">
+                            <view class="account-status real-name">未激活</view>
+                        </block> 
+                        <text class="account-option" bindtap="goIndex" data-account="{{item.accouunt}}">进入</text> 
+                        </view>
+                </view>
+            </view>
+        </view>
+        <view class="business-line"></view>
+        <view class="business-account sub-account">
+            <text class="account-title">企业子账号</text>
+            <view class="account-list">
+                <view class="account-item" wx:for="{{accountList}}" wx:key="item.name">
+                    <text class="account-name">{{item.name}}</text>
+                    <view class="">
+                        <block wx:if="{{item.status==0}}">
+                                <view class="account-status unreal-name">未实名</view>
+                        </block>
+                        <block wx:else>
+                            <view class="account-status real-name">已实名</view>
+                        </block>  
+                        <text class="account-option" bindtap="goIndex" data-account="{{item.accouunt}}">进入</text> 
+                    </view>
+                </view>
+            </view>
+        </view>
     </view>
 </view>

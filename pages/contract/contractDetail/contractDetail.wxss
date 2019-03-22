@@ -1,0 +1,176 @@
+/* pages/contract/contractDetail/contractDetail.wxss */
+.contract-detail-box{
+    /* padding:0 32rpx; */
+}
+.title-option{
+    width:100%;
+    position:fixed;
+    top:0rpx;
+    font-size:24rpx;
+    text-align: center;
+    background: #fff;
+    height:30rpx;
+    box-shadow: rgba(228, 228, 228, 0.5) 0px 1px 4px 2px;
+    /* display: none; */
+}
+.contract-info-box{
+    padding:36rpx 32rpx;
+    background: #fff;
+    box-shadow: rgba(228, 228, 228, 0.5) 0px 1px 4px 2px;
+    position: fixed;
+    left:0;
+    right:0;
+    top:30rpx;
+    width:100%;
+    box-sizing: border-box;
+    z-index: 1002
+}
+
+.info-item{
+    margin-bottom:24rpx;
+}
+.signer-list{
+    margin-top:24rpx;
+}
+.signer-item{
+    margin-bottom:10rpx;
+}
+.signer-name,.signer-phone{
+    font-size:26rpx;
+    line-height: 60rpx;
+}
+.signer-phone{
+    margin-right:10rpx;
+}
+.info-name{
+    font-size:26rpx;
+    color:#666;
+}
+.info-value{
+    font-size:26rpx;
+    color:#333;
+}
+.color-them{
+    color:#4091FB;
+}
+.contract-img{
+    padding-bottom:104rpx;
+    width:100%;
+    height:100vh;
+    padding-top:32rpx;
+}
+.contract-img image{
+    width:100%;
+    height: 100%;
+}
+.signer-item{
+    display: flex;
+    justify-content: space-between;
+}
+.oldSign-date{
+    margin-top:76rpx;
+    display: flex;
+}
+.sign-date-title{
+    font-size: 28rpx;
+    text-align: right;
+}
+.option{
+    width: 100%;
+    height: 104rpx;
+    line-height: 104rpx;
+    position: fixed;
+    bottom: 0;
+    background: #4091FB;
+    border-radius: 0;
+    color: #ffffff;
+}
+.options{
+    width: 100%;
+    position: fixed;
+    bottom:0;
+}
+.options button{ 
+    width:50%;
+    float: left;
+    background: #4091FB;
+    color:#fff;
+}
+.contract-option{
+    width:100%;
+}
+.drawer-mask{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    background: #000;
+    opacity: 0.5;
+    overflow: hidden;
+}
+.detail-mask{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 64rpx;
+    left: 0;
+    z-index: 1000;
+    background: #000;
+    opacity: 0.5;
+    overflow: hidden;
+}
+.drawer-box{
+    width: 550rpx;
+    overflow: hidden;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    z-index: 1001;
+    background: #FAFAFA;
+    border-radius: 10px;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+.drawer-title{
+    margin-top:42rpx;
+    text-align: center;
+    font-size: 32rpx;
+}
+.email-address{
+    border:2rpx solid #999;
+    border-radius: 5rpx;
+    width:360rpx;
+    height:50rpx;
+    margin:0 auto;
+    margin-top:28rpx;
+    margin-bottom:24rpx;
+    text-align: left;
+}
+.option-btn{
+    width: 100%;
+    margin-top:24rpx;
+}
+.btn-ok{
+    width:50%;
+    float: left;
+    height:68rpx;
+    background:#4091FB;
+    line-height: 68rpx;
+    text-align: center;
+    color:#fff;
+}
+.btn-cancel{
+    background: #999;
+}
+.emial-err{
+    font-size: 26rpx;
+    color:#ff0000;
+}
+.bind-email{
+    font-size: 32rpx;
+    line-height: 32rpx;
+    color:#4091FB;
+    margin-top:30rpx;
+}

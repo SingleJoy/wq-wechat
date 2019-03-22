@@ -5,7 +5,19 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    accountList:[
+      {
+        name:'测试一',
+        status:'1'
+      }, {
+        name: '测试二',
+        status: '0'
+      },
+      {
+        name: '测试三',
+        status: '2'
+      }
+    ]
   },
 
   /**
@@ -62,5 +74,11 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  goIndex:function(e){
+      console.log(e.target.dataset.account)
+      wx.switchTab({
+          url:'/pages/index/index'
+      })
   }
 })

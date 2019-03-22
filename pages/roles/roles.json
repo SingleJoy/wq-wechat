@@ -1,6 +1,6 @@
 {
-  "navigationBarBackgroundColor": "#fff",
+  "navigationBarBackgroundColor": "#4091FB",
   "navigationBarTitleText": "选择登录角色",
-  "navigationBarTextStyle": "black",
-  "backgroundColor": "#f4f4f4"
+  "navigationBarTextStyle": "white",
+  "backgroundColor": "#fff"
 }

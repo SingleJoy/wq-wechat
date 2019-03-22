@@ -10,7 +10,6 @@
 .search-arr {
     border: 1px solid #ddd;
     border-radius: 10rpx;
-
 }
 .search-arr input{
     margin-left: 60rpx;
@@ -30,7 +29,6 @@
     width: 60rpx;
     height: 60rpx;
 }
-
 .searchcion {
     margin: 10rpx 10rpx 10rpx 10rpx;
     position: absolute;
