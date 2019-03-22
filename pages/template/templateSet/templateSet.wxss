@@ -1,3 +1,4 @@
+/* 顶部样式 */
 .sign-set {
   display: flex;
   padding: 0 32rpx;
@@ -67,6 +68,8 @@
   margin-top: 100rpx;
   color: #22cc22;
 }
+
+/* 弹框样式 */
 .modal-mask {
   width: 100%;
   height: 100%;
@@ -101,6 +104,7 @@
   width: 36rpx;
   float: right;
   vertical-align: middle;
+  margin-top: -18rpx;
 }
 .modal-input {
   display: flex;
@@ -151,7 +155,7 @@ input-holder {
   font-size: 28rpx;
 }
 
-
+/* 签署人列表 */
 .list-content {
   display: flex;
   align-items: center;
@@ -197,4 +201,31 @@ input-holder {
   width: 100%;
   color: #ffffff;
   border-radius: 0;
+}
+.delate-style {
+  color: #ffffff;
+  background: #4091FB;
+  height: 100%;
+  line-height: 114rpx;
+  padding: 0;
+  margin: 0;
+  flex: 2;
+  margin-left: 15rpx;
+}
+.right-slide {
+  margin-right: 200rpx;
+  margin-left: -80rpx;
+  -webkit-transition: all 0.4s;
+  transition: all 0.4s;
+}
+.restore {
+  margin-right: 0;
+  margin-left: 0;
+  -webkit-transition: all 0.4s;
+  transition: all 0.4s;
+}
+.del {
+  flex: auto;
+  width: 120rpx;
+  margin-right: -200rpx;
 }

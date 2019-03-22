@@ -162,8 +162,9 @@ Page({
   switch1Change(e) {
     console.log('switch1 发生 change 事件，携带值为', e.detail.value)
   },
+  // 查看详情
   lookUp() {
-    wx.redirectTo({
+    wx.navigateTo({
       url: '../templateDetail/templateDetail'
     })
   },

@@ -1,12 +1,12 @@
 {
   "pages": [
-    "pages/template/templateSign/templateSign",
     "pages/template/templateSet/templateSet",
-    "pages/search/search",
-    "pages/account/account",
     "pages/template/templateList/templateList",
     "pages/template/templateDetail/templateDetail",
+    "pages/template/templateSign/templateSign",
+    "pages/search/search",
     "pages/index/index",
+    "pages/account/account",
     "pages/start/start",
     "pages/login/login",
     "pages/contract/contract",
@@ -14,8 +14,8 @@
     "pages/roles/roles"
   ],
   "window": {
-    "backgroundTextStyle": "dark",
-    "navigationBarBackgroundColor": "#fff",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#ffffff",
     "navigationBarTitleText": "微签",
     "navigationBarTextStyle": "black"
   },
