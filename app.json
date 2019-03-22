@@ -1,22 +1,22 @@
 {
   "pages": [
+    "pages/auth/login/login",
+    "pages/contract/contractSign/contractSign",
     "pages/contract/contractDetail/contractDetail",
-    "pages/login/login",
     "pages/template/templateSuccess/templateSuccess",
     "pages/template/templateAddInfo/templateAddInfo",
     "pages/contract/contract",
     "pages/template/templateSign/templateSign",
     "pages/template/templateSet/templateSet",
     "pages/search/search",
+    "pages/start/start",
     "pages/template/templateList/templateList",
     "pages/template/templateDetail/templateDetail",
-  
     "pages/index/index",
-    "pages/start/start",
     "pages/account/account",
     "pages/logs/logs",
     "pages/canvas/canvas",
-    "pages/roles/roles"
+    "pages/auth/roles/roles"
     
   ],
   "window": {
