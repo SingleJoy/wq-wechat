@@ -10,20 +10,26 @@ Page({
             name:'测试1',
             phone:'43243242343',
             status:'0'
+        },
+        {
+            name:'测试1',
+            phone:'43243242343',
+            status:'1'
         }
     ],
     contractStatus:4,   //合同状态:1 待我签署 2待他人签署 3已生效 4已截止
     showModalStatus:true,
-    detailMask:true,
+    detailMask:false,
     defaultEmail:'tets@123.com',
     errMessage:'热热我',
+    contractName:'北京中众签科技'
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    
   },
 
   /**
@@ -76,14 +82,15 @@ Page({
   },
   //详情三角切换
   changeDetailBox:function(e){
+      console.log(this.data.detailMask)
     this.setData({
-        detailMask:!this.detailMask
+        detailMask:!this.data.detailMask
     })
   },
   //隐藏mask
-  powerDrawer:function(){
+  powerDrawer:function(e){
     this.setData({
-        powerDrawer:false
+        detailMask:false
     })
   },
   move:function(e){

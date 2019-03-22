@@ -1,6 +1,6 @@
 /* pages/roles/roles.wxss */
 .main-content{
-  padding:20rpx 32rpx 0 32rpx;
+  padding:0rpx 32rpx 0 32rpx;
 }
 .business-account{
   padding: 20rpx 32rpx 0 32rpx;

@@ -1,6 +1,5 @@
 {
-  "navigationBarBackgroundColor": "#fff",
   "navigationBarTitleText": "填充信息",
-  "navigationBarTextStyle": "black",
+  "navigationBarTextStyle": "white",
   "backgroundColor": "#f4f4f4"
 }

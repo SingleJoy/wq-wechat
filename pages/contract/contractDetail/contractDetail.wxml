@@ -1,10 +1,10 @@
 <!--pages/contract/contractDetail/contractDetail.wxml-->
 <view class="container common-box" >
-    <view class="title-option" bindtab="changeDetailBox">查看详情</view>
+    <!-- <view class="gray-line"></view> -->
     <view class="icon=select"></view>
     <view class="main-content" >
-        <view class="detail-mask" wx:if="{{detailMask}}" bindtab="powerDrawer" catchtouchmove="move"></view>
         <view class="contract-detail-box">
+             <view class="detail-mask" wx:if="{{detailMask}}" bindtap="powerDrawer" catchtouchmove="move"></view>
             <!-- 合同基本信息 -->
             <view class="contract-info-box" wx:if="{{detailMask}}">
                 <view class="info-item">  
@@ -25,26 +25,30 @@
                 </view>
                 <view class="info-item">  
                     <text class="info-name">当前状态：</text>
-                    <text class="info-value">{{contractName}}</text>
+                    <text class="info-value color-them">{{contractName}}</text>
                 </view>
                 <view class="info-item">  
                     <text class="info-name">签署人员：</text>
                     <view class="signer-list">
                         <view class="signer-item" wx:for="{{signerList}}" wx:key="{{item.name}}">
                             <text class="signer-name">{{item.name}}</text>
-                            <text class="signer-phone">{{item.phone}}</text>
-                            <block wx:if="{{item.status == 0}}">
-                                <text class="sign-status unsign">未签署</text>
-                            </block>
-                            <block wx:else>
-                                <text class="sign-status unsign">已签署</text>
-                            </block>
+                            <view class="sign-right">
+                                <text class="signer-phone">{{item.phone}}</text>
+                                <block wx:if="{{item.status == 0}}">
+                                    <text class="sign-status unsign">未签署</text>
+                                </block>
+                                <block wx:else>
+                                    <text class="sign-status signed">已签署</text>
+                                </block>
+                            </view>
+                            
                         </view>
                     </view>
                 </view>
             </view>
+            <view class="title-option" bindtap="changeDetailBox">查看详情</view>
             <!-- 合同图片 -->
-            <view class="contract-img" style="{{detailMask?'height:100%;overflow:hidden':''}}">
+            <view class="contract-img">
                 <image src='../../../images/zqsign-01.jpg'></image>
                 <image src='../../../images/zqsign-01.jpg'></image>
                 <image src='../../../images/zqsign-01.jpg'></image>
@@ -91,7 +95,36 @@
                         
                     </view>
             </block>
+        </view>
+        <!-- 合同延期 -->
+        <view class="contract-dialog">
+            <block wx:if="{{contractStatus == 5}}">
+                <view class="drawer-mask" wx:if="{{showModalStatus}}"></view>
+                <view  class="drawer-box" wx:if="{{showModalStatus}}">
+                <!--drawer content-->
+                    <view class="drawer-content">
+                        <view class="oldign-date">
+                            <view class="sign-date-title">
+                                <view>原签署截止日期：</view>
+                                <view>延期至：</view>
+                            </view>
+                            <view class="sign-date-title"> 
+                                 <view>{{}}</view>
+                                <view>延期至：</view>
+                            </view>
+                        </view>
+                        <view>
 
+                        </view>
+                     
+                    </view>
+                    <view class="option-btn">
+                        <view class="btn-ok btn-cancel" bindtap="toLogin" data-status="close">取消</view>
+                        <view class="btn-ok" bindtap="toIndex" data-status="close">确定</view>
+                    </view>
+                        
+                    </view>
+            </block>
         </view>
     </view>
 </view>
