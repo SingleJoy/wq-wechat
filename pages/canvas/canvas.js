@@ -143,9 +143,11 @@ wx.getSystemInfo({
                                 key:'base64',
                                 data:base64,
                                 success(res) {
-
+                            //保存base64编码成功  这里可以做跳转操作
                                   console.log(res)
-
+                                    wx.navigateTo({
+                                        url: '/pages/canvasImg/canvasImg'
+                                    })
                                 }
 
                             })
