@@ -1,20 +1,33 @@
 
 .page-content{
-    border-bottom: 1px solid #ddd;
+    background-color:#4091fb;
+    height: 72rpx;
+    box-sizing: border-box;
+    overflow: hidden;
+    position: relative;
 }
 .search{
-    width: 90%;
-    margin: 20rpx auto;
-    background-color:#f7f7f7;
+    display: flex;
+    box-sizing: border-box;
+    overflow: hidden;
+    background-color:#fff;
+    height: 48rpx;
+    margin-top: 10rpx;
+    margin-left: 20rpx;
+    margin-right: 20rpx;
+    border-radius:30px;
 }
 .search-arr {
-    border: 1px solid #ddd;
-    border-radius: 10rpx;
+    border-radius:30px;
 }
 .search-arr input{
-    margin-left: 60rpx;
-    height: 60rpx;
-    border-radius: 5px;
+    display: flex;
+    width: 100%;
+    box-sizing: border-box;
+    padding-left:72rpx;
+    height: 48rpx;
+    border-radius: 30px;
+    font-size: 24rpx;
 }
 .search-arr .clear {
     display: block;
@@ -30,12 +43,12 @@
     height: 60rpx;
 }
 .searchcion {
-    margin: 10rpx 10rpx 10rpx 10rpx;
+    margin: 10rpx 10rpx 10rpx 6rpx;
     position: absolute;
-    left:5%;
+    left:40rpx;
     z-index: 2;
-    width: 20px;
-    height: 20px;
+    width: 16px;
+    height: 16px;
     text-align: center;
 }
 /*搜索列表数据列表显示*/
@@ -61,7 +74,7 @@
     padding-top: 10rpx;
 }
 .search-data .data-lists .sign-user{
-    width: 500rpx;
+    width: 600rpx;
     overflow: hidden;
     text-overflow:ellipsis;
     white-space: nowrap;
@@ -80,23 +93,26 @@
     top: 60rpx;
 }
 .operate button{
-    width: 124rpx;
+    display: block;
     height:48rpx;
+    font-size: 24rpx;
     line-height: 48rpx;
     text-align: center;
     border-radius: 30px;
-    font-size: 28rpx;
     background: transparent;
-}
-.operate button.download{
-     border: 1px solid red;
-     color: red;
- }
-.operate button.default{
-    border: 1px solid #419ef9;
-    color: #419ef9;
-}
-.operate button.remind {
-   background: red;
     color: #fff;
+    padding: 0 20rpx;
+}
+.operate button.waitMe{
+    background: #4091fb;
+
+ }
+.operate button.waitOther{
+    background: #09a13b;
+}
+.operate button.effective {
+  background: #ff8400;
+}
+.operate button.close {
+    background:red;
 }

@@ -12,7 +12,7 @@
 		"nodeModules": false
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.6.1",
+	"libVersion": "2.6.2",
 	"appid": "wx1ee5aa9056037e8e",
 	"projectname": "wx-wesign-zqsign",
 	"debugOptions": {
