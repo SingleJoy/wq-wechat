@@ -1,2 +1,70 @@
-<!--pages/contract/contract.wxml-->
-<text>pages/contract/contract.wxml</text>
+
+
+<view class="container common-box" style="height: 100%;overflow: hidden;box-sizing: border-box">
+    <view class="main-content">
+
+        <!-- 下拉菜单   -->
+        <view id="swiper-tab-container">
+            <view class="swiper-tab">
+                <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-current="1" data-no="{{folderNo}}"  bindtap="tabNav">{{folder}}
+                    <i></i>
+                </view>
+                <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-current="2" data-contractType="{{folderNo}}"bindtap="tabNav">{{contractType}}
+                    <i></i>
+                </view>
+                <view class="swiper-tab-list {{currentTab==2 ? 'on' : ''}}" data-current="3" data-no="{{accountNo}}" bindtap="tabNav">{{accountType}}
+                    <i></i>
+                </view>
+            </view>
+
+        </view>
+
+        <view class="tab-list">
+            <view class="swiper-tab">
+
+            </view>
+
+        </view>
+
+        <view wx:if="{{selected!=0}}" duration="1000" class="swiper-item" >
+
+            <view>
+                <view class='qiehuannier'>
+
+                    <view id="rights">
+
+                        <view class="{{selected==1?'show':'hidden'}}">
+                            <view class="{{sum == 1?'list-item-on':'list-item'}}" data-num="1" bindtap="clickSum" data-name="默认文件夹">默认文件夹</view>
+                            <view class="{{sum == 2?'list-item-on':'list-item'}}" data-num="2" bindtap="clickSum" data-name="文件夹1">文件夹1</view>
+                            <view class="{{sum == 2?'list-item-on':'list-item'}}" data-num="2" bindtap="clickSum" data-name="文件夹2">文件夹2</view>
+                            <view class="{{sum == 2?'list-item-on':'list-item'}}" data-num="2" bindtap="clickSum" data-name="文件夹3">文件夹3</view>
+                            <view class="{{sum == 2?'list-item-on':'list-item'}}" data-num="2" bindtap="clickSum" data-name="文件夹4">文件夹4</view>
+                            <view class="{{sum == 2?'list-item-on':'list-item'}}" data-num="2" bindtap="clickSum" data-name="文件夹5">文件夹5</view>
+                            <view class="{{sum == 2?'list-item-on':'list-item'}}" data-num="2" bindtap="clickSum" data-name="文件夹6">文件夹6</view>
+                        </view>
+
+                        <view class="{{selected==2?'show':'hidden'}}">
+                            <view class="{{sum == 1?'list-item-on':'list-item'}}" data-num="1" bindtap="clickSum" data-name="对个人合同">对个人合同</view>
+                            <view class="{{sum == 2?'list-item-on':'list-item'}}" data-num="2" bindtap="clickSum" data-name="对企业合同">对企业合同</view>
+                        </view>
+
+                        <view class="{{selected==3?'show':'hidden'}}">
+                            <view class="{{sum == 1?'list-item-on':'list-item'}}" data-num="1" bindtap="clickSum" data-name="对个人合同">全部</view>
+                            <view class="{{sum == 2?'list-item-on':'list-item'}}" data-num="2" bindtap="clickSum" data-name="子账号1">子账号1</view>
+                            <view class="{{sum == 2?'list-item-on':'list-item'}}" data-num="2" bindtap="clickSum" data-name="子账号2">子账号2</view>
+                        </view>
+
+                    </view>
+                </view>
+            </view>
+
+        </view>
+
+        <view class="model" wx:if="{{selected!=0}}"></view>
+
+
+    </view>
+
+
+</view>
+
