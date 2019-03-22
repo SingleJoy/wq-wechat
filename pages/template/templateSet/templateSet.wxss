@@ -39,7 +39,7 @@
   color: #333333;
   line-height: 66rpx;
 }
-.gray-line {
+.line-gray {
   height: 20rpx;
   background: #f5f5f5;
   margin-top: 36rpx;
@@ -68,7 +68,6 @@
   margin-top: 100rpx;
   color: #22cc22;
 }
-
 /* 弹框样式 */
 .modal-mask {
   width: 100%;

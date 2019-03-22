@@ -29,7 +29,7 @@
             </checkbox-group>
           </view>
         </view>
-        <!-- <view class='gray-line'></view> -->
+        <view class='line-gray'></view>
         <view class="signtory-list" >
           <view class='list-content list-title'>
             <view class='list-name'>姓名</view>  
@@ -49,11 +49,6 @@
         </view>
         <button class='create-contract' form-type="submit">生成合同</button>
       </form>
-    </view>
-    <view class='gray-line'></view>
-    <!-- <view class='gray-line'></view> -->
-    <view>
-
     </view>
     <view class='add-contract' bindtap="showDialogBtn">
       <image src='../../../images/add-signtory.png'></image>
