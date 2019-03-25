@@ -87,7 +87,7 @@
 
             <view class="sign-out">
 
-                <button type="button">退出</button>
+                <button type="button" bindtap="loginOut">退出</button>
             </view>
         </view>
     </view>

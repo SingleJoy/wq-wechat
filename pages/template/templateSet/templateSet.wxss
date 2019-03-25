@@ -20,7 +20,7 @@
   font-size: 28rpx;
   flex: auto;
   height: 66rpx;
-  width: 40rpx;
+  width: 20rpx;
   border: 1px solid #ddd;
 }
 .section {
