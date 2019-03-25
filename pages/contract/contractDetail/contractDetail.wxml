@@ -4,9 +4,9 @@
     <view class="icon=select"></view>
     <view class="main-content" >
         <view class="contract-detail-box">
-             <view class="detail-mask" wx:if="{{detailMask}}" bindtap="powerDrawer" catchtouchmove="move"></view>
+            <view class="detail-mask" wx:if="{{detailMask}}" bindtap="powerDrawer" catchtouchmove="move"></view>
             <!-- 合同基本信息 -->
-            <view class="contract-info-box" wx:if="{{detailMask}}">
+            <view class="contract-info-box" animation="{{animationData}}" wx:if="{{detailMask}}">
                 <view class="info-item">  
                     <text class="info-name">合同名称：</text>
                     <text class="info-value">{{contractName}}</text>
@@ -46,7 +46,10 @@
                     </view>
                 </view>
             </view>
-            <view class="title-option" bindtap="changeDetailBox">查看详情</view>
+            <view class="title-option" bindtap="changeDetailBox">
+                查看详情
+                <text class="select-angle {{detailMask?'angle-transform':''}}" ></text>
+            </view>
             <!-- 合同图片 -->
             <view class="contract-img">
                 <image src='../../../images/zqsign-01.jpg'></image>
@@ -89,8 +92,8 @@
                         <view class="bind-email" wx:if="{{defaultEmail}}">发送至账号绑定邮箱</view>
                     </view>
                     <view class="option-btn">
-                        <view class="btn-ok btn-cancel" bindtap="toLogin" data-status="close">取消</view>
-                        <view class="btn-ok" bindtap="toIndex" data-status="close">确定</view>
+                        <view class="btn-ok btn-cancel" bindtap="cancelDialog" data-status="close">取消</view>
+                        <view class="btn-ok" bindtap="emailSubmit" data-status="close">确定</view>
                     </view>
                         
                     </view>
@@ -98,29 +101,39 @@
         </view>
         <!-- 合同延期 -->
         <view class="contract-dialog">
-            <block wx:if="{{contractStatus == 5}}">
+            <block wx:if="{{contractStatus == 4}}">
                 <view class="drawer-mask" wx:if="{{showModalStatus}}"></view>
                 <view  class="drawer-box" wx:if="{{showModalStatus}}">
                 <!--drawer content-->
                     <view class="drawer-content">
-                        <view class="oldign-date">
-                            <view class="sign-date-title">
-                                <view>原签署截止日期：</view>
-                                <view>延期至：</view>
+                        <view class="oldSign-date">
+                            <view class="sign-date-title date-item">
+                                <view class="old-date">原签署截止日期：</view>
+                                <view class="select-date">延期至：</view>
                             </view>
-                            <view class="sign-date-title"> 
-                                 <view>{{}}</view>
-                                <view>延期至：</view>
+                            <view class="sign-date-value date-item"> 
+                                <view class="old-date">{{validTime}}</view>
+                                 <!-- 日期选择 -->
+                                <view class="section select-date ">
+                                    <picker mode="date" value="{{date}}"  start="2015-09-01" end="2090-09-01" bindchange="showPicker">
+                                        <view class="picker color-them">
+                                            <text class="color-them" wx:if="{{!date}}">选择其他日期</text>
+                                            {{date}}
+                                        </view>
+                                    </picker>
+                                </view>
                             </view>
                         </view>
-                        <view>
-
+                        <view class="no-datelimit" bindtap="changePermanent">
+                                <view class="radio">
+                                    <text class="radio-dot" wx:if="{{permanentLimit}}"></text>
+                                </view>
+                                <text>永久有效</text>
                         </view>
-                     
                     </view>
                     <view class="option-btn">
-                        <view class="btn-ok btn-cancel" bindtap="toLogin" data-status="close">取消</view>
-                        <view class="btn-ok" bindtap="toIndex" data-status="close">确定</view>
+                        <view class="btn-ok btn-cancel" bindtap="cancelDialog" data-status="close">取消</view>
+                        <view class="btn-ok" bindtap="dateSubmit" data-status="close">确定</view>
                     </view>
                         
                     </view>

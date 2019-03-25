@@ -18,18 +18,21 @@ Page({
         }
     ],
     contractStatus:4,   //合同状态:1 待我签署 2待他人签署 3已生效 4已截止
-    showModalStatus:true,
+    showModalStatus:false,
     detailMask:false,
     defaultEmail:'tets@123.com',
     errMessage:'热热我',
-    contractName:'北京中众签科技'
+    contractName:'北京中众签科技',
+    validTime:'2018-03-09',
+    permanentLimit:false,
+    animationData:'',
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+
   },
 
   /**
@@ -115,7 +118,35 @@ Page({
   },
   //延长签署日期
   extendDate:function(e){
+    this.setData({
+        showModalStatus:true
+    })
+  },
+  //是否永久有效
+  changePermanent:function(e){
+      this.setData({
+        permanentLimit:!this.data.permanentLimit
+      })
+  },
+  //弹框关闭
+  cancelDialog:function(){
+    this.setData({
+        showModalStatus:false
+    })
+  },
+  //邮箱发送
+  emailSubmit:function(){
 
-  }
+  },
+  //延期确定按钮
+  dateSubmit:function(){
 
+  },
+  //延期选择时间
+  showPicker:function(e){
+    console.log(e)
+    this.setData({
+      date: e.detail.value
+    })
+  },
 })

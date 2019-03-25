@@ -2,12 +2,12 @@
 <view class="container common-box">
     <view class="main-content">
         <view class="logo">
-          <image class="login-logo" src="../../images/logox3.png"></image>
+          <image class="login-logo" src="/images/logox3.png"></image>
         </view>
         <view class="form-box">
             <form bindsubmit="formSubmit" bindreset="formReset">
                 <view class="form-item">
-                    <image class="login-icon" src="../../images/phone.png"></image>
+                    <image class="login-icon" src="/images/phone.png"></image>
                     <view class="section">
                         <input class="username" placeholder="请输入手机号" value="{{username}}" bindinput="bindUsernameInput" />
                         <image class="clear" id="clear-username" wx:if="{{username.length>0}}"  src="../../images/clear.png" catchtap="clearInput"></image>
@@ -15,7 +15,7 @@
                     </view>
                 </view>
                 <view class="form-item">
-                    <image class="login-icon" src="../../images/pwd.png"></image>
+                    <image class="login-icon" src="/images/pwd.png"></image>
                     <view class="section">
                         <input class="password" placeholder="请输入密码"   value="{{password}}" bindinput="bindPasswordInput" password />
                         <image class="clear" id="clear-password"  wx:if="{{password.length>0}}" src="/images/clear.png" catchtap="clearInput"></image>

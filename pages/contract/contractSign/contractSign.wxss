@@ -1,0 +1,87 @@
+.contact-img {
+    padding: 36rpx 32rpx;
+    margin-bottom: 104rpx;
+  }
+  .contact-img image {
+    width: 100%;
+    /* height: 100%; */
+  }
+  .operateBtn {
+    position: fixed;
+    bottom: 0;
+    height: 104rpx;
+    width: 100%;
+    display: flex;
+  }
+  .contact-start {
+    line-height: 104rpx;
+    width: 50%;
+    background: #4091FB;
+    border-radius: 0;
+    color: #ffffff;
+  }
+  .cancel {
+    background: #9fc8fd;
+  }
+  .modal-mask {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: #000;
+    opacity: 0.5;
+    overflow: hidden;
+    z-index: 9000;
+    color: #fff;
+  }
+  .modal-dialog {
+    width: 500rpx;
+    overflow: hidden;
+    position: fixed;
+    left: 50%;
+    top: 30%;
+    transform: translate(-50%,-30%);
+    z-index: 9999;
+    background: #fff;
+    border-radius: 20rpx;
+    /* padding: 50rpx 20rpx; */
+  }
+  .modal-title {
+    font-size: 36rpx;
+    color: #030303;
+    text-align: center;
+    margin-top: 88rpx;
+  }
+  .modal-title image {
+    height: 36rpx;
+    width: 36rpx;
+    float: right;
+    vertical-align: middle;
+    margin-right: 25rpx;
+    margin-top: -40rpx;
+  }
+  .modal-content input {
+    width: 360rpx;
+    height: 50rpx;
+    border: 2rpx solid #ddd;
+    margin: 40rpx auto 70rpx auto;
+  }
+  input-holder {
+    /* color: #666; */
+    font-size: 28rpx;
+  }
+  .modal-footer .btn-confirm {
+    width: 100%;
+    height: 66rpx;
+    line-height: 66rpx;
+    margin: 56rpx auto 0 auto;
+    text-align: center;
+    background: #4091FB;
+    color: #FFFFFF;
+    border: none;
+    font-size: 28rpx;
+    border-radius: 0;
+  }
+  
+  

@@ -1,7 +1,7 @@
 // pages/login/login.js
 
-import util from '../../utils/util.js'
-import {login} from "../../wxapi/api";
+// import util from '/utils/util.js'
+// import {login} from "/wxapi/api";
 Page({
 
     /**
@@ -72,7 +72,7 @@ Page({
     formSubmit:function(e){
         console.log(e)
         wx.redirectTo({
-            url:'/pages/roles/roles'
+            url:'/pages/auth/roles/roles'
         })
     },
     //输入框事件

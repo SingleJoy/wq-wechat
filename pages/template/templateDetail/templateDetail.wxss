@@ -1,8 +1,8 @@
-.contact-img {
+.contract-img {
   padding: 36rpx 32rpx;
   margin-bottom: 104rpx;
 }
-.contact-img image {
+.contract-img image {
   width: 100%;
   /* height: 100%; */
 }

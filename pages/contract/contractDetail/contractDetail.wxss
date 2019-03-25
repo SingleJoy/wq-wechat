@@ -9,7 +9,7 @@
     font-size:24rpx;
     text-align: center;
     background: #fff;
-    height:30rpx;
+    height:40rpx;
     box-shadow: rgba(228, 228, 228, 0.5) 0px 1px 4px 2px;
     /* display: none; */
 }
@@ -20,12 +20,28 @@
     position: fixed;
     left:0;
     right:0;
-    top:30rpx;
+    top:42rpx;
     width:100%;
     box-sizing: border-box;
     z-index: 1002
 }
-
+.select-angle{
+    width:15rpx;
+    height: 15rpx;
+    border:1rpx solid #666;
+    transition:transform 0.2s;
+    transform: rotate(45deg);
+    border-left:none;
+    border-top:none;
+    display: inline-block;
+    float: right;
+    margin-right: 20rpx;
+    margin-top:10rpx;
+}
+.angle-transform{
+    transition:transform 0.2s;
+    transform: rotate(225deg);
+}
 .info-item{
     margin-bottom:24rpx;
 }
@@ -34,6 +50,7 @@
 }
 .signer-item{
     margin-bottom:10rpx;
+    display: flex;
 }
 .signer-name,.signer-phone{
     font-size:26rpx;
@@ -59,12 +76,14 @@
     height:100vh;
     padding-top:32rpx;
 }
+.drawer-content{
+    padding: 0 10rpx;
+}
 .contract-img image{
     width:100%;
     height: 100%;
 }
 .signer-item{
-    display: flex;
     justify-content: space-between;
 }
 .oldSign-date{
@@ -74,17 +93,44 @@
 .sign-date-title{
     font-size: 28rpx;
     text-align: right;
+    float: left;
 }
-.option{
-    width: 100%;
-    height: 104rpx;
-    line-height: 104rpx;
-    position: fixed;
-    bottom: 0;
+.no-datelimit{
+    margin-top:24rpx;
+    height: 34rpx;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    position: relative;
+    margin-bottom:60rpx;
+}
+.radio-dot{
+    width:20rpx;
+    height:20rpx;
+    display: inline-block;
     background: #4091FB;
-    border-radius: 0;
-    color: #ffffff;
+    border-radius: 50%;
+    /* margin-left: 5rpx;
+    margin-bottom: 5rpx; */
+ 
 }
+.sign-date-value{
+    text-align: left;
+    line-height: 32rpx;
+    float: left;
+}
+.old-date{
+    margin-bottom:32rpx;
+    line-height: 32rpx;
+}
+.select-date{
+    line-height: 32rpx;
+}
+.date-item{
+    width:50%;
+ }
+
+ 
 .options{
     width: 100%;
     position: fixed;
@@ -96,9 +142,7 @@
     background: #4091FB;
     color:#fff;
 }
-.contract-option{
-    width:100%;
-}
+
 .drawer-mask{
     width: 100%;
     height: 100%;
@@ -155,11 +199,23 @@
 .btn-ok{
     width:50%;
     float: left;
-    height:68rpx;
     background:#4091FB;
-    line-height: 68rpx;
+    font-size: 32rpx;
+    line-height: 32rpx;
+    padding: 28rpx 0;
     text-align: center;
     color:#fff;
+}
+.radio{
+    width:30rpx;
+    height:30rpx;
+    border-radius: 50%;
+    border:1px solid #999;
+    margin-right: 20rpx;
+    margin-left: 50rpx;
+    margin-top: 7rpx;
+    text-align: center;
+    line-height: 30rpx;
 }
 .btn-cancel{
     background: #999;
