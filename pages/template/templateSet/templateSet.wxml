@@ -44,7 +44,7 @@
             <view class='list-idcard' data-id="{{index}}">{{item.idCode}}</view>
             <view class='list-mobile' data-id="{{index}}">{{item.phone}}</view>
             <view wx-if='{{delate !== index ? "delate" : ""}}' class='list-operate {{delate == index ? "edit" : ""}}' data-id="{{index}}" bindtap='showDialogBtn'>编辑</view>
-            <view class='delate-style del' data-id="{{index}}" bindtap='delDialogBtn'>删除</view>
+            <view wx-if='{{delate == index ? "delate" : ""}}' class='delate-style del' data-id="{{index}}" bindtap='delDialogBtn'>删除</view>
           </view>
         </view>
         <button class='create-contract' form-type="submit">生成合同</button>
