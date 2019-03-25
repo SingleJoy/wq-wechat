@@ -39,16 +39,17 @@
 .account-status{
   float:left;
   font-size:28rpx;
+  line-height: 28prx;
   width:126rpx;
   border-radius: 40rpx;
   color:#fff;
   height: 56rpx;
-  line-height: 56prx;
   vertical-align: middle;
   text-align: center;
   margin-top:20rpx;
   margin-right:16rpx;
   padding-top:10rpx;
+  box-sizing: border-box;
 }
 .unreal-name{
   background:#999999;

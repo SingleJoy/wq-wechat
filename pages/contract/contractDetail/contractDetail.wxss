@@ -1,7 +1,4 @@
 /* pages/contract/contractDetail/contractDetail.wxss */
-.contract-detail-box{
-    /* padding:0 32rpx; */
-}
 .title-option{
     width:100%;
     position:fixed;
@@ -26,14 +23,14 @@
     z-index: 1002
 }
 .select-angle{
-    width:15rpx;
-    height: 15rpx;
+    width:16rpx;
+    height: 16rpx;
     border:1rpx solid #666;
     transition:transform 0.2s;
+    transform-origin:8rpx 14rpx;
     transform: rotate(45deg);
     border-left:none;
     border-top:none;
-    display: inline-block;
     float: right;
     margin-right: 20rpx;
     margin-top:10rpx;
@@ -41,6 +38,7 @@
 .angle-transform{
     transition:transform 0.2s;
     transform: rotate(225deg);
+    transform-origin:8rpx 14rpx;
 }
 .info-item{
     margin-bottom:24rpx;

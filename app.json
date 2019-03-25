@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/auth/roles/roles",
     "pages/auth/login/login",
     "pages/contract/contractSign/contractSign",
     "pages/template/templateSet/templateSet",
@@ -16,13 +17,13 @@
     "pages/account/account",
     "pages/logs/logs",
     "pages/canvas/canvas",
-    "pages/auth/roles/roles",
+    
     "pages/canvasImg/canvasImg"
     
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarBackgroundColor": "#4091fb",
     "navigationBarTitleText": "微签",
     "navigationBarTextStyle": "white",
     "pageOrientation": "auto"

@@ -52,13 +52,13 @@
 }
 .form-item .clear {
   position:absolute;
-  top:26rpx;
+  top:40rpx;
   right:18rpx;
   z-index:2;
   display:block;
   background:#fff;
-  height:44rpx;
-  width:44rpx;
+  height:30rpx;
+  width:30rpx;
 }
 .username,.password{
   position:absolute;
@@ -81,6 +81,7 @@
 }
 .btn-area button{
     background: #4091fb;
+    transition:background 0.4s;
     color:#fff;
     height:80rpx;
     line-height: 80rpx;
@@ -112,5 +113,11 @@
 }
 .link-news{
   margin-top:44rpx;
+}
+button[disabled]{
+    background: #4091fb !important;
+    opacity: 0.6;
+    color:#fff!important;
+    transform:background;
 }
 

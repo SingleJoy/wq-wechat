@@ -1,7 +1,7 @@
 <!--pages/contract/contractDetail/contractDetail.wxml-->
 <view class="container common-box" >
     <!-- <view class="gray-line"></view> -->
-    <view class="icon=select"></view>
+    <view class="icon-select"></view>
     <view class="main-content" >
         <view class="contract-detail-box">
             <view class="detail-mask" wx:if="{{detailMask}}" bindtap="powerDrawer" catchtouchmove="move"></view>

@@ -21,7 +21,17 @@ function checkPhone(str){
   const reg = /^0?(13[0-9]|15[0123456789]|18[0123456789]|14[135789]|17[0123467859]|16[6]|19[89])[0-9]{8}$/
   return reg.test(str)
 }
-
+/**
+ * @param {*pwd(8-16)} str
+*/
+function checkPwd(str){
+    const reg  = /^[a-zA-Z0-9]{8,16}$/;
+    if(str){
+        return reg.test(str)
+    }else{
+        return false
+    }
+}
 
 
 //检查微信会话是否过期
@@ -64,7 +74,8 @@ module.exports = {
   checkSession,
   loginByWeiXin,
   checkLogin,
-  checkPhone
+  checkPhone,
+  checkPwd
 }
 
 

@@ -1,6 +1,5 @@
-// pages/roles/roles.js
+import {roleLogin} from '../../../wxapi/api.js'
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -76,7 +75,7 @@ Page({
 
   },
   goIndex:function(e){
-      console.log(e.target.dataset.account)
+
       wx.switchTab({
           url:'/pages/index/index'
       })
