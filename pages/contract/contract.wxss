@@ -1,3 +1,44 @@
+.page-content{
+    position: fixed;
+    width: 100%;
+    height: auto;
+    box-sizing: border-box;
+    overflow: hidden;
+    top: 0;
+}
+.search{
+    position: relative;
+    display: flex;
+    background-color:#4091fb;
+    box-sizing: border-box;
+    overflow: hidden;
+    height: 66rpx;
+}
+.search-arr {
+    display: block;
+    margin-left: 20rpx;
+    margin-right: 20rpx;
+    width: 100%;
+}
+.search-arr input{
+    width: 100%;
+    box-sizing: border-box;
+    padding-left:48rpx;
+    height: 48rpx;
+    line-height: 48rpx;
+    border-radius: 30px;
+    font-size: 24rpx;
+    background-color: #fff;
+}
+.searchcion {
+    margin: 10rpx 10rpx 10rpx 6rpx;
+    position: absolute;
+    left:20rpx;
+    z-index: 2;
+    width: 16px;
+    height: 16px;
+    text-align: center;
+}
 .header-tabs{
     position: relative;
     display: flex;
@@ -11,6 +52,7 @@
     position: fixed;
     width: 100%;
     border-bottom: 1px solid #ddd;
+    top: 60rpx;
 }
 .swiper-tab{
     position: relative;
@@ -25,7 +67,7 @@
     border-bottom: 0rpx;
     position: relative;
     text-align: center;
-    height:80rpx;
+    height:68rpx;
     line-height: 80rpx;
 }
 .swiper-tab view i{
@@ -66,7 +108,7 @@
     height: auto;
     max-height: 420rpx;
     overflow-y: scroll;
-    top:100rpx;
+    top:138rpx;
     left: 0;
     z-index: 9999;
     background-color: #fff;
@@ -80,9 +122,9 @@
 .swiper-item view view{
     width: 100%;
     display: block;
-    font-size: 28rpx;
-    height: 70rpx;
-    line-height: 70rpx;
+    font-size: 24rpx;
+    height: 60rpx;
+    line-height:60rpx;
     border-bottom: 1rpx solid #ddd;
     color: #666;
     padding-left: 60rpx;
@@ -97,7 +139,6 @@
     text-align: left;
     display: none;
 }
-
 .list-item-on {
     border-bottom: 1rpx solid #4091fb;
     color: #4091fb;
@@ -106,14 +147,13 @@
     position:relative ;
     z-index: 1;
     width: 100%;
-    margin-top: 100rpx;
+    margin-top: 90rpx;
     background-color: #fff;
 }
 
 .tab-list .tab-item{
     margin:0 40rpx;
     border: 1px solid #ddd;
-
     border-radius: 5px;
     height: 80rpx;
 }

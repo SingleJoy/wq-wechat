@@ -1,8 +1,23 @@
 
-
 <view class="container common-box" style="height: 100%;overflow: hidden;box-sizing: border-box">
     <view class="main-content">
+        <view class="page-content" >
+            <view class="search" >
+                <view class="df search-arr">
+                    <icon class="searchcion" size='20' type='search' ></icon>
+                    <input  auto-focus="{{false}}" placeholder="搜索"  value="" bindtap="goSearch" disabled/>
+                </view>
+            </view>
+            <view class="tab-list">
+                <view class="tab-item">
+                    <view class="item  border-right {{contractStatus=='3'? ' on':''}}" data-current="3" bindtap="tabNavContract">已生效</view>
+                    <view class="item  border-right{{contractStatus=='2'? ' on':''}}" data-current="2" bindtap="tabNavContract">待他人签署</view>
+                    <view class="item  border-right{{contractStatus=='1'? ' on':''}}" data-current="1" bindtap="tabNavContract">待我签署</view>
+                    <view class="item {{contractStatus=='4'? ' on':''}}" data-current="4" bindtap="tabNavContract">已截止</view>
+                </view>
 
+            </view>
+        </view>
         <!-- 下拉菜单   -->
         <view id="swiper-tab-container">
             <view class="swiper-tab">
@@ -19,15 +34,7 @@
 
         </view>
 
-        <view class="tab-list">
-            <view class="tab-item">
-                <view class="item  border-right {{contractStatus=='3'? ' on':''}}" data-current="3" bindtap="tabNavContract">已生效</view>
-                <view class="item  border-right{{contractStatus=='2'? ' on':''}}" data-current="2" bindtap="tabNavContract">待他人签署</view>
-                <view class="item  border-right{{contractStatus=='1'? ' on':''}}" data-current="1" bindtap="tabNavContract">待我签署</view>
-                <view class="item {{contractStatus=='4'? ' on':''}}" data-current="4" bindtap="tabNavContract">已截止</view>
-            </view>
 
-        </view>
         <view class="model" wx:if="{{selected!=0}}" bindtap="closeModel"></view>
         <view wx:if="{{selected!=0}}" duration="1000" class="swiper" >
 

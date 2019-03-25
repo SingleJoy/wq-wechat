@@ -71,6 +71,12 @@ Page({
             contractStatus:contractStatus,
         })
     },
+    goSearch(){
+
+        wx.navigateTo({
+            url: '/pages/search/search'
+        })
+    },
 
     onLoad: function (options) {
         console.log("onLoad")

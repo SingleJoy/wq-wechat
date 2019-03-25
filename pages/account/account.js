@@ -24,6 +24,26 @@ Page({
 
   },
   //事件处理函数
+    loginOut(){
+
+        wx.showModal({
+            title: '提示',
+            content: '确定退出当前账号?',
+            success(res) {
+                if (res.confirm) {
+                    wx.redirectTo({
+                        url:'/pages/login/login'
+                    })
+                } else if (res.cancel) {
+                       return false
+                }
+            }
+        })
+
+
+
+    },
+
 
   onLoad: function () {
 
