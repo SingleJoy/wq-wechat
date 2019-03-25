@@ -29,19 +29,7 @@
     border-radius: 30px;
     font-size: 24rpx;
 }
-.search-arr .clear {
-    display: block;
-    position: absolute;
-    width: 60rpx;
-    height: 60rpx;
-    right: 10rpx;
-    top:56rpx;
-}
-.search-arr .clear image {
-    display: block;
-    width: 60rpx;
-    height: 60rpx;
-}
+
 .searchcion {
     margin: 10rpx 10rpx 10rpx 6rpx;
     position: absolute;
