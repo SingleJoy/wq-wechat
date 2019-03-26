@@ -11,14 +11,12 @@
     "pages/template/templateAddInfo/templateAddInfo",
     "pages/contract/contract",
     "pages/template/templateSign/templateSign",
-    
     "pages/template/templateList/templateList",
     "pages/template/templateDetail/templateDetail",
     "pages/index/index",
     "pages/account/account",
     "pages/logs/logs",
     "pages/canvas/canvas",
-    
     "pages/canvasImg/canvasImg"
     
   ],

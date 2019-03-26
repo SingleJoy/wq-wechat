@@ -2,7 +2,7 @@
 import util from '../../../utils/util.js';
 import { tenant, login, bindEnterprises} from '../../../wxapi/api.js';
 const md5 = require('../../../utils/md5.js')
-
+const app = getApp()
 Page({
 
     /**
@@ -20,7 +20,7 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-      // console.log(md5)
+        console.log(app.globalData)
     },
     login(){
 
@@ -99,6 +99,11 @@ Page({
                       } else {
                         res_data = res.data.dataList[1][0];
                       }
+                    //   app.globalData.accountCode = res_data.accountCode;
+                    //   app.globalData.interfaceCode = res_data.interfaceCode;
+                    //   app.globalData.accountLevel = res_data.accountLevel;
+                    //   app.globalData.mobile = res_data.mobile;
+                    //   app.globalData.dataList = res.data.dataList;
                       wx.setStorage({ key: 'accountCode',data: res_data.accountCode})
                       wx.setStorage({ key: 'interfaceCode',data: res_data.interfaceCode})
                       wx.setStorage({key: 'accountLevel',data: res_data.accountLevel})

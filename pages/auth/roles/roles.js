@@ -1,5 +1,5 @@
-import { homePage} from '../../../wxapi/api.js';
-
+import { homePage} from '../../../wxapi/api.js'
+const app = getApp()
 Page({
   /**
    * 页面的初始数据
@@ -90,7 +90,7 @@ Page({
           mobile:this.data.mobile
     }
     homePage(interfaceCode,data).then(res=>{
-       
+       console.log(res)
     }).catch(err=>{
 
     })

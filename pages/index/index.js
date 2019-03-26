@@ -1,5 +1,6 @@
 // pages/index/index.js
-import {login} from '../../wxapi/api'
+import {contractNum} from '../../wxapi/api'
+
 const app = getApp()
 Page({
   data: {
@@ -39,14 +40,32 @@ Page({
     files: [],
     // slideHeight: wx.getSystemInfoSync().windowHeight,
     slideHeight: '100%',
-    animationData:''
+    animationData:'',
+    waitForMeSign:'',
+    waitForOtherSign:'',
+    takeEffect:'',
+    deadline:''
+
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    let requestType = ['waitForMeSign', 'waitForOtherSign', 'takeEffect', 'deadline'];
+    const interfaceCode = wx.getStorageSync('interfaceCode');
+    for (let i = 0; i < requestType.length; i++) {
+        let type = requestType[i]
+        contractNum[type](interfaceCode).then(res => {
+            console.log(type,res.data.count)
+            this.setData({
+                type:res.data.count
+            })
+      }).catch(error => {
 
+      })
+    }
+    console.log(this.data.waitForMeSign)
   },
 
   /**

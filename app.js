@@ -32,9 +32,9 @@ App({
       success: res => {
         //导航高度
         this.globalData.navHeight = res.statusBarHeight + 46;
-        console.log(this.globalData.navHeight)
+        // console.log(this.globalData.navHeight)
       }, fail(err) {
-        console.log(err);
+        // console.log(err);
       }
     })
   },
@@ -42,8 +42,10 @@ App({
   globalData: {
     userInfo: null,
     appid: 'wx1c9cf5eea2984b74',//appid需自己提供
-    secret: '',//secret需自己提供
-    navHeight:0,
+    accountCode:'',
+    interfaceCode:'',
+    accountLevel:'',
+    mobile:''
 
   },
   //全局可通过app.getApp().getOpenId()获取openId, sessionKey, unionId 等信息
@@ -52,7 +54,7 @@ App({
       wx.login({
         success: res => {
           if (res.code) {
-            console.log(res.code)
+            // console.log(res.code)
             //发送code到后台获取 openId, sessionKey, unionId
             // wx.request({
             //   url: WXAPI.API_BASE_URL,
