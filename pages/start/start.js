@@ -9,20 +9,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    banners: [
-      {
-        picUrl:'../../images/banner1.png',
-        id: 19181,
-      },
-      {
-        picUrl: '../../images/banner2.png',
-        id: 19182,
-      },
-      {
-        picUrl: '../../images/banner3.png',
-        id: 19183,
-      }
-    ],
+    banners: [],
+    accountCode:'',
     swiperMaxNumber: 3,
     swiperCurrent: 0,
     height: wx.getSystemInfoSync().screenHeight,
@@ -34,15 +22,19 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let hasLogin = wx.getStorageSync('token')
-    if(hasLogin){
-      wx.switchTab({
-        url: '/pages/index/index'
-      })
-    }else{
-      wx.redirectTo({
-        url: '/pages/login/login'
-      })
+    try {
+      const accountCode = wx.getStorageSync('accountCode')
+      if (accountCode) {
+        wx.switchTab({
+          url: '/pages/index/index'
+        })
+      }else{
+        wx.redirectTo({
+          url: '/pages/auth/login/login'
+        })
+      }
+    } catch (e) {
+
     }
   },
   //显示弹框

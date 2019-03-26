@@ -4,6 +4,7 @@ const API_URL = CONFIG.API_BASE_URL;       //接口域名
 const util = require('../utils/util.js')
 
 const request = (url,method,data,header) => {
+  console.log(data)
     //接口具体地址
     let _url = API_URL + url;             
     // 默认是'application/json',如图片等内容需要'image/png' 需单独在接口中传
@@ -19,12 +20,11 @@ const request = (url,method,data,header) => {
                 // 'token': wx.getStorageSync('token')
             },
             success(res) {
-              console.log(res)
-                if(res.status == 200){
+               if(res.statusCode == 200){
                     if(res.data.sessionStatus == '000000'){
                         return util.getToken() 
                     }else{
-                        resolve(res.data)
+                        resolve(res)
                     }
                 }else {
                     reject(res.errMsg)
