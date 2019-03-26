@@ -1,20 +1,3 @@
-// // pages/template/template.js
-// Page({
-
-//   /**
-//    * 页面的初始数据
-//    */
-//   data: {
-//     list:[
-//       {
-//         name:'fdsfds',
-//       }
-//     ],
-//     hidden:true,
-//     scrollTop:'10px',
-//     scrollHeight:0,
-//     scrollTop:0
-//   },
 
 //   /**
 //    * 生命周期函数--监听页面加载
@@ -30,120 +13,11 @@
 //       },
 //     })
 //   },
-//   loadingChange:function(){
-
-
-//   },
-//   topLoad:function(){
-
-//   },
-//   bindDownLoad:function(){
-
-//   },
-//   scroll: function (event) {
-//     //该方法绑定了页面滚动时的事件，我这里记录了当前的position.y的值,为了请求数据之后把页面定位到这里来。
-//     this.setData({
-//         scrollTop : event.detail.scrollTop
-//     });
-
-//   },
-
-//   /**
-//    * 生命周期函数--监听页面初次渲染完成
-//    */
-//   onReady: function () {
-
-//   },
-
-//   /**
-//    * 生命周期函数--监听页面显示
-//    */
-//   onShow: function () {
-
-//   },
-
-//   /**
-//    * 生命周期函数--监听页面隐藏
-//    */
-//   onHide: function () {
-
-//   },
-
-//   /**
-//    * 生命周期函数--监听页面卸载
-//    */
-//   onUnload: function () {
-
-//   },
-
-//   /**
-//    * 页面相关事件处理函数--监听用户下拉动作
-//    */
-//   onPullDownRefresh: function () {
-
-//   },
-
-//   /**
-//    * 页面上拉触底事件的处理函数
-//    */
-//   onReachBottom: function () {
-
-//   },
-
-//   /**
-//    * 用户点击右上角分享
-//    */
-//   onShareAppMessage: function () {
-
-//   }
-// })
-
-var url = "http://www.imooc.com/course/ajaxlist";
-var page = 0;
-var page_size = 5;
-var sort = "last";
-var is_easy = 0;
-var lange_id = 0;
-var pos_id = 0;
-var unlearn = 0;
-
-
-// 请求数据
-var loadMore = function (that) {
-  that.setData({
-    hidden: false
-  });
-  wx.request({
-    url: url,
-    data: {
-      page: page,
-      page_size: page_size,
-      sort: sort,
-      is_easy: is_easy,
-      lange_id: lange_id,
-      pos_id: pos_id,
-      unlearn: unlearn
-    },
-    success: function (res) {
-      //console.info(that.data.list);
-      var list = that.data.list;
-      for (var i = 0; i < res.data.list.length; i++) {
-        list.push(res.data.list[i]);
-      }
-      that.setData({
-        list: list
-      });
-      page++;
-      that.setData({
-        hidden: true
-      });
-    }
-  });
-}
+import { updateMobileTemplate, getAccountTemplates } from '../../../wxapi/api.js';
 Page({
   data: {
     hidden: true,
-    list: [],
+    lists: [],
     scrollTop: 0,
     scrollHeight: 0
   },
@@ -157,9 +31,41 @@ Page({
         });
       }
     });
-    loadMore(that);
+    let pageDate = {
+      pageNum: 1,
+      useStatus: 1,
+      pageSize: 10,
+      templateSpecies: "single",
+      order: "DESC"
+    }
+    this.getData(pageDate);
+  },
+  getData(data) {
+    getAccountTemplates(data).then(res =>{
+      this.setData({
+        lists: res.data.contents
+      })
+      console.log(res.data.contents)
+    }).catch(res => {
+      
+    })
   },
   switch1Change(e) {
+    let changeValue = e.detail.value;
+    if (changeValue) {
+      changeValue = 1;
+    } else {
+      changeValue = null;
+    }
+    let data = {
+      "mobileTemplate": "1"
+    }
+    console.log(typeof JSON.stringify(data));
+    updateMobileTemplate(data).then(res => {
+      console.log(res)
+    }).catch(res => {
+
+    });
     console.log('switch1 发生 change 事件，携带值为', e.detail.value)
   },
   // 查看详情

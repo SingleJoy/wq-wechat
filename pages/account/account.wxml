@@ -8,15 +8,15 @@
                     </view>
                     <view class="list-item">
                         <view class="account-name">
-                            <text >{{accountName}}</text>
+                            <text >{{enterpriseName}}</text>
                         </view>
 
                         <view class="phone">
-                            <text >{{phone}}</text>
+                            <text >{{mobile}}</text>
                         </view>
 
                         <view class="user-name">
-                            <text >{{userName}}</text>
+                            <text >{{authorizerName}}</text>
                         </view>
 
                         <view class="email">
@@ -38,11 +38,11 @@
                     <view class="contract-num-list">
                         <view class="contract-left" >
                             <image src="../../images/b2c@2x.png" class="real-name"></image>
-                            <text>对个人合同数量 : {{b2c}}</text>
+                            <text>对个人合同数量 : {{b2cNum}}</text>
                         </view>
                         <view class="contract-right" >
                             <image src="../../images/b2b@2x.png" class="real-name"></image>
-                            <text>对个人合同数量 : {{b2b}}</text>
+                            <text>对个人合同数量 : {{b2bNum}}</text>
                         </view>
                     </view>
 
@@ -57,19 +57,19 @@
                     <view class="digital-info-list">
                         <view>
                             <text class="left-side">识别码:</text>
-                            <text >{{identificationCode}}</text>
+                            <text >{{certificateNo}}</text>
                         </view>
                         <view>
                             <text class="left-side">颁发给:</text>
-                            <text>{{awardOwer}}</text>
+                            <text>{{companyName}}</text>
                         </view>
                         <view>
                             <text class="left-side">有效起始时间:</text>
-                            <text>{{startTime}}</text>
+                            <text>{{effectiveStartTime}}</text>
                         </view>
                         <view>
                             <text class="left-side">有效截止时间:</text>
-                            <text>{{endTime}}</text>
+                            <text>{{effectiveEndTime}}</text>
                         </view>
                     </view>
 
@@ -81,7 +81,7 @@
                     <view class="title">
                         <text >签章样式</text>
                     </view>
-                    <image src="../../images/sinature-image@2x.png"></image>
+                    <image src="{{signaturePath}}"></image>
                 </view>
             </view>
 
