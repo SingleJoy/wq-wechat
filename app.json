@@ -1,6 +1,6 @@
 {
   "pages": [
-    "pages/contract/contract",
+   
     "pages/auth/login/login",
     "pages/contract/contractSign/contractSign",
     "pages/template/templateSet/templateSet",
@@ -8,7 +8,7 @@
     "pages/contract/contractDetail/contractDetail",
     "pages/template/templateSuccess/templateSuccess",
     "pages/template/templateAddInfo/templateAddInfo",
-    
+    "pages/contract/contract",
     "pages/template/templateSign/templateSign",
     "pages/start/start",
     "pages/template/templateList/templateList",
