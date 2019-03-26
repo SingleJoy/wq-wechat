@@ -2,16 +2,24 @@
 .template-select {
   height: 110rpx;
   line-height: 110rpx;
+  width: 100%;
   padding: 0 30rpx;
   font-size: 24rpx;
   color: #4091FB;
   border-bottom: 1px solid #ddd;
   display: flex;
   justify-content: space-between ;
+  position: fixed;
+  top: 0;
+  left: 0;
 }
 .change-switch {
-  margin-right: -6rpx;
-  margin-top: -2rpx;
+  margin-right: 48rpx;
+  /* margin-right: -6rpx;
+  margin-top: -2rpx; */
+}
+.template-contain {
+  margin-top: 110rpx;
 }
 .template-lists {
   display: flex;

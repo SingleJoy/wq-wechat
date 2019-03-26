@@ -47,7 +47,7 @@ Page({
       })
       console.log(res.data.contents)
     }).catch(res => {
-      console.log(11)
+      
     })
   },
   switch1Change(e) {
