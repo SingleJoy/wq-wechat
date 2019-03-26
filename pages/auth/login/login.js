@@ -1,7 +1,7 @@
 
 import util from '../../../utils/util.js';
-// const api = require("../../../wxapi/api.js");
-import {tenant} from '../../../wxapi/api.js';
+import { tenant, login, bindEnterprises} from '../../../wxapi/api.js';
+const md5 = require('../../../utils/md5.js')
 
 Page({
 
@@ -9,7 +9,7 @@ Page({
      * 页面的初始数据
      */
     data: {
-        username:'13141253537',
+      username:'13341081511',
         password:'test111111',
         usernameErr:'',
         passwordErr:'',
@@ -20,7 +20,7 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-      
+      // console.log(md5)
     },
     login(){
 
@@ -75,19 +75,62 @@ Page({
     },
     formSubmit:function(e){
         if(!this.data.isSubmit){
-          tenant(this.data.username).then((res)=>{
-            console.log(res)
+          let data={
+            username: this.data.username
+          }
+          let login_data = {
+            username: this.data.username,
+            password:md5(this.data.password)
+          }
+          let hompage_data = {
+            mobile: this.data.username
+          }
+          //验证账户
+          tenant(data).then(res=>{
+            if(res.data == 0){
+              //登录
+              login(login_data).then(res=>{
+                //获取登录列表
+                bindEnterprises(hompage_data).then(res=>{
+                    if (res.data.bindTenantNum == 1) {
+                      let res_data = '';
+                      if (res.data.dataList[0].length > 0) {   //判断是一级账号还是二级账号直接进首页
+                        res_data = res.data.dataList[0][0];
+                      } else {
+                        res_data = res.data.dataList[1][0];
+                      }
+                      wx.setStorage({ key: 'accountCode',data: res_data.accountCode})
+                      wx.setStorage({ key: 'interfaceCode',data: res_data.interfaceCode})
+                      wx.setStorage({key: 'accountLevel',data: res_data.accountLevel})
+                      wx.setStorage({key: 'mobile',data: res_data.mobile})
+                      wx.setStorage({key: 'dataList',data: JSON.stringify(res.data.dataList)})
+
+                      wx.redirectTo({
+                        url: '/pages/auth/roles/roles'
+                      })
+                    } else {
+                      wx.redirectTo({
+                        url: '/pages/auth/roles/roles'
+                      })
+                    }
+                })
+                
+              }).catch(err=>{
+
+              })
+            }
           }).catch(err=>{
 
           })
-            wx.redirectTo({
-                url:'/pages/auth/roles/roles'
-            })
+           
         }else{
             return false
         }
        
     },
+
+
+
     //输入框事件
     bindUsernameInput: function (e) {
         var user_val =  e.detail.value;

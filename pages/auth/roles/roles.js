@@ -1,29 +1,38 @@
-import {roleLogin} from '../../../wxapi/api.js'
+import { homePage} from '../../../wxapi/api.js';
+
 Page({
   /**
    * 页面的初始数据
    */
   data: {
-    accountList:[
-      {
-        name:'测试一',
-        status:'1'
-      }, {
-        name: '测试二',
-        status: '0'
-      },
-      {
-        name: '测试三',
-        status: '2'
-      }
-    ]
+    accountList:[],
+    subAccountList:[],
+    mobile:''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    let that = this;
+    wx.getStorage({
+      key:'dataList',
+      success(res){
+          let list = JSON.parse(res.data);
+          that.setData({
+            accountList:list[0],
+            subAccountList:list[1]
+            })
+      }
+    });
+    wx.getStorage({
+        key:'mobile',
+        success(res){
+            that.setData({
+                 mobile:res.data
+            })
+        }
+    })
   },
 
   /**
@@ -75,9 +84,18 @@ Page({
 
   },
   goIndex:function(e){
+      console.log(e)
+    let interfaceCode = e.target.dataset.interface
+    let data = {
+          mobile:this.data.mobile
+    }
+    homePage(interfaceCode,data).then(res=>{
+       
+    }).catch(err=>{
 
-      wx.switchTab({
-          url:'/pages/index/index'
-      })
+    })
+    wx.switchTab({
+        url:'/pages/index/index'
+    })
   }
 })

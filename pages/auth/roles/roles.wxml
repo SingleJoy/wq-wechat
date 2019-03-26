@@ -4,19 +4,19 @@
         <view class="business-account">
             <text class="account-title">企业账号</text>
             <view class="account-list">
-                <view class="account-item" wx:for="{{accountList}}" wx:key="item.name">
-                    <text class="account-name">{{item.name}}</text>
+                <view class="account-item" wx:for="{{accountList}}" wx:key="item.accountCode">
+                    <text class="account-name">{{item.accountName}}</text>
                     <view class="">
-                        <block wx:if="{{item.status==0}}">
+                        <block wx:if="{{item.accountStatus==0}}">
                             <view class="account-status unreal-name">未实名</view>
                         </block>
-                        <block wx:elif="{{item.status==1}}">
+                        <block wx:elif="{{item.accountStatus==1}}">
                             <view class="account-status real-name">已实名</view>
                         </block>  
-                        <block wx:elif="{{item.status==2}}">
+                        <block wx:elif="{{item.accountStatus==2}}">
                             <view class="account-status real-name">未激活</view>
                         </block> 
-                        <text class="account-option" bindtap="goIndex" data-account="{{item.accouunt}}">进入</text> 
+                        <text class="account-option" bindtap="goIndex" data-interface="{{item.interfaceCode}}">进入</text> 
                         </view>
                 </view>
             </view>
@@ -25,7 +25,7 @@
         <view class="business-account sub-account">
             <text class="account-title">企业子账号</text>
             <view class="account-list">
-                <view class="account-item" wx:for="{{accountList}}" wx:key="item.name">
+                <view class="account-item" wx:for="{{subAccountList}}" wx:key="item.name">
                     <text class="account-name">{{item.name}}</text>
                     <view class="">
                         <block wx:if="{{item.status==0}}">
