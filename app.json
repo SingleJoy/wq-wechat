@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/auth/roles/roles",
     "pages/auth/login/login",
+    "pages/auth/roles/roles",
     "pages/contract/contractSign/contractSign",
     "pages/template/templateSet/templateSet",
     "pages/search/search",

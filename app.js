@@ -41,7 +41,7 @@ App({
 
   globalData: {
     userInfo: null,
-    appid: '',//appid需自己提供
+    appid: 'wx1c9cf5eea2984b74',//appid需自己提供
     secret: '',//secret需自己提供
     navHeight:0,
 

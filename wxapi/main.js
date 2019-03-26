@@ -16,7 +16,7 @@ const request = (url,method,data,header) => {
             data:data,
             header:{
                 'Content-Type':header_type,
-                'token': wx.getStorageSync('token')
+                // 'token': wx.getStorageSync('token')
             },
             success(res) {
               console.log(res)

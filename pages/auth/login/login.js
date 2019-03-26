@@ -1,14 +1,16 @@
 
-import util from '../../../utils/util.js'
-// import {login} from "/wxapi/api";
+import util from '../../../utils/util.js';
+// const api = require("../../../wxapi/api.js");
+import {tenant} from '../../../wxapi/api.js';
+
 Page({
 
     /**
      * 页面的初始数据
      */
     data: {
-        username:'',
-        password:'',
+        username:'13141253537',
+        password:'test111111',
         usernameErr:'',
         passwordErr:'',
         canSubmit:true, //点击按钮
@@ -18,7 +20,7 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-
+      
     },
     login(){
 
@@ -49,7 +51,7 @@ Page({
      * 生命周期函数--监听页面卸载
      */
     onUnload: function () {
-
+      
     },
 
     /**
@@ -73,6 +75,11 @@ Page({
     },
     formSubmit:function(e){
         if(!this.data.isSubmit){
+          tenant(this.data.username).then((res)=>{
+            console.log(res)
+          }).catch(err=>{
+
+          })
             wx.redirectTo({
                 url:'/pages/auth/roles/roles'
             })

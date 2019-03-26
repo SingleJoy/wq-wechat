@@ -1,19 +1,9 @@
 const request = require('./main.js')
-
-function queryMobileLocation (data){
-    return request ('/common/','get',data)
+const api = '/zqsign-web-wesign/restapi/wesign'
+//查询账户
+function tenant(data){
+  return request(api+'/v1/tenant','get',data)
 }
-
-function login (data) {
-  return request ('/login','get', data )
-}
-function roleLogin(data) {
-    return  request ('/login','get', data )
-}
-
-module.export = {
-  login,
-  queryMobileLocation,
-  roleLogin
-
+module.exports = {
+  tenant
 }
