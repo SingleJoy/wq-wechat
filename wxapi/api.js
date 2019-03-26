@@ -42,7 +42,6 @@ function exitAndDeleteSession(){
     return request(api+'/v1/tenant/exitAndDeleteSession','get',)
 }
 module.exports = {
-
     tenant,
     login,
     bindEnterprises,
@@ -50,8 +49,7 @@ module.exports = {
     getCertificate,
     getAccountInformation,
     getSignatures,
-    exitAndDeleteSession,,
+    exitAndDeleteSession,
     updateMobileTemplate,
     getAccountTemplates
-
 }
