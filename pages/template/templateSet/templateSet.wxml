@@ -31,9 +31,9 @@
         </view>
         <view class='line-gray'></view>
         <view class="signtory-list" >
-          <view class='list-content list-title'>
+          <view class='list-content list-title' wx-if="{{dataList.length >= 1}}">
             <view class='list-name'>姓名</view>  
-            <view class='list-idcard'>身份证号</view>  
+            <view class='list-idcard'>身份证</view>  
             <view class='list-mobile'>手机号</view> 
             <view class='list-operate'></view> 
           </view>
@@ -61,7 +61,9 @@
     <view class="modal-dialog" wx:if="{{showModal}}">
       <view class="modal-title">
         <text>{{addSignature}}</text>
-        <image bindtap='hideModal' src='../../../images/close-model.png'></image>
+        <view class="modal-title-img" bindtap='hideModal'>
+          <image src='../../../images/close-model.png'></image>
+        </view>
       </view>
       <view class="modal-content">
         <view>

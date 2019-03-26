@@ -1,5 +1,6 @@
 {
   "pages": [
+   
     "pages/auth/login/login",
     "pages/auth/roles/roles",
     "pages/contract/contractSign/contractSign",
@@ -25,8 +26,7 @@
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#4091fb",
     "navigationBarTitleText": "微签",
-    "navigationBarTextStyle": "white",
-    "pageOrientation": "auto"
+    "navigationBarTextStyle": "white"
   },
   "tabBar": {
     "color": "#6e6d6b",
