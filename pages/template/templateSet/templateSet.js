@@ -80,7 +80,6 @@ Page({
       dataList
     });
     return false;
-    console.log(this.data.listIndex)
   },
   //添加签署人（显示弹框）操作
   showDialogBtn: function (e) {
@@ -133,6 +132,9 @@ Page({
       }
     })
     return false;
+  },
+  preventTouchMove() {
+    console.log(111)
   },
   //弹框关闭操作
   hideModal: function () {

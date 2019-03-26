@@ -18,9 +18,10 @@
 }
 .contract-content {
   font-size: 28rpx;
+  padding-left: 15rpx;
   flex: auto;
   height: 66rpx;
-  width: 40rpx;
+  width: 20rpx;
   border: 1px solid #ddd;
 }
 .section {
@@ -98,12 +99,17 @@
   color: #030303;
   text-align: center;
 }
-.modal-title image {
+.modal-title-img {
+  width: 60rpx;
+  height: 60rpx;
+  float: right;
+  margin-top: -20rpx;
+}
+.modal-title-img image {
   height: 36rpx;
   width: 36rpx;
   float: right;
   vertical-align: middle;
-  margin-top: -18rpx;
 }
 .modal-input {
   display: flex;
@@ -161,6 +167,7 @@ input-holder {
   justify-content: space-between;
   text-align: center;
   border-bottom: 1rpx solid #ddd;
+  /* padding: 43rpx 0; */
 }
 .list-title {
   background: #f7f7f7;
@@ -170,7 +177,7 @@ input-holder {
   flex: 2;
   font-size: 24rpx;
   color: #333333;
-  margin: 43rpx 0;
+  /* padding: 43rpx 0; */
 }
 .list-idcard {
   flex: 4;
@@ -190,6 +197,9 @@ input-holder {
   flex: 2;
   font-size: 24rpx;
   color: #4091FB;
+  height: 100%;
+  padding: 43rpx 0;
+  display: inline-block;
 }
 .create-contract {
   position: fixed;
