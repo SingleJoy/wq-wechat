@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/contract/contract",
     "pages/auth/login/login",
     "pages/contract/contractSign/contractSign",
     "pages/template/templateSet/templateSet",
@@ -7,7 +8,7 @@
     "pages/contract/contractDetail/contractDetail",
     "pages/template/templateSuccess/templateSuccess",
     "pages/template/templateAddInfo/templateAddInfo",
-    "pages/contract/contract",
+    
     "pages/template/templateSign/templateSign",
     "pages/start/start",
     "pages/template/templateList/templateList",
@@ -22,10 +23,9 @@
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarBackgroundColor": "#4091FB",
     "navigationBarTitleText": "微签",
-    "navigationBarTextStyle": "white",
-    "pageOrientation": "auto"
+    "navigationBarTextStyle": "white"
   },
   "tabBar": {
     "color": "#6e6d6b",
