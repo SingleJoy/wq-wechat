@@ -31,12 +31,16 @@
         </view>
         <view class='line-gray'></view>
         <view class="signtory-list" >
-          <view class='list-content list-title' wx-if="{{dataList.length >= 1}}">
+          <view class='list-content list-title'>
             <view class='list-name'>姓名</view>  
             <view class='list-idcard'>身份证</view>  
             <view class='list-mobile'>手机号</view> 
             <view class='list-operate'></view> 
           </view>
+        </view>
+        <view class='add-contract' bindtap="showDialogBtn">
+          <image src='../../../images/add-signtory.png'></image>
+          <text class='add-contract-text'>添加签署人</text>
         </view>
         <view wx:for="{{dataList}}" wx:key="key" class="signtory-list">
           <view animation="{{animationData}}" class='list-content {{delate == index ? "right-slide" : "restore"}}' data-id="{{index}}" capture-bind:touchstart='touchStart' capture-bind:touchend="touchEnd">
@@ -50,10 +54,7 @@
         <button class='create-contract' form-type="submit">生成合同</button>
       </form>
     </view>
-    <view class='add-contract' bindtap="showDialogBtn">
-      <image src='../../../images/add-signtory.png'></image>
-      <text class='add-contract-text'>添加签署人</text>
-    </view>
+    
   </view>
   <!-- 添加/修改签署人弹框 -->
   <view class="modal-mask" bindtap="hideModal" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>

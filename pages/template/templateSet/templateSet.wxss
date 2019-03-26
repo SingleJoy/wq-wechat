@@ -46,13 +46,13 @@
   margin-top: 36rpx;
 }
 .add-contract {
-  width: 552rpx;
-  height: 80rpx;
+  /* width: 552rpx; */
   text-align: center;
-  line-height: 80rpx;
-  border: 1px solid #4091FB;
-  margin:160rpx auto 120rpx auto;
-  border-radius: 15rpx;
+  padding: 35rpx 0;
+  /* border: 1px solid #4091FB; */
+  /* margin:160rpx auto 120rpx auto; */
+  /* border-radius: 15rpx; */
+  border-bottom: 1px solid #ddd;
 }
 .add-contract image{
   height: 50rpx;
