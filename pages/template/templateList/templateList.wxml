@@ -11,11 +11,11 @@
       <text>仅显示可移动端发起合同的模板</text>
       <view class='change-switch'><switch color="#4091FB" checked bindchange="switch1Change" /></view>
     </view>
-    <view class='template-contain'>
+    <view class='template-contain' wx:for="{{lists}}" wx:key="unique">
       <view class='template-lists'>
         <view>
-          <view class='template-title'>测试最大可展示多少个字测试最大可展示多少个字测试最大可展示多少个字</view>
-          <view class='template-time'>上传时间: 2018/02/24 09:50</view>
+          <view class='template-title'>{item.templateName}</view>
+          <view class='template-time'>{{item.strCreateTime}}</view>
         </view>
         <view class='examine'>
           <button bindtap='lookUp'>查看</button>

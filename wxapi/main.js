@@ -8,7 +8,10 @@ const request = (url,method,data,header) => {
     let _url = API_URL + url;             
     // 默认是'application/json',如图片等内容需要'image/png' 需单独在接口中传
     //post 需要application/x-www-form-urlencoded 格式
-    let header_type = header?header:'application/json';
+    let header_type = header ? header :'application/json';
+    if (method == "post") {
+      header_type = 'application/x-www-form-urlencoded';
+    }
     return new Promise((resolve,reject) => {
         wx.request({
             url:_url,
@@ -19,7 +22,6 @@ const request = (url,method,data,header) => {
                 // 'token': wx.getStorageSync('token')
             },
             success(res) {
-              console.log(res)
                 if(res.status == 200){
                     if(res.data.sessionStatus == '000000'){
                         return util.getToken() 
