@@ -1,5 +1,7 @@
 {
   "pages": [
+    "pages/contract/contractList/contractList",
+    "pages/start/start",
     "pages/auth/login/login",
     "pages/auth/roles/roles",
     "pages/contract/contractSign/contractSign",
@@ -8,10 +10,9 @@
     "pages/contract/contractDetail/contractDetail",
     "pages/template/templateSuccess/templateSuccess",
     "pages/template/templateAddInfo/templateAddInfo",
-    "pages/contract/contract",
+
     "pages/template/templateSign/templateSign",
     "pages/template/templateList/templateList",
-    "pages/start/start",
     "pages/template/templateDetail/templateDetail",
     "pages/index/index",
     "pages/account/account",
@@ -45,7 +46,7 @@
         "text": "模板"
       },
       {
-        "pagePath": "pages/contract/contract",
+        "pagePath":  "pages/contract/contractList/contractList",
         "iconPath": "images/nav/contract-off.png",
         "selectedIconPath": "images/nav/contract-on.png",
         "text": "合同"

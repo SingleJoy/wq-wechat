@@ -107,6 +107,7 @@ Page({
                       wx.setStorage({ key: 'accountCode',data: res_data.accountCode})
                       wx.setStorage({ key: 'interfaceCode',data: res_data.interfaceCode})
                       wx.setStorage({key: 'accountLevel',data: res_data.accountLevel})
+                      wx.setStorage({key: 'enterpriseName',data: res_data.enterpriseName})
                       wx.setStorage({key: 'mobile',data: res_data.mobile})
                       wx.setStorage({key: 'dataList',data: JSON.stringify(res.data.dataList)})
 
