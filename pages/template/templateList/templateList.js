@@ -1,3 +1,4 @@
+
 import { updateMobileTemplate, getAccountTemplates } from '../../../wxapi/api.js';
 let pageNum = 1,
     useStatus = 1,

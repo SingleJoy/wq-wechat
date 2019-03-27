@@ -210,9 +210,9 @@ Page({
     } else {
       let dataList = this.data.dataList;
       dataList[this.data.listIndex] = e.detail.value;
-      this.setData({
-        dataList
-      })
+        this.setData({
+            dataList
+        })
       this.hideModal()
     }
   },
@@ -222,7 +222,9 @@ Page({
   }, 
   //生成合同
   formSubmit: function(e) {
-    console.log(e)
+    wx.navigateTo({
+        url: '../templateAddInfo/templateAddInfo',
+      })
   },
   //弹框确定操作
   onConfirm: function (e) {

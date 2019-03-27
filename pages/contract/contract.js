@@ -79,7 +79,7 @@ Page({
     },
 
     onLoad: function (options) {
-        console.log("onLoad")
+        console.log(options)
 
     },
 
