@@ -84,18 +84,25 @@ Page({
 
   },
   goIndex:function(e){
-      console.log(e)
-    let interfaceCode = e.target.dataset.interface
+    let interfaceCode = e.target.dataset.interfaceCode
     let data = {
           mobile:this.data.mobile
     }
     homePage(interfaceCode,data).then(res=>{
-       console.log(res)
+       if(res.data.resultCode==1){
+            wx.setStorage({ key: 'accountCode',data: res_data.accountCode})
+            wx.setStorage({ key: 'interfaceCode',data: res_data.interfaceCode})
+            wx.setStorage({key: 'accountLevel',data: res_data.accountLevel})
+            wx.setStorage({key: 'mobile',data: res_data.mobile})
+            wx.switchTab({
+                url:'/pages/index/index'
+            })
+       }else{
+           
+       }
     }).catch(err=>{
 
     })
-    wx.switchTab({
-        url:'/pages/index/index'
-    })
+    
   }
 })

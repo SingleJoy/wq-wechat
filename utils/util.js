@@ -69,13 +69,19 @@ function loginByWeiXin() {
 function checkLogin() {
 
 }
+
+//获取token
+function getToken(){
+
+}
 module.exports = {
   formatTime,
   checkSession,
   loginByWeiXin,
   checkLogin,
   checkPhone,
-  checkPwd
+  checkPwd,
+  getToken
 }
 
 

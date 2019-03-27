@@ -1,49 +1,47 @@
-<!--index.wxml-->
-<!-- <view class="container">
-  <view class="contract">
-    <text class='sponsor-contract'>发起合同</text>
-    <image class='contract-img' src='../../images/sponsor-contact.png'></image>
-  </view>
-</view> -->
+
 <view class="container common-box">
-  <view class="main-content">
-    <view class='main'>
-      <view class='contract'>
-        <text class='sponsor-contract'>发起合同</text>
-        <view class='contract-img'>
-          <image src='../../images/sponsor-contact.png'></image>
+    <view class="main-content">
+        <view class='main'>
+            <view class='contract'>
+                <text class='sponsor-contract'>发起合同</text>
+                <view class='contract-img'>
+                    <image src='../../images/sponsor-contact.png'></image>
+                </view>
+            </view>
+            <view class='contact-state'>
+                <view class='contact-list' bindtap="goContractList" data-contractStatus="3">
+                    <image src='../../images/became-effective.png'></image>
+                    <view class='content'>
+                        <view class='content-title'>已生效</view>
+                        <view class='content-num'>{{takeEffect}}</view>
+                    </view>
+                </view>
+                <view class='contact-list' bindtap="goContractList" data-contractStatus="2">
+                    <image src='../../images/sign-other.png'></image>
+                    <view class='content'>
+                        <view class='content-title'>待他人签署</view>
+                        <view class='content-num sign-num01'>{{waitForOtherSign}}</view>
+                    </view>
+                </view>
+                <view class='contact-list' bindtap="goContractList" data-contractStatus="1">
+                    <image src='../../images/sign-me.png'></image>
+                    <view class='content'>
+                        <view class='content-title'>待我签署</view>
+                        <view class='content-num sign-num02'>{{waitForMeSign}}</view>
+                    </view>
+                </view>
+                <view class='contact-list' bindtap="goContractList" data-contractStatus="4">
+                    <image src='../../images/cut-offs.png'></image>
+                    <view class='content'>
+                        <view class='content-title'>已截止</view>
+                        <view class='content-num sign-num03'>{{deadline}}</view>
+                    </view>
+                </view>
+            </view>
         </view>
-      </view> 
-      <view class='contact-state'>
-        <view class='contact-list' bindtap="goContractList" data-contractStatus="3">
-          <image src='../../images/became-effective.png'></image>
-          <view class='content'>
-            <view class='content-title'>已生效</view>
-            <view class='content-num'>{{takeEffect}}</view>
-          </view>
-        </view>
-        <view class='contact-list' bindtap="goContractList" data-contractStatus="2">
-          <image src='../../images/sign-other.png'></image>
-          <view class='content'>
-            <view class='content-title'>待他人签署</view>
-            <view class='content-num sign-num01'>{{waitForOtherSign}}</view>
-          </view>
-        </view>
-        <view class='contact-list' bindtap="goContractList" data-contractStatus="1">
-          <image src='../../images/sign-me.png'></image>
-          <view class='content'>
-            <view class='content-title'>待我签署</view>
-            <view class='content-num sign-num02'>{{waitForMeSign}}</view>
-          </view>
-        </view>
-        <view class='contact-list' bindtap="goContractList" data-contractStatus="4">
-          <image src='../../images/cut-offs.png'></image>
-          <view class='content'>
-            <view class='content-title'>已截止</view>
-            <view class='content-num sign-num03'>{{deadline}}</view>
-          </view>
-        </view>
-      </view>
+
     </view>
-  </view>
+
+
 </view>
+

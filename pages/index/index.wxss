@@ -6,6 +6,7 @@
   background: deepskyblue;
   border-radius: 15rpx;
   padding-top: 20rpx; 
+  background: linear-gradient(to right, #62d6fc, #5f50fb);
 }
 .sponsor-contract {
   margin-left: 32rpx;
@@ -29,7 +30,6 @@
 .contact-list {
   height: 88rpx;
   box-shadow: 1px 2px 5px #ccc;
-  border: 1px solid #ccc;
   margin-top: 24rpx;
   padding: 36rpx;
   border-radius: 15rpx;
@@ -51,6 +51,8 @@
   /* margin-top: 32rpx; */
   font-size: 28rpx;
   color: #6072FB;
+  font-weight: 700;
+  margin-top: 15rpx;
 }
 .sign-num01 {
   color: #FF8400;

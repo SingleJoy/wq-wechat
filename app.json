@@ -2,7 +2,6 @@
   "pages": [
     "pages/start/start",
     "pages/contract/contractList/contractList",
-
     "pages/auth/login/login",
     "pages/auth/roles/roles",
     "pages/contract/contractSign/contractSign",
@@ -20,7 +19,7 @@
     "pages/logs/logs",
     "pages/canvas/canvas",
     "pages/canvasImg/canvasImg"
-    
+
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -1,23 +1,37 @@
 // pages/template/templateSet/tempalteSet.js
+import {templateImg} from '../../../wxapi/api.js'
+const app = getApp();
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
-
+    contractList:[],
+    baseUrl:app.globalData.baseUrl,
   },
 
-  ImmediatelyStart: function() {
-    wx.navigateTo({
-      url: '../templateSet/templateSet',
-    })
-  },
+  
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    let  templateNo = options.templateNo?options.templateNo:'0e446b98a83b4ae6bbb4e30cd41f343d';
+    let  interfaceCode = wx.getStorageSync('interfaceCode')
+    let param={
+        templateSpecificType:options.templateSpecificType?'':'fillreference'
+    }
+    console.log(this.data.baseUrl)
+    templateImg(interfaceCode,templateNo,param).then(res=>{
+        this.setData({
+            contractList:res.data.list
+        })
+    }).catch(err=>{
+        wx.showToast({
+            title: '查询失败',
+            icon: 'success',
+            duration: 2000
+        })
+    })
   },
 
   /**
@@ -67,5 +81,10 @@ Page({
    */
   onShareAppMessage: function () {
 
-  }
+  },
+  ImmediatelyStart: function() {
+    wx.navigateTo({
+      url: '../templateSet/templateSet',
+    })
+  },
 })

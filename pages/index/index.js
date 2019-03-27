@@ -1,4 +1,3 @@
-// pages/index/index.js
 import {contractNum} from '../../wxapi/api'
 
 const app = getApp()
@@ -17,7 +16,18 @@ Page({
         scrollTop: 0,
         loadingMoreHidden: true,
         banners:[
-
+            {
+                picUrl: '../../images/banner01.jpg',
+                id: 19181,
+            },
+            {
+                picUrl: '../../images/banner02.jpg',
+                id: 19182,
+            },
+            {
+                picUrl: '../../images/banner03.jpg',
+                id: 19183,
+            }
         ],
         hasNoCoupons: true,
         coupons: [],
@@ -44,9 +54,8 @@ Page({
         let requestType = ['waitForMeSign', 'waitForOtherSign', 'takeEffect', 'deadline'];
         const interfaceCode = wx.getStorageSync('interfaceCode');
         for (let i = 0; i < requestType.length; i++) {
-            let type = requestType[i];
+            let type = requestType[i]
             contractNum[type](interfaceCode).then(res => {
-                // console.log(type,res.data.count)
                 this.setData({
                     [type]:res.data.count
                 })
@@ -54,31 +63,66 @@ Page({
 
             })
         }
+    },
+
+    /**
+     * 生命周期函数--监听页面初次渲染完成
+     */
+    onReady: function () {
 
     },
+
+    /**
+     * 生命周期函数--监听页面显示
+     */
+    onShow: function () {
+
+    },
+
+    /**
+     * 生命周期函数--监听页面隐藏
+     */
+    onHide: function () {
+
+    },
+
+    /**
+     * 生命周期函数--监听页面卸载
+     */
+    onUnload: function () {
+
+    },
+
     goContractList(e){
-      // console.log(e)
-      let contractStatus=e.currentTarget.dataset.contractstatus;
+
+        let contractStatus=e.currentTarget.dataset.contractstatus;
         // url:'/pages/contract/contract?contractStatus='+contractStatus
         wx.reLaunch({
             url: "/pages/contract/contractList/contractList?contractStatus="+contractStatus
         })
 
-        // wx.navigateTo({
-        //     url: '/pages/canvas/canvas'
-        // })
     },
 
+    onShareAppMessage: function () {
+
+    },
+
+    //进入合同类表业
+    goContract(e){
+        let status = e.target.dataset.status;
+        wx.reLaunch({
+            url:'/pages/contract/contract?status='+status
+        })
+    },
 
     tapBanner: function (event) {
         console.log(event.currentTarget.dataset.list)
-        let src = event.currentTarget.dataset.src;     //获取data-src
-        let imgList = event.currentTarget.dataset.list;//获取data-list
-        let list = [];
+        var src = event.currentTarget.dataset.src;     //获取data-src
+        var imgList = event.currentTarget.dataset.list;//获取data-list
+        var list = [];
         imgList.map(function(item,index){
             list.push(item.picUrl)
-        });
-        console.log(src, list)
+        })
         wx.previewImage({
             current: src, // 当前显示图片的http链接
             urls: list // 需要预览的图片http链接列表
