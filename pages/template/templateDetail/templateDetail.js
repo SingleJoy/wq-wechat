@@ -15,6 +15,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+      console.log(options)
     let  templateNo = options.templateNo?options.templateNo:'0e446b98a83b4ae6bbb4e30cd41f343d';
     let  interfaceCode = wx.getStorageSync('interfaceCode')
     let param={
