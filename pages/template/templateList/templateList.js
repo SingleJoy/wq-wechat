@@ -23,7 +23,6 @@ Page({
         });
       }
     });
-    console.log(wx.getStorageSync('mobileTemplate'))
     if (wx.getStorageSync('mobileTemplate')) {
       this.setData({
         changeChecked: true
@@ -34,9 +33,8 @@ Page({
   },
   // 查看详情
   lookUp(e) {
-    let templateNo = e.target.dataset.templateNo;
+    let templateNo = e.target.dataset.templateno;
     let templatespecifictype = e.target.dataset.templatespecifictype;
-    console.log(templatespecifictype)
     wx.navigateTo({
       url: '../templateDetail/templateDetail?templateNo=' + templateNo + '&templateSpecificType=' + templatespecifictype
     })
@@ -44,7 +42,6 @@ Page({
   //切换移动端
   switchChange(e) {
     let changeValue = e.detail.value;
-    console.log(changeValue)
     if (changeValue) {
       changeValue = 1;
     } else {
@@ -100,7 +97,6 @@ Page({
       for (var i = 0; i < contents.length; i++) {
         list.push(res.data.contents[i]);
       }
-      console.log(this.data.list.length)
       if (this.data.list.length <= totalItemNumber) {
         this.setData({
           list: list
