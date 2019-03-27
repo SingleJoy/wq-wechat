@@ -62,9 +62,9 @@
     <view class="modal-dialog" wx:if="{{showModal}}">
       <view class="modal-title">
         <text>{{addSignature}}</text>
-        <view class="modal-title-img" bindtap='hideModal'>
+        <!-- <view class="modal-title-img" bindtap='hideModal'>
           <image src='../../../images/close-model.png'></image>
-        </view>
+        </view> -->
       </view>
       <view class="modal-content">
         <view>
@@ -99,6 +99,7 @@
         </view>
       </view>
       <view class="modal-footer">
+        <button form-type="" class="cancel btn-confirm" bindtap="hideModal" data-status="confirm">取消</button>
         <button form-type="submit" class="btn-confirm" bindtap="onConfirm" data-status="confirm">确定</button>
       </view>
     </view>

@@ -6,9 +6,9 @@ Page({
   data: {
     //弹框赋值
     listValue: {
-      nameValue: "11",
-      nameIdcard: "2",
-      namePhone: "3"
+      nameValue: "",
+      nameIdcard: "",
+      namePhone: ""
     },
     //编辑/添加签署人保存标识
     identification: "",
@@ -30,7 +30,7 @@ Page({
       { name: "小明", idCode: "545214552233663321", phone: "15685474458" },
       { name: "大明", idCode: "545214552233663321", phone: "15545454545" }
     ],
-    showModal: false,
+    showModal: true,
     //删除样式
     delate: "9",
   },

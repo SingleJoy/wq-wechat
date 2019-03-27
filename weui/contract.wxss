@@ -1,0 +1,73 @@
+/*搜索列表数据列表显示*/
+.search-data{
+    position: relative;
+    z-index: 1;
+}
+.search-data .data-lists{
+    box-sizing: border-box;
+    height: 160rpx;
+    overflow: hidden;
+    padding-left: 20rpx;
+    border-bottom: 1px solid #ddd;
+    position: relative;
+}
+.search-data .data-lists .contract-name{
+    width: 500rpx;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+    color: #333;
+    font-size: 32rpx;
+    font-weight: bold;
+    padding-top: 10rpx;
+}
+.search-data .data-lists .sign-user{
+    width: 600rpx;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+    color: #666;
+    font-size: 28rpx;
+    margin-top: 16rpx;
+}
+.search-data .data-lists .time{
+    color: #999;
+    font-size: 24rpx;
+    margin: 12rpx 0;
+}
+.operate {
+    position: absolute;
+    right: 48rpx;
+    top: 60rpx;
+}
+.operate button{
+    display: block;
+    height:48rpx;
+    font-size: 24rpx;
+    line-height: 48rpx;
+    text-align: center;
+    border-radius: 30px;
+    background: transparent;
+    color: #fff;
+    padding: 0 20rpx;
+}
+.operate button.waitMe{
+    background: #4091fb;
+
+}
+.operate button.waitOther{
+    background: #09a13b;
+}
+.operate button.effective {
+    background: #ff8400;
+}
+.operate button.close {
+    background:red;
+}
+.no-data{
+    display: block;
+    text-align: center;
+    font-size: 32rpx;
+    color: #999;
+    padding-top: 40rpx;
+}

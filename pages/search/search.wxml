@@ -14,7 +14,7 @@
         <view class="search-data">
             <view class="data-lists">
 
-                <view class="contract-name">{{contractName}}</view>
+                <view class="contract-name">{{item.contractName}}</view>
                 <view class="sign-user">{{signUser}}</view>
                 <view class="time">提交时间: {{time}}</view>
 
@@ -25,7 +25,6 @@
                 <!--<button type="button" class="close">已截止</button>-->
                 </view>
             </view>
-
 
 
 

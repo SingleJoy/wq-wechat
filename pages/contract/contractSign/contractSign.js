@@ -14,7 +14,7 @@ Page({
     },
     onConfirm:function(e){
         wx.navigateTo({
-            url: '../templateAddInfo/templateAddInfo',
+            url: '../../template/templateAddInfo/templateAddInfo',
           })
     }
   })

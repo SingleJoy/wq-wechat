@@ -41,6 +41,7 @@ function getSignatures(interfaceCode){
 function exitAndDeleteSession(){
     return request(api+'/v1/tenant/exitAndDeleteSession','get')
 }
+
 //首页查询合同状态、数量
 const contractNum  = {
     // 带我签署;待他人签署;已生效;已截止;
@@ -67,6 +68,28 @@ function templateImg(interfaceCode,templateNo,data){
     return request(api + '/v1/tenant/'+ interfaceCode +'/template/'+templateNo+'/getTemplateImags', 'get',data)
 }
 
+//合同归档接口
+function contractFilings(interfaceCode,accountCode) {
+    return request(api+'/v1.7/tenant/'+interfaceCode+'/contract/'+accountCode+'/contractFilings','get')
+}
+//查询合同列表角色
+function getAccounts(interfaceCode){
+    return request(api+'/v1.5/tenant/' + interfaceCode + '/getAccounts','get')
+
+}
+
+/* b2c合同 列表查询 */
+function contracts(interfaceCode,data){
+    return request(api+'/v1/tenant/' + interfaceCode + '/contracts','get',data)
+
+}
+
+/* b2b合同 列表查询 */
+function b2bContrants(interfaceCode,data){
+    return request(api+'/v1.4/tenant/' + interfaceCode + '/b2bContrants','get',data)
+
+}
+
 module.exports = {
     tenant,
     login,
@@ -79,7 +102,10 @@ module.exports = {
     exitAndDeleteSession,
     updateMobileTemplate,
     getAccountTemplates,
+    contractFilings,
+    getAccounts,
+    contracts,
+    b2bContrants,
     contractImgs,
     templateImg
-
 }
