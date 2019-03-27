@@ -8,14 +8,14 @@ const request = (url, method, data, contentType) => {
   let _url = API_URL + url;
   // 默认是'application/json',如图片等内容需要'image/png' 需单独在接口中传
   //post 需要application/x-www-form-urlencoded 格式
-  let contentType = contentType?contentType:(method.toLowerCase() == 'get'?'application/json':'application/x-www-form-urlencoded')
+  let content_type = contentType?contentType:(method.toLowerCase() == 'get'?'application/json':'application/x-www-form-urlencoded')
   return new Promise((resolve, reject) => {
     wx.request({
       url: _url,
       method: method,
       data: data,
         header: {
-            'Content-Type':contentType,
+            'Content-Type':content_type,
             // 'token':''
         },
       success(res) {
