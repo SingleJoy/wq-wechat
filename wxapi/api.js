@@ -20,13 +20,14 @@ function homePage(interfaceCode,data){
 function getCertificate(interfaceCode){
     return request(api + '/v1.5/tenant/'+interfaceCode +'/getCertificate', 'get')
 }
-function updateMobileTemplate(data) {
-    return request(api + '/v1.8/applet/tenant/account/ACdcbfa3bb0d4a898a5eae66ae411aaf/updateMobileTemplate', 'post', data)
+//只显示移动端模板开关
+function updateMobileTemplate(data, accountCode) {
+  return request(api + '/v1.8/applet/tenant/account/' + accountCode + '/updateMobileTemplate', 'post', data)
 }
-function getAccountTemplates(data) {
-    return request(api + '/v1.5/tenant/AC5c1a0198e0664418ad724eae234174fe/getAccountTemplates', 'get', data)
+//获取所有模板列表
+function getAccountTemplates(data, accountCode) {
+  return request(api + '/v1.5/tenant/' + accountCode + '/getAccountTemplates', 'get', data)
 }
-
 // getAccountInformation  获取账户信息
 function getAccountInformation(accountCode) {
     return request(api+'/v1.5/tenant/'+accountCode+'/getAccountInformation', 'get',)
