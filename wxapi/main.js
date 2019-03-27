@@ -11,31 +11,30 @@ const request = (url, method, data, contentType) => {
   let content_type = contentType?contentType:(method.toLowerCase() == 'get'?'application/json':'application/x-www-form-urlencoded')
   return new Promise((resolve, reject) => {
     wx.request({
-      url: _url,
-      method: method,
-      data: data,
-        header: {
-            'Content-Type':content_type,
-            // 'token':''
+        url: _url,
+        method: method,
+        data: data,
+            header: {
+                'Content-Type':content_type,
+                // 'token':''
+            },
+        success(res) {
+            if (res.statusCode == 200) {
+            if (res.data.sessionStatus == '000000') {
+                return util.getToken()
+            } else {
+                resolve(res)
+            }
+            } else {
+                reject(res.errMsg)
+            }
         },
-      success(res) {
-        if (res.statusCode == 200) {
-          if (res.data.sessionStatus == '000000') {
-            return util.getToken()
-          } else {
-            resolve(res)
-          }
-        } else {
-          reject(res.errMsg)
+        fail(error) {
+            reject(error)
+        },
+        complete(aaa) {
+            // 加载完成
         }
-      },
-      fail(error) {
-        reject(error)
-      },
-      complete(aaa) {
-        // 加载完成
-      }
-
     })
   })
 }

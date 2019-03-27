@@ -5,7 +5,7 @@
           <image class="login-logo" src="/images/logox3.png"></image>
         </view>
         <view class="form-box">
-            <form bindsubmit="formSubmit" bindreset="formReset">
+            <form bindsubmit="formSubmit">
                 <view class="form-item">
                     <image class="login-icon" src="/images/phone.png"></image>
                     <view class="section">

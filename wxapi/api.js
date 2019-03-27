@@ -10,7 +10,7 @@ function login(data){
 }
 //查询企业数量
 function bindEnterprises(data){
-    return request(api + '/v1.4/user/bindEnterprises', 'get', data)
+    return request(api + '/v1.8/applet/user/miniProgramBindEnterprises', 'get', data)
 }
 //查询当前账户信息
 function homePage(interfaceCode,data){
@@ -27,18 +27,18 @@ function getAccountTemplates(data) {
     return request(api + '/v1.5/tenant/AC5c1a0198e0664418ad724eae234174fe/getAccountTemplates', 'get', data)
 }
 
-// getAccountInformation  获取账户信息
+//获取账户信息
 function getAccountInformation(accountCode) {
-    return request(api+'/v1.5/tenant/'+accountCode+'/getAccountInformation', 'get',)
+    return request(api+'/v1.5/tenant/'+accountCode+'/getAccountInformation', 'get')
 }
 //查询默认签章
 function getSignatures(interfaceCode){
-    return request(api+'/v1.5/tenant/'+interfaceCode+'/getSignatures', 'get',)
+    return request(api+'/v1.5/tenant/'+interfaceCode+'/getSignatures', 'get')
 }
 
-// exitAndDeleteSession 退出
+//退出
 function exitAndDeleteSession(){
-    return request(api+'/v1/tenant/exitAndDeleteSession','get',)
+    return request(api+'/v1/tenant/exitAndDeleteSession','get')
 }
 //首页查询合同状态、数量
 const contractNum  = {
@@ -56,6 +56,15 @@ const contractNum  = {
         return request(api + '/v1.4/tenant/' + interfaceCode + '/deadline', 'get', data)
     }
 }
+//合同详情
+function contractImgs(interfaceCode,contractNo){
+    return request(api + '/v1.4/tenant/' + interfaceCode + '/contract/'+ contractNo+'/contractimgs', 'get')
+}
+//模板合同图片请求
+function templateImg(interfaceCode,templateNo,data){
+    console.log(data)
+    return request(api + '/v1/tenant/'+ interfaceCode +'/template/'+templateNo+'/getTemplateImags', 'get',data)
+}
 
 module.exports = {
     tenant,
@@ -68,6 +77,8 @@ module.exports = {
     getSignatures,
     exitAndDeleteSession,
     updateMobileTemplate,
-    getAccountTemplates
+    getAccountTemplates,
+    contractImgs,
+    templateImg
 
 }

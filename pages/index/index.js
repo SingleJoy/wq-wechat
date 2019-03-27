@@ -57,7 +57,6 @@ Page({
     for (let i = 0; i < requestType.length; i++) {
         let type = requestType[i]
         contractNum[type](interfaceCode).then(res => {
-            console.log(type,res.data.count)
             this.setData({
                 [type]:res.data.count
             })
@@ -65,7 +64,6 @@ Page({
 
       })
     }
-    console.log(this.data.waitForMeSign)
   },
 
   /**
@@ -117,6 +115,14 @@ Page({
 
   },
 
+  //进入合同类表业
+  goContract(e){
+    let status = e.target.dataset.status;
+    wx.reLaunch({
+        url:'/pages/contract/contract?status='+status
+    })
+  },
+
   tapBanner: function (event) {
     console.log(event.currentTarget.dataset.list)
     var src = event.currentTarget.dataset.src;     //获取data-src
@@ -125,7 +131,6 @@ Page({
         imgList.map(function(item,index){
           list.push(item.picUrl)
         })
-    console.log(src, list)
     wx.previewImage({
       current: src, // 当前显示图片的http链接
       urls: list // 需要预览的图片http链接列表
