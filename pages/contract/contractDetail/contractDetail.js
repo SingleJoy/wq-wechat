@@ -34,7 +34,7 @@ Page({
   onLoad: function (options) {
     console.log(options)
     this.setData({
-        contractStatus:options.contractstatus
+        contractStatus:options.contractStatus
     })
   },
 

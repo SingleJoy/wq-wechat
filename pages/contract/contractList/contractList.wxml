@@ -73,7 +73,7 @@
                 bindscrolltolower="lower">
 
             <view class="search-data" style="">
-                <view class="data-lists" wx:for="{{contractDataList}}" wx:key="index" wx:if="{{contractDataList.length>0}}" data-contractNo="{{item.contractNo}}" data-contractStatus="{{item.contractStatus}}" bindtap="goDetail">
+                <view class="data-lists" wx:for="{{contractDataList}}" wx:key="index" wx:if="{{contractDataList.length>0}}" data-contractNo="{{item.contractNum}}" data-contractStatus="{{item.contractStatus}}" bindtap="goDetail">
 
                     <view class="contract-name">{{item.contractName}}</view>
                     <view class="sign-user">{{item.signers}}</view>

@@ -276,9 +276,10 @@ wx.getSystemInfo({
         goDetail(e){
             let contractNo=e.currentTarget.dataset.contractno;
             let contractStatus=e.currentTarget.dataset.contractstatus;
+
             wx.setStorage({ key: 'contractNo',data: contractNo});
             wx.navigateTo({
-                url: '/pages/contract/contractDetail/contractDetail?contractNo='+contractNo+'contractStatus?='+contractStatus
+                url: '/pages/contract/contractDetail/contractDetail?contractNo='+contractNo+'&contractStatus='+contractStatus
             })
         },
         upper(){
