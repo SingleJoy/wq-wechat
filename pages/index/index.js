@@ -59,7 +59,7 @@ Page({
         contractNum[type](interfaceCode).then(res => {
             console.log(type,res.data.count)
             this.setData({
-                type:res.data.count
+                [type]:res.data.count
             })
       }).catch(error => {
 

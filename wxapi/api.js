@@ -4,13 +4,6 @@ const api = '/zqsign-web-wesign/restapi/wesign'
 function tenant(data){
     return request(api+'/v1/tenant','get',data)
 }
-function updateMobileTemplate(data) {
-    return request(api + '/v1.8/applet/tenant/account/ACdcbfa3bb0d4a898a5eae66ae411aaf/updateMobileTemplate', 'post', data)
-}
-function getAccountTemplates(data) {
-    return request(api + '/v1.5/tenant/AC5c1a0198e0664418ad724eae234174fe/getAccountTemplates', 'get', data)
-}
-
 //登录接口
 function login(data){
     return request(api +'/v1/tenant/login','get',data)
@@ -27,6 +20,12 @@ function homePage(interfaceCode,data){
 function getCertificate(interfaceCode){
     return request(api + '/v1.5/tenant/'+interfaceCode +'/getCertificate', 'get')
 }
+function updateMobileTemplate(data) {
+    return request(api + '/v1.8/applet/tenant/account/ACdcbfa3bb0d4a898a5eae66ae411aaf/updateMobileTemplate', 'post', data)
+}
+function getAccountTemplates(data) {
+    return request(api + '/v1.5/tenant/AC5c1a0198e0664418ad724eae234174fe/getAccountTemplates', 'get', data)
+}
 
 // getAccountInformation  获取账户信息
 function getAccountInformation(accountCode) {
@@ -41,10 +40,9 @@ function getSignatures(interfaceCode){
 function exitAndDeleteSession(){
     return request(api+'/v1/tenant/exitAndDeleteSession','get',)
 }
-
 //首页查询合同状态、数量
-    // 带我签署;待他人签署;已生效;已截止;
 const contractNum  = {
+    // 带我签署;待他人签署;已生效;已截止;
     waitForMeSign:(interfaceCode,data)=>{
         return request(api + '/v1.4/tenant/' + interfaceCode + '/waitForMeSign', 'get', data)
     },
