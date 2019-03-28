@@ -92,7 +92,6 @@ function contractFilings(interfaceCode,accountCode) {
 //查询合同列表角色
 function getAccounts(interfaceCode){
     return request(api+'/v1.5/tenant/' + interfaceCode + '/getAccounts','get')
-
 }
 
 /* b2c合同 列表查询 */

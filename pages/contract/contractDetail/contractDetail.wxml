@@ -137,7 +137,7 @@
             <view class="drawer-mask" wx:if="{{passwordDialog}}"></view>
                 <view  class="drawer-box" wx:if="{{passwordDialog}}">
                 <!--drawer content-->
-                    <view class="drawer-title">请输入邮箱账号</view>
+                    <view class="drawer-title">请输入签署密码</view>
                     <view class="drawer-content">
                         <input  class="email-address" value="{{sendEmail}}"></input>
                         <view class="emial-err">{{errMessage}}</view>
