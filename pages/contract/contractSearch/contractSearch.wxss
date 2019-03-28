@@ -4,41 +4,42 @@
     height: 72rpx;
     box-sizing: border-box;
     overflow: hidden;
-    position: relative;
+    position: fixed;
+    z-index: 99;
 }
-.search{
-    position: relative;
-    display: flex;
-    background-color:#4091fb;
-    box-sizing: border-box;
-    overflow: hidden;
-    height: 66rpx;
-}
-.search-arr {
-    display: block;
-    margin-left: 20rpx;
-    margin-right: 20rpx;
-    width: 100%;
-}
-.search-arr input{
-    width: 100%;
-    box-sizing: border-box;
-    padding-left:48rpx;
-    height: 48rpx;
-    line-height: 48rpx;
-    border-radius: 30px;
-    font-size: 24rpx;
-    background-color: #fff;
-}
-.searchcion {
-    margin: 10rpx 10rpx 10rpx 6rpx;
-    position: absolute;
-    left:20rpx;
-    z-index: 2;
-    width: 16px;
-    height: 16px;
-    text-align: center;
-}
+/*.search{*/
+    /*position: fixed;*/
+    /*display: flex;*/
+    /*background-color:#4091fb;*/
+    /*box-sizing: border-box;*/
+    /*overflow: hidden;*/
+    /*height: 66rpx;*/
+/*}*/
+/*.search-arr {*/
+    /*display: block;*/
+    /*margin-left: 20rpx;*/
+    /*margin-right: 20rpx;*/
+    /*width: 100%;*/
+/*}*/
+/*.search-arr input{*/
+    /*width: 100%;*/
+    /*box-sizing: border-box;*/
+    /*padding-left:48rpx;*/
+    /*height: 48rpx;*/
+    /*line-height: 48rpx;*/
+    /*border-radius: 30px;*/
+    /*font-size: 24rpx;*/
+    /*background-color: #fff;*/
+/*}*/
+/*.searchcion {*/
+    /*margin: 10rpx 10rpx 10rpx 6rpx;*/
+    /*position: absolute;*/
+    /*left:20rpx;*/
+    /*z-index: 2;*/
+    /*width: 16px;*/
+    /*height: 16px;*/
+    /*text-align: center;*/
+/*}*/
 /*!*搜索列表数据列表显示*!*/
 /*.search-data{*/
     /*position: relative;*/

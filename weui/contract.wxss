@@ -1,11 +1,12 @@
 /*搜索列表数据列表显示*/
 .search{
-    position: relative;
+    position: fixed;
     display: flex;
     background-color:#4091fb;
     box-sizing: border-box;
     overflow: hidden;
     height: 80rpx;
+    width: 100%;
 }
 .search-arr {
     display: block;

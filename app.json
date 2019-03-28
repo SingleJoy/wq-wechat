@@ -6,6 +6,7 @@
     "pages/auth/roles/roles",
     "pages/contract/contractSign/contractSign",
     "pages/template/templateSet/templateSet",
+    "pages/contract/contractSearch/contractSearch",
     "pages/contract/contractDetail/contractDetail",
     "pages/template/templateSuccess/templateSuccess",
     "pages/template/templateAddInfo/templateAddInfo",

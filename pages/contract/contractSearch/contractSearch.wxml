@@ -13,7 +13,7 @@
 
         <scroll-view
                 scroll-y
-                style="height:{{height}}px;position: absolute;top:270rpx;"
+                style="height:{{height}}px;position:absolute;top:100rpx;z-index: 1"
                 bindscrolltoupper="upper"
                 bindscrolltolower="lower">
 
