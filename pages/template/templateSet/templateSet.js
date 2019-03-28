@@ -1,4 +1,5 @@
 // pages/template/templateSet/tempalteSet.js
+import { backContractTempSigner, contractTemp } from '../../../wxapi/api.js'
 Page({
   /**
    * 页面的初始数据
@@ -10,12 +11,20 @@ Page({
       nameIdcard: "",
       namePhone: ""
     },
+    date: '',
+    //合同名称
+    contactName: "1", 
+    //签署日期
+    validTime: "",
+    //是否永久有效
+    isChecked: false,
     //编辑/添加签署人保存标识
     identification: "",
     //编辑/添加签署人数据索引
     listIndex: "",
     //弹框标题
     addSignature: "添加签署人",
+    isChecked: false,
     //model弹框验证
     model: {
       nameHint: "请输入姓名",
@@ -27,12 +36,52 @@ Page({
     },
     //添加签署人信息保存
     dataList: [
-      { name: "小明", idCode: "545214552233663321", phone: "15685474458" },
-      { name: "大明", idCode: "545214552233663321", phone: "15545454545" }
+      { name: "小明", idCard: "545214552233663321", mobile: "15685474458" },
+      { name: "大明", idCard: "545214552233663321", mobile: "15545454545" }
     ],
-    showModal: true,
+    showModal: false,
     //删除样式
     delate: "9",
+    //模板相关数据
+    createContract: {
+      templateSpecificType: "",
+      templateNo: ""
+    }
+  },
+  onLoad: function (options) {
+    this.setData({
+      createContract:{
+        templateSpecificType: options.templateSpecificType,
+        templateNo: options.templateNo
+      }
+    })
+    this.getSignInfo();
+  },
+  //获取签署设置
+  getSignInfo() {
+    let data = {
+      operateType: "back",
+      contractTempNo: "52b4d1e97e694a80b1d1894c0e9e3098"
+      // contractTempNo: wx.getStorageSync('contractTempNo')
+    }
+    let accountCode = "ACf2773c7e514510baa500053efae912";
+    // let accountCode = wx.getStorageSync('accountCode');
+    backContractTempSigner(data, accountCode).then(res => {
+      console.log(res);
+      if (res.data.validTime !== null) {
+        this.setData({
+          contactName: res.data.contractName,
+          date: res.data.validTime
+        })
+        return;
+      }
+      this.setData({
+        contactName: res.data.contractName,
+        isChecked: true
+      })
+    }).catch(res => {
+
+    })
   },
   //右滑开始
   touchStart(e) {
@@ -118,16 +167,16 @@ Page({
     this.setData({
       listValue: {
         nameValue: modelList.name,
-        nameIdcard: modelList.idCode,
-        namePhone: modelList.phone
+        nameIdcard: modelList.idCard,
+        namePhone: modelList.mobile
       },
       addSignature: "修改签署人",
       model: {
         nameHint: modelList.name,
         isShowNameHint: false,
-        idcardHint: modelList.idCode,
+        idcardHint: modelList.idCard,
         isShowIdcardHint: false,
-        mobileHint: modelList.phone,
+        mobileHint: modelList.mobile,
         isShowMobileHint: false,
       }
     })
@@ -148,6 +197,7 @@ Page({
   },
   //提交表单数据
   formSubmitModel: function(e) {
+    console.log(e)
     //验证姓名
     if (!e.detail.value.name) {
       this.setData({
@@ -166,7 +216,7 @@ Page({
       })
     }
     //验证身份证
-    if (!e.detail.value.idCode) {
+    if (!e.detail.value.idCard) {
       this.setData({
         model: {
           idcardHint: "请输入身份证",
@@ -183,7 +233,7 @@ Page({
       })
     }
     //验证手机号
-    if (!e.detail.value.phone) {
+    if (!e.detail.value.mobile) {
       this.setData({
         model: {
           mobileHint: "请输入手机号",
@@ -222,9 +272,77 @@ Page({
   }, 
   //生成合同
   formSubmit: function(e) {
+    
+    let dataList = this.data.dataList;
+    let names = "",
+        idCards = "",
+        mobiles = "";
+    for (var i = 0; i < dataList.length; i++) {
+      names += dataList[i].name + ",";
+      idCards += dataList[i].idCard + ",";
+      mobiles += dataList[i].mobile + ",";
+    }
+    console.log(names, idCards, mobiles)
+    // return
+    let creater = wx.getStorageSync('interfaceCode'),
+      operateType = wx.getStorageSync('operateType'),
+      contractTempNo = wx.getStorageSync('contractTempNo'),
+      templateNo = this.data.createContract.templateNo,
+      validTime = this.data.date,
+      perpetualValid = 1,
+      templateSpecificType = this.data.createContract.templateSpecificType,
+      accountCode = wx.getStorageSync('accountCode');
+    let zqUserContractTempVo = {};
+    if (operateType != '') {
+      zqUserContractTempVo = {
+        "creater": creater,
+        "operateType": operateType,
+        "contractTempNo": contractTempNo,
+        "contractName": contractName,
+        "templateNo": templateNo,
+        "validTime": validTime,
+        "perpetualValid": perpetualValid,
+        "names": names,
+        "idCards": idCards,
+        "mobiles": mobiles,
+        "templateSpecificType": templateSpecificType,
+        "accountCode": accountCode
+      }
+    } else {
+      // zqUserContractTempVo = {
+      //   "creater": creater,
+      //   "contractName": contractName,
+      //   "templateNo": this.templateNo,
+      //   "validTime": validTime,
+      //   "perpetualValid": perpetualValid,
+      //   "names": names,
+      //   "idCards": id_nums,
+      //   "mobiles": mobiles,
+      //   "templateSpecificType": templateSpecificType,
+      //   "accountCode": accountCode
+      // }
+      zqUserContractTempVo = {
+        "creater": "ZQ98fcb07f8a4980862e1a5846d3c6f2",
+        "contractName": "批量有参数-1",
+        "templateNo": "7245f49e9cba4d5e85889d426e7cf4a7",
+        "validTime": "",
+        "perpetualValid": 1,
+        "names": names,
+        "idCards": idCards,
+        "mobiles": mobiles,
+        "templateSpecificType": "fillidcardreference",
+        "accountCode": "ACf2773c7e514510baa500053efae912"
+      }
+    }
+    contractTemp(zqUserContractTempVo, creater).then(res => {
+      console.log(res);
+    }).catch(res => {
+
+    })
+    return;
     wx.navigateTo({
-        url: '../templateAddInfo/templateAddInfo',
-      })
+      url: '../templateAddInfo/templateAddInfo',
+    })
   },
   //弹框确定操作
   onConfirm: function (e) {

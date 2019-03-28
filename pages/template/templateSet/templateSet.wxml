@@ -5,7 +5,7 @@
       <form bindsubmit="formSubmit" bindreset="formReset">
         <view class='sign-set'>
           <label class='contract-name contract-style'>合同名称：</label>
-          <input name="input" class='contract-content' placeholder='请输入合同名称' value='111'></input>
+          <input name="input" class='contract-content' placeholder='请输入合同名称' value='{{contactName}}'></input>
         </view>
         <view class='sign-set'>
           <label class='contract-name'>签署截止日：</label>
@@ -23,7 +23,7 @@
           <view class='select-time'>
             <checkbox-group bindchange="checkboxChange">
               <label class="checkbox">
-                <checkbox value="{{item.name}}" checked="checked"/>
+                <checkbox value="{{item.name}}" checked="{{isChecked}}"/>
                 永久有效
               </label>
             </checkbox-group>
@@ -45,8 +45,8 @@
         <view wx:for="{{dataList}}" wx:key="key" class="signtory-list">
           <view animation="{{animationData}}" class='list-content {{delate == index ? "right-slide" : "restore"}}' data-id="{{index}}" capture-bind:touchstart='touchStart' capture-bind:touchend="touchEnd">
             <view class='list-name' data-id="{{index}}">{{item.name}}</view>
-            <view class='list-idcard' data-id="{{index}}">{{item.idCode}}</view>
-            <view class='list-mobile' data-id="{{index}}">{{item.phone}}</view>
+            <view class='list-idcard' data-id="{{index}}">{{item.idCard}}</view>
+            <view class='list-mobile' data-id="{{index}}">{{item.mobile}}</view>
             <view wx-if='{{delate !== index ? "delate" : ""}}' class='list-operate {{delate == index ? "edit" : ""}}' data-id="{{index}}" bindtap='showDialogBtn'>编辑</view>
             <view wx-if='{{delate == index ? "delate" : ""}}' class='delate-style del' data-id="{{index}}" bindtap='delDialogBtn'>删除</view>
           </view>
@@ -80,7 +80,7 @@
         <view>
           <view class="modal-input">
             <label>身份证：</label>
-            <input name="idCode" placeholder-class="input-holder" value="{{listValue.nameIdcard}}" type="number" maxlength="18" bindinput="inputChange" placeholder="请输入身份证"></input>
+            <input name="idCard" placeholder-class="input-holder" value="{{listValue.nameIdcard}}" type="number" maxlength="18" bindinput="inputChange" placeholder="请输入身份证"></input>
           </view>
           <view class="modal-input model-hint">
             <label></label>
@@ -90,7 +90,7 @@
         <view>
           <view class="modal-input">
             <label>手机号码：</label>
-            <input name="phone" placeholder-class="input-holder" value="{{listValue.namePhone}}" type="number" maxlength="11" bindinput="inputChange" placeholder="请输入手机号码"></input>
+            <input name="mobile" placeholder-class="input-holder" value="{{listValue.namePhone}}" type="number" maxlength="11" bindinput="inputChange" placeholder="请输入手机号码"></input>
           </view>
           <view class="modal-input model-hint">
             <label></label>

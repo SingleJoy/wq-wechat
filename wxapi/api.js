@@ -28,7 +28,14 @@ function updateMobileTemplate(data, accountCode) {
 function getAccountTemplates(data, accountCode) {
   return request(api + '/v1.5/tenant/' + accountCode + '/getAccountTemplates', 'get', data)
 }
-
+//获取签署人信息
+function backContractTempSigner(data, interfaceCode) {
+  return request(api + '/v1/tenant/' + interfaceCode + '/backContractTempSigner', 'get', data)
+}
+//生成合同
+function contractTemp(data, interfaceCode) {
+  return request(api + '/v1/tenant/' + interfaceCode + '/contractTemp', 'post', data)
+}
 function getAccountInformation(accountCode) {
     return request(api+'/v1.5/tenant/'+accountCode+'/getAccountInformation', 'get')
 }
@@ -68,18 +75,19 @@ function templateImg(interfaceCode,templateNo,data){
 }
 
 module.exports = {
-    tenant,
-    login,
-    bindEnterprises,
-    homePage,
-    contractNum,
-    getCertificate,
-    getAccountInformation,
-    getSignatures,
-    exitAndDeleteSession,
-    updateMobileTemplate,
-    getAccountTemplates,
-    contractImgs,
-    templateImg
-
+  tenant,
+  login,
+  bindEnterprises,
+  homePage,
+  contractNum,
+  getCertificate,
+  getAccountInformation,
+  getSignatures,
+  exitAndDeleteSession,
+  updateMobileTemplate,
+  getAccountTemplates,
+  contractImgs,
+  templateImg,
+  backContractTempSigner,
+  contractTemp
 }
