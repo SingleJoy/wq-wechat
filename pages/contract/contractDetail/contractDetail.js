@@ -96,7 +96,7 @@ move:function(e){
 //签署合同
 signContract:function(e){
     this.setData({
-        passwordDialog:true
+        passwordDialog:
     })
 },
 //短信提醒

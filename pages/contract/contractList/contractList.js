@@ -34,6 +34,7 @@ wx.getSystemInfo({
             contractDataList:[], //查询数据
             scrollTop:'', //页面滑动
             secondAccountCode:'', //二级账号accountCode
+            flag:true
         },
 
         /**
@@ -133,26 +134,57 @@ wx.getSystemInfo({
         },
         //b2c列表
         contracts(param){
+            wx.showLoading({
+                title: '加载中',
+            });
             let interfaceCode=this.data.interfaceCode;
-            contracts(interfaceCode,param).then(res=>{
-                // console.log(res);
-                this.setData({
-                    contractDataList:res.data.content
-                })
 
+            contracts(interfaceCode,param).then(res=>{
+
+                this.setData({
+                    contractDataList:this.data.contractDataList.concat(res.data.content)
+                });
+                //判断是否允许继续请求
+                if(this.data.contractDataList.length<totalItemNumber){
+                    this.setData({
+                        flag:true
+                    });
+                }else{
+                    this.setData({
+                        flag:false
+                    });
+                }
+                setTimeout( ()=> {
+                    wx.hideLoading();
+                }, 1000);
             }).catch(error=>{
 
             })
         },
         //b2b列表
         b2bContrants(param){
+            wx.showLoading({
+                title: '加载中',
+            });
             let interfaceCode=this.data.interfaceCode;
             b2bContrants(interfaceCode,param).then(res=>{
-                // console.log(res);
-                this.setData({
-                    contractDataList:res.data.content
-                })
 
+                this.setData({
+                    contractDataList:this.data.contractDataList.concat(res.data.content)
+                });
+                //判断是否允许继续请求
+                if(this.data.contractDataList.length<totalItemNumber){
+                    this.setData({
+                        flag:true
+                    });
+                }else{
+                    this.setData({
+                        flag:false
+                    });
+                }
+                setTimeout( ()=> {
+                    wx.hideLoading();
+                }, 1000);
 
             }).catch(error=>{
 
@@ -167,12 +199,12 @@ wx.getSystemInfo({
                 this.setData({
                     selected:0,
                     currentTab:0,
-                })
+                });
             }else{
                 this.setData({
                     selected:current,
                     currentTab:current,
-                })
+                });
             }
 
         },
@@ -186,8 +218,8 @@ wx.getSystemInfo({
             this.setData({
                 folderName:filingName,
                 folderNo:folderNo,
-            })
-            this.searchData()
+            });
+            this.searchData();
         },
         //展开对企业对个人选择
         tabContractType(e){
@@ -196,12 +228,12 @@ wx.getSystemInfo({
                 this.setData({
                     selected:0,
                     currentTab:0,
-                })
+                });
             }else{
                 this.setData({
                     selected:current,
                     currentTab:current,
-                })
+                });
             }
 
         },
@@ -213,12 +245,12 @@ wx.getSystemInfo({
                 this.setData({
                     selected:0,
                     currentTab:0,
-                })
+                });
             }else{
                 this.setData({
                     selected:current,
                     currentTab:current,
-                })
+                });
             }
         },
         //选择对企业或者对个人合同
@@ -228,11 +260,11 @@ wx.getSystemInfo({
             if(num==1){
                 this.setData({
                     contractTypeName:"企业对个人",
-                })
+                });
             }else{
                 this.setData({
                     contractTypeName:"企业对企业",
-                })
+                });
             }
             this.searchData(num);
         },
@@ -255,21 +287,21 @@ wx.getSystemInfo({
             this.setData({
                 selected:0,
                 currentTab:0,
-            })
+            });
         },
         tabNavContract(e){
             let contractStatus=e.currentTarget.dataset.current;
             this.setData({
                 contractStatus:contractStatus,
             });
-            this.searchData()
+            this.searchData();
         },
         //去搜索页面
         goSearch(){
 
             wx.navigateTo({
                 url: '/pages/contract/contractSearch/contractSearch'
-            })
+            });
         },
         //去合同详情页面
         goDetail(e){
@@ -282,18 +314,31 @@ wx.getSystemInfo({
                 'contractStatus':contractStatus,
                 'operator':operator,
                 'creater':creater,
+                'pageNo':1,
+                'pageSize':10,
+                'accountCode':this.data.secondAccountCode,
+                'filingNo':this.data.folderNo?this.data.folderNo:'',
+                'accountLevel':this.data.accountLevel,
+                'folderName':this.data.folderName,
+                'contractTypeName':this.data.contractTypeName,
+                'accountTypeName':this.data.accountTypeName,
             };
             wx.setStorage({ key: 'contractNo',data: contractNo});
             wx.navigateTo({
                 url: '/pages/contract/contractDetail/contractDetail?contract='+JSON.stringify(contract)
-            })
+            });
         },
         upper(){
 
         },
 
         lower(e) {
-
+            if(this.data.flag){
+                this.setData({
+                    page:this.data.page+1
+                });
+                this.requestData();
+            }
         },
 
         resetStyle(){
@@ -301,7 +346,7 @@ wx.getSystemInfo({
                 selected:0,
                 currentTab:0,
                 contractStatus:3,
-            })
+            });
         },
 
         /**
@@ -318,25 +363,28 @@ wx.getSystemInfo({
             let pages =  getCurrentPages();
             let currPage = pages[pages.length - 1];
             if (currPage.data.param) {
-                
+                console.log(currPage.data.param)
+
+            }else{
+                const interfaceCode = wx.getStorageSync('interfaceCode');
+                const accountCode = wx.getStorageSync('accountCode');
+                const mobile = wx.getStorageSync('mobile');
+                const enterpriseName = wx.getStorageSync('enterpriseName');
+                const accountLevel = wx.getStorageSync('accountLevel');
+                this.setData({
+                    interfaceCode:interfaceCode,
+                    accountCode:accountCode,
+                    secondAccountCode:accountCode,
+                    mobile:mobile,
+                    enterpriseName:enterpriseName,
+                    accountLevel:accountLevel,
+                });
+                //查询所有归档文件夹
+                this.contractFilings();
+                this.getAccounts();
+                this.searchData();
             }
-            const interfaceCode = wx.getStorageSync('interfaceCode');
-            const accountCode = wx.getStorageSync('accountCode');
-            const mobile = wx.getStorageSync('mobile');
-            const enterpriseName = wx.getStorageSync('enterpriseName');
-            const accountLevel = wx.getStorageSync('accountLevel');
-            this.setData({
-                interfaceCode:interfaceCode,
-                accountCode:accountCode,
-                secondAccountCode:accountCode,
-                mobile:mobile,
-                enterpriseName:enterpriseName,
-                accountLevel:accountLevel,
-            });
-            //查询所有归档文件夹
-            this.contractFilings();
-            this.getAccounts();
-            this.searchData();
+
         },
 
         /**
@@ -349,7 +397,6 @@ wx.getSystemInfo({
                 accountTypeName:'全部账号',
                 accountNo:'',
                 currentTab:0,
-                height:height,
                 sum:1,
                 model:true,
                 selected:0,
@@ -361,7 +408,7 @@ wx.getSystemInfo({
                 contractDataList:[], //查询数据
                 scrollTop:'', //页面滑动
                 secondAccountCode:'', //二级账号accountCode
-            })
+            });
         },
 
         /**
@@ -378,17 +425,5 @@ wx.getSystemInfo({
 
         },
 
-        /**
-         * 页面上拉触底事件的处理函数
-         */
-        onReachBottom: function () {
 
-        },
-
-        /**
-         * 用户点击右上角分享
-         */
-        onShareAppMessage: function () {
-
-        }
-    })
+    });
