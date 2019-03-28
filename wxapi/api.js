@@ -58,14 +58,21 @@ const contractNum  = {
         return request(api + '/v1.4/tenant/' + interfaceCode + '/deadline', 'get', data)
     }
 }
-//合同详情
+//合同详情图片
 function contractImgs(interfaceCode,contractNo){
-    return request(api + '/v1.4/tenant/' + interfaceCode + '/contract/'+ contractNo+'/contractimgs', 'get')
+    return request(api + '/v1/tenant/' + interfaceCode + '/contract/'+ contractNo+'/contractimgs', 'get')
 }
 //模板合同图片请求
 function templateImg(interfaceCode,templateNo,data){
-    console.log(data)
     return request(api + '/v1/tenant/'+ interfaceCode +'/template/'+templateNo+'/getTemplateImags', 'get',data)
+}
+//合同图片
+function getContractDetails(interfaceCode,contractNo){
+    return request(api+'/v1/tenant/' + interfaceCode + '/contract/'+ contractNo+'/getContractDetails', 'get')
+}
+//短信提醒
+function remind(interfaceCode,contractNo,data){
+    return request(api+'/v1/tenant/' + interfaceCode + '/contract/'+ contractNo+'/remind', 'get',data)
 }
 
 //合同归档接口
@@ -81,7 +88,6 @@ function getAccounts(interfaceCode){
 /* b2c合同 列表查询 */
 function contracts(interfaceCode,data){
     return request(api+'/v1/tenant/' + interfaceCode + '/contracts','get',data)
-
 }
 
 /* b2b合同 列表查询 */
@@ -112,5 +118,7 @@ module.exports = {
     b2bContrants,
     contractImgs,
     templateImg,
+    remind,
+    getContractDetails,
     searchContractsForMiniProgram
 }

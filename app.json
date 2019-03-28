@@ -10,7 +10,6 @@
     "pages/contract/contractDetail/contractDetail",
     "pages/template/templateSuccess/templateSuccess",
     "pages/template/templateAddInfo/templateAddInfo",
-
     "pages/template/templateSign/templateSign",
     "pages/template/templateList/templateList",
     "pages/template/templateDetail/templateDetail",
