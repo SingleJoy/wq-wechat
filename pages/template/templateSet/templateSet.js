@@ -41,24 +41,13 @@ Page({
       { name: "小明", idCard: "545214552233663321", mobile: "15685474458" },
       { name: "大明", idCard: "545214552233663321", mobile: "15545454545" }
     ],
-    showModal: false,
+    showModal: true,
     //删除样式
     delate: "9",
-    //模板相关数据
-    createContract: {
-      templateSpecificType: "",
-      templateNo: ""
-    }
   },
   onLoad: function (options) {
-    this.setData({
-      createContract:{
-        templateSpecificType: options.templateSpecificType,
-        templateNo: options.templateNo
-      }
-    })
-    console.log(app.globalData);
-    if (app.globalData) {
+    console.log(app.globalData.contractParam.operateType);
+    if (app.globalData.contractParam.operateType) {
       this.getSignInfo(); 
     }
   },
@@ -285,14 +274,15 @@ Page({
     }
     // return
     let creater = wx.getStorageSync('interfaceCode'),
-      operateType = app.globalData,
-      contractTempNo = wx.getStorageSync('contractTempNo'),
+      operateType = app.globalData.contractParam.operateType,
+      contractTempNo = app.globalData.contractParam.contractTempNo,
       contractName = this.data.contactName,
-      templateNo = this.data.createContract.templateNo,
+      templateNo = app.globalData.contractParam.templateNo,
       validTime = this.data.date,
       perpetualValid = this.data.perpetualValid,
-      templateSpecificType = this.data.createContract.templateSpecificType,
+      templateSpecificType = app.globalData.contractParam.templateSpecificType,
       accountCode = wx.getStorageSync('accountCode');
+    console.log(app.globalData.contractParam.templateSpecificType);
     let zqUserContractTempVo = {};
     if (operateType != '') {
       zqUserContractTempVo = {
@@ -310,29 +300,17 @@ Page({
         "accountCode": accountCode
       }
     } else {
-      // zqUserContractTempVo = {
-      //   "creater": creater,
-      //   "contractName": contractName,
-      //   "templateNo": this.templateNo,
-      //   "validTime": validTime,
-      //   "perpetualValid": perpetualValid,
-      //   "names": names,
-      //   "idCards": id_nums,
-      //   "mobiles": mobiles,
-      //   "templateSpecificType": templateSpecificType,
-      //   "accountCode": accountCode
-      // }
       zqUserContractTempVo = {
-        "creater": "ZQ98fcb07f8a4980862e1a5846d3c6f2",
-        "contractName": "批量有参数-1",
-        "templateNo": "7245f49e9cba4d5e85889d426e7cf4a7",
-        "validTime": "",
-        "perpetualValid": 1,
+        "creater": creater,
+        "contractName": contractName,
+        "templateNo": templateNo,
+        "validTime": validTime,
+        "perpetualValid": perpetualValid,
         "names": names,
         "idCards": idCards,
         "mobiles": mobiles,
-        "templateSpecificType": "fillidcardreference",
-        "accountCode": "ACf2773c7e514510baa500053efae912"
+        "templateSpecificType": templateSpecificType,
+        "accountCode": accountCode
       }
     }
     contractTemp(zqUserContractTempVo, creater).then(res => {

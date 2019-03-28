@@ -20,7 +20,7 @@ Page({
         let data={
             contractTempNo:param_data.contractTempNo
         }
-        Object.assign(app.globalData.contractParam,{operateType:'back'})  //标记返回时数据回显
+        Object.assign(app.globalData.contractParam,{operateType:'back'})  //标`记返回时数据回显
         console.log(app)
         templateVal(this.data.interfaceCode,param_data.templateNo,data).then(res=>{
             this.setData({

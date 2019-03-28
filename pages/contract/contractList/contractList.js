@@ -4,6 +4,7 @@ import {
     contracts,
     b2bContrants
 } from '../../../wxapi/api';
+const app = getApp();
 //获取设备高度
 let height;
 wx.getSystemInfo({
@@ -326,30 +327,33 @@ wx.getSystemInfo({
             let contractStatus=e.currentTarget.dataset.contractstatus;
             let creater=e.currentTarget.dataset.creater;
             let operator=e.currentTarget.dataset.operator;
-            let contract={
+            let signParams={
                 'contractNo':contractNo,
                 'contractStatus':contractStatus,
                 'operator':operator,
                 'creater':creater,
+                'num':this.data.num,
                 'pageNo':1,
                 'pageSize':10,
-                'accountCode':this.data.secondAccountCode,
+                'secondAccountCode':this.data.secondAccountCode,
                 'filingNo':this.data.folderNo?this.data.folderNo:'',
                 'accountLevel':this.data.accountLevel,
                 'folderName':this.data.folderName,
                 'contractTypeName':this.data.contractTypeName,
                 'accountTypeName':this.data.accountTypeName,
             };
+            Object.assign(app.globalData.searchParam,signParams);
+            console.log(this.data.secondAccountCode)
             wx.setStorage({ key: 'contractNo',data: contractNo});
             wx.navigateTo({
-                url: '/pages/contract/contractDetail/contractDetail?contract='+JSON.stringify(contract)
+                url: '/pages/contract/contractDetail/contractDetail?contract='+JSON.stringify(signParams)
             });
         },
         upper(){
 
         },
         //上滑懒加载
-        lower(e) {
+        lower() {
             if(this.data.flag){
                 this.setData({
                     pageNo:this.data.pageNo+1
@@ -391,16 +395,19 @@ wx.getSystemInfo({
                 },
             });
 
-            let pages =  getCurrentPages();
-            let currPage = pages[pages.length - 1];
-
-            if (currPage.data.param) {
-
-
-                // //查询所有归档文件夹
-                // this.contractFilings();
-                // this.getAccounts();
-                // this.searchData();
+             let searchParam=app.globalData.searchParam;
+             let search=Object.keys(searchParam);
+             if (search.length>0) {
+                console.log(app.globalData.searchParam);
+                 Object.keys(searchParam).forEach((key)=>{
+                     this.setData({
+                         [key]:searchParam[key]
+                     })
+                 });
+                 //查询所有归档文件夹
+                 this.contractFilings();
+                 this.getAccounts();
+                 this.searchData();
 
             }else{
                 const interfaceCode = wx.getStorageSync('interfaceCode');
