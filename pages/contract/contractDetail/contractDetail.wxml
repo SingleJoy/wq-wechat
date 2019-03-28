@@ -74,9 +74,8 @@
             </block>
         </view>
         
-        <!-- 合同弹框操作 -->
+          <!-- 下载邮箱 -->
         <view class="contract-dialog">
-            <!-- 下载邮箱 -->
             <block wx:if="{{contractStatus == 3}}">
                 <view class="drawer-mask" wx:if="{{showModalStatus}}"></view>
                 <view  class="drawer-box" wx:if="{{showModalStatus}}">
@@ -85,14 +84,13 @@
                     <view class="drawer-content">
                         <input  class="email-address" value="{{sendEmail}}"></input>
                         <view class="emial-err">{{errMessage}}</view>
-                        <view class="bind-email" wx:if="{{email}}" >发送至账号绑定邮箱</view>
+                        <view class="bind-email" wx:if="{{defaultEmail}}" bindtap="emailSubmit" data-type="default">发送至账号绑定邮箱</view>
                     </view>
                     <view class="option-btn">
                         <view class="btn-ok btn-cancel" bindtap="cancelDialog" data-status="close">取消</view>
-                        <view class="btn-ok" bindtap="emailSubmit" data-status="close">确定</view>
+                        <view class="btn-ok" bindtap="emailSubmit" data-status="close" data-type="addemail">确定</view>
                     </view>
-                        
-                    </view>
+                </view>
             </block>
         </view>
         <!-- 合同延期 -->
@@ -130,10 +128,26 @@
                     <view class="option-btn">
                         <view class="btn-ok btn-cancel" bindtap="cancelDialog" data-status="close">取消</view>
                         <view class="btn-ok" bindtap="dateSubmit" data-status="close">确定</view>
-                    </view>
-                        
-                    </view>
+                    </view> 
+                </view>
             </block>
+        </view>
+        <!-- 签署密码 -->
+        <view class="contract-dialog">
+            <view class="drawer-mask" wx:if="{{passwordDialog}}"></view>
+                <view  class="drawer-box" wx:if="{{passwordDialog}}">
+                <!--drawer content-->
+                    <view class="drawer-title">请输入邮箱账号</view>
+                    <view class="drawer-content">
+                        <input  class="email-address" value="{{sendEmail}}"></input>
+                        <view class="emial-err">{{errMessage}}</view>
+                        <view class="bind-email" wx:if="{{defaultEmail}}" bindtap="emailSubmit" data-type="default">发送至账号绑定邮箱</view>
+                    </view>
+                    <view class="option-btn">
+                        <view class="btn-ok btn-cancel" bindtap="cancelDialog" data-status="close">取消</view>
+                        <view class="btn-ok" bindtap="emailSubmit" data-status="close" data-type="addemail">确定</view>
+                    </view>
+                </view>
         </view>
     </view>
 </view>
