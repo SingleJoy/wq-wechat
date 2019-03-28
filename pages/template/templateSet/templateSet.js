@@ -1,5 +1,6 @@
 // pages/template/templateSet/tempalteSet.js
 import { backContractTempSigner, contractTemp } from '../../../wxapi/api.js'
+const app = getApp();
 Page({
   /**
    * 页面的初始数据
@@ -56,7 +57,10 @@ Page({
         templateNo: options.templateNo
       }
     })
-    this.getSignInfo();
+    console.log(app.globalData);
+    if (app.globalData) {
+      this.getSignInfo(); 
+    }
   },
   //获取签署设置
   getSignInfo() {
@@ -281,7 +285,7 @@ Page({
     }
     // return
     let creater = wx.getStorageSync('interfaceCode'),
-      operateType = wx.getStorageSync('operateType'),
+      operateType = app.globalData,
       contractTempNo = wx.getStorageSync('contractTempNo'),
       contractName = this.data.contactName,
       templateNo = this.data.createContract.templateNo,
