@@ -8,6 +8,20 @@
                     <input  auto-focus="{{false}}" placeholder="搜索"  value="" bindtap="goSearch" disabled/>
                 </view>
             </view>
+            <view id="swiper-tab-container">
+                <view class="swiper-tab">
+                    <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-current="1"   bindtap="tabFolder">{{folderName}}
+                        <i></i>
+                    </view>
+                    <view class="swiper-tab-list {{currentTab==2 ? 'on' : ''}}" data-current="2"  bindtap="tabContractType">{{contractTypeName}}
+                        <i></i>
+                    </view>
+                    <view class="swiper-tab-list {{currentTab==3 ? 'on' : ''}}" data-current="3"  bindtap="tabAccountNo">{{accountTypeName}}
+                        <i></i>
+                    </view>
+                </view>
+
+            </view>
             <view class="tab-list">
                 <view class="tab-item">
                     <view class="item  border-right {{contractStatus=='3'? ' on':''}}" data-current="3" bindtap="tabNavContract">已生效</view>
@@ -19,21 +33,6 @@
             </view>
         </view>
         <!-- 下拉菜单   -->
-        <view id="swiper-tab-container">
-            <view class="swiper-tab">
-                <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-current="1"   bindtap="tabFolder">{{folderName}}
-                    <i></i>
-                </view>
-                <view class="swiper-tab-list {{currentTab==2 ? 'on' : ''}}" data-current="2"  bindtap="tabContractType">{{contractTypeName}}
-                    <i></i>
-                </view>
-                <view class="swiper-tab-list {{currentTab==3 ? 'on' : ''}}" data-current="3"  bindtap="tabAccountNo">{{accountTypeName}}
-                    <i></i>
-                </view>
-            </view>
-
-        </view>
-
 
         <view class="model" wx:if="{{selected!=0}}" bindtap="closeModel" style="height:{{height}}px;"></view>
         <view wx:if="{{selected!=0}}"  class="swiper" >

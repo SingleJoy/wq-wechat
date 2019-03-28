@@ -116,13 +116,11 @@
     color: #4091fb;
 }
 .tab-list{
-    position:relative ;
     z-index: 1;
     width: 100%;
-    margin-top: 90rpx;
+    margin-top: 160rpx;
     background-color: #fff;
     margin-bottom:10rpx;
-
 }
 
 .tab-list .tab-item{
