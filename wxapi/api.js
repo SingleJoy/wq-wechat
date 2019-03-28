@@ -70,6 +70,10 @@ function templateImg(interfaceCode,templateNo,data){
 function getContractDetails(interfaceCode,contractNo){
     return request(api+'/v1/tenant/' + interfaceCode + '/contract/'+ contractNo+'/getContractDetails', 'get')
 }
+//短信提醒
+function remind(interfaceCode,contractNo,data){
+    return request(api+'/v1/tenant/' + interfaceCode + '/contract/'+ contractNo+'/remind', 'get',data)
+}
 
 //合同归档接口
 function contractFilings(interfaceCode,accountCode) {
@@ -84,7 +88,6 @@ function getAccounts(interfaceCode){
 /* b2c合同 列表查询 */
 function contracts(interfaceCode,data){
     return request(api+'/v1/tenant/' + interfaceCode + '/contracts','get',data)
-
 }
 
 /* b2b合同 列表查询 */
@@ -115,6 +118,7 @@ module.exports = {
     b2bContrants,
     contractImgs,
     templateImg,
-    getContractDetails
+    remind,
+    getContractDetails,
     searchContractsForMiniProgram
 }

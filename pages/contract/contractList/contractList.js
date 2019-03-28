@@ -46,7 +46,6 @@ wx.getSystemInfo({
         },
 
         onLoad: function (options) {
-            //home页面点击跳转
             let contractStatus=options.contractStatus;
             if(contractStatus){
                 this.setData({
@@ -316,7 +315,11 @@ wx.getSystemInfo({
          * 生命周期函数--监听页面显示
          */
         onShow: function () {
-
+            let pages =  getCurrentPages();
+            let currPage = pages[pages.length - 1];
+            if (currPage.data.param) {
+                
+            }
             const interfaceCode = wx.getStorageSync('interfaceCode');
             const accountCode = wx.getStorageSync('accountCode');
             const mobile = wx.getStorageSync('mobile');
