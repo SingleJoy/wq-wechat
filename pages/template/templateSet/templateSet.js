@@ -1,4 +1,4 @@
-// pages/template/templateSet/tempalteSet.js
+
 import { backContractTempSigner, contractTemp } from '../../../wxapi/api.js'
 const app = getApp();
 Page({

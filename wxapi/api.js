@@ -90,7 +90,11 @@ function showSignRoomInfo(interfaceCode){
 }
 //b2c签署
 function signerpositions(interfaceCode,contractNo){
-    return request(api+'v1/tenant/'+ interfaceCode + '/contract/'+ contractNo +'/user/'+ interfaceCode + '/signerpositions','get')
+    return request(api+'/v1/tenant/'+ interfaceCode + '/contract/'+ contractNo +'/user/'+ interfaceCode + '/signerpositions','get')
+}
+//合同参数查询
+function templateVal(interfaceCode,templateNo,data){
+    return request(api+'/v1/tenant/'+ interfaceCode + '/template/'+ templateNo + '/templateVal','get',data)
 }
 //合同归档接口
 function contractFilings(interfaceCode,accountCode) {
@@ -99,7 +103,6 @@ function contractFilings(interfaceCode,accountCode) {
 //查询合同列表角色
 function getAccounts(interfaceCode){
     return request(api+'/v1.5/tenant/' + interfaceCode + '/getAccounts','get')
-
 }
 
 /* b2c合同 列表查询 */
@@ -141,5 +144,6 @@ module.exports = {
   showSignRoomInfo,
   sendEmailForUser,
   backContractTempSigner,
-  contractTemp
+  contractTemp,
+  templateVal
 }
