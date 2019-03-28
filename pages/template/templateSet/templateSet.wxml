@@ -23,7 +23,7 @@
           <view class='select-time'>
             <checkbox-group bindchange="checkboxChange">
               <label class="checkbox">
-                <checkbox value="{{item.name}}" checked="{{isChecked}}"/>
+                <checkbox value="{{isChecked}}" checked="{{isChecked}}"/>
                 永久有效
               </label>
             </checkbox-group>
