@@ -28,7 +28,14 @@ function updateMobileTemplate(data, accountCode) {
 function getAccountTemplates(data, accountCode) {
   return request(api + '/v1.5/tenant/' + accountCode + '/getAccountTemplates', 'get', data)
 }
-
+//获取签署人信息
+function backContractTempSigner(data, interfaceCode) {
+  return request(api + '/v1/tenant/' + interfaceCode + '/backContractTempSigner', 'get', data)
+}
+//生成合同
+function contractTemp(data, interfaceCode) {
+  return request(api + '/v1/tenant/' + interfaceCode + '/contractTemp', 'post', data)
+}
 function getAccountInformation(accountCode) {
     return request(api+'/v1.5/tenant/'+accountCode+'/getAccountInformation', 'get')
 }
@@ -74,7 +81,17 @@ function getContractDetails(interfaceCode,contractNo){
 function remind(interfaceCode,contractNo,data){
     return request(api+'/v1/tenant/' + interfaceCode + '/contract/'+ contractNo+'/remind', 'get',data)
 }
-
+function sendEmailForUser(interfaceCode,data){
+    return request(api+'/v1/tenant/'+interfaceCode+'/sendEmailForUser','get',data)
+}
+//签约室信息(链接)
+function showSignRoomInfo(interfaceCode){
+    return request(api+'/v1/tenant/' + interfaceCode +'/signRoom/showSignRoomInfo', 'post')
+}
+//b2c签署
+function signerpositions(interfaceCode,contractNo){
+    return request(api+'v1/tenant/'+ interfaceCode + '/contract/'+ contractNo +'/user/'+ interfaceCode + '/signerpositions','get')
+}
 //合同归档接口
 function contractFilings(interfaceCode,accountCode) {
     return request(api+'/v1.7/tenant/'+interfaceCode+'/contract/'+accountCode+'/contractFilings','get')
@@ -120,5 +137,7 @@ module.exports = {
     templateImg,
     remind,
     getContractDetails,
-    searchContractsForMiniProgram
+    searchContractsForMiniProgram,
+    showSignRoomInfo,
+    sendEmailForUser
 }

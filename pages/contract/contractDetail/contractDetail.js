@@ -1,5 +1,12 @@
 // pages/contract/contractDetail/contractDetail.js
-import {contractImgs,getContractDetails,remind} from '../../../wxapi/api.js';
+import {
+    contractImgs,
+    getContractDetails,
+    remind,
+    showSignRoomInfo,
+    sendEmailForUser,
+    signerpositions} from '../../../wxapi/api.js';
+
 const app = getApp();
 Page({
 
@@ -19,30 +26,30 @@ Page({
         baseUrl:app.globalData.baseUrl,
         contractVo:'', //合同信息
         signUserVo:'', //签署人员
-        email:wx.getStorageSync('email'),
+        defaultEmail:wx.getStorageSync('email'),
         sendEmail:'',//指定发送邮箱
         optionAuthority:true,  //合同详情按钮权限
-        param_data:'',  //合同列表回填参数
+        signRoomLink:'',
+        passwordDialog:false,
+        signPassword:'123456'
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        let param_data = JSON.parse(options.contract);
-        console.log(param_data)
+        let param_data = JSON.parse(options.contract)
         this.setData({
             contractStatus:param_data.contractStatus,
-            contractNo:param_data.contractNo,
-            param_data:param_data,
-        });
+            contractNo:param_data.contractNo
+        })
         wx.showLoading({
             title: '加载中',
-        });
+        })
         contractImgs(this.data.interfaceCode,this.data.contractNo).then(res=>{
             this.setData({
                 contractImgList:res.data
-            });
+            })
         }).catch(err=>{
 
         })
@@ -50,13 +57,23 @@ Page({
             this.setData({
                 contractVo:res.data.contractVo,
                 signUserVo:res.data.signUserVo
-            });
+            })
             setTimeout(function () {
-                wx.hideLoading();
-            }, 1000);
+                wx.hideLoading()
+            }, 1000)
         }).catch(err=>{
 
         })
+        //待他人签署时展示复制链接按钮调此接口获取签署连接
+        if(this.data.contractStatus==2){
+            showSignRoomInfo(this.data.interfaceCode).then(res=>{
+                this.setData({
+                    signRoomLink:res.data.data.signRoomLink
+                })
+            }).catch(err=>{
+
+            })
+        }
     },
 
     //详情三角切换
@@ -78,7 +95,9 @@ Page({
     },
 //签署合同
     signContract:function(e){
-
+        this.setData({
+            passwordDialog:true
+        })
     },
 //短信提醒
     smsTip:function(e){
@@ -105,8 +124,9 @@ Page({
     },
 //复制链接
     copyLink:function(e){
+        console.log(this.data.signRoomLink)
         wx.setClipboardData({
-            data: 'data',
+            data: this.data.signRoomLink,
             success(res) {
                 wx.getClipboardData({
                     success(res) {
@@ -141,7 +161,26 @@ Page({
         })
     },
 //邮箱发送
-    emailSubmit:function(){
+    emailSubmit:function(e){
+        let data={
+            email:'',
+            type:'1',
+            contractNo:this.data.contractNo
+        }
+        if(e.target.dataset.type == 'default'){
+            data.email = this.data.defaultEmail
+        }else{
+            data.email = this.data.sendEmail
+        }
+        sendEmailForUser(this.data.interfaceCode,data).then(res=>{
+            wx.showToast({
+                title: '邮件发送成功',
+                icon: 'none',
+                duration: 2000
+            })
+        }).catch(err=>{
+
+        })
 
     },
 //延期确定按钮
@@ -181,11 +220,12 @@ Page({
      * 生命周期函数--监听页面卸载
      */
     onUnload: function () {
-        let pages = getCurrentPages();
-        let prevPage = pages[pages.length - 2];  //上一个页面
+        var pages = getCurrentPages();
+        var currPage = pages[pages.length - 1];   //当前页面
+        var prevPage = pages[pages.length - 2];  //上一个页面
         //直接调用上一个页面的setData()方法，把数据存到上一个页面中去
         prevPage.setData({
-            param_data: this.data.param_data
+            param: {a:1, b:2}
         })
     },
 

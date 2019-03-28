@@ -56,11 +56,16 @@ Page({
       this.setData({
         changeChecked: changeValue
       });
+      if (this.data.changeChecked) {
+        this.getData("applet");
+      } else {
+        this.getData();
+      }
       wx.setStorage({
         key: 'mobileTemplate',
         data: changeValue
       })
-      this.getData("applet");
+      
     }).catch(res => {
       this.setData({
         changeChecked: !changeValue
