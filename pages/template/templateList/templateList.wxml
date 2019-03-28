@@ -1,30 +1,4 @@
-<!--index.wxml-->
-<!-- <view class="container">
-  <view class="contract">
-    <text class='sponsor-contract'>发起合同</text>
-    <image class='contract-img' src='../../images/sponsor-contact.png'></image>
-  </view>
-</view> -->
-<!-- <view class="container common-box">
-  <view class="main-content">
-    <view class='template-select'>
-      <text class='template-apply'>仅显示可移动端发起合同的模板</text>
-      <view class='change-switch'><switch color="#4091FB" checked bindchange="switch1Change" /></view>
-    </view>
-    <view class='template-contain'>
-      <view class='template-lists' wx:for="{{lists}}" wx:key="unique">
-        <view>
-          <view class='template-title'>{{item.templateName}}</view>
-          <view class='template-time'>{{item.strCreateTime}}</view>
-        </view>
-        <view class='examine'>
-          <button bindtap='lookUp'>查看</button>
-        </view>
-      </view>
-    </view>
-  </view>
-</view> -->
-<!--index.wxml-->
+
 <view class="container">
   <view class='template-select'>
     <text class='template-apply'>仅显示可移动端发起合同的模板</text>

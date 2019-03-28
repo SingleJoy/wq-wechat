@@ -9,7 +9,8 @@ Page({
     contractList:[],
     baseUrl:app.globalData.baseUrl,
     templateSpecificType:'',
-    templateNo:''
+    templateNo:'',
+    interfaceCode:wx.getStorageSync('interfaceCode')
   },
 
   
@@ -17,17 +18,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-      console.log(options)
-      this.setData({
-        templateSpecificType:options.templateSpecificType,
-        templateNo:options.templateNo
-      })
-    let  interfaceCode = wx.getStorageSync('interfaceCode')
+    let param_data = app.globalData.contractParam;
     let param={
-        templateSpecificType:this.data.templateSpecificType
+        templateSpecificType:param_data.templateSpecificType
     }
-    console.log(this.data.baseUrl)
-    templateImg(interfaceCode,this.data.templateNo,param).then(res=>{
+    // console.log(app)
+    templateImg(this.data.interfaceCode,param_data.templateNo,param).then(res=>{
         this.setData({
             contractList:res.data.list
         })

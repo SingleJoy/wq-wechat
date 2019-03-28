@@ -1,5 +1,6 @@
 
 import { updateMobileTemplate, getAccountTemplates } from '../../../wxapi/api.js';
+const app = getApp();
 let pageNum = 1,
     useStatus = 1,
     pageSize = 10,
@@ -34,10 +35,14 @@ Page({
   },
   // 查看详情
   lookUp(e) {
-    let templateNo = e.target.dataset.templateno;
-    let templatespecifictype = e.target.dataset.templatespecifictype;
+    let signParams ={
+        templateNo:e.target.dataset.templateno,
+        templateSpecificType:e.target.dataset.templatespecifictype,
+        operateType:''
+    }
+    Object.assign(app.globalData.contractParam,signParams)
     wx.navigateTo({
-      url: '../templateDetail/templateDetail?templateNo=' + templateNo + '&templateSpecificType=' + templatespecifictype
+      url: '../templateDetail/templateDetail'
     })
   },
   //切换移动端
