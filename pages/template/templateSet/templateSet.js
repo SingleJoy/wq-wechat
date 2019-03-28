@@ -1,5 +1,6 @@
-// pages/template/templateSet/tempalteSet.js
+
 import { backContractTempSigner, contractTemp } from '../../../wxapi/api.js'
+const app = getApp();
 Page({
   /**
    * 页面的初始数据
@@ -16,6 +17,8 @@ Page({
     contactName: "1", 
     //签署日期
     validTime: "",
+    //标识是否永久有效
+    perpetualValid: "",
     //是否永久有效
     isChecked: false,
     //编辑/添加签署人保存标识
@@ -24,7 +27,6 @@ Page({
     listIndex: "",
     //弹框标题
     addSignature: "添加签署人",
-    isChecked: false,
     //model弹框验证
     model: {
       nameHint: "请输入姓名",
@@ -55,7 +57,10 @@ Page({
         templateNo: options.templateNo
       }
     })
-    this.getSignInfo();
+    console.log(app.globalData);
+    if (app.globalData) {
+      this.getSignInfo(); 
+    }
   },
   //获取签署设置
   getSignInfo() {
@@ -77,14 +82,11 @@ Page({
       }
       this.setData({
         contactName: res.data.contractName,
-        isChecked: true
+        isChecked: false
       })
     }).catch(res => {
 
     })
-  },
-  onLoad:function(options){
-    console.log(options)
   },
   //右滑开始
   touchStart(e) {
@@ -269,10 +271,6 @@ Page({
       this.hideModal()
     }
   },
-  //多选框操作
-  checkboxChange: function(e) {
-    console.log(e.detail.value)
-  }, 
   //生成合同
   formSubmit: function(e) {
     
@@ -285,14 +283,14 @@ Page({
       idCards += dataList[i].idCard + ",";
       mobiles += dataList[i].mobile + ",";
     }
-    console.log(names, idCards, mobiles)
     // return
     let creater = wx.getStorageSync('interfaceCode'),
-      operateType = wx.getStorageSync('operateType'),
+      operateType = app.globalData,
       contractTempNo = wx.getStorageSync('contractTempNo'),
+      contractName = this.data.contactName,
       templateNo = this.data.createContract.templateNo,
       validTime = this.data.date,
-      perpetualValid = 1,
+      perpetualValid = this.data.perpetualValid,
       templateSpecificType = this.data.createContract.templateSpecificType,
       accountCode = wx.getStorageSync('accountCode');
     let zqUserContractTempVo = {};
@@ -339,23 +337,50 @@ Page({
     }
     contractTemp(zqUserContractTempVo, creater).then(res => {
       console.log(res);
+      let signParams = {
+        contractTempNo: res.data.data,
+        templateNo: templateNo,
+        templateSpecificType: templateSpecificType
+      }
+      console.log(signParams)
+      wx.navigateTo({
+        url: '../templateAddInfo/templateAddInfo?signParams=' + JSON.stringify(signParams)
+      })
     }).catch(res => {
 
     })
     return;
-    wx.navigateTo({
-      url: '../templateAddInfo/templateAddInfo',
-    })
   },
   //弹框确定操作
   onConfirm: function (e) {
     
   },
+  //多选框操作
+  checkboxChange: function (e) {
+    if (e.detail.value == '') {
+      this.setData({
+        perpetualValid: "",
+      })
+    } else {
+      this.setData({
+        date: "",
+        perpetualValid: "1",
+      })
+    }
+  }, 
   //日期时间选择控件
   bindDateChange(e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
       date: e.detail.value
     })
+    if (this.data.date) {
+      this.setData({
+        isChecked: false
+      })
+    } else {
+      this.setData({
+        isChecked: true,
+      })
+    }
   },
 })

@@ -17,13 +17,13 @@
               end="2017-09-01"
               bindchange="bindDateChange"
             >
-              <input name="time" class="picker picker-time" placeholder='请选择签署截止日' value='{{date}}'></input>
+              <input name="time" class="picker picker-time" disabled='disabled' placeholder='请选择签署截止日' value='{{date}}'></input>
             </picker>
           </view>
           <view class='select-time'>
             <checkbox-group bindchange="checkboxChange">
               <label class="checkbox">
-                <checkbox value="{{item.name}}" checked="{{isChecked}}"/>
+                <checkbox value="{{isChecked}}" color="#4091FB" checked="{{isChecked}}"/>
                 永久有效
               </label>
             </checkbox-group>
@@ -70,7 +70,7 @@
         <view>
           <view class="modal-input">
             <label>姓名：</label>
-            <input name="name" placeholder-class="input-holder" value="{{listValue.nameValue}}" type="number" maxlength="10" bindinput="inputChange" placeholder="请输入姓名"></input>
+            <input name="name" placeholder-class="input-holder" value="{{listValue.nameValue}}" maxlength="10" bindinput="inputChange" placeholder="请输入姓名"></input>
           </view>
           <view class="modal-input model-hint">
             <label></label>

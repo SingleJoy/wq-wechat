@@ -2,9 +2,9 @@
 <view class="container common-box">
   <view class="main-content">
       <view class="form-info-list">
-        <view wx:for="{{infoList}}" wx:key="{{item.name}}" class="form-item">
-            <label>{{item.name}}</label>
-            <input  class="userame" value="{{fillVal}}" data-key="{{item.name}}" bindinput="bindUsernameInput" placeholder="{{'请输入'+item.name}}"></input>
+        <view wx:for="{{infoList}}" wx:key="{{item}}" class="form-item">
+            <label>{{item}}</label>
+            <input  class="userame" value="{{fillVal}}" data-key="{{item}}" bindinput="bindUsernameInput" placeholder="{{'请输入'}}"></input>
         </view>
         <view class="line"></view>
       </view>
