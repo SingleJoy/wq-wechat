@@ -20,7 +20,7 @@
 .account-info .info-list{
     margin:0 20rpx 0 20rpx;
     box-sizing: border-box;
-    border: 1px solid #ddd;
+    box-shadow:1px 2px 5px 1px #ccc;
     border-radius: 5px;
 }
 
@@ -41,14 +41,14 @@
 }
 
 .contract-num ,.digital-certificate,.signature-style{
-     padding-top:24rpx;
+    margin-top:24rpx;
     background-color: #fff;
  }
 
 .contract-num .contract-info,.digital-certificate .digital-info,.signature-style .signature-image{
     margin:0 20rpx 0 20rpx;
     box-sizing: border-box;
-    border: 1px solid #ddd;
+    box-shadow:1px 2px 5px 1px #ccc;
     border-radius: 5px;
 }
 
@@ -98,15 +98,19 @@
     width: 190rpx;
     height: 190rpx;
     display: block;
-    margin: 40rpx auto;
+    margin: 20px auto ;
+    padding-bottom: 10rpx;
 }
 .sign-out{
-     margin: 0 auto 20rpx auto;
-    padding: 30rpx 0;
+     margin: 24rpx auto 20rpx auto;
+    padding: 20rpx 0;
     background-color: #fff;
  }
 .sign-out button{
-   width: 552rpx;
+
+    display: block;
+    margin: 0 auto;
+    width: 552rpx;
     height: 80rpx;
     font-size: 36rpx;
     line-height: 80rpx;

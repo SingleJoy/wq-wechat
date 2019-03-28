@@ -17,7 +17,7 @@ wx.getSystemInfo({
             height:height,  //scroll区域高度
             pageNo:1,         //默认当前页初始化为1
             flag:true,//是否允许继续请求数据
-             contractDataList:[]  //查询数据列表
+            contractDataList:[]  //查询数据列表
         },
 
         /**
@@ -41,11 +41,11 @@ wx.getSystemInfo({
             let inputValue = e.detail.value['search-input'] ? e.detail.value['search-input'] : e.detail.value;
             this.setData({
                 inputValue:inputValue
-            })
+            });
             if(inputValue){
                 this.requestData();
             }else{
-                return false
+                return false;
             }
 
         },
@@ -60,21 +60,24 @@ wx.getSystemInfo({
                 pageNo:this.data.pageNo,
                 pageSize:10,
             };
+
             searchContractsForMiniProgram(interfaceCode,param).then((res)=>{
-                let totalItemNumber=res.data.content;
+                let totalItemNumber=res.data.totalItemNumber;
 
                 this.setData({
                     contractDataList:this.data.contractDataList.concat(res.data.content)
                 });
                 //判断是否允许继续请求
+                console.log(this.data.contractDataList.length)
+                console.log(totalItemNumber)
                 if(this.data.contractDataList.length<totalItemNumber){
                     this.setData({
                         flag:true
-                    })
+                    });
                 }else{
                     this.setData({
                         flag:false
-                    })
+                    });
                 }
 
             }).catch(error=>{
@@ -99,11 +102,34 @@ wx.getSystemInfo({
 
         },
         lower(){
+            console.log(this.data.flag);
             if(this.data.flag){
                 this.setData({
-                    page:this.data.page+1
+                    pageNo:this.data.pageNo+1
                 });
                 this.requestData();
+            }else{
+                wx.showToast({
+                    title: '没有更多数据',
+                    icon: 'none',
+                    duration: 1500
+                })
             }
-        }
+        },
+        goDetail(e){
+            let contractNo=e.currentTarget.dataset.contractno;
+            let contractStatus=e.currentTarget.dataset.contractstatus;
+            let creater=e.currentTarget.dataset.creater;
+            let operator=e.currentTarget.dataset.operator;
+            let contract={
+                'contractNo':contractNo,
+                'contractStatus':contractStatus,
+                'operator':operator,
+                'creater':creater,
+            };
+            wx.setStorage({ key: 'contractNo',data: contractNo});
+            wx.navigateTo({
+                url: '/pages/contract/contractDetail/contractDetail?contract='+JSON.stringify(contract)
+            });
+        },
     })

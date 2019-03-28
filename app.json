@@ -1,13 +1,15 @@
 {
   "pages": [
     "pages/start/start",
+    "pages/account/account",
     "pages/contract/contractList/contractList",
-   
+    "pages/contract/contractSearch/contractSearch",
+
     "pages/auth/login/login",
     "pages/auth/roles/roles",
     "pages/contract/contractSign/contractSign",
     "pages/template/templateSet/templateSet",
-    "pages/contract/contractSearch/contractSearch",
+
     "pages/contract/contractDetail/contractDetail",
     "pages/template/templateSuccess/templateSuccess",
     "pages/template/templateAddInfo/templateAddInfo",
@@ -15,7 +17,7 @@
     "pages/template/templateList/templateList",
     "pages/template/templateDetail/templateDetail",
     "pages/index/index",
-    "pages/account/account",
+   
     "pages/logs/logs",
     "pages/canvas/canvas",
     "pages/canvasImg/canvasImg"
@@ -29,7 +31,7 @@
   },
   "tabBar": {
     "color": "#6e6d6b",
-    "selectedColor": "",
+    "selectedColor": "#4091fb",
     "borderStyle": "black",
     "backgroundColor": "#fff",
     "list": [

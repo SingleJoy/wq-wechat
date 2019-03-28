@@ -7,10 +7,10 @@ import {
 //获取设备高度
 let height;
 wx.getSystemInfo({
-    success: function (res) {
-        height=res.screenHeight;
+    success:  (res)=> {
+        height:res.screenHeight
     },
-}),
+});
     Page({
 
         /**
@@ -41,12 +41,8 @@ wx.getSystemInfo({
          * 生命周期函数--监听页面加载
          */
 
-
         onLoad: function (options) {
-            console.log("11111")
-            this.setData({
-               show:true
-            });
+
             let contractStatus=options.contractStatus;
             if(contractStatus){
                 this.setData({
@@ -57,19 +53,6 @@ wx.getSystemInfo({
                     contractStatus:3
                 })
             }
-            const interfaceCode = wx.getStorageSync('interfaceCode');
-            const accountCode = wx.getStorageSync('accountCode');
-            const mobile = wx.getStorageSync('mobile');
-            const enterpriseName = wx.getStorageSync('enterpriseName');
-            const accountLevel = wx.getStorageSync('accountLevel');
-            this.setData({
-                interfaceCode:interfaceCode,
-                accountCode:accountCode,
-                secondAccountCode:accountCode,
-                mobile:mobile,
-                enterpriseName:enterpriseName,
-                accountLevel:accountLevel,
-            });
 
 
         },
@@ -147,9 +130,7 @@ wx.getSystemInfo({
                 }
 
                 //判断是否允许继续请求
-                console.log(this.data.contractDataList);
-                console.log(this.data.contractDataList.length);
-                console.log(totalItemNumber);
+
                 if(this.data.contractDataList.length<totalItemNumber){
                     this.setData({
                         flag:true
@@ -221,7 +202,7 @@ wx.getSystemInfo({
             let filingName=e.currentTarget.dataset.filingname;
             // console.log(e.currentTarget.dataset)
              if(folderNo!=this.data.folderNo){
-                 console.log(11111)
+
                  this.setData({
                      contractDataList:[],
                      flag:true,
@@ -326,7 +307,7 @@ wx.getSystemInfo({
                     flag:true,
                     pageNo:1
                 });
-            };
+            }
             this.setData({
                 contractStatus:contractStatus,
             });
@@ -374,6 +355,12 @@ wx.getSystemInfo({
                     pageNo:this.data.pageNo+1
                 });
                 this.searchData();
+            }else{
+                wx.showToast({
+                    title: '没有更多数据',
+                    icon: 'none',
+                    duration: 1500
+                })
             }
         },
 
@@ -381,7 +368,6 @@ wx.getSystemInfo({
             this.setData({
                 selected:0,
                 currentTab:0,
-                contractStatus:3,
             });
         },
 
@@ -396,24 +382,25 @@ wx.getSystemInfo({
          * 生命周期函数--监听页面显示
          */
         onShow: function () {
-            if(this.data.show){
 
-            }
+            wx.getSystemInfo({
+                success:  (res)=> {
+                    this.setData({
+                        height:res.screenHeight
+                    });
+                },
+            });
+
             let pages =  getCurrentPages();
             let currPage = pages[pages.length - 1];
-            if (currPage.data.param_data) {
 
-                let param_data=currPage.data.param_data;
-                Object.keys(param_data).forEach((key)=>{
-                    this.setData({
-                        [key]:param_data[key]
-                    })
-                });
-                console.log(param_data);
-                //查询所有归档文件夹
-                this.contractFilings();
-                this.getAccounts();
-                this.searchData();
+            if (currPage.data.param) {
+
+
+                // //查询所有归档文件夹
+                // this.contractFilings();
+                // this.getAccounts();
+                // this.searchData();
 
             }else{
                 const interfaceCode = wx.getStorageSync('interfaceCode');
@@ -441,15 +428,16 @@ wx.getSystemInfo({
          * 生命周期函数--监听页面隐藏
          */
         onHide: function () {
+
             this.setData({
                 folderName:'默认文件夹',
                 contractTypeName:'对个人合同',
                 accountTypeName:'全部账号',
                 accountNo:'',
                 currentTab:0,
-                sum:1,
                 model:true,
                 selected:0,
+                num:1,
                 contractStatus:3,
                 folderList:[], //归档文件夹列表
                 accountList:[], //账户角色列表
@@ -458,6 +446,7 @@ wx.getSystemInfo({
                 contractDataList:[], //查询数据
                 scrollTop:'', //页面滑动
                 secondAccountCode:'', //二级账号accountCode
+                flag:true,
             });
         },
 

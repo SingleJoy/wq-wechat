@@ -67,11 +67,11 @@
 
         <scroll-view
                 scroll-y
-                style="height:{{height}}px;position: absolute;top:270rpx;"
+                style="height:{{height}}px;position: relative;margin-top:270rpx;-webkit-overflow-scrolling:touch;"
                 bindscrolltoupper="upper"
                 bindscrolltolower="lower">
 
-            <view class="search-data" style="">
+            <view class="search-data" style="-webkit-overflow-scrolling: touch;">
                 <view class="data-lists" wx:for="{{contractDataList}}" wx:key="index" wx:if="{{contractDataList.length>0}}"
                       data-contractNo="{{item.contractNum}}" data-contractStatus="{{item.contractStatus}}"   data-operator="{{item.operator}}" data-creater="{{item.creater}}"
                       bindtap="goDetail">
