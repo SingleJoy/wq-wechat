@@ -1,0 +1,41 @@
+<view class="container common-box">
+    <view class="main-content">
+
+        <view class="page-content" >
+            <view class="search">
+                <view class="df search-arr">
+                    <icon class="searchcion" size='20' type='search' ></icon>
+                    <input focus="{true}"  placeholder="搜索" confirm-type='搜索' value="{{searchValue}}" bindconfirm="inputSearch" bindinput="changeInput"/>
+                </view>
+            </view>
+
+        </view>
+
+        <scroll-view
+                scroll-y
+                style="height:{{height}}px;position:absolute;top:100rpx;z-index: 1"
+                bindscrolltoupper="upper"
+                bindscrolltolower="lower">
+
+            <view class="search-data" style="">
+                <view class="data-lists" wx:for="{{contractDataList}}" wx:key="index" wx:if="{{contractDataList.length>0}}" data-contractNo="{{item.contractNum}}" data-contractStatus="{{item.contractStatus}}" bindtap="goDetail">
+
+                    <view class="contract-name">{{item.contractName}}</view>
+                    <view class="sign-user">{{item.signers}}</view>
+                    <view class="time">提交时间: {{item.createTime}}</view>
+                    <view class="operate">
+                        <button type="button" class="waitMe" wx:if="{{item.contractStatus==1}}">待我签署</button>
+                        <button type="button" class="waitOther" wx:if="{{item.contractStatus==2}}">待他人签署</button>
+                        <button type="button" class="effective" wx:if="{{item.contractStatus==3}}">已生效</button>
+                        <button type="button" class="close" wx:if="{{item.contractStatus==4}}">已截止</button>
+                    </view>
+                </view>
+
+                <view  wx:if="{{contractDataList.length==0}}">
+                    <text class="no-data">暂无数据</text>
+                </view>
+            </view>
+        </scroll-view>
+
+    </view>
+</view>

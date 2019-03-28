@@ -1,31 +1,25 @@
-
-.page-content{
-    background-color:#4091fb;
-    height: 72rpx;
-    box-sizing: border-box;
-    overflow: hidden;
-    position: relative;
-}
+/*搜索列表数据列表显示*/
 .search{
-    position: relative;
+    position: fixed;
     display: flex;
     background-color:#4091fb;
     box-sizing: border-box;
     overflow: hidden;
-    height: 66rpx;
+    height: 80rpx;
+    width: 100%;
 }
 .search-arr {
     display: block;
-    margin-left: 20rpx;
-    margin-right: 20rpx;
+    margin-left: 40rpx;
+    margin-right: 40rpx;
     width: 100%;
 }
 .search-arr input{
     width: 100%;
     box-sizing: border-box;
-    padding-left:48rpx;
-    height: 48rpx;
-    line-height: 48rpx;
+    padding-left:60rpx;
+    height: 60rpx;
+    line-height: 60rpx;
     border-radius: 30px;
     font-size: 24rpx;
     background-color: #fff;
@@ -33,15 +27,17 @@
 .searchcion {
     margin: 10rpx 10rpx 10rpx 6rpx;
     position: absolute;
-    left:20rpx;
+    top:4rpx;
+    left:50rpx;
     z-index: 2;
     width: 16px;
     height: 16px;
     text-align: center;
 }
-/*搜索列表数据列表显示*/
+
 .search-data{
     position: relative;
+    z-index: 1;
 }
 .search-data .data-lists{
     box-sizing: border-box;
@@ -94,13 +90,20 @@
 .operate button.waitMe{
     background: #4091fb;
 
- }
+}
 .operate button.waitOther{
     background: #09a13b;
 }
 .operate button.effective {
-  background: #ff8400;
+    background: #ff8400;
 }
 .operate button.close {
     background:red;
+}
+.no-data{
+    display: block;
+    text-align: center;
+    font-size: 32rpx;
+    color: #999;
+    padding-top: 40rpx;
 }

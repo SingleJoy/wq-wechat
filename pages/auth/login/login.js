@@ -51,7 +51,7 @@ Page({
      * 生命周期函数--监听页面卸载
      */
     onUnload: function () {
-      
+
     },
 
     /**
@@ -91,50 +91,52 @@ Page({
             //验证账户
             tenant(data).then(res=>{
                 if(res.data == 0){
-                //登录
-                this.setData({
-                    isSubmit:false
-                })
-                login(login_data).then(res=>{
-                    //获取登录列表
-                    bindEnterprises(hompage_data).then(res=>{
-                        if (res.data.bindTenantNum == 1) {
-                            let res_data = '';
-                            if (res.data.dataList[0].length > 0) {   //判断是一级账号还是二级账号直接进首页
-                                res_data = res.data.dataList[0][0];
-                            } else {
-                                res_data = res.data.dataList[1][0];
-                            }
-                            wx.setStorage({ key: 'accountCode',data: res_data.accountCode})
-                            wx.setStorage({ key: 'interfaceCode',data: res_data.interfaceCode})
-                            wx.setStorage({key: 'accountLevel',data: res_data.accountLevel})
-                            wx.setStorage({key: 'mobile',data: res_data.mobile})
-                            wx.setStorage({key: 'dataList',data: JSON.stringify(res.data.dataList)})
-                            //登录=>主页
-                            let data={
-                                mobile:res_data.mobile
-                            }
-                            homePage(res_data.interfaceCode,data).then(res=>{
-                                if(res.data.resultCode==1){
-                                     wx.switchTab({
-                                        url: '/pages/index/index'
-                                    })
-                                }else{
-                                    
-                                }
-                             }).catch(err=>{
-                         
-                             })
-                        } else {
-                            wx.redirectTo({
-                                url: '/pages/auth/roles/roles'
-                            })
-                        }
+                    //登录
+                    this.setData({
+                        isSubmit:false
                     })
-                    
-                }).catch(err=>{
+                    login(login_data).then(res=>{
+                        //获取登录列表
+                        bindEnterprises(hompage_data).then(res=>{
+                            if (res.data.bindTenantNum == 1) {
+                                let res_data = '';
+                                if (res.data.dataList[0].length > 0) {   //判断是一级账号还是二级账号直接进首页
+                                    res_data = res.data.dataList[0][0];
+                                } else {
+                                    res_data = res.data.dataList[1][0];
+                                }
+                                wx.setStorage({ key: 'accountCode',data: res_data.accountCode})
+                                wx.setStorage({ key: 'interfaceCode',data: res_data.interfaceCode})
+                                wx.setStorage({key: 'accountLevel',data: res_data.accountLevel})
+                                wx.setStorage({key: 'enterpriseName',data: res_data.enterpriseName})
+                                wx.setStorage({key: 'mobile',data: res_data.mobile})
+                                wx.setStorage({key: 'dataList',data: JSON.stringify(res.data.dataList)})
+                                //登录=>主页
+                                let data={
+                                    mobile:res_data.mobile
+                                }
+                                homePage(res_data.interfaceCode,data).then(res=>{
+                                    wx.setStorage({key:'email',data:res.data.dataList[0].email})
+                                    if(res.data.resultCode==1){
+                                        wx.switchTab({
+                                            url: '/pages/index/index'
+                                        })
+                                    }else{
 
-                })
+                                    }
+                                }).catch(err=>{
+
+                                })
+                            } else {
+                                wx.redirectTo({
+                                    url: '/pages/auth/roles/roles'
+                                })
+                            }
+                        })
+
+                    }).catch(err=>{
+
+                    })
                 }
             }).catch(err=>{
 
@@ -142,7 +144,7 @@ Page({
         }else{
             return false
         }
-       
+
     },
 
 
@@ -163,7 +165,7 @@ Page({
         },()=>{
             this.checkBtn()
         });
-       
+
     },
     //清除事件
     clearInput: function (e) {

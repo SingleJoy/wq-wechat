@@ -94,6 +94,7 @@ Page({
             wx.setStorage({ key: 'interfaceCode',data: res_data.interfaceCode})
             wx.setStorage({key: 'accountLevel',data: res_data.accountLevel})
             wx.setStorage({key: 'mobile',data: res_data.mobile})
+            wx.setStorage({key:'email',data:res.data.dataList[0].email})
             wx.switchTab({
                 url:'/pages/index/index'
             })
