@@ -81,7 +81,17 @@ function getContractDetails(interfaceCode,contractNo){
 function remind(interfaceCode,contractNo,data){
     return request(api+'/v1/tenant/' + interfaceCode + '/contract/'+ contractNo+'/remind', 'get',data)
 }
-
+function sendEmailForUser(interfaceCode,data){
+    return request(api+'/v1/tenant/'+interfaceCode+'/sendEmailForUser','get',data)
+}
+//签约室信息(链接)
+function showSignRoomInfo(interfaceCode){
+    return request(api+'/v1/tenant/' + interfaceCode +'/signRoom/showSignRoomInfo', 'post')
+}
+//b2c签署
+function signerpositions(interfaceCode,contractNo){
+    return request(api+'v1/tenant/'+ interfaceCode + '/contract/'+ contractNo +'/user/'+ interfaceCode + '/signerpositions','get')
+}
 //合同归档接口
 function contractFilings(interfaceCode,accountCode) {
     return request(api+'/v1.7/tenant/'+interfaceCode+'/contract/'+accountCode+'/contractFilings','get')
@@ -108,26 +118,26 @@ function searchContractsForMiniProgram(interfaceCode,data){
 }
 
 module.exports = {
-  backContractTempSigner,
-  contractTemp,
-  tenant,
-  login,
-  bindEnterprises,
-  homePage,
-  contractNum,
-  getCertificate,
-  getAccountInformation,
-  getSignatures,
-  exitAndDeleteSession,
-  updateMobileTemplate,
-  getAccountTemplates,
-  contractFilings,
-  getAccounts,
-  contracts,
-  b2bContrants,
-  contractImgs,
-  templateImg,
-  remind,
-  getContractDetails,
-  searchContractsForMiniProgram
+    tenant,
+    login,
+    bindEnterprises,
+    homePage,
+    contractNum,
+    getCertificate,
+    getAccountInformation,
+    getSignatures,
+    exitAndDeleteSession,
+    updateMobileTemplate,
+    getAccountTemplates,
+    contractFilings,
+    getAccounts,
+    contracts,
+    b2bContrants,
+    contractImgs,
+    templateImg,
+    remind,
+    getContractDetails,
+    searchContractsForMiniProgram,
+    showSignRoomInfo,
+    sendEmailForUser
 }

@@ -83,6 +83,9 @@ Page({
 
     })
   },
+  onLoad:function(options){
+    console.log(options)
+  },
   //右滑开始
   touchStart(e) {
     console.log(e.target)
