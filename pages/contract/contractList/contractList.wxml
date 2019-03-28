@@ -1,5 +1,5 @@
 
-<view class="container common-box" style="height: 100%;overflow: hidden;box-sizing: border-box" bindscroll="onPageScroll">
+<view class="container common-box" style="height: 100%;overflow: hidden;box-sizing: border-box" >
     <view class="main-content" style="height: auto;">
         <view class="page-content" >
             <view class="search" >
