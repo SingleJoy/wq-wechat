@@ -47,9 +47,8 @@ App({
     accountLevel:'',
     mobile:'',
     baseUrl:WXAPI.BASE_URL,
-    contractParam:{
-        
-    }
+    contractParam:{},  //合同请求参数
+    searchParam:{}   //合同查询参数
 
   },
   //全局可通过app.getApp().getOpenId()获取openId, sessionKey, unionId 等信息

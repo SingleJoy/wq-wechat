@@ -16,11 +16,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let param_data = JSON.parse(options.signParams)
-    Object.assign(app.globalData.contractParam,param_data)
+    let param_data = app.globalData.contractParam;
     let data={
         contractTempNo:param_data.contractTempNo
     }
+    Object.assign(app.globalData.contractParam,{operateType:'back'})  //标记返回时数据回显
+    console.log(app)
     templateVal(this.data.interfaceCode,param_data.templateNo,data).then(res=>{
         this.setData({
             infoList:res.data.lists

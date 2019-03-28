@@ -1,5 +1,6 @@
 
-import { backContractTempSigner, contractTemp } from '../../../wxapi/api.js'
+import { backContractTempSigner, contractTemp } from '../../../wxapi/api.js';
+const app = getApp();
 Page({
   /**
    * 页面的初始数据
@@ -332,16 +333,13 @@ Page({
       }
     }
     contractTemp(zqUserContractTempVo, creater).then(res => {
-      console.log(res);
-      let signParams = {
-        contractTempNo: res.data.data,
-        templateNo: templateNo,
-        templateSpecificType: templateSpecificType
-      }
-      console.log(signParams)
-      wx.navigateTo({
-        url: '../templateAddInfo/templateAddInfo?signParams=' + JSON.stringify(signParams)
-      })
+        let signParams = {
+            contractTempNo: res.data.data
+        }
+        Object.assign(app.globalData.contractParam,signParams)
+        wx.navigateTo({
+            url: '../templateAddInfo/templateAddInfo'
+        })
     }).catch(res => {
 
     })
