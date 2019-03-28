@@ -92,6 +92,10 @@ function b2bContrants(interfaceCode,data){
     return request(api+'/v1.4/tenant/' + interfaceCode + '/b2bContrants','get',data)
 
 }
+// 全局无状态合同搜索（合同名称、签署人）
+function searchContractsForMiniProgram(interfaceCode,data){
+    return request(api+'/v1.8/applet/tenant/' + interfaceCode + '/contract/searchContractsForMiniProgram','get',data)
+}
 
 module.exports = {
     tenant,
@@ -112,4 +116,5 @@ module.exports = {
     contractImgs,
     templateImg,
     getContractDetails
+    searchContractsForMiniProgram
 }

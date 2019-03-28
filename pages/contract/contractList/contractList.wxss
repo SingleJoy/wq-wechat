@@ -9,40 +9,7 @@
     z-index: 99;
     background-color:#fff;
 }
-.search{
-    position: relative;
-    display: flex;
-    background-color:#4091fb;
-    box-sizing: border-box;
-    overflow: hidden;
-    height: 80rpx;
-}
-.search-arr {
-    display: block;
-    margin-left: 40rpx;
-    margin-right: 40rpx;
-    width: 100%;
-}
-.search-arr input{
-    width: 100%;
-    box-sizing: border-box;
-    padding-left:60rpx;
-    height: 60rpx;
-    line-height: 60rpx;
-    border-radius: 30px;
-    font-size: 24rpx;
-    background-color: #fff;
-}
-.searchcion {
-    margin: 10rpx 10rpx 10rpx 6rpx;
-    position: absolute;
-    top:4rpx;
-    left:50rpx;
-    z-index: 2;
-    width: 16px;
-    height: 16px;
-    text-align: center;
-}
+
 .header-tabs{
     position: relative;
     display: flex;
@@ -160,7 +127,7 @@
 
 .tab-list .tab-item{
     margin:0 40rpx;
-    border: 1px solid #ddd;
+    box-shadow:1px 2px 5px #ccc;
     border-radius: 5px;
     height: 80rpx;
 }
