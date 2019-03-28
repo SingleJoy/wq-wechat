@@ -1,6 +1,7 @@
 import {contractNum} from '../../wxapi/api'
 
 const app = getApp()
+
 Page({
     data: {
         indicatorDots: true,
