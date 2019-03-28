@@ -1,32 +1,34 @@
-// pages/template/templateAddInfo/templateAddInfo.js
-const App = getApp();
+import {templateVal} from '../../../wxapi/api.js'
+const app = getApp();
 Page({
   /**
    * 页面的初始数据
    */
   data: {
-    infoList:[
-      {
-        name:'价格',
-      },
-      {
-        name:"金额",
-      },
-      {
-        name:'位置'
-      }
-    ],
+    infoList:[],
     fillVal:'',
+    interfaceCode:wx.getStorageSync('interfaceCode'),
+    templateNo:'',
+    contractTempNo:''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options)
-    this.setData({
-      navH: App.globalData.navHeight
+    let param_data = JSON.parse(options.signParams)
+    Object.assign(app.globalData.contractParam,param_data)
+    let data={
+        contractTempNo:param_data.contractTempNo
+    }
+    templateVal(this.data.interfaceCode,param_data.templateNo,data).then(res=>{
+        this.setData({
+            infoList:res.data.lists
+        })
+    }).catch(err=>{
+
     })
+
   },
 
   /**

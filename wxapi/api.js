@@ -92,6 +92,10 @@ function showSignRoomInfo(interfaceCode){
 function signerpositions(interfaceCode,contractNo){
     return request(api+'/v1/tenant/'+ interfaceCode + '/contract/'+ contractNo +'/user/'+ interfaceCode + '/signerpositions','get')
 }
+//合同参数查询
+function templateVal(interfaceCode,templateNo,data){
+    return request(api+'/v1/tenant/'+ interfaceCode + '/template/'+ templateNo + '/templateVal','get',data)
+}
 //合同归档接口
 function contractFilings(interfaceCode,accountCode) {
     return request(api+'/v1.7/tenant/'+interfaceCode+'/contract/'+accountCode+'/contractFilings','get')
@@ -140,5 +144,6 @@ module.exports = {
   showSignRoomInfo,
   sendEmailForUser,
   backContractTempSigner,
-  contractTemp
+  contractTemp,
+  templateVal
 }
