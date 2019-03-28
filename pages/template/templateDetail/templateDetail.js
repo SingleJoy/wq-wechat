@@ -8,6 +8,8 @@ Page({
   data: {
     contractList:[],
     baseUrl:app.globalData.baseUrl,
+    templateSpecificType:'',
+    templateNo:''
   },
 
   
@@ -16,13 +18,16 @@ Page({
    */
   onLoad: function (options) {
       console.log(options)
-    let  templateNo = options.templateNo?options.templateNo:'0e446b98a83b4ae6bbb4e30cd41f343d';
+      this.setData({
+        templateSpecificType:options.templateSpecificType,
+        templateNo:options.templateNo
+      })
     let  interfaceCode = wx.getStorageSync('interfaceCode')
     let param={
-        templateSpecificType:options.templateSpecificType?'':'fillreference'
+        templateSpecificType:this.data.templateSpecificType
     }
     console.log(this.data.baseUrl)
-    templateImg(interfaceCode,templateNo,param).then(res=>{
+    templateImg(interfaceCode,this.data.templateNo,param).then(res=>{
         this.setData({
             contractList:res.data.list
         })
@@ -85,7 +90,7 @@ Page({
   },
   ImmediatelyStart: function() {
     wx.navigateTo({
-      url: '../templateSet/templateSet',
+      url: '../templateSet/templateSet?templateSpecificType='+this.data.templateSpecificType+'&templateNo='+this.data.templateNo,
     })
   },
 })
