@@ -12,10 +12,12 @@ wx.getSystemInfo({
          * 页面的初始数据
          */
         data: {
-            focus: false,
-            inputValue: '',
-            height:height,
-            pageNo:1,
+            focus: false,//自动聚焦
+            inputValue: '',//输入值
+            height:height,  //scroll区域高度
+            pageNo:1,         //默认当前页初始化为1
+            flag:true,//是否允许继续请求数据
+             contractDataList:[]  //查询数据列表
         },
 
         /**
@@ -37,26 +39,43 @@ wx.getSystemInfo({
             // 获取用户输入框中的值
 
             let inputValue = e.detail.value['search-input'] ? e.detail.value['search-input'] : e.detail.value;
+            this.setData({
+                inputValue:inputValue
+            })
             if(inputValue){
-                this.requestData(inputValue);
+                this.requestData();
             }else{
                 return false
             }
 
         },
         //请求后端数据方法
-        requestData(inputValue){
+        requestData(){
             let interfaceCode=this.data.interfaceCode;
             let accountCode=this.data.accountCode;
             let accountLevel=this.data.accountLevel;
             let param={
-                contractName:inputValue,
+                contractName:this.data.inputValue,
                 accountCode:accountLevel==1?'':accountCode,
                 pageNo:this.data.pageNo,
                 pageSize:10,
             };
             searchContractsForMiniProgram(interfaceCode,param).then((res)=>{
-                console.log(res)
+                let totalItemNumber=res.data.content;
+
+                this.setData({
+                    contractDataList:this.data.contractDataList.concat(res.data.content)
+                });
+                //判断是否允许继续请求
+                if(this.data.contractDataList.length<totalItemNumber){
+                    this.setData({
+                        flag:true
+                    })
+                }else{
+                    this.setData({
+                        flag:false
+                    })
+                }
 
             }).catch(error=>{
 
@@ -71,7 +90,7 @@ wx.getSystemInfo({
         },
         //检测input输入
         changeInput(e){
-            console.log(e.detail.value);
+            // console.log(e.detail.value);
             this.setData({
                 inputVal: e.detail.value
             });
@@ -80,6 +99,11 @@ wx.getSystemInfo({
 
         },
         lower(){
-
+            if(this.data.flag){
+                this.setData({
+                    page:this.data.page+1
+                });
+                this.requestData();
+            }
         }
     })
