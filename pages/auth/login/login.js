@@ -116,6 +116,7 @@ Page({
                                     mobile:res_data.mobile
                                 }
                                 homePage(res_data.interfaceCode,data).then(res=>{
+                                    wx.setStorage({key:'email',data:res.data.dataList[0].email})
                                     if(res.data.resultCode==1){
                                         wx.switchTab({
                                             url: '/pages/index/index'

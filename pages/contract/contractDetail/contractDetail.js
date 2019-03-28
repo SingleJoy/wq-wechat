@@ -1,40 +1,57 @@
 // pages/contract/contractDetail/contractDetail.js
+import {contractImgs,getContractDetails} from '../../../wxapi/api.js';
+const app = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    signerList:[
-        {
-            name:'测试1',
-            phone:'43243242343',
-            status:'0'
-        },
-        {
-            name:'测试1',
-            phone:'43243242343',
-            status:'1'
-        }
-    ],
-    contractStatus:4,   //合同状态:1 待我签署 2待他人签署 3已生效 4已截止
+    contractStatus:'',   //合同状态:1 待我签署 2待他人签署 3已生效 4已截止
     showModalStatus:false,
     detailMask:false,
-    defaultEmail:'tets@123.com',
-    errMessage:'热热我',
-    contractName:'北京中众签科技',
-    validTime:'2018-03-09',
+    errMessage:'',
     permanentLimit:false,
     animationData:'',
+    interfaceCode:wx.getStorageSync('interfaceCode'),
+    contractNo:'',
+    contractImgList:[],
+    baseUrl:app.globalData.baseUrl,
+    contractVo:'', //合同信息
+    signUserVo:'', //签署人员
+    email:wx.getStorageSync('email'),
+    sendEmail:''//指定发送邮箱
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options)
+    let param_data = JSON.parse(options.param)
     this.setData({
-        contractStatus:options.contractStatus
+        contractStatus:options.contractStatus,
+        contractNo:options.contractNo
+    })
+    wx.showLoading({
+        title: '加载中',
+    })
+    contractImgs(this.data.interfaceCode,this.data.contractNo).then(res=>{
+        this.setData({
+            contractImgList:res.data
+        })
+    }).catch(err=>{
+
+    })
+    getContractDetails(this.data.interfaceCode,this.data.contractNo).then(res=>{
+        this.setData({
+            contractVo:res.data.contractVo,
+            signUserVo:res.data.signUserVo
+        })
+        setTimeout(function () {
+            wx.hideLoading()
+        }, 1000)
+    }).catch(err=>{
+
     })
   },
 
@@ -113,11 +130,22 @@ Page({
   },
   //复制链接
   copyLink:function(e){
-
+    wx.setClipboardData({
+        data: 'data',
+        success(res) {
+          wx.getClipboardData({
+            success(res) {
+              console.log(res.data) // data
+            }
+          })
+        }
+      })
   },
   //下载
   downContract:function(e){
-
+    this.setData({
+        showModalStatus:true
+    })
   },
   //延长签署日期
   extendDate:function(e){

@@ -9,15 +9,15 @@
             <view class="contract-info-box" animation="{{animationData}}" wx:if="{{detailMask}}">
                 <view class="info-item">  
                     <text class="info-name">合同名称：</text>
-                    <text class="info-value">{{contractName}}</text>
+                    <text class="info-value">{{contractVo.contractName}}</text>
                 </view>
                 <view class="info-item">  
                     <text class="info-name">发起方式：</text>
-                    <text class="info-value">{{contractName}}</text>
+                    <text class="info-value">{{contractVo.createType==0?'上传发起':'模板发起'}}</text>
                 </view>
                 <view class="info-item">  
                     <text class="info-name">签署截止日期：</text>
-                    <text class="info-value">{{contractName}}</text>
+                    <text class="info-value">{{contractVo.validTime}}</text>
                 </view>
                 <view class="info-item">  
                     <text class="info-name">签署场景：</text>
@@ -25,16 +25,16 @@
                 </view>
                 <view class="info-item">  
                     <text class="info-name">当前状态：</text>
-                    <text class="info-value color-them">{{contractName}}</text>
+                    <text class="info-value color-them">{{contractVo.status==1?'签署中':(contractVo.status==2?'已生效':'已截止')}}</text>
                 </view>
                 <view class="info-item">  
                     <text class="info-name">签署人员：</text>
                     <view class="signer-list">
-                        <view class="signer-item" wx:for="{{signerList}}" wx:key="{{item.name}}">
-                            <text class="signer-name">{{item.name}}</text>
+                        <view class="signer-item" wx:for="{{signUserVo}}" wx:key="{{item.idCard}}">
+                            <text class="signer-name">{{item.signUserName}}</text>
                             <view class="sign-right">
-                                <text class="signer-phone">{{item.phone}}</text>
-                                <block wx:if="{{item.status == 0}}">
+                                <text class="signer-phone">{{item.mobile}}</text>
+                                <block wx:if="{{item.signStatus == 0}}">
                                     <text class="sign-status unsign">未签署</text>
                                 </block>
                                 <block wx:else>
@@ -52,11 +52,7 @@
             </view>
             <!-- 合同图片 -->
             <view class="contract-img">
-                <image src='../../../images/zqsign-01.jpg'></image>
-                <image src='../../../images/zqsign-01.jpg'></image>
-                <image src='../../../images/zqsign-01.jpg'></image>
-                <image src='../../../images/zqsign-01.jpg'></image>
-                <image src='../../../images/zqsign-01.jpg'></image>
+                <image src='{{baseUrl}}/restapi/wesign/v1/tenant/contract/img?contractUrl={{item.contractUrl}}' wx:for="{{contractImgList}}" wx:key="{{item.contractUrlId}}"></image>
             </view>
          </view>
          <!-- 合同详情操作 -->
@@ -87,9 +83,9 @@
                 <!--drawer content-->
                     <view class="drawer-title">请输入邮箱账号</view>
                     <view class="drawer-content">
-                        <input  class="email-address" value="{{defaultEmail}}"></input>
+                        <input  class="email-address" value="{{sendEmail}}"></input>
                         <view class="emial-err">{{errMessage}}</view>
-                        <view class="bind-email" wx:if="{{defaultEmail}}">发送至账号绑定邮箱</view>
+                        <view class="bind-email" wx:if="{{email}}" >发送至账号绑定邮箱</view>
                     </view>
                     <view class="option-btn">
                         <view class="btn-ok btn-cancel" bindtap="cancelDialog" data-status="close">取消</view>
