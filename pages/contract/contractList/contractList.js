@@ -269,7 +269,7 @@ wx.getSystemInfo({
         goSearch(){
 
             wx.navigateTo({
-                url: '/pages/contract/searchList/searchList'
+                url: '/pages/contract/contractSearch/contractSearch'
             })
         },
         //去合同详情页面
