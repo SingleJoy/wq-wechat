@@ -269,17 +269,24 @@ wx.getSystemInfo({
         goSearch(){
 
             wx.navigateTo({
-                url: '/pages/search/search'
+                url: '/pages/contract/searchList/searchList'
             })
         },
         //去合同详情页面
         goDetail(e){
             let contractNo=e.currentTarget.dataset.contractno;
             let contractStatus=e.currentTarget.dataset.contractstatus;
-
+            let creater=e.currentTarget.dataset.creater;
+            let operator=e.currentTarget.dataset.operator;
+            let contract={
+                'contractNo':contractNo,
+                'contractStatus':contractStatus,
+                'operator':operator,
+                'creater':creater,
+            };
             wx.setStorage({ key: 'contractNo',data: contractNo});
             wx.navigateTo({
-                url: '/pages/contract/contractDetail/contractDetail?contractNo='+contractNo+'&contractStatus='+contractStatus
+                url: '/pages/contract/contractDetail/contractDetail?contract='+JSON.stringify(contract)
             })
         },
         upper(){

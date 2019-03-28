@@ -73,7 +73,9 @@
                 bindscrolltolower="lower">
 
             <view class="search-data" style="">
-                <view class="data-lists" wx:for="{{contractDataList}}" wx:key="index" wx:if="{{contractDataList.length>0}}" data-contractNo="{{item.contractNum}}" data-contractStatus="{{item.contractStatus}}" bindtap="goDetail">
+                <view class="data-lists" wx:for="{{contractDataList}}" wx:key="index" wx:if="{{contractDataList.length>0}}"
+                      data-contractNo="{{item.contractNum}}" data-contractStatus="{{item.contractStatus}}"   data-operate="{{item.operator}}" data-creater="{{item.creater}}"
+                      bindtap="goDetail">
 
                     <view class="contract-name">{{item.contractName}}</view>
                     <view class="sign-user">{{item.signers}}</view>
@@ -81,7 +83,7 @@
 
                 </view>
 
-                <view  wx:if="{{contractDataList.length==0}}">@
+                <view  wx:if="{{contractDataList.length==0}}">
                     <text class="no-data">暂无数据</text>
                 </view>
             </view>
