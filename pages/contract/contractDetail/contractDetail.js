@@ -31,7 +31,8 @@ Page({
         optionAuthority:true,  //合同详情按钮权限
         signRoomLink:'',
         passwordDialog:false,
-        signPassword:'123456'
+        signPassword:'123456',
+        searchData:''
     },
 
     /**
@@ -39,9 +40,11 @@ Page({
      */
     onLoad: function (options) {
         let param_data = JSON.parse(options.contract)
+        console.log(param_data)
         this.setData({
             contractStatus:param_data.contractStatus,
-            contractNo:param_data.contractNo
+            contractNo:param_data.contractNo,
+            searchData:options.contract
         })
         wx.showLoading({
             title: '加载中',
@@ -157,8 +160,18 @@ Page({
 //弹框关闭
     cancelDialog:function(){
         this.setData({
-            showModalStatus:false
+            showModalStatus:false,
+            passwordDialog:false
+
         })
+    },
+//签署提交
+    signSubmit:function(){
+        signerpositions(this.data.interfaceCode,this.data.contractNo).then(res=>{
+
+        }).catch(err=>{
+
+        })  
     },
 //邮箱发送
     emailSubmit:function(e){
@@ -225,7 +238,7 @@ Page({
         var prevPage = pages[pages.length - 2];  //上一个页面
         //直接调用上一个页面的setData()方法，把数据存到上一个页面中去
         prevPage.setData({
-            param: {a:1, b:2}
+            param: this.data.searchData
         })
     },
 

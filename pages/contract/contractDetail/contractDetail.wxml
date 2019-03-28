@@ -141,11 +141,10 @@
                     <view class="drawer-content">
                         <input  class="email-address" value="{{sendEmail}}"></input>
                         <view class="emial-err">{{errMessage}}</view>
-                        <view class="bind-email" wx:if="{{defaultEmail}}" bindtap="emailSubmit" data-type="default">发送至账号绑定邮箱</view>
                     </view>
                     <view class="option-btn">
                         <view class="btn-ok btn-cancel" bindtap="cancelDialog" data-status="close">取消</view>
-                        <view class="btn-ok" bindtap="emailSubmit" data-status="close" data-type="addemail">确定</view>
+                        <view class="btn-ok" bindtap="signSubmit" data-status="close" data-type="addemail">确定</view>
                     </view>
                 </view>
         </view>

@@ -90,7 +90,7 @@ function showSignRoomInfo(interfaceCode){
 }
 //b2c签署
 function signerpositions(interfaceCode,contractNo){
-    return request(api+'v1/tenant/'+ interfaceCode + '/contract/'+ contractNo +'/user/'+ interfaceCode + '/signerpositions','get')
+    return request(api+'/v1/tenant/'+ interfaceCode + '/contract/'+ contractNo +'/user/'+ interfaceCode + '/signerpositions','get')
 }
 //合同归档接口
 function contractFilings(interfaceCode,accountCode) {
@@ -138,5 +138,7 @@ module.exports = {
     getContractDetails,
     searchContractsForMiniProgram,
     showSignRoomInfo,
-    sendEmailForUser
+    sendEmailForUser,
+    signerpositions,
+    contractTemp
 }
