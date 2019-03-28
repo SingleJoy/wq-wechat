@@ -46,7 +46,7 @@ App({
     interfaceCode:'',
     accountLevel:'',
     mobile:'',
-    baseUrl:WXAPI.API_BASE_URL
+    baseUrl:WXAPI.BASE_URL
 
   },
   //全局可通过app.getApp().getOpenId()获取openId, sessionKey, unionId 等信息
