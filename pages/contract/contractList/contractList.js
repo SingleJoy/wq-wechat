@@ -23,9 +23,9 @@ wx.getSystemInfo({
             accountNo:'',
             currentTab:0,
             height:height,
-            sum:1,
             model:true,
             selected:0,
+            num:1,
             contractStatus:3,
             folderList:[], //归档文件夹列表
             accountList:[], //账户角色列表
@@ -34,19 +34,19 @@ wx.getSystemInfo({
             contractDataList:[], //查询数据
             scrollTop:'', //页面滑动
             secondAccountCode:'', //二级账号accountCode
-            flag:true
+            flag:true,
         },
 
         /**
          * 生命周期函数--监听页面加载
          */
-        onPageScroll: function (e) {//监听页面滚动
-            this.setData({
-                scrollTop: e.scrollTop
-            })
-        },
+
 
         onLoad: function (options) {
+            console.log("11111")
+            this.setData({
+               show:true
+            });
             let contractStatus=options.contractStatus;
             if(contractStatus){
                 this.setData({
@@ -70,10 +70,7 @@ wx.getSystemInfo({
                 enterpriseName:enterpriseName,
                 accountLevel:accountLevel,
             });
-            //查询所有归档文件夹
-            this.contractFilings();
-            this.getAccounts();
-            this.searchData();
+
 
         },
         //查询所有规定文件夹
@@ -82,9 +79,11 @@ wx.getSystemInfo({
             let accountCode=this.data.accountCode;
             contractFilings(interfaceCode,accountCode).then(res=>{
                 if(res.data.resultCode==1){
+                    let dataList=res.data.dataList;
+                    dataList.unshift({filingName:'默认文件夹',filingNo:''});
                     this.setData({
-                        folderList: res.data.dataList
-                    })
+                        folderList: dataList
+                    });
 
                 }else{
 
@@ -108,15 +107,13 @@ wx.getSystemInfo({
                     this.setData({
                         accountList:dataList
                     })
-                     // console.log(this.data.accountList)
+                    // console.log(this.data.accountList)
                 }
             })
         },
         //列表查询  包括b2c,b2b数据
-        searchData(num){
-            if(!num){
-                num=1;
-            }
+        searchData(){
+
             let  param ={
                 'pageNo':this.data.pageNo,
                 'pageSize':10,
@@ -125,7 +122,7 @@ wx.getSystemInfo({
                 'filingNo':this.data.folderNo?this.data.folderNo:'',
                 'accountLevel':this.data.accountLevel,
             };
-            if(num==1){
+            if(this.data.num==1){
                 this.contracts(param);
             }else{
                 this.b2bContrants(param);
@@ -134,17 +131,25 @@ wx.getSystemInfo({
         },
         //b2c列表
         contracts(param){
-            wx.showLoading({
-                title: '加载中',
-            });
+
             let interfaceCode=this.data.interfaceCode;
 
             contracts(interfaceCode,param).then(res=>{
+                let totalItemNumber=res.data.totalItemNumber;
+                if(this.data.num==1){
+                    this.setData({
+                        contractDataList:this.data.contractDataList.concat(res.data.content)
+                    });
+                }else{
+                    this.setData({
+                        contractDataList:res.data.content
+                    });
+                }
 
-                this.setData({
-                    contractDataList:this.data.contractDataList.concat(res.data.content)
-                });
                 //判断是否允许继续请求
+                console.log(this.data.contractDataList);
+                console.log(this.data.contractDataList.length);
+                console.log(totalItemNumber);
                 if(this.data.contractDataList.length<totalItemNumber){
                     this.setData({
                         flag:true
@@ -154,24 +159,27 @@ wx.getSystemInfo({
                         flag:false
                     });
                 }
-                setTimeout( ()=> {
-                    wx.hideLoading();
-                }, 1000);
+
             }).catch(error=>{
 
             })
         },
         //b2b列表
         b2bContrants(param){
-            wx.showLoading({
-                title: '加载中',
-            });
+
             let interfaceCode=this.data.interfaceCode;
             b2bContrants(interfaceCode,param).then(res=>{
+                let totalItemNumber=res.data.totalItemNumber;
+                if(this.data.num==2){
+                    this.setData({
+                        contractDataList:this.data.contractDataList.concat(res.data.content)
+                    });
+                }else{
+                    this.setData({
+                        contractDataList:res.data.content
+                    });
+                }
 
-                this.setData({
-                    contractDataList:this.data.contractDataList.concat(res.data.content)
-                });
                 //判断是否允许继续请求
                 if(this.data.contractDataList.length<totalItemNumber){
                     this.setData({
@@ -182,15 +190,13 @@ wx.getSystemInfo({
                         flag:false
                     });
                 }
-                setTimeout( ()=> {
-                    wx.hideLoading();
-                }, 1000);
+
 
             }).catch(error=>{
 
             })
         },
-         // 展开文件夹
+        // 展开文件夹
         tabFolder(e){
             // console.log(e.currentTarget.dataset.current)
             let current=e.currentTarget.dataset.current;
@@ -214,7 +220,14 @@ wx.getSystemInfo({
             let folderNo=e.currentTarget.dataset.filingno;
             let filingName=e.currentTarget.dataset.filingname;
             // console.log(e.currentTarget.dataset)
-
+             if(folderNo!=this.data.folderNo){
+                 console.log(11111)
+                 this.setData({
+                     contractDataList:[],
+                     flag:true,
+                     pageNo:1,
+                 })
+             }
             this.setData({
                 folderName:filingName,
                 folderNo:folderNo,
@@ -257,7 +270,17 @@ wx.getSystemInfo({
         chooseContractType(e){
             this.resetStyle();
             let num=e.currentTarget.dataset.num;
-            if(num==1){
+            if(num!=this.data.num){
+                this.setData({
+                    contractDataList:[],
+                    flag:true,
+                    pageNo:1,
+                });
+            }
+            this.setData({
+                num:num
+            });
+            if(this.data.num==1){
                 this.setData({
                     contractTypeName:"企业对个人",
                 });
@@ -266,14 +289,20 @@ wx.getSystemInfo({
                     contractTypeName:"企业对企业",
                 });
             }
-            this.searchData(num);
+            this.searchData();
         },
         //选择账号
         accountType(e){
             this.resetStyle();
             let accountName=e.currentTarget.dataset.accountname;
             let secondAccountCode=e.currentTarget.dataset.accountcode;
-
+             if(secondAccountCode!=this.data.secondAccountCode){
+                 this.setData({
+                     contractDataList:[],
+                     flag:true,
+                     pageNo:1,
+                 });
+             }
             this.setData({
                 accountTypeName:accountName,
                 secondAccountCode:secondAccountCode,
@@ -291,6 +320,13 @@ wx.getSystemInfo({
         },
         tabNavContract(e){
             let contractStatus=e.currentTarget.dataset.current;
+            if(contractStatus!=this.data.contractStatus){
+                this.setData({
+                    contractDataList:[],
+                    flag:true,
+                    pageNo:1
+                });
+            };
             this.setData({
                 contractStatus:contractStatus,
             });
@@ -331,13 +367,13 @@ wx.getSystemInfo({
         upper(){
 
         },
-
+        //上滑懒加载
         lower(e) {
             if(this.data.flag){
                 this.setData({
-                    page:this.data.page+1
+                    pageNo:this.data.pageNo+1
                 });
-                this.requestData();
+                this.searchData();
             }
         },
 
@@ -360,10 +396,24 @@ wx.getSystemInfo({
          * 生命周期函数--监听页面显示
          */
         onShow: function () {
+            if(this.data.show){
+
+            }
             let pages =  getCurrentPages();
             let currPage = pages[pages.length - 1];
-            if (currPage.data.param) {
-                console.log(currPage.data.param)
+            if (currPage.data.param_data) {
+
+                let param_data=currPage.data.param_data;
+                Object.keys(param_data).forEach((key)=>{
+                    this.setData({
+                        [key]:param_data[key]
+                    })
+                });
+                console.log(param_data);
+                //查询所有归档文件夹
+                this.contractFilings();
+                this.getAccounts();
+                this.searchData();
 
             }else{
                 const interfaceCode = wx.getStorageSync('interfaceCode');
@@ -417,13 +467,5 @@ wx.getSystemInfo({
         onUnload: function () {
 
         },
-
-        /**
-         * 页面相关事件处理函数--监听用户下拉动作
-         */
-        onPullDownRefresh: function () {
-
-        },
-
 
     });
