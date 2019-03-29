@@ -25,6 +25,7 @@ wx.getSystemInfo({
             currentTab:0,
             height:height,
             model:true,
+            show:false,
             selected:0,
             num:1,
             contractStatus:3,
@@ -316,12 +317,15 @@ wx.getSystemInfo({
         },
         //去搜索页面
         goSearch(){
-
+            this.setData({
+                show:true
+            });
             let signParams={
                 'num':this.data.num,
                 'contractStatus':this.data.contractStatus,
                 'pageNo':1,
                 'pageSize':10,
+                'show':false,
                 'secondAccountCode':this.data.secondAccountCode,
                 'filingNo':this.data.folderNo?this.data.folderNo:'',
                 'accountLevel':this.data.accountLevel,
@@ -340,12 +344,16 @@ wx.getSystemInfo({
             let contractStatus=e.currentTarget.dataset.contractstatus;
             let creater=e.currentTarget.dataset.creater;
             let operator=e.currentTarget.dataset.operator;
+            this.setData({
+                show:true
+            });
             let signParams={
                 'contractNo':contractNo,
                 'contractStatus':contractStatus,
                 'operator':operator,
                 'creater':creater,
                 'num':this.data.num,
+                'show':false,
                 'pageNo':1,
                 'pageSize':10,
                 'secondAccountCode':this.data.secondAccountCode,
@@ -448,26 +456,35 @@ wx.getSystemInfo({
          * 生命周期函数--监听页面隐藏
          */
         onHide: function () {
+            console.log("onHide")
+            if(this.data.show){
+               console.log("1111")
+            }else{
+                this.setData({
+                    folderName:'默认文件夹',
+                    contractTypeName:'对个人合同',
+                    accountTypeName:'全部账号',
+                    accountNo:'',
+                    currentTab:0,
+                    model:true,
+                    selected:0,
+                    show:false,
+                    num:1,
+                    contractStatus:3,
+                    folderList:[], //归档文件夹列表
+                    accountList:[], //账户角色列表
+                    pageNo:1, //页码数默认为1
+                    folderNo:'', //选择归档文件编号 查询数据接口使用
+                    contractDataList:[], //查询数据
+                    scrollTop:'', //页面滑动
+                    secondAccountCode:'', //二级账号accountCode
+                    flag:true,
+                });
+                app.globalData.searchParam={};
+                // console.log(app.globalData.searchParam)
+            }
 
-            this.setData({
-                folderName:'默认文件夹',
-                contractTypeName:'对个人合同',
-                accountTypeName:'全部账号',
-                accountNo:'',
-                currentTab:0,
-                model:true,
-                selected:0,
-                num:1,
-                contractStatus:3,
-                folderList:[], //归档文件夹列表
-                accountList:[], //账户角色列表
-                pageNo:1, //页码数默认为1
-                folderNo:'', //选择归档文件编号 查询数据接口使用
-                contractDataList:[], //查询数据
-                scrollTop:'', //页面滑动
-                secondAccountCode:'', //二级账号accountCode
-                flag:true,
-            });
+
         },
 
         /**
