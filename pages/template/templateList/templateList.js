@@ -153,16 +153,15 @@ Page({
     }
     this.getData();
   },
-  scroll: function (event) {
-    //该方法绑定了页面滚动时的事件，记录了当前的position.y的值,为了请求数据之后把页面定位到这里来。
-    this.setData({
-      scrollTop: event.detail.scrollTop
-    });
-  },
+  // scroll: function (event) {
+  //   //该方法绑定了页面滚动时的事件，记录了当前的position.y的值,为了请求数据之后把页面定位到这里来。
+  //   this.setData({
+  //     scrollTop: event.detail.scrollTop
+  //   });
+  // },
   // topLoad: function (event) {
   //   //   该方法绑定了页面滑动到顶部的事件，然后做上拉刷新
   //   this.setData({
-  //     list: [],
   //     scrollTop: 0
   //   });
   //   this.getData(this.data.uploadData);
