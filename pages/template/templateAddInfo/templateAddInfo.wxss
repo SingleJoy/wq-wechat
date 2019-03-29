@@ -1,24 +1,28 @@
 /* pages/template/templateAddInfo/templateAddInfo.wxss */
-
+.main-content{
+    padding-bottom:104rpx;
+}
 .form-info-list{
   background: #f7f7f7;
-  
 }
 .form-item{
   margin-bottom:20rpx;
   background:#fff;
-  display: flex;
+  /* display: flex; */
   height:114rpx;
   padding: 0 32rpx;
   line-height: 114rpx;
   box-sizing: border-box;
 }
+.form-item label{
+    float:left;
+}
 .form-item input{
   height:100%;
   text-align: right;
-  width:80%;
-  float: right;
-  margin-left: 40rpx;
+  margin-top:20rpx;
+  margin-left:40rpx;
+  padding-left:20rpx;
 }
 .line{
   width:100%;

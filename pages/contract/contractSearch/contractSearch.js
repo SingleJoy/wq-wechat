@@ -40,7 +40,9 @@ wx.getSystemInfo({
 
             let inputValue = e.detail.value['search-input'] ? e.detail.value['search-input'] : e.detail.value;
             this.setData({
-                inputValue:inputValue
+                inputValue:inputValue,
+                pageNo:1,
+                contractDataList:[],
             });
             if(inputValue){
                 this.requestData();
@@ -68,8 +70,7 @@ wx.getSystemInfo({
                     contractDataList:this.data.contractDataList.concat(res.data.content)
                 });
                 //判断是否允许继续请求
-                console.log(this.data.contractDataList.length)
-                console.log(totalItemNumber)
+
                 if(this.data.contractDataList.length<totalItemNumber){
                     this.setData({
                         flag:true
