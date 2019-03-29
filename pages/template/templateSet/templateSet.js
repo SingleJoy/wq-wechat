@@ -41,7 +41,7 @@ Page({
       { name: "小明", idCard: "545214552233663321", mobile: "15685474458" },
       { name: "大明", idCard: "545214552233663321", mobile: "15545454545" }
     ],
-    showModal: true,
+    showModal: false,
     //删除样式
     delate: "9",
   },
