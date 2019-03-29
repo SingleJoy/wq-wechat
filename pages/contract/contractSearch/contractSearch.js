@@ -13,6 +13,7 @@ wx.getSystemInfo({
          */
         data: {
             focus: false,//自动聚焦
+            hasInput: false,//是否查询过
             inputValue: '',//输入值
             height:height,  //scroll区域高度
             pageNo:1,         //默认当前页初始化为1
@@ -72,12 +73,14 @@ wx.getSystemInfo({
                 title: '加载中...',
             });
             searchContractsForMiniProgram(interfaceCode,param).then((res)=>{
+
                 let totalItemNumber=res.data.totalItemNumber;
                 setTimeout(()=>{
                     wx.hideLoading();
                 },1000);
                 this.setData({
-                    contractDataList:this.data.contractDataList.concat(res.data.content)
+                    contractDataList:this.data.contractDataList.concat(res.data.content),
+                    hasInput:true
                 });
                 //判断是否允许继续请求
 
