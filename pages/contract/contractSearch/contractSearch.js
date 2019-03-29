@@ -70,7 +70,7 @@ wx.getSystemInfo({
                     contractDataList:this.data.contractDataList.concat(res.data.content)
                 });
                 //判断是否允许继续请求
-               
+
                 if(this.data.contractDataList.length<totalItemNumber){
                     this.setData({
                         flag:true

@@ -317,6 +317,19 @@ wx.getSystemInfo({
         //去搜索页面
         goSearch(){
 
+            let signParams={
+                'num':this.data.num,
+                'contractStatus':this.data.contractStatus,
+                'pageNo':1,
+                'pageSize':10,
+                'secondAccountCode':this.data.secondAccountCode,
+                'filingNo':this.data.folderNo?this.data.folderNo:'',
+                'accountLevel':this.data.accountLevel,
+                'folderName':this.data.folderName,
+                'contractTypeName':this.data.contractTypeName,
+                'accountTypeName':this.data.accountTypeName,
+            };
+            Object.assign(app.globalData.searchParam,signParams);
             wx.navigateTo({
                 url: '/pages/contract/contractSearch/contractSearch'
             });
@@ -343,7 +356,7 @@ wx.getSystemInfo({
                 'accountTypeName':this.data.accountTypeName,
             };
             Object.assign(app.globalData.searchParam,signParams);
-            console.log(this.data.secondAccountCode)
+
             wx.setStorage({ key: 'contractNo',data: contractNo});
             wx.navigateTo({
                 url: '/pages/contract/contractDetail/contractDetail?contract='+JSON.stringify(signParams)
