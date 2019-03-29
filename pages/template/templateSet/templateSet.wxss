@@ -83,7 +83,7 @@
   color: #fff;
 }
 .modal-dialog {
-  width: 500rpx;
+  width: 600rpx;
   overflow: hidden;
   position: absolute;
   left: 50%;
@@ -99,7 +99,7 @@
   font-size: 36rpx;
   color: #030303;
   text-align: center;
-  margin-bottom: 15rpx;
+  margin-bottom: 25rpx;
 }
 .modal-title-img image {
   height: 36rpx;
@@ -108,36 +108,49 @@
   vertical-align: middle;
 }
 .modal-input {
-  display: flex;
+  /* display: flex; */
   background: #fff;
   border-radius: 4rpx;
   font-size: 28rpx;
-  justify-content: flex-start;
-  margin-top: 22rpx;
+  /* justify-content: flex-start; */
+  /* margin-top: 22rpx; */
+  display: inline-block;
 }
-.model-hint {
-  margin: 10rpx;
+.model-hint{
+  display: flex;
+  height: 40rpx;
+}
+.model-hint label {
+  width: 160rpx;
 }
 .modal-input label{
-  flex: 2.0;
+  /* flex: 2.0; */
+  display: inline-block;
   text-align: right;
   line-height: 50rpx;
+  width: 160rpx;
+  vertical-align: middle;
 }
 .modal-input input {
-  flex: 4.5;
-  height: 50rpx;
+  vertical-align: middle;
+  display: inline-block;
+  /* flex: 4.5; */
+  width: 400rpx;
+  height: 60rpx;
   padding-left: 20rpx;
   font-size: 28rpx;
-  line-height: 50rpx;
+  line-height: 60rpx;
   box-sizing: border-box;
   color: #333;
   border: 1px solid #ddd;
   margin-left: 18rpx;
 }
 .modal-input view {
-  flex: 4;
+  /* flex: 4; */
+  margin-left: 38rpx;
+  width: 400rpx;
   font-size: 28rpx;
-  padding-left: 30rpx;
+  /* padding-left: 30rpx; */
   color: red;
 }
 input-holder {
@@ -147,12 +160,15 @@ input-holder {
 .modal-footer {
   display: flex;
   margin: 0 -20rpx;
-  margin-top: 40rpx;
+  margin-top: 20rpx;
+}
+.modal-footer button::after {
+  border: none;
 }
 .modal-footer .btn-confirm {
   flex: 1;
-  height: 60rpx;
-  line-height: 60rpx;
+  height: 80rpx;
+  line-height: 80rpx;
   /* margin: 56rpx auto auto auto; */
   text-align: center;
   background: #4091FB;
