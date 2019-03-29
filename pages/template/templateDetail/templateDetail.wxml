@@ -1,7 +1,7 @@
 <view class='containter common-box'>
   <view class='main-content'>
     <view class='contract-img'>
-      <image src='{{baseUrl}}/restapi/wesign/v1/tenant/contract/img?contractUrl={{item}}' wx:for='{{contractList}}' wx:key="{{item}}">{{item}}</image>
+      <image style="height:{{imgHeight}}px" src='{{baseUrl}}/restapi/wesign/v1/tenant/contract/img?contractUrl={{item}}' wx:for='{{contractList}}' wx:key="{{item}}">{{item}}</image>
     </view>
     <button class='contact-start' bindtap='ImmediatelyStart'>立即发起</button>
   </view>

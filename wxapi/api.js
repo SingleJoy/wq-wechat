@@ -81,6 +81,7 @@ function getContractDetails(interfaceCode,contractNo){
 function remind(interfaceCode,contractNo,data){
     return request(api+'/v1/tenant/' + interfaceCode + '/contract/'+ contractNo+'/remind', 'get',data)
 }
+//发送邮件
 function sendEmailForUser(interfaceCode,data){
     return request(api+'/v1/tenant/'+interfaceCode+'/sendEmailForUser','get',data)
 }
@@ -88,9 +89,21 @@ function sendEmailForUser(interfaceCode,data){
 function showSignRoomInfo(interfaceCode){
     return request(api+'/v1/tenant/' + interfaceCode +'/signRoom/showSignRoomInfo', 'post')
 }
-//b2c签署
+//b2c签署获取签章位置
 function signerpositions(interfaceCode,contractNo){
     return request(api+'/v1/tenant/'+ interfaceCode + '/contract/'+ contractNo +'/user/'+ interfaceCode + '/signerpositions','get')
+}
+//获取签章图片
+function getSignature(interfaceCode){
+    return request(api+'/v1/user/'+interfaceCode+'/signature','get')
+}
+//校验签署密码
+function verifySignPassword(accountCode,data){
+    return request(api+'/v1.7/tenant/account/'+accountCode+'/verifySignPassword','post',data) 
+}
+//签署提交
+function contractmoresign(interfaceCode,contractNo,data){
+    return request(api+'/v1/tenant/'+interfaceCode+'/user/'+interfaceCode+'/contractmoresign'+contractNo,'get',data)
 }
 //合同参数查询
 function templateVal(interfaceCode,templateNo,data){
@@ -139,11 +152,15 @@ module.exports = {
   contractImgs,
   templateImg,
   remind,
+  signerpositions,
+  getSignature,
+  verifySignPassword,
   getContractDetails,
   searchContractsForMiniProgram,
   showSignRoomInfo,
   sendEmailForUser,
   backContractTempSigner,
   contractTemp,
+  contractmoresign,
   templateVal
 }

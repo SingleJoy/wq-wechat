@@ -17,7 +17,7 @@ App({
             success: res => {
               // 可以将 res 发送给后台解码出 unionId
               this.globalData.userInfo = res.userInfo
-              // console.log(res)
+            //   console.log(res)
               // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
               // 所以此处加入 callback 以防止这种情况
               if (this.userInfoReadyCallback) {
@@ -32,7 +32,8 @@ App({
       success: res => {
         //导航高度
         this.globalData.navHeight = res.statusBarHeight + 46;
-        // console.log(this.globalData.navHeight)
+        this.globalData.userInfo = res;
+        this.globalData.imgHeight = res.windowWidth*1.414;  //合同图片高度
       }, fail(err) {
         // console.log(err);
       }
@@ -47,9 +48,7 @@ App({
     accountLevel:'',
     mobile:'',
     baseUrl:WXAPI.BASE_URL,
-    contractParam:{
-        
-    },
+    contractParam:{},
     searchParam:{}   //合同查询参数
 
   },
