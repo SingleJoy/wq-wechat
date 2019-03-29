@@ -11,7 +11,7 @@
 
         </view>
 
-        <view style="height:{{height}}px;position:absolute;top:100rpx;z-index: 1;padding-bottom: 20rpx;">
+        <view style="position:absolute;top:100rpx;z-index: 1;padding-bottom: 20rpx;width:100%;">
 
             <view class="search-data" >
                 <view class="data-lists" wx:for="{{contractDataList}}" wx:key="index" wx:if="{{contractDataList.length>0}}"
@@ -28,8 +28,8 @@
                     </view>
                 </view>
 
-                <view  wx:if="{{contractDataList&&contractDataList.length==0}}">
-                    <text class="no-data">暂无数据</text>
+                <view  wx:if="{{(contractDataList.length==0)&&(hasInput)}}" class="no-data">
+                    <text >暂无数据</text>
                 </view>
             </view>
         </view>

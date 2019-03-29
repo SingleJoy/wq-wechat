@@ -389,21 +389,21 @@ Page({
 
     },
     //上滑懒加载
-    onReachBottom(){
-        console.log("onReachBottom")
-        if(this.data.flag){
-            this.setData({
-                pageNo:this.data.pageNo+1
-            });
-            this.searchData();
-        }else{
-            wx.showToast({
-                title: '没有更多数据',
-                icon: 'none',
-                duration: 1500
-            })
-        }
-    },
+    // onReachBottom(){
+    //     console.log("onReachBottom")
+    //     if(this.data.flag){
+    //         this.setData({
+    //             pageNo:this.data.pageNo+1
+    //         });
+    //         this.searchData();
+    //     }else{
+    //         wx.showToast({
+    //             title: '没有更多数据',
+    //             icon: 'none',
+    //             duration: 1500
+    //         })
+    //     }
+    // },
 
     resetStyle(){
         this.setData({

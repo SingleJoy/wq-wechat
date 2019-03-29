@@ -1,6 +1,6 @@
 
 <view class="container common-box" style="height: 100%;overflow: auto;box-sizing: border-box" >
-    <view class="main-content" style="height: auto;">
+    <view class="main-content" >
         <view class="page-content" >
             <view class="search" >
                 <view class="df search-arr">
@@ -65,7 +65,7 @@
 
         </view>
 
-        <view style="position: relative;margin-top:270rpx;">
+        <view style="position: absolute;width:100%;top:260rpx;">
 
             <view class="search-data" style="padding-bottom: 20rpx;">
                 <view class="data-lists" wx:for="{{contractDataList}}" wx:key="index" wx:if="{{contractDataList.length>0}}"
@@ -78,8 +78,8 @@
 
                 </view>
 
-                <view  wx:if="{{contractDataList.length==0}}">
-                    <text class="no-data">暂无数据</text>
+                <view  wx:if="{{contractDataList.length==0}}" class="no-data">
+                    <text >暂无数据</text>
                 </view>
             </view>
         </view>

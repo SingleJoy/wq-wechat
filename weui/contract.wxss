@@ -103,7 +103,9 @@
 .no-data{
     display: block;
     text-align: center;
+    padding-top: 40rpx;
+}
+.no-data text{
     font-size: 32rpx;
     color: #999;
-    padding-top: 40rpx;
 }
