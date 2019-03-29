@@ -27,7 +27,8 @@
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#4091fb",
     "navigationBarTitleText": "微签",
-    "navigationBarTextStyle": "white"
+    "navigationBarTextStyle": "white",
+    "enablePullDownRefresh": true
   },
   "tabBar": {
     "color": "#6e6d6b",

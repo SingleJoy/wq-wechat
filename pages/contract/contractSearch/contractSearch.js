@@ -23,6 +23,12 @@ wx.getSystemInfo({
         /**
          * 生命周期函数--监听页面加载
          */
+        onPullDownRefresh() {
+            this.setData({
+                pageNo:1
+            });
+            this.searchData();
+        },
         onLoad: function (options) {
             const interfaceCode = wx.getStorageSync('interfaceCode');
             const accountCode = wx.getStorageSync('accountCode');
@@ -45,14 +51,14 @@ wx.getSystemInfo({
                 contractDataList:[],
             });
             if(inputValue){
-                this.requestData();
+                this.searchData();
             }else{
                 return false;
             }
 
         },
         //请求后端数据方法
-        requestData(){
+        searchData(){
             let interfaceCode=this.data.interfaceCode;
             let accountCode=this.data.accountCode;
             let accountLevel=this.data.accountLevel;
@@ -62,10 +68,14 @@ wx.getSystemInfo({
                 pageNo:this.data.pageNo,
                 pageSize:10,
             };
-
+            wx.showLoading({
+                title: '加载中...',
+            });
             searchContractsForMiniProgram(interfaceCode,param).then((res)=>{
                 let totalItemNumber=res.data.totalItemNumber;
-
+                setTimeout(()=>{
+                    wx.hideLoading();
+                },1000);
                 this.setData({
                     contractDataList:this.data.contractDataList.concat(res.data.content)
                 });
@@ -80,11 +90,9 @@ wx.getSystemInfo({
                         flag:false
                     });
                 }
-
             }).catch(error=>{
 
             })
-
         },
         //清空输入
         clearInput(){
@@ -103,12 +111,12 @@ wx.getSystemInfo({
 
         },
         lower(){
-            console.log(this.data.flag);
+
             if(this.data.flag){
                 this.setData({
                     pageNo:this.data.pageNo+1
                 });
-                this.requestData();
+                this.searchData();
             }else{
                 wx.showToast({
                     title: '没有更多数据',
