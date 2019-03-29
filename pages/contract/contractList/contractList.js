@@ -389,7 +389,8 @@ Page({
 
     },
     //上滑懒加载
-    lower() {
+    onReachBottom(){
+        console.log("onReachBottom")
         if(this.data.flag){
             this.setData({
                 pageNo:this.data.pageNo+1

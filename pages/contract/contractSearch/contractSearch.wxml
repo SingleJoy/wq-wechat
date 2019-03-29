@@ -11,13 +11,9 @@
 
         </view>
 
-        <scroll-view
-                scroll-y
-                style="height:{{height}}px;position:absolute;top:100rpx;z-index: 1;padding-bottom: 20rpx;"
-                bindscrolltoupper="upper"
-                bindscrolltolower="lower">
+        <view style="height:{{height}}px;position:absolute;top:100rpx;z-index: 1;padding-bottom: 20rpx;">
 
-            <view class="search-data" style="">
+            <view class="search-data" >
                 <view class="data-lists" wx:for="{{contractDataList}}" wx:key="index" wx:if="{{contractDataList.length>0}}"
                       data-contractNo="{{item.contractNum}}" data-contractStatus="{{item.contractStatus}}"   data-operator="{{item.operator}}" data-creater="{{item.creater}}"
                       bindtap="goDetail">
@@ -36,7 +32,7 @@
                     <text class="no-data">暂无数据</text>
                 </view>
             </view>
-        </scroll-view>
+        </view>
 
     </view>
 </view>

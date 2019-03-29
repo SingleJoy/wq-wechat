@@ -110,7 +110,8 @@ wx.getSystemInfo({
         upper(){
 
         },
-        lower(){
+        onReachBottom(){
+            console.log("onReachBottom")
 
             if(this.data.flag){
                 this.setData({
