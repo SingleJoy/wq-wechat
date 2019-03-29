@@ -93,9 +93,13 @@ Page({
     onUnload: function () {
 
     },
-
+    //发起合同applyContract
+    applyContract() {
+      wx.switchTab({
+        url: '../template/templateList/templateList'
+      })
+    },
     goContractList(e){
-
         let contractStatus=e.currentTarget.dataset.contractstatus;
         // url:'/pages/contract/contract?contractStatus='+contractStatus
         wx.reLaunch({

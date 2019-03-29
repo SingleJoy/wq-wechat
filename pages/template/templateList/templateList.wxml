@@ -18,10 +18,12 @@
             </view>
           </view>
         </view>
+        <view class="load_more" hidden="{{!loading}}">
+          <view class="load_loading"></view>
+          <view class="load-tips">正在加载……</view>
+        </view>
+        <view class="load_end" hidden="{{!loaded}}">没有更多数据了……</view>
     </scroll-view>
-    <!-- <view class="body-view">
-        <loading hidden="{{hidden}}" bindchange="loadingChange">
-            加载中...
-        </loading>
-    </view> -->
+    
+    
 </view>
