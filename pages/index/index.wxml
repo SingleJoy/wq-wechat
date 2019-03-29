@@ -2,7 +2,7 @@
 <view class="container common-box">
     <view class="main-content">
         <view class='main'>
-            <view class='contract'>
+            <view class='contract' bindtap='applyContract'>
                 <text class='sponsor-contract'>发起合同</text>
                 <view class='contract-img'>
                     <image src='../../images/sponsor-contact.png'></image>

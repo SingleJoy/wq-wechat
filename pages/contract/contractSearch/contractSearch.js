@@ -13,6 +13,7 @@ wx.getSystemInfo({
          */
         data: {
             focus: false,//自动聚焦
+            hasInput: false,//是否查询过
             inputValue: '',//输入值
             height:height,  //scroll区域高度
             pageNo:1,         //默认当前页初始化为1
@@ -23,6 +24,12 @@ wx.getSystemInfo({
         /**
          * 生命周期函数--监听页面加载
          */
+        onPullDownRefresh() {
+            this.setData({
+                pageNo:1
+            });
+            this.searchData();
+        },
         onLoad: function (options) {
             const interfaceCode = wx.getStorageSync('interfaceCode');
             const accountCode = wx.getStorageSync('accountCode');
@@ -40,17 +47,19 @@ wx.getSystemInfo({
 
             let inputValue = e.detail.value['search-input'] ? e.detail.value['search-input'] : e.detail.value;
             this.setData({
-                inputValue:inputValue
+                inputValue:inputValue,
+                pageNo:1,
+                contractDataList:[],
             });
             if(inputValue){
-                this.requestData();
+                this.searchData();
             }else{
                 return false;
             }
 
         },
         //请求后端数据方法
-        requestData(){
+        searchData(){
             let interfaceCode=this.data.interfaceCode;
             let accountCode=this.data.accountCode;
             let accountLevel=this.data.accountLevel;
@@ -60,16 +69,21 @@ wx.getSystemInfo({
                 pageNo:this.data.pageNo,
                 pageSize:10,
             };
-
+            wx.showLoading({
+                title: '加载中...',
+            });
             searchContractsForMiniProgram(interfaceCode,param).then((res)=>{
-                let totalItemNumber=res.data.totalItemNumber;
 
+                let totalItemNumber=res.data.totalItemNumber;
+                setTimeout(()=>{
+                    wx.hideLoading();
+                },1000);
                 this.setData({
-                    contractDataList:this.data.contractDataList.concat(res.data.content)
+                    contractDataList:this.data.contractDataList.concat(res.data.content),
+                    hasInput:true
                 });
                 //判断是否允许继续请求
-                console.log(this.data.contractDataList.length)
-                console.log(totalItemNumber)
+
                 if(this.data.contractDataList.length<totalItemNumber){
                     this.setData({
                         flag:true
@@ -79,11 +93,9 @@ wx.getSystemInfo({
                         flag:false
                     });
                 }
-
             }).catch(error=>{
 
             })
-
         },
         //清空输入
         clearInput(){
@@ -101,13 +113,14 @@ wx.getSystemInfo({
         upper(){
 
         },
-        lower(){
-            console.log(this.data.flag);
+        onReachBottom(){
+            console.log("onReachBottom")
+
             if(this.data.flag){
                 this.setData({
                     pageNo:this.data.pageNo+1
                 });
-                this.requestData();
+                this.searchData();
             }else{
                 wx.showToast({
                     title: '没有更多数据',
