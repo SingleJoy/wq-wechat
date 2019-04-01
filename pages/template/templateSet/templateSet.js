@@ -12,7 +12,7 @@ Page({
       nameIdcard: "",
       namePhone: ""
     },
-    date: '',
+    date: '2019-04-01',
     //合同名称
     contactName: "1", 
     //签署日期
