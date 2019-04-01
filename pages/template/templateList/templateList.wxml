@@ -14,7 +14,7 @@
               <view class='template-time'>{{item.strCreateTime}}</view>
             </view>
             <view class='examine'>
-              <button bindtap='lookUp' data-templateSpecificType="{{item.template.templateSpecificType}}" data-templateNo="{{item.templateNo}}">查看</button>
+              <button bindtap='lookUp' data-templateSpecificType="{{item.template.templateSpecificType}}" data-templateNo="{{item.templateNo}}" data-templateName="{{item.templateName}}">查看</button>
             </view>
           </view>
         </view>

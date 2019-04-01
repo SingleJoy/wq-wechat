@@ -5,8 +5,10 @@ import {
     remind,
     showSignRoomInfo,
     sendEmailForUser,
+    getSignature,
+    verifySignPassword,
+    contractmoresign,
     signerpositions} from '../../../wxapi/api.js';
-
 const app = getApp();
 Page({
 
@@ -14,6 +16,10 @@ Page({
      * 页面的初始数据
      */
     data: {
+        windowHeight:app.globalData.userInfo.windowHeight,
+        windowWidth:app.globalData.userInfo.windowWidth,
+        imgHeight:app.globalData.imgHeight,
+        signVerify:app.globalData.signVerify, //签署密码设置
         contractStatus:'',   //合同状态:1 待我签署 2待他人签署 3已生效 4已截止
         showModalStatus:false,
         detailMask:false,
@@ -21,6 +27,8 @@ Page({
         permanentLimit:false,
         animationData:'',
         interfaceCode:wx.getStorageSync('interfaceCode'),
+        accountCode:wx.getStorageSync('accountCode'),
+        accountLevel:'',
         contractNo:'',
         contractImgList:[],
         baseUrl:app.globalData.baseUrl,
@@ -32,19 +40,22 @@ Page({
         signRoomLink:'',
         passwordDialog:false,
         signPassword:'123456',
-        searchData:''
+        signImg:'',
+        signPositionList:[],
+        signPositionStr:'',
+        submitBtn:false,  //签署按钮和提交按钮展示
+        signPawssword:'',//签署密码
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        let param_data = JSON.parse(options.contract)
-        console.log(param_data)
+        let param_data = app.globalData.searchParam;
         this.setData({
             contractStatus:param_data.contractStatus,
             contractNo:param_data.contractNo,
-            searchData:options.contract
+            accountLevel:app.globalData.searchParam.accountLevel
         })
         wx.showLoading({
             title: '加载中',
@@ -77,6 +88,8 @@ Page({
 
             })
         }
+        //获取签章图片
+        this.getSignature()
     },
 
     //详情三角切换
@@ -95,12 +108,6 @@ Page({
     move:function(e){
         console.log(e)
         return
-    },
-//签署合同
-    signContract:function(e){
-        this.setData({
-            passwordDialog:true
-        })
     },
 //短信提醒
     smsTip:function(e){
@@ -162,16 +169,109 @@ Page({
         this.setData({
             showModalStatus:false,
             passwordDialog:false
+        })
+    },
+//签署合同
+    signContract:function(e){
+        if(app.globalData.searchParam.num == 2){ //b2b跳转签署面板
+            wx.redirectTo({
+                url:'/pages/canvas/canvas'
+            })
+        }else{
+            //判断是否获取过图片签章可以提交
+            if(this.data.submitBtn){
+                if(!this.data.signVerify){     //需要签署密码
+                    this.setData({
+                        passwordDialog:true
+                    })
+                }else{
+                    this.signSubmit()           //提交签署                    
+                }
+            }else{
+                this.getSignPosition()      //签署
+            }
+        }
+    },
+//获取签章图片
+    getSignature(){
+        getSignature(this.data.interfaceCode).then(res=>{
+            let imgBase64 = res.data
+            this.setData({
+                signImg:imgBase64
+            })
+        }).catch(err=>{
 
         })
     },
-//签署提交
-    signSubmit:function(){
+// 获取签章位置并展示签章图片
+    getSignPosition(){
         signerpositions(this.data.interfaceCode,this.data.contractNo).then(res=>{
-
+            let arr = res.data.list;
+            for(let i=0;i<arr.length;i++){
+                let item = arr[i];
+                let pageNum = item.pageNum;
+                let offsetX = item.offsetX;
+                let offsetY = item.offsetY;
+                let imgHeight = this.data.imgHeight;
+                let leftX = offsetX * this.data.windowWidth;
+                let topY = (pageNum-1 + offsetY)*imgHeight;
+                let signImgW = this.data.windowWidth*0.21;  //宽高相等
+                item.style='position:absolute;top:'+topY+'px;left:'+leftX+'px;width:'+signImgW+'px;height:'+signImgW+'px;';
+                if(i == arr.length-1){
+                    this.data.signPositionStr += pageNum+","+leftX+","+offsetY * (imgHeight);
+                }else{
+                    this.data.signPositionStr+= pageNum+","+leftX+","+offsetY * (imgHeight)+"&";
+                }
+                this.setData({
+                    signPositionList:arr,
+                    submitBtn:true,
+                    signPositionStr:this.data.signPositionStr
+                })
+            }
         }).catch(err=>{
 
         })  
+    },
+//校验签署密码
+    signPassword(){
+        let data={
+            signVerifyPassword:this.data.signPawssword
+        }
+        console.log(this.data.signPawssword)
+        verifySignPassword(this.data.accountCode,data).then(res=>{
+            if(res.data.resultCode == 1){
+                this.signSubmit()    //校验成功提交签署
+                this.setData({
+                    passwordDialog:true
+                })
+            }else{
+                
+            }
+        }).catch(err=>{
+
+        })
+    },
+//提交签署按钮
+    signSubmit:function(){
+        let contractNo = app.globalData.searchParam.contractNo;
+        let data = {
+            contractNum:contractNo,
+            phoneHeight:this.data.windowHeight,
+            phoneWidth:this.data.phoneWidth,
+            signatureImg:this.data.signImg,
+            signH:this.data.windowWidth*0.21,
+            signW:this.data.windowWidth*0.21,
+            signPositionStr:this.data.signPositionStr
+        }
+        contractmoresign(this.data.interfaceCode,contractNo,data).then(res=>{
+            if(res.data.responseCode == 0){
+                wx.reLaunch({
+                    url:'/pages/template/templateSuccess'
+                })
+            }
+        }).catch(err=>{
+
+        })
     },
 //邮箱发送
     emailSubmit:function(e){
@@ -233,13 +333,13 @@ Page({
      * 生命周期函数--监听页面卸载
      */
     onUnload: function () {
-        var pages = getCurrentPages();
-        var currPage = pages[pages.length - 1];   //当前页面
-        var prevPage = pages[pages.length - 2];  //上一个页面
-        //直接调用上一个页面的setData()方法，把数据存到上一个页面中去
-        prevPage.setData({
-            param: this.data.searchData
-        })
+        // var pages = getCurrentPages();
+        // var currPage = pages[pages.length - 1];   //当前页面
+        // var prevPage = pages[pages.length - 2];  //上一个页面
+        // //直接调用上一个页面的setData()方法，把数据存到上一个页面中去
+        // prevPage.setData({
+        //     param: this.data.searchData
+        // })
     },
 
     /**

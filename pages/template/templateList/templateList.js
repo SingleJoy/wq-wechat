@@ -44,7 +44,8 @@ Page({
     let signParams ={
         templateNo:e.target.dataset.templateno,
         templateSpecificType:e.target.dataset.templatespecifictype,
-        operateType:''
+        operateType:'',
+        templateName:e.target.dataset.templatename
     }
     Object.assign(app.globalData.contractParam,signParams)
     wx.navigateTo({

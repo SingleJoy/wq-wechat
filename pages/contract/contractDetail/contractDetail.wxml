@@ -50,15 +50,20 @@
                 查看详情
                 <text class="select-angle {{detailMask?'angle-transform':''}}" ></text>
             </view>
-            <!-- 合同图片 -->
-            <view class="contract-img">
-                <image src='{{baseUrl}}/restapi/wesign/v1/tenant/contract/img?contractUrl={{item.contractUrl}}' wx:for="{{contractImgList}}" wx:key="{{item.contractUrlId}}"></image>
+            <view class="sign-contract-imgs">
+                <!-- 合同图片 -->
+                <view class="contract-img">
+                    <image style="height:{{imgHeight}}px" class="contractImg" src='{{baseUrl}}/restapi/wesign/v1/tenant/contract/img?contractUrl={{item.contractUrl}}' wx:for="{{contractImgList}}" wx:key="{{item.contractUrlId}}"></image>
+                    <image src="{{signImg}}" style="{{item.style}}" wx:if="{{signPositionList.length>0}}" wx:for="{{signPositionList}}" wx:key="item.pageNum"></image>
+                </view>
             </view>
+            
+           
          </view>
          <!-- 合同详情操作 -->
-        <view class="contract-option">
+        <view class="contract-option" wx:if="{{accountLevel == '1'}}">
             <block wx:if="{{contractStatus == 1}}"> 
-                <button class='option' bindtap='signContract'>签署</button>
+                <button class='option' bindtap='signContract'>{{submitBtn?'提交签署':'签署'}}</button>
             </block>
             <block wx:elif="{{contractStatus == 2}}"> 
                 <view class="options">
@@ -135,16 +140,16 @@
         <!-- 签署密码 -->
         <view class="contract-dialog">
             <view class="drawer-mask" wx:if="{{passwordDialog}}"></view>
-                <view  class="drawer-box" wx:if="{{passwordDialog}}">
+                <view class="drawer-box" wx:if="{{passwordDialog}}">
                 <!--drawer content-->
                     <view class="drawer-title">请输入签署密码</view>
                     <view class="drawer-content">
-                        <input  class="email-address" value="{{sendEmail}}"></input>
+                        <input  class="email-address" value="{{signPawssword}}" bindtap=""></input>
                         <view class="emial-err">{{errMessage}}</view>
                     </view>
                     <view class="option-btn">
                         <view class="btn-ok btn-cancel" bindtap="cancelDialog" data-status="close">取消</view>
-                        <view class="btn-ok" bindtap="signSubmit" data-status="close" data-type="addemail">确定</view>
+                        <view class="btn-ok" bindtap="signPassword" data-status="close" data-type="addemail">确定</view>
                     </view>
                 </view>
         </view>

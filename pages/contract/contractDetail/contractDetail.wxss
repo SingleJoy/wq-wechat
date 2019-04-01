@@ -8,7 +8,7 @@
     background: #fff;
     height:40rpx;
     box-shadow: rgba(228, 228, 228, 0.5) 0px 1px 4px 2px;
-    /* display: none; */
+    z-index:9;
 }
 .contract-info-box{
     padding:36rpx 32rpx;
@@ -71,7 +71,6 @@
 .contract-img{
     padding-bottom:104rpx;
     width:100%;
-    height:100vh;
     padding-top:32rpx;
 }
 .drawer-content{
@@ -169,7 +168,7 @@
     width: 550rpx;
     overflow: hidden;
     position: fixed;
-    top: 50%;
+    top: 30%;
     left: 50%;
     z-index: 1001;
     background: #FAFAFA;

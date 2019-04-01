@@ -10,7 +10,8 @@ Page({
     baseUrl:app.globalData.baseUrl,
     templateSpecificType:'',
     templateNo:'',
-    interfaceCode:wx.getStorageSync('interfaceCode')
+    interfaceCode:wx.getStorageSync('interfaceCode'),
+    imgHeight:app.globalData.imgHeight
   },
 
   
@@ -22,7 +23,7 @@ Page({
     let param={
         templateSpecificType:param_data.templateSpecificType
     }
-    // console.log(app)
+    console.log(app)
     templateImg(this.data.interfaceCode,param_data.templateNo,param).then(res=>{
         this.setData({
             contractList:res.data.list
