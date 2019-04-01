@@ -11,7 +11,8 @@ Page({
     templateSpecificType:'',
     templateNo:'',
     interfaceCode:wx.getStorageSync('interfaceCode'),
-    imgHeight:app.globalData.imgHeight
+    imgHeight:app.globalData.imgHeight,
+    templateSpecificType:app.globalData.contractParam.templateSpecificType
   },
 
   

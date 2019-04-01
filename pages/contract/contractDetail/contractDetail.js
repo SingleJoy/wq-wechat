@@ -57,6 +57,7 @@ Page({
             contractNo:param_data.contractNo,
             accountLevel:app.globalData.searchParam.accountLevel
         })
+        console.log(app)
         wx.showLoading({
             title: '加载中',
         })
