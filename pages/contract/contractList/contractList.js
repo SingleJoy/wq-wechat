@@ -61,7 +61,6 @@ Page({
             })
         }
 
-
     },
     //查询所有规定文件夹
     contractFilings(){
@@ -103,7 +102,6 @@ Page({
     },
     //列表查询  包括b2c,b2b数据
     searchData(){
-
         let  param ={
             'pageNo':this.data.pageNo,
             'pageSize':10,
@@ -150,7 +148,6 @@ Page({
                     flag:false
                 });
             }
-
         }).catch(error=>{
 
         })
@@ -168,7 +165,6 @@ Page({
                 setTimeout(()=>{
                     wx.hideLoading();
                 },1000);
-
                 this.setData({
                     contractDataList:this.data.contractDataList.concat(res.data.content)
                 });
@@ -188,8 +184,6 @@ Page({
                     flag:false
                 });
             }
-
-
         }).catch(error=>{
 
         })
@@ -198,7 +192,6 @@ Page({
     tabFolder(e){
         // console.log(e.currentTarget.dataset.current)
         let current=e.currentTarget.dataset.current;
-
         if(current==this.data.selected){
             this.setData({
                 selected:0,
@@ -219,7 +212,6 @@ Page({
         let filingName=e.currentTarget.dataset.filingname;
         // console.log(e.currentTarget.dataset)
         if(folderNo!=this.data.folderNo){
-
             this.setData({
                 contractDataList:[],
                 flag:true,
@@ -305,7 +297,6 @@ Page({
             accountTypeName:accountName,
             secondAccountCode:secondAccountCode,
         });
-
         this.searchData();
     },
 
@@ -388,22 +379,22 @@ Page({
     upper(){
 
     },
-    //上滑懒加载
-    // onReachBottom(){
-    //     console.log("onReachBottom")
-    //     if(this.data.flag){
-    //         this.setData({
-    //             pageNo:this.data.pageNo+1
-    //         });
-    //         this.searchData();
-    //     }else{
-    //         wx.showToast({
-    //             title: '没有更多数据',
-    //             icon: 'none',
-    //             duration: 1500
-    //         })
-    //     }
-    // },
+    // 上滑懒加载
+    onReachBottom(){
+        console.log("onReachBottom")
+        if(this.data.flag){
+            this.setData({
+                pageNo:this.data.pageNo+1
+            });
+            this.searchData();
+        }else{
+            wx.showToast({
+                title: '没有更多数据',
+                icon: 'none',
+                duration: 1500
+            })
+        }
+    },
 
     resetStyle(){
         this.setData({
