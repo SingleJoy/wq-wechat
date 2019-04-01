@@ -1,11 +1,12 @@
-import {templateVal} from '../../../wxapi/api.js'
+import {templateVal,template} from '../../../wxapi/api.js'
 const app = getApp();
 Page({
     /**
      * 页面的初始数据
      */
     data: {
-        infoList:[],
+        infoList:[],  //数据请求列表
+        renderLidst:[],//渲染列表
         fillVal:'',
         interfaceCode:wx.getStorageSync('interfaceCode'),
         templateNo:'',
@@ -23,8 +24,18 @@ Page({
         Object.assign(app.globalData.contractParam,{operateType:'back'})  //标`记返回时数据回显
         console.log(app)
         templateVal(this.data.interfaceCode,param_data.templateNo,data).then(res=>{
+            let arrData = res.data.lists;
+            let newList = [];
+            for(let i= 0;i<arrData.length;i++){
+                let item = arrData[i];
+                let obj = {
+                    name:item,
+                    value:''
+                }
+                newList.push(obj)
+            }
             this.setData({
-                infoList:res.data.lists
+                renderLidst:newList
             })
         }).catch(err=>{
 
@@ -81,16 +92,44 @@ Page({
 
     },
     signSetting:function(e){
-        wx.navigateTo({
-            url: '/pages/template/templateSet/templateSet',
+        console.log(app)
+        let jsonVal = ''
+        this.data.renderLidst.map(function(item,index){
+            jsonVal += item.name + '=' + item.value +'&'
         })
+        jsonVal = jsonVal.substring(0, jsonVal.length - 1) //去除最后一位&号
+        let data={
+            contractName:app.globalData.contractParam.templateName,
+            templateNum:app.globalData.contractParam.templateNo,
+            jsonVal:jsonVal,
+            accountCode:wx.getStorageSync('accountCode')
+        }
+        console.log(data)
+        template(this.data.interfaceCode,data).then(res=>{
+            if(res.data.resultCode){
+                wx.navigateTo({
+                    url: '/pages/template/templateSign/templateSign',
+                })
+            }
+        }).catch(err=>{
+
+        })
+       
     },
     bindUsernameInput:function(e){
         console.log(e.detail.value,e.target.dataset.key)
         var fill_val = e.detail.value;
         var fill_key = e.target.dataset.key;
-        var obj = {};
-        console.log(obj)
+        console.log(fill_val)
+        let list = this.data.renderLidst;
+        list.map((item,index)=>{
+            if(item.name == fill_key){
+                item.value = fill_val;
+            }
+        })
+        this.setData({
+            renderLidst:list
+        })
     },
     goBack:function(){
         wx.navigateBack({

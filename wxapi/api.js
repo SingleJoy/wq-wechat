@@ -109,6 +109,10 @@ function contractmoresign(interfaceCode,contractNo,data){
 function templateVal(interfaceCode,templateNo,data){
     return request(api+'/v1/tenant/'+ interfaceCode + '/template/'+ templateNo + '/templateVal','get',data)
 }
+//合同参数提交
+function template(interfaceCode,data){
+    return request(api+'/v1/tenant/'+ interfaceCode + '/template','post',data)
+}
 //合同归档接口
 function contractFilings(interfaceCode,accountCode) {
     return request(api+'/v1.7/tenant/'+interfaceCode+'/contract/'+accountCode+'/contractFilings','get')
@@ -162,5 +166,6 @@ module.exports = {
   backContractTempSigner,
   contractTemp,
   contractmoresign,
-  templateVal
+  templateVal,
+  template
 }

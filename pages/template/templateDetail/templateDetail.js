@@ -23,7 +23,7 @@ Page({
     let param={
         templateSpecificType:param_data.templateSpecificType
     }
-    
+    console.log(app)
     templateImg(this.data.interfaceCode,param_data.templateNo,param).then(res=>{
         this.setData({
             contractList:res.data.list
