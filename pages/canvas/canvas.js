@@ -4,6 +4,7 @@ var canvasw = 0;
 var canvash = 0;
 var height,width;
 var canvasWidth,canvasHeight;
+const app = getApp();
 //获取系统信息
 wx.getSystemInfo({
     success: function (res) {
@@ -14,7 +15,7 @@ wx.getSystemInfo({
     },
 }),
 
-    Page({
+ Page({
         /**
          * 页面的初始数据
          */
@@ -123,7 +124,6 @@ wx.getSystemInfo({
                 }
             })
 
-
         },
         //提交保存
         submit(){
@@ -139,26 +139,20 @@ wx.getSystemInfo({
                         success: (res) => { //成功的回调
                             // console.log('data:image/png;base64,' + res.data)
                             let base64=res.data;
-                            wx.setStorage({
-                                key:'base64',
-                                data:base64,
-                                success(res) {
-                            //保存base64编码成功  这里可以做跳转操作
-                                  console.log(res)
-                                    wx.navigateTo({
-                                        url: '/pages/canvasImg/canvasImg'
-                                    })
-                                }
+                            let base64Image={
+                                'base64':base64
+                            };
+                            //往全局变量派发一个base64img 对象
+                            Object.assign(app.globalData.contractParam,base64Image);
 
-                            })
+                            wx.navigateTo({
+                                url: '/pages/canvasImg/canvasImg'
+                            });
                         }
-
                     })
-
 
                 },
 
             })
         }
-
     })
