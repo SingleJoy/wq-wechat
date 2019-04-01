@@ -46,7 +46,6 @@ Page({
     delate: "9",
   },
   onLoad: function (options) {
-    console.log(app.globalData.contractParam.operateType);
     if (app.globalData.contractParam.operateType) {
       this.getSignInfo(); 
     }
@@ -54,14 +53,10 @@ Page({
   //获取签署设置
   getSignInfo() {
     let data = {
-      operateType: "back",
-      contractTempNo: "52b4d1e97e694a80b1d1894c0e9e3098"
-      // contractTempNo: wx.getStorageSync('contractTempNo')
+      operateType: app.globalData.contractParam.operateType,
+      contractTempNo: app.globalData.contractParam.contractTempNo
     }
-    let accountCode = "ACf2773c7e514510baa500053efae912";
-    // let accountCode = wx.getStorageSync('accountCode');
     backContractTempSigner(data, accountCode).then(res => {
-      console.log(res);
       if (res.data.validTime !== null) {
         this.setData({
           contactName: res.data.contractName,
@@ -274,15 +269,14 @@ Page({
     }
     // return
     let creater = wx.getStorageSync('interfaceCode'),
-      operateType = app.globalData.contractParam.operateType,
-      contractTempNo = app.globalData.contractParam.contractTempNo,
-      contractName = this.data.contactName,
-      templateNo = app.globalData.contractParam.templateNo,
-      validTime = this.data.date,
-      perpetualValid = this.data.perpetualValid,
-      templateSpecificType = app.globalData.contractParam.templateSpecificType,
-      accountCode = wx.getStorageSync('accountCode');
-    console.log(app.globalData.contractParam.templateSpecificType);
+        contractName = this.data.contactName,
+        accountCode = wx.getStorageSync('accountCode'),
+        contractTempNo = app.globalData.contractParam.contractTempNo,
+        templateNo = app.globalData.contractParam.templateNo,
+        operateType = app.globalData.contractParam.operateType,
+        validTime = this.data.date,
+        perpetualValid = this.data.perpetualValid,
+        templateSpecificType = app.globalData.contractParam.templateSpecificType;
     let zqUserContractTempVo = {};
     if (operateType != '') {
       zqUserContractTempVo = {
