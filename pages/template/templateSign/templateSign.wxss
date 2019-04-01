@@ -15,7 +15,7 @@
 }
 .contact-start {
   line-height: 104rpx;
-  width: 50%;
+  width: 100%;
   background: #4091FB;
   border-radius: 0;
   color: #ffffff;

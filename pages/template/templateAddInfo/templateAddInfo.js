@@ -10,7 +10,6 @@ Page({
         fillVal:'',
         interfaceCode:wx.getStorageSync('interfaceCode'),
         templateNo:'',
-        contractTempNo:''
     },
 
     /**
@@ -19,7 +18,7 @@ Page({
     onLoad: function (options) {
         let param_data = app.globalData.contractParam;
         let data={
-            contractTempNo:param_data.contractTempNo
+            templateNo:param_data.templateNo
         }
         Object.assign(app.globalData.contractParam,{operateType:'back'})  //标`记返回时数据回显
         console.log(app)
@@ -92,7 +91,6 @@ Page({
 
     },
     signSetting:function(e){
-        console.log(app)
         let jsonVal = ''
         this.data.renderLidst.map(function(item,index){
             jsonVal += item.name + '=' + item.value +'&'
@@ -104,8 +102,12 @@ Page({
             jsonVal:jsonVal,
             accountCode:wx.getStorageSync('accountCode')
         }
-        console.log(data)
         template(this.data.interfaceCode,data).then(res=>{
+            //真实合同编号
+            let data = {          
+                contractTempNo:res.data.contractNo
+            }
+            Object.assign(app.globalData.contractParam,data)
             if(res.data.resultCode){
                 wx.navigateTo({
                     url: '/pages/template/templateSign/templateSign',
@@ -117,10 +119,8 @@ Page({
        
     },
     bindUsernameInput:function(e){
-        console.log(e.detail.value,e.target.dataset.key)
         var fill_val = e.detail.value;
         var fill_key = e.target.dataset.key;
-        console.log(fill_val)
         let list = this.data.renderLidst;
         list.map((item,index)=>{
             if(item.name == fill_key){

@@ -314,13 +314,23 @@ Page({
       }
     }
     contractTemp(zqUserContractTempVo, creater).then(res => {
-        let signParams = {
-            contractTempNo: res.data.data
+        if(res.data.resultCode==0){
+            //临时合同编号
+            let signParams = {
+                contractTempNo: res.data.data
+            }
+            Object.assign(app.globalData.contractParam,signParams)
+            wx.navigateTo({
+                url: '../templateAddInfo/templateAddInfo'
+            })
+        }else{
+            wx.showToast({
+                title: res.data.resultMessage,
+                icon:'none',
+                duration: 2000
+            })
         }
-        Object.assign(app.globalData.contractParam,signParams)
-        wx.navigateTo({
-            url: '../templateAddInfo/templateAddInfo'
-        })
+        
     }).catch(res => {
 
     })

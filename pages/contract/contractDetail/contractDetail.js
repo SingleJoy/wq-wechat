@@ -237,7 +237,7 @@ Page({
         let data={
             signVerifyPassword:this.data.signPawssword
         }
-        console.log(this.data.signPawssword)
+        // console.log(this.data.signPawssword)
         verifySignPassword(this.data.accountCode,data).then(res=>{
             if(res.data.resultCode == 1){
                 this.signSubmit()    //校验成功提交签署

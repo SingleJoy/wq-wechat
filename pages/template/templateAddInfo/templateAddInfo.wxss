@@ -38,4 +38,5 @@
   background: #4091FB;
   border-radius: 0;
   color: #ffffff;
+  z-index:9;
 }

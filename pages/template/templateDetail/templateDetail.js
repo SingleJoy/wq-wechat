@@ -20,14 +20,20 @@ Page({
    */
   onLoad: function (options) {
     let param_data = app.globalData.contractParam;
+    console.log(param_data)
     let param={
         templateSpecificType:param_data.templateSpecificType
     }
-    console.log(app)
+    wx.showLoading({
+        title: '加载中',
+    })
     templateImg(this.data.interfaceCode,param_data.templateNo,param).then(res=>{
         this.setData({
             contractList:res.data.list
         })
+        setTimeout(function () {
+            wx.hideLoading()
+        }, 1000)
     }).catch(err=>{
         wx.showToast({
             title: '查询失败',
