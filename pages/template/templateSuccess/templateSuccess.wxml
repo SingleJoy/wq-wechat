@@ -22,9 +22,9 @@
         <view class="info-item signer-box">  
             <text class="info-name signer-title">签署人员：</text>
             <view class="signer-list">
-                <view wx:for="{{signList}}" wx:key="{{item.name}}" class="signer-item">
-                    <text class="signer-name">{{item.name}}</text>
-                    <block wx:if="{{item.status == 0}}">
+                <view wx:for="{{signList}}" wx:key="{{item.signUserName}}" class="signer-item">
+                    <text class="signer-name">{{item.signUserName}}</text>
+                    <block wx:if="{{item.signStatus == 0}}">
                         <text class="sign-status unsign">未签署</text>
                     </block>
                     <block wx:else>
@@ -36,8 +36,8 @@
         </view>
         <view class="info-item">  
             <text class="info-name">签署链接：</text>
-            <text class="info-value">{{signLink}}</text>
-            <text class="copy-link">复制链接</text>
+            <text class="info-value sign-link">{{signLink}}</text>
+            <text class="copy-link" bindtap='copyBtn'>复制链接</text>
         </view>
       
     </view>

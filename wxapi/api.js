@@ -39,6 +39,14 @@ function contractTemp(data, interfaceCode) {
 function getAccountInformation(accountCode) {
     return request(api+'/v1.5/tenant/'+accountCode+'/getAccountInformation', 'get')
 }
+//合同签署成功获取信息
+function getContractSuccessDetails(interfaceCode, contractNo) {
+  return request(api + '/v1/tenant/' + interfaceCode + '/contract/' + contractNo + '/getContractDetails', 'get')
+}
+//获取合同连接
+function getSignLink(interfaceCode, contractNo) {
+  return request(api + '/v1/tenant/' + interfaceCode + '/contract/' + contractNo + '/getSignLink', 'get')
+}
 //查询默认签章
 function getSignatures(interfaceCode){
     return request(api+'/v1.5/tenant/'+interfaceCode+'/getSignatures', 'get')
@@ -165,6 +173,8 @@ module.exports = {
   sendEmailForUser,
   backContractTempSigner,
   contractTemp,
+  getContractSuccessDetails,
+  getSignLink,
   contractmoresign,
   templateVal,
   template

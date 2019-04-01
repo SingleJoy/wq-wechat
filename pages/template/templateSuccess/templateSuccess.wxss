@@ -34,6 +34,15 @@
     font-size: 28rpx;
     line-height: 28rpx;
 }
+.sign-link {
+  white-space:nowrap;
+  overflow:hidden;    
+  height: 32rpx;   
+  text-overflow:ellipsis;
+  width: 320rpx;
+  display: inline-block;
+  vertical-align: middle;
+}
 .info-value{
     color:#333;
 }

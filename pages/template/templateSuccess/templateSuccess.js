@@ -1,37 +1,108 @@
 // pages/template/templateSuccess/templateSuccess.js
-const App = getApp();
+import { getContractSuccessDetails, getSignLink } from '../../../wxapi/api.js'
+const app = getApp();
+// let interfaceCode = app.globalData.contractParam.interfaceCode,
+//     contractNo = app.globalData.contractParam.contractNo;
+let contractNo = "5b9f7ecab4064a3eb611a7de85bca1cb",
+    interfaceCode = "ZQ3512d188874f05b3174d317090d2a2";
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
+    //合同名称
     contractName:'北京众签科技',
+    //合同状态
     contractStatus:0,
+    //截止时间
     validTime:'2019-3-23 23:59',
+    //签署链接
+    signLink: '',
+    //签署人员信息
     signList:[
         {
-            name:'测试1',
-            status:'0'
+          signUserName:'测试1',
+          signStatus:'0'
         },
         {
-            name:'测试2',
-            status:'1'
+          signUserName:'测试2',
+          signStatus:'1'
         },
         {
-            name:'测试3',
-            status:'1'
+          signUserName:'测试3',
+          signStatus:'1'
         },
     ]
   },
+  //获取签署连接
+  getLink() {
+    getSignLink(interfaceCode, contractNo).then(res => {
+      this.setData({
+        signLink: res.data
+      });
+      wx.hideLoading()
+    }).catch(res => {
 
+    })
+  },
+  //获取合同成功信息
+  getContractInfo() {
+    getContractSuccessDetails(interfaceCode, contractNo).then(res => {
+      this.getLink();
+      let contractVo = res.data.contractVo,
+          signUserVo = res.data.signUserVo;
+      if (!contractVo.validTime) {
+        contractVo.validTime = contractVo.signTime
+      }
+      switch (contractVo.status) {
+        case "1":
+          contractVo.status = '签署中'
+          break;
+        case "2":
+          contractVo.status = '已生效'
+          break;
+        default:
+          contractVo.status = '已截止'
+          break;
+      }
+      //设置合同信息
+      this.setData({
+        contractName: contractVo.contractName,
+        contractStatus: contractVo.status,
+        validTime: contractVo.validTime
+      });
+      //设置签署人员信息
+      this.setData({
+        signList: signUserVo
+      })
+    }).catch(res => {
+      
+    })
+  },
+  //复制链接
+  copyBtn() {
+    wx.setClipboardData({
+      //准备复制的数据
+      data: this.data.signLink,
+      success: function (res) {
+        wx.showToast({
+          title: '复制成功',
+        });
+      }
+    });
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData({
-      navH: App.globalData.navHeight
+    wx.showLoading({
+      title: '加载中',
     })
+    this.getContractInfo();
+    this.setData({
+      navH: app.globalData.navHeight
+    });
+
   },
 
   /**
