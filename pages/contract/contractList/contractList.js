@@ -370,9 +370,16 @@ Page({
             'accountTypeName':this.data.accountTypeName,
         };
         Object.assign(app.globalData.searchParam,signParams);
-        wx.navigateTo({
-            url: '/pages/contract/contractDetail/contractDetail'
-        });
+        if(this.data.num==1){
+            wx.navigateTo({
+                url: '/pages/contract/contractDetail/contractDetail'
+            });
+        }else{
+            wx.navigateTo({
+                url: '/pages/contract/contractDetail/contractDetail'
+            });
+        }
+
     },
     upper(){
 

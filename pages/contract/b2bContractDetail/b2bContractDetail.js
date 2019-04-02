@@ -1,4 +1,4 @@
-
+// pages/contract/contractDetail/b2bContractDetail.js
 import {
     contractImgs,
     getContractDetails,
@@ -59,45 +59,45 @@ Page({
             contractNo:param_data.contractNo,
             accountLevel:app.globalData.searchParam.accountLevel,
             interfaceCode:wx.getStorageSync('interfaceCode')
-        })
+        });
         wx.showLoading({
             title: '加载中',
-        })
+        });
         console.log(param_data)
         contractImgs(this.data.interfaceCode,this.data.contractNo).then(res=>{
             this.setData({
                 contractImgList:res.data
-            })
+            });
         }).catch(err=>{
 
-        })
+        });
         getContractDetails(this.data.interfaceCode,this.data.contractNo).then(res=>{
             this.setData({
                 contractVo:res.data.contractVo,
                 signUserVo:res.data.signUserVo
-            })
+            });
             setTimeout(function () {
                 wx.hideLoading()
-            }, 1000)
+            }, 1000);
         }).catch(err=>{
 
-        })
+        });
         //待他人签署时展示复制链接按钮调此接口获取签署连接
         if(this.data.contractStatus==2){
             showSignRoomInfo(this.data.interfaceCode).then(res=>{
                 this.setData({
                     signRoomLink:res.data.data.signRoomLink
-                })
+                });
             }).catch(err=>{
 
             })
         }
         //获取签章图片
         getSignature(this.data.interfaceCode).then(res=>{
-            let imgBase64 = res.data
+            let imgBase64 = res.data;
             this.setData({
                 signImg:imgBase64
-            })
+            });
         }).catch(err=>{
 
         })
@@ -106,39 +106,39 @@ Page({
 
     //详情三角切换
     changeDetailBox:function(e){
-        // console.log(this.data.detailMask)
+
         this.setData({
             detailMask:!this.data.detailMask
-        })
+        });
     },
 //隐藏mask
     powerDrawer:function(e){
         this.setData({
             detailMask:false
-        })
+        });
     },
     move:function(e){
-        console.log(e)
-        return
+        console.log(e);
+        return false
     },
 //短信提醒
     smsTip:function(e){
         let data ={
             contractType:1,
             remindType:0
-        }
+        };
         remind(this.data.interfaceCode,this.data.contractNo,data).then(res=>{
             if(res.data.resultCode == 0){
                 wx.showToast({
                     title: '提醒成功',
                     duration: 2000
-                })
+                });
             }else{
                 wx.showToast({
                     title: '每日仅可提醒一次，提醒次数已用尽',
                     icon:'none',
                     duration: 2000
-                })
+                });
             }
         }).catch(err=>{
 
@@ -146,7 +146,7 @@ Page({
     },
 //复制链接
     copyLink:function(e){
-        console.log(this.data.signRoomLink)
+        console.log(this.data.signRoomLink);
         wx.setClipboardData({
             data: this.data.signRoomLink,
             success(res) {
@@ -162,26 +162,26 @@ Page({
     downContract:function(e){
         this.setData({
             showModalStatus:true
-        })
+        });
     },
 //延长签署日期
     extendDate:function(e){
         this.setData({
             showModalStatus:true
-        })
+        });
     },
 //是否永久有效
     changePermanent:function(e){
         this.setData({
             permanentLimit:!this.data.permanentLimit
-        })
+        });
     },
 //弹框关闭
     cancelDialog:function(){
         this.setData({
             showModalStatus:false,
             passwordDialog:false
-        })
+        });
     },
 //签署合同
     signContract:function(e){
@@ -217,7 +217,7 @@ Page({
                 let imgHeight = this.data.imgHeight;
                 let leftX = offsetX * this.data.windowWidth;
                 let topY = (pageNum-1 + offsetY)*imgHeight;
-                let signImgW = this.data.windowWidth*0.21;  //宽高相等
+                let signImgW = this.data.windowWidth*19/90;  //宽高相等
                 item.style='position:absolute;top:'+topY+'px;left:'+leftX+'px;width:'+signImgW+'px;height:'+signImgW+'px;';
                 if(i == arr.length-1){
                     this.data.signPositionStr += pageNum+","+leftX+","+offsetY * (imgHeight);
@@ -241,16 +241,16 @@ Page({
         }
         verifySignPassword(this.data.accountCode,data).then(res=>{
             if(res.data.resultCode == 1){
-                this.verifySuccess()    //校验成功提交签署
+                this.verifySuccess();    //校验成功提交签署
                 this.setData({
                     passwordDialog:true
-                })
+                });
             }else{
                 wx.showToast({
                     title: res.data.resultMessage,
                     icon:'none',
                     duration: 2000
-                })
+                });
             }
         }).catch(err=>{
 
@@ -260,7 +260,7 @@ Page({
         if(!this.data.signVerify){     //需要签署密码
             this.setData({
                 passwordDialog:true
-            })
+            });
         }else{
             this.verifySuccess()           //提交签署                    
         }
@@ -276,12 +276,12 @@ Page({
             signH:this.data.windowWidth*0.21,
             signW:this.data.windowWidth*0.21,
             signPositionStr:this.data.signPositionStr
-        }
+        };
         contractmoresign(this.data.interfaceCode,contractNo,data).then(res=>{
             if(res.data.responseCode == 0){
                 wx.reLaunch({
                     url:'/pages/template/templateSuccess'
-                })
+                });
             }
         }).catch(err=>{
 
@@ -293,18 +293,18 @@ Page({
             email:'',
             type:'1',
             contractNo:this.data.contractNo
-        }
+        };
         if(e.target.dataset.type == 'default'){
-            data.email = this.data.defaultEmail
+            data.email = this.data.defaultEmail;
         }else{
-            data.email = this.data.sendEmail
+            data.email = this.data.sendEmail;
         }
         sendEmailForUser(this.data.interfaceCode,data).then(res=>{
             wx.showToast({
                 title: '邮件发送成功',
                 icon: 'none',
                 duration: 2000
-            })
+            });
         }).catch(err=>{
 
         })
@@ -319,7 +319,7 @@ Page({
         console.log(e)
         this.setData({
             date: e.detail.value
-        })
+        });
     },
 
     //获取签署密码
@@ -327,14 +327,14 @@ Page({
         let input_val = e.detail.value
         this.setData({
             signPawssword:input_val
-        })
+        });
     },
     //获取邮箱
     getEmail(e){
         let input_email = e.detail.value
         this.setData({
             sendEmail:input_email
-        })
+        });
     },
 
     /**
@@ -392,4 +392,4 @@ Page({
 
     }
 
-})
+});
