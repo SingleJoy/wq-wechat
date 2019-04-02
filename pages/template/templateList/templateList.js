@@ -14,8 +14,8 @@ Page({
     scrollHeight: 0,
     isRequest: false,
     changeChecked: false,
-    loading: false,
-    loaded: false,
+    // loading: false,
+    // loaded: false,
   },
   onLoad: function () {
     //这里要注意，微信的scroll-view必须要设置高度才能监听滚动事件，所以，需要在页面的onLoad事件中给scroll-view的高度赋值
@@ -118,9 +118,9 @@ Page({
     }
     getAccountTemplates(uploadData, accountCode).then(res => {
       wx.hideLoading()
-      this.setData({
-        loading: false,
-      });
+      // this.setData({
+      //   loading: false,
+      // });
       let totalItemNumber = res.data.totalItemNumber;
       var list = this.data.list;
       let contents = res.data.contents;
