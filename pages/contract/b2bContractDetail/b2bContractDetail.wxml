@@ -63,10 +63,10 @@
          </view>
 
          <!-- 合同详情操作 -->
-        <view class="contract-option" wx:if="{{creater==interfaceCode}}">
+        <view class="contract-option" wx:if="{{accountCode==operator}}">
             <block wx:if="{{contractStatus == 1}}">
-                <button class='option' bindtap='signSubmit' wx:if="{{submitBtn}}">提交签署</button>
-                <button class='option' bindtap='signContract ' wx:else>签署</button>
+                <button class='option' bindtap="signSubmit" wx:if="{{submitBtn}}">提交签署</button>
+                <button class='option' bindtap="signContract" wx:else>签署</button>
                 <!-- scope.row.operation === 1  && (scope.row.isCreater?accountCode == scope.row.operator:true) -->
             </block>
             <block wx:elif="{{contractStatus == 2}}">
@@ -92,7 +92,7 @@
                     <view class="drawer-title">请输入邮箱账号</view>
                     <view class="drawer-content">
                         <input  class="email-address" value="{{sendEmail}}" bindinput="getEmail"></input>
-                        <view class="emial-err">{{errMessage}}</view>
+                        <view class="email-err">{{errMessage}}</view>
                         <view class="bind-email" wx:if="{{defaultEmail}}" bindtap="emailSubmit" data-type="default">发送至账号绑定邮箱</view>
                     </view>
                     <view class="option-btn">
@@ -104,7 +104,7 @@
         </view>
 
         <!-- 合同延期 -->
-        <view class="contract-dialog" wx:if="{{creater==interfaceCode}}">
+        <view class="contract-dialog" wx:if="{{accountCode==operator}}">
             <block wx:if="{{contractStatus == 4}}">
                 <view class="drawer-mask" wx:if="{{showModalStatus}}"></view>
                 <view  class="drawer-box" wx:if="{{showModalStatus}}">
@@ -151,7 +151,7 @@
                     <view class="drawer-title">请输入签署密码</view>
                     <view class="drawer-content">
                         <input  class="email-address" value="{{signPawssword}}" bindinput="getPwd"></input>
-                        <view class="emial-err">{{errMessage}}</view>
+                        <view class="email-err">{{errMessage}}</view>
                     </view>
                     <view class="option-btn">
                         <view class="btn-ok btn-cancel" bindtap="cancelDialog" data-status="close">取消</view>

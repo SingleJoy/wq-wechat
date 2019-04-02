@@ -217,7 +217,7 @@
 .btn-cancel{
     background: #999;
 }
-.emial-err{
+.email-err{
     font-size: 26rpx;
     color:#ff0000;
 }

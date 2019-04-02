@@ -2,15 +2,14 @@
 import {
     contractImgs,
     getContractDetails,
-    remind,
     showSignRoomInfo,
-    sendEmailForUser,
     getSignature,
     verifySignPassword,
     contractmoresign,
     signerpositions} from '../../../wxapi/api.js';
 const app = getApp();
-const md5 = require('../../../utils/md5.js')
+const md5 = require('../../../utils/md5.js');
+let base64src=require("../../../utils/base64src");
 Page({
 
     /**
@@ -53,7 +52,6 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-
         let param_data = app.globalData.searchParam;
 
         this.setData({
@@ -64,7 +62,18 @@ Page({
             accountLevel:app.globalData.searchParam.accountLevel,
             interfaceCode:wx.getStorageSync('interfaceCode')
         });
-
+        let base64Image = "data:image/jpeg;base64,"+app.globalData.contractParam.base64Image;
+        let signPictureWidth=this.data.windowWidth*19/90;
+        let signPictureHeight=this.data.windowWidth*19/180;
+        this.setData({
+            signPictureWidth:signPictureWidth,
+            signPictureHeight:signPictureHeight,
+        });
+        base64src(base64Image, res => {
+            this.setData({
+                base64Image:res,
+            });
+        });
         wx.showLoading({
             title: '加载中',
         });
@@ -82,7 +91,7 @@ Page({
                 signUserVo:res.data.signUserVo
             });
             setTimeout(function () {
-                wx.hideLoading()
+                wx.hideLoading();
             }, 1000);
         }).catch(err=>{
 
@@ -126,61 +135,11 @@ Page({
         console.log(e);
         return false
     },
-//短信提醒
-    smsTip:function(e){
-        let data ={
-            contractType:1,
-            remindType:0
-        };
-        remind(this.data.interfaceCode,this.data.contractNo,data).then(res=>{
-            if(res.data.resultCode == 0){
-                wx.showToast({
-                    title: '提醒成功',
-                    duration: 2000
-                });
-            }else{
-                wx.showToast({
-                    title: '每日仅可提醒一次，提醒次数已用尽',
-                    icon:'none',
-                    duration: 2000
-                });
-            }
-        }).catch(err=>{
 
-        })
-    },
-//复制链接
-    copyLink:function(e){
-        console.log(this.data.signRoomLink);
-        wx.setClipboardData({
-            data: this.data.signRoomLink,
-            success(res) {
-                wx.getClipboardData({
-                    success(res) {
-                        console.log(res.data) // data
-                    }
-                })
-            }
-        })
-    },
-//下载
-    downContract:function(e){
-        this.setData({
-            showModalStatus:true
-        });
-    },
-//延长签署日期
-    extendDate:function(e){
-        this.setData({
-            showModalStatus:true
-        });
-    },
-//是否永久有效
-    changePermanent:function(e){
-        this.setData({
-            permanentLimit:!this.data.permanentLimit
-        });
-    },
+
+
+
+
 //弹框关闭
     cancelDialog:function(){
         this.setData({
@@ -190,7 +149,7 @@ Page({
     },
 //签署合同
     signContract(){
-        console.log("1111111");
+
         wx.navigateTo({
             url:'/pages/canvas/canvas'
         });
@@ -278,40 +237,7 @@ Page({
 
         })
     },
-    //邮箱发送
-    emailSubmit:function(e){
-        let data={
-            email:'',
-            type:'1',
-            contractNo:this.data.contractNo
-        };
-        if(e.target.dataset.type == 'default'){
-            data.email = this.data.defaultEmail;
-        }else{
-            data.email = this.data.sendEmail;
-        }
-        sendEmailForUser(this.data.interfaceCode,data).then(res=>{
-            wx.showToast({
-                title: '邮件发送成功',
-                icon: 'none',
-                duration: 2000
-            });
-        }).catch(err=>{
 
-        })
-
-    },
-//延期确定按钮
-    dateSubmit:function(){
-
-    },
-//延期选择时间
-    showPicker:function(e){
-        console.log(e)
-        this.setData({
-            date: e.detail.value
-        });
-    },
 
     //获取签署密码
     getPwd(e){
@@ -353,13 +279,7 @@ Page({
      * 生命周期函数--监听页面卸载
      */
     onUnload: function () {
-        // var pages = getCurrentPages();
-        // var currPage = pages[pages.length - 1];   //当前页面
-        // var prevPage = pages[pages.length - 2];  //上一个页面
-        // //直接调用上一个页面的setData()方法，把数据存到上一个页面中去
-        // prevPage.setData({
-        //     param: this.data.searchData
-        // })
+
     },
 
     /**
