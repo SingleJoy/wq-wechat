@@ -8,6 +8,7 @@
     <scroll-view scroll-top="{{scrollTop}}" scroll-y="true" style="height:{{scrollHeight}}px;" 
         class="list" bindscrolltolower="bindDownLoad" bindscrolltoupper="topLoad"  bindscroll="scroll">
         <view class='template-contain'>
+          <view class='no-data' wx-if="{{list.length <= 0}}">暂无数据</view>
           <view class='template-lists' wx:for="{{list}}" wx:key="{{accountLevel}}">
             <view>
               <view class='template-title'>{{item.templateName}}</view>
