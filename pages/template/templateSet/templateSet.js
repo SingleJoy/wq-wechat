@@ -1,5 +1,6 @@
 
 import { backContractTempSigner, contractTemp } from '../../../wxapi/api.js';
+import { validateCard, validateMoblie } from '../../../utils/util.js';
 const app = getApp();
 Page({
   /**
@@ -49,6 +50,7 @@ Page({
     if (app.globalData.contractParam.operateType) {
       this.getSignInfo(); 
     }
+    console.log(app.globalData)
   },
   //获取签署设置
   getSignInfo() {
@@ -196,14 +198,22 @@ Page({
         }
       })
       return;
-    } else {
+    } 
+    if (e.detail.value.name.replace(/\s+/g, "").length < 2) {
       this.setData({
         model: {
-          nameHint: "请输入姓名",
-          isShowNameHint: false,
+          nameHint: "姓名长度至少两位",
+          isShowNameHint: true,
         }
       })
+      return;
     }
+    this.setData({
+      model: {
+        nameHint: "请输入姓名",
+        isShowNameHint: false,
+      }
+    })
     //验证身份证
     if (!e.detail.value.idCard) {
       this.setData({
@@ -213,14 +223,23 @@ Page({
         }
       })
       return;
-    } else {
+    }
+    if (!validateCard(e.detail.value.idCard)) {
+      console.log(222)
       this.setData({
         model: {
-          idcardHint: "请输入身份证",
-          isShowIdcardHint: false,
+          idcardHint: "身份证格式错误",
+          isShowIdcardHint: true,
         }
-      })
-    }
+      });
+      return;
+    } 
+    this.setData({
+      model: {
+        idcardHint: "请输入身份证",
+        isShowIdcardHint: false,
+      }
+    })
     //验证手机号
     if (!e.detail.value.mobile) {
       this.setData({
@@ -230,14 +249,40 @@ Page({
         }
       })
       return;
-    } else {
+    }
+    if (!validateMoblie(e.detail.value.mobile)) {
       this.setData({
         model: {
-          mobileHint: "请输入手机号",
-          isShowMobileHint: false,
+          mobileHint: "手机号格式错误",
+          isShowMobileHint: true,
         }
-      })
+      });
+      return;
     }
+    if (e.detail.value.mobile == wx.getStorageSync('mobile')) {
+      this.setData({
+        model: {
+          mobileHint: "手机号不能与发起方手机号相同",
+          isShowMobileHint: true,
+        }
+      });
+      return;
+    }
+    if (e.detail.value.mobile == wx.getStorageSync('parentAccountmobile')) {
+      this.setData({
+        model: {
+          mobileHint: "手机号不能与一级账号的手机号相同",
+          isShowMobileHint: true,
+        }
+      });
+      return;
+    }
+    this.setData({
+      model: {
+        idcardHint: "手机号不能为空",
+        isShowIdcardHint: false,
+      }
+    })
     //添加签署人提交/修改签署人提交
     if (this.data.identification == "添加签署人") {
       let dataList = this.data.dataList;
