@@ -146,7 +146,7 @@ wx.getSystemInfo({
                             Object.assign(app.globalData.contractParam,base64Image);
 
                             wx.navigateTo({
-                                url: '/pages/canvasImg/canvasImg'
+                                url: '/pages/contract/contractDetail/contractDetail'
                             });
                         }
                     })
