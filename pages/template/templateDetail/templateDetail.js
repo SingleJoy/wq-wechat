@@ -10,7 +10,7 @@ Page({
     baseUrl:app.globalData.baseUrl,
     templateSpecificType:'',
     templateNo:'',
-    interfaceCode:wx.getStorageSync('interfaceCode'),
+    interfaceCode:'',
     imgHeight:app.globalData.imgHeight,
     templateSpecificType:app.globalData.contractParam.templateSpecificType
   },
@@ -21,10 +21,13 @@ Page({
    */
   onLoad: function (options) {
     let param_data = app.globalData.contractParam;
-    console.log(param_data)
+    console.log(this.data.interfaceCode)
     let param={
         templateSpecificType:param_data.templateSpecificType
     }
+    this.setData({
+        interfaceCode:wx.getStorageSync('interfaceCode')
+    })
     wx.showLoading({
         title: '加载中',
     })

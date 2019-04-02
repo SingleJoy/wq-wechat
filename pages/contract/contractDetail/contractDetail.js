@@ -10,6 +10,7 @@ import {
     contractmoresign,
     signerpositions} from '../../../wxapi/api.js';
 const app = getApp();
+const md5 = require('../../../utils/md5.js')
 Page({
 
     /**
@@ -30,6 +31,7 @@ Page({
         accountCode:wx.getStorageSync('accountCode'),
         accountLevel:'',
         contractNo:'',
+        contractType:'',
         contractImgList:[],
         baseUrl:app.globalData.baseUrl,
         contractVo:'', //合同信息
@@ -91,7 +93,15 @@ Page({
             })
         }
         //获取签章图片
-        this.getSignature()
+        getSignature(this.data.interfaceCode).then(res=>{
+            let imgBase64 = res.data
+            this.setData({
+                signImg:imgBase64
+            })
+        }).catch(err=>{
+
+        })
+        
     },
 
     //详情三角切换
@@ -175,36 +185,26 @@ Page({
     },
 //签署合同
     signContract:function(e){
-        if(app.globalData.searchParam.num == 2){ //b2b跳转签署面板
+        if(app.globalData.searchParam.num == 2){    //b2b跳转签署面板
             wx.redirectTo({
                 url:'/pages/canvas/canvas'
             })
         }else{
-            //判断是否获取过图片签章可以提交
-            if(this.data.submitBtn){
-                if(!this.data.signVerify){     //需要签署密码
-                    this.setData({
-                        passwordDialog:true
-                    })
-                }else{
-                    this.signSubmit()           //提交签署                    
-                }
-            }else{
+            // //判断是否获取过图片签章可以提交
+            // if(this.data.submitBtn){
+            //     if(!this.data.signVerify){     //需要签署密码
+            //         this.setData({
+            //             passwordDialog:true
+            //         })
+            //     }else{
+            //         this.signSubmit()           //提交签署                    
+            //     }
+            // }else{
                 this.getSignPosition()      //签署
-            }
+            // }
         }
     },
-//获取签章图片
-    getSignature(){
-        getSignature(this.data.interfaceCode).then(res=>{
-            let imgBase64 = res.data
-            this.setData({
-                signImg:imgBase64
-            })
-        }).catch(err=>{
 
-        })
-    },
 // 获取签章位置并展示签章图片
     getSignPosition(){
         signerpositions(this.data.interfaceCode,this.data.contractNo).then(res=>{
@@ -232,29 +232,41 @@ Page({
             }
         }).catch(err=>{
 
-        })  
+        })
     },
-//校验签署密码
+    //校验签署密码
     signPassword(){
         let data={
-            signVerifyPassword:this.data.signPawssword
+            signVerifyPassword:md5(this.data.signPawssword)
         }
-        // console.log(this.data.signPawssword)
         verifySignPassword(this.data.accountCode,data).then(res=>{
             if(res.data.resultCode == 1){
-                this.signSubmit()    //校验成功提交签署
+                this.verifySuccess()    //校验成功提交签署
                 this.setData({
                     passwordDialog:true
                 })
             }else{
-                
+                wx.showToast({
+                    title: res.data.resultMessage,
+                    icon:'none',
+                    duration: 2000
+                })
             }
         }).catch(err=>{
 
         })
     },
-//提交签署按钮
-    signSubmit:function(){
+    signSubmit(){
+        if(!this.data.signVerify){     //需要签署密码
+            this.setData({
+                passwordDialog:true
+            })
+        }else{
+            this.verifySuccess()           //提交签署                    
+        }
+    },
+    //密码校验成功提交操作
+    verifySuccess:function(){
         let contractNo = app.globalData.searchParam.contractNo;
         let data = {
             contractNum:contractNo,
@@ -275,7 +287,7 @@ Page({
 
         })
     },
-//邮箱发送
+    //邮箱发送
     emailSubmit:function(e){
         let data={
             email:'',
@@ -307,6 +319,21 @@ Page({
         console.log(e)
         this.setData({
             date: e.detail.value
+        })
+    },
+
+    //获取签署密码
+    getPwd(e){
+        let input_val = e.detail.value
+        this.setData({
+            signPawssword:input_val
+        })
+    },
+    //获取邮箱
+    getEmail(e){
+        let input_email = e.detail.value
+        this.setData({
+            sendEmail:input_email
         })
     },
 

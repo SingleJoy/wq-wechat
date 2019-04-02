@@ -136,7 +136,7 @@ function template(interfaceCode,data){
 }
 //模板发起签署
 function contractkeywordsign(interfaceCode,contractNo){
-    return request(api+'/v1/tenant/'+ interfaceCode + '/user/'+interfaceCode+ '/interfaceCode'+ '/contractkeywordsign'+contractNo ,'post')
+    return request(api+'/v1/tenant/'+ interfaceCode + '/user/'+interfaceCode +'/contractkeywordsign/'+contractNo ,'post')
 }
 //合同归档接口
 function contractFilings(interfaceCode,accountCode) {
