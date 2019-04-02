@@ -1,6 +1,7 @@
 import {
-    contractImgs,
+    contracttempimgs,
     getSignature,
+    contractkeywordsign,
     verifySignPassword,
     contractmoresign,} from '../../../wxapi/api.js';
 const app = getApp();
@@ -24,12 +25,12 @@ Page({
         console.log(app)
         let param_data = app.globalData.contractParam;
         this.setData({
-            contractTempNo:param_data.contractTempNo
+            contractTempNo:param_data.contractTempNo,
         })
         wx.showLoading({
             title: '加载中',
         })
-        contractImgs(this.data.interfaceCode,this.data.contractTempNo).then(res=>{
+        contracttempimgs(this.data.interfaceCode,this.data.contractTempNo).then(res=>{
             this.setData({
                 contractImgList:res.data
             })
@@ -37,18 +38,8 @@ Page({
                 wx.hideLoading()
             }, 1000)
         }).catch(err=>{
-            
-        }),
-        //获取签章
-        getSignature(this.data.interfaceCode).then(res=>{
-            let imgBase64 = res.data
-            this.setData({
-                signImg:imgBase64
-            })
-        }).catch(err=>{
 
-        })
-        
+        }) 
     },
     // 签署验证是否需要签署密码
     signContract(){
@@ -57,11 +48,12 @@ Page({
                 showModal:true
             })
         }else{
-            this.submit()
+            this.signSubmit()
         }
     },
      //提交表单数据并验证
     formSubmitModel: function(e) {
+        console.log(e.detail.value.input)
         if (!e.detail.value.input) {
         this.setData({
             psdHint: true
@@ -75,24 +67,51 @@ Page({
             showModal: false
         });
     },
+    //验证签署密码
+    verifySignPwd(){
+        let data={
+            signVerifyPassword:this.data.signPawssword
+        }
+        // console.log(this.data.signPawssword)
+        verifySignPassword(this.data.accountCode,data).then(res=>{
+            if(res.data.resultCode == 1){
+                this.signSubmit()    //校验成功提交签署
+                this.setData({
+                    showModal:false
+                })
+            }else{
+                
+            }
+        }).catch(err=>{
 
-    //签署提交
-    submit(){
-
+        })
     },
 
-   
-  //确定操作
-  ImmediatelySure: function() {
-    this.setData({
-      showModal: true
-    });
-  },
-  //取消操作
-  hideModal: function() {
-    this.setData({
-      showModal: false
-    });
-  },
+    //签署提交
+    signSubmit(){
+        contractkeywordsign(this.data.interfaceCode,this.data.contractTempNo).then(res=>{
+            if(res.data.responseCode==0){
+                wx.showToast({
+                    title: '签署成功',
+                    icon:'none',
+                    duration: 2000
+                })
+            }
+        }).catch(err=>{
+
+        })
+    },
+    //确定操作
+    ImmediatelySure: function() {
+        this.setData({
+            showModal: true
+        });
+    },
+    //取消操作
+    hideModal: function() {
+        this.setData({
+        showModal: false
+        });
+    },
  
 })

@@ -229,3 +229,7 @@
     color:#4091FB;
     margin-top:30rpx;
 }
+.options button::after {
+    border: none;
+    border-radius:0;
+}

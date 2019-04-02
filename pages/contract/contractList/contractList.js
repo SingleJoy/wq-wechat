@@ -379,10 +379,8 @@ Page({
             'accountTypeName':this.data.accountTypeName,
         };
         Object.assign(app.globalData.searchParam,signParams);
-
-        wx.setStorage({ key: 'contractNo',data: contractNo});
         wx.navigateTo({
-            url: '/pages/contract/contractDetail/contractDetail?contract='+JSON.stringify(signParams)
+            url: '/pages/contract/contractDetail/contractDetail'
         });
     },
     upper(){

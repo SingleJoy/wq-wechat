@@ -110,14 +110,13 @@ Page({
                                 wx.setStorage({key: 'accountLevel',data: res_data.accountLevel})
                                 wx.setStorage({key: 'enterpriseName',data: res_data.enterpriseName})
                                 wx.setStorage({key: 'mobile',data: res_data.mobile})
-                                wx.setStorage({key: 'dataList',data: JSON.stringify(res.data.dataList)})
                                 //登录=>主页
                                 let data={
                                     mobile:res_data.mobile
                                 }
                                 homePage(res_data.interfaceCode,data).then(res=>{
-                                    wx.setStorage({key:'email',data:res.data.dataList[0].email})
                                     app.globalData.signVerify = res.data.dataList[1].signVerify;
+                                    wx.setStorage({key:'email',data:res.data.dataList[0].email})
                                     if(res.data.resultCode==1){
                                         wx.switchTab({
                                             url: '/pages/index/index'
@@ -129,6 +128,7 @@ Page({
 
                                 })
                             } else {
+                                wx.setStorage({key: 'dataList',data: JSON.stringify(res.data.dataList)})
                                 wx.redirectTo({
                                     url: '/pages/auth/roles/roles'
                                 })

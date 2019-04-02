@@ -1,4 +1,4 @@
-import {templateVal,template} from '../../../wxapi/api.js'
+import {templateVal,template,templateBatchSign,userInfo} from '../../../wxapi/api.js'
 const app = getApp();
 Page({
     /**
@@ -10,6 +10,7 @@ Page({
         fillVal:'',
         interfaceCode:wx.getStorageSync('interfaceCode'),
         templateNo:'',
+        contractTempNo:''
     },
 
     /**
@@ -18,9 +19,9 @@ Page({
     onLoad: function (options) {
         let param_data = app.globalData.contractParam;
         let data={
-            templateNo:param_data.templateNo
+            contractTempNo:param_data.contractTempNo
         }
-        Object.assign(app.globalData.contractParam,{operateType:'back'})  //标`记返回时数据回显
+        Object.assign(app.globalData.contractParam,{operateType:'back'})  //标记返回时数据回显
         console.log(app)
         templateVal(this.data.interfaceCode,param_data.templateNo,data).then(res=>{
             let arrData = res.data.lists;
@@ -99,10 +100,13 @@ Page({
         let data={
             contractName:app.globalData.contractParam.templateName,
             templateNum:app.globalData.contractParam.templateNo,
+            contractTempNo:app.globalData.contractParam.contractTempNo,
+            templateSpecificType:app.globalData.contractParam.templateSpecificType,
             jsonVal:jsonVal,
+            operateType:'',
             accountCode:wx.getStorageSync('accountCode')
         }
-        template(this.data.interfaceCode,data).then(res=>{
+        templateBatchSign(this.data.interfaceCode,data).then(res=>{
             //真实合同编号
             let data = {          
                 contractTempNo:res.data.contractNo

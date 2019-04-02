@@ -26,7 +26,7 @@ Page({
         errMessage:'',
         permanentLimit:false,
         animationData:'',
-        interfaceCode:wx.getStorageSync('interfaceCode'),
+        interfaceCode:'',
         accountCode:wx.getStorageSync('accountCode'),
         accountLevel:'',
         contractNo:'',
@@ -55,12 +55,13 @@ Page({
         this.setData({
             contractStatus:param_data.contractStatus,
             contractNo:param_data.contractNo,
-            accountLevel:app.globalData.searchParam.accountLevel
+            accountLevel:app.globalData.searchParam.accountLevel,
+            interfaceCode:wx.getStorageSync('interfaceCode')
         })
-        console.log(app)
         wx.showLoading({
             title: '加载中',
         })
+        console.log(param_data)
         contractImgs(this.data.interfaceCode,this.data.contractNo).then(res=>{
             this.setData({
                 contractImgList:res.data
@@ -95,7 +96,7 @@ Page({
 
     //详情三角切换
     changeDetailBox:function(e){
-        console.log(this.data.detailMask)
+        // console.log(this.data.detailMask)
         this.setData({
             detailMask:!this.data.detailMask
         })
