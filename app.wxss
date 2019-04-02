@@ -105,6 +105,12 @@ view,text{
     border-radius: 0;
     color: #ffffff;
 }
+button::after {
+    border-radius: 0;
+}
+button{
+    border-radius: 0;
+}
 /* page::before{
     content: '';
     position: fixed;
