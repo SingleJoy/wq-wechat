@@ -426,7 +426,7 @@ Page({
         let searchParam=app.globalData.searchParam;
         let search=Object.keys(searchParam);
         if (search.length>0) {
-            console.log(app.globalData.searchParam);
+            // console.log(app.globalData.searchParam);
             Object.keys(searchParam).forEach((key)=>{
                 this.setData({
                     [key]:searchParam[key]
