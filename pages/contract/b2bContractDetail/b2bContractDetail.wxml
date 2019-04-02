@@ -63,16 +63,16 @@
          </view>
 
          <!-- 合同详情操作 -->
-        <view class="contract-option" >
+        <view class="contract-option" wx:if="{{creater==interfaceCode}}">
             <block wx:if="{{contractStatus == 1}}">
                 <button class='option' bindtap='signSubmit' wx:if="{{submitBtn}}">提交签署</button>
-                <button class='option' bindtap='signContract' wx:else>签署</button>
+                <button class='option' bindtap='signContract ' wx:else>签署</button>
                 <!-- scope.row.operation === 1  && (scope.row.isCreater?accountCode == scope.row.operator:true) -->
             </block>
             <block wx:elif="{{contractStatus == 2}}">
                 <view class="options">
                     <button class="" bindtap='smsTip'>短信提醒</button>
-                    <button class="" bindtap='copyLink'>复制链接</button>
+                    <button class="right-border" bindtap='copyLink'>复制链接</button>
                 </view>
             </block>
             <block wx:elif="{{contractStatus == 3}}">
@@ -104,7 +104,7 @@
         </view>
 
         <!-- 合同延期 -->
-        <view class="contract-dialog">
+        <view class="contract-dialog" wx:if="{{creater==interfaceCode}}">
             <block wx:if="{{contractStatus == 4}}">
                 <view class="drawer-mask" wx:if="{{showModalStatus}}"></view>
                 <view  class="drawer-box" wx:if="{{showModalStatus}}">

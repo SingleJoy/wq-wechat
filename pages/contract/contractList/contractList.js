@@ -376,7 +376,7 @@ Page({
             });
         }else{
             wx.navigateTo({
-                url: '/pages/contract/contractDetail/contractDetail'
+                url: '/pages/contract/b2bContractDetail/b2bContractDetail'
             });
         }
 

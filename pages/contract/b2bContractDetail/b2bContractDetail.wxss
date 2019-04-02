@@ -227,3 +227,6 @@
     color:#4091FB;
     margin-top:30rpx;
 }
+.right-border{
+    border-left: 1px solid #fff;
+}

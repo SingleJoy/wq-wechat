@@ -27,7 +27,7 @@ Page({
         errMessage:'',
         permanentLimit:false,
         animationData:'',
-        interfaceCode:'',
+        interfaceCode:wx.getStorageSync('interfaceCode'),
         accountCode:wx.getStorageSync('accountCode'),
         accountLevel:'',
         contractNo:'',
@@ -53,8 +53,11 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
+
         let param_data = app.globalData.searchParam;
+
         this.setData({
+            creater:app.globalData.searchParam.creater,
             contractStatus:param_data.contractStatus,
             contractNo:param_data.contractNo,
             accountLevel:app.globalData.searchParam.accountLevel,
