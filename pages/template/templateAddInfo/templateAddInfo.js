@@ -8,7 +8,7 @@ Page({
         infoList:[],  //数据请求列表
         renderLidst:[],//渲染列表
         fillVal:'',
-        interfaceCode:wx.getStorageSync('interfaceCode'),
+        interfaceCode:'',//直接同步获取拿不到值第一次
         templateNo:'',
         contractTempNo:''
     },
@@ -21,8 +21,10 @@ Page({
         let data={
             contractTempNo:param_data.contractTempNo
         }
+        this.setData({
+            interfaceCode:wx.getStorageSync('interfaceCode')
+        })
         Object.assign(app.globalData.contractParam,{operateType:'back'})  //标记返回时数据回显
-        console.log(app)
         templateVal(this.data.interfaceCode,param_data.templateNo,data).then(res=>{
             let arrData = res.data.lists;
             let newList = [];

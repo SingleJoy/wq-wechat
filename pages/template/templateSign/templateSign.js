@@ -96,6 +96,15 @@ Page({
                     icon:'none',
                     duration: 2000
                 })
+                wx.navigateTo({
+                    url: '/pages/template/templateSuccess/templateSuccess',
+                })
+            }else{
+                wx.showToast({
+                    title: res.data.responseMsg,
+                    icon:'none',
+                    duration: 2000
+                })
             }
         }).catch(err=>{
 
