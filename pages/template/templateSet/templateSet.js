@@ -1,5 +1,6 @@
 
 import { backContractTempSigner, contractTemp } from '../../../wxapi/api.js';
+import { validateCard } from '../../../utils/util.js';
 const app = getApp();
 Page({
   /**
@@ -49,6 +50,7 @@ Page({
     if (app.globalData.contractParam.operateType) {
       this.getSignInfo(); 
     }
+    console.log(app.globalData)
   },
   //获取签署设置
   getSignInfo() {
@@ -217,6 +219,23 @@ Page({
       this.setData({
         model: {
           idcardHint: "请输入身份证",
+          isShowIdcardHint: false,
+        }
+      })
+    }
+    if (!validateCard(e.detail.value.idCard)) {
+      console.log(222)
+      this.setData({
+        model: {
+          idcardHint: "身份证格式错误",
+          isShowIdcardHint: true,
+        }
+      });
+      return;
+    } else {
+      this.setData({
+        model: {
+          idcardHint: "身份证格式错误",
           isShowIdcardHint: false,
         }
       })

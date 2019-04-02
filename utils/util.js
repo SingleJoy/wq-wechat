@@ -74,6 +74,12 @@ function checkLogin() {
 function getToken(){
 
 }
+
+//验证身份证号
+function validateCard(str) {
+  const reg = /(^\d{18}$)|(^\d{17}(X|x)$)/
+  return reg.test(str)
+}
 module.exports = {
   formatTime,
   checkSession,
@@ -81,7 +87,8 @@ module.exports = {
   checkLogin,
   checkPhone,
   checkPwd,
-  getToken
+  getToken,
+  validateCard
 }
 
 
