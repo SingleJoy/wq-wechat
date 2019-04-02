@@ -16,7 +16,7 @@
                         <block wx:elif="{{item.accountStatus==2}}">
                             <view class="account-status real-name">未激活</view>
                         </block> 
-                        <text class="account-option" bindtap="goIndex" data-interfaceCode="{{item.interfaceCode}}">进入</text> 
+                        <text class="account-option" bindtap="goIndex" data-info="{{item}}">进入</text> 
                         </view>
                 </view>
             </view>
@@ -26,7 +26,7 @@
             <text class="account-title">企业子账号</text>
             <view class="account-list">
                 <view class="account-item" wx:for="{{subAccountList}}" wx:key="item.name">
-                    <text class="account-name">{{item.name}}</text>
+                    <text class="account-name">{{item.accountName}}</text>
                     <view class="">
                         <block wx:if="{{item.status==0}}">
                                 <view class="account-status unreal-name">未实名</view>

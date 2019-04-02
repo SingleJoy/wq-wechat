@@ -25,14 +25,6 @@ Page({
             })
       }
     });
-    wx.getStorage({
-        key:'mobile',
-        success(res){
-            that.setData({
-                 mobile:res.data
-            })
-        }
-    })
   },
 
   /**
@@ -84,18 +76,22 @@ Page({
 
   },
   goIndex:function(e){
-    let interfaceCode = e.target.dataset.interfaceCode
+    let accountInfo = e.target.dataset.info;
+    wx.setStorage({key: 'accountCode',data: accountInfo.accountCode})
+    wx.setStorage({key: 'interfaceCode',data: accountInfo.interfaceCode})
+    wx.setStorage({key: 'enterpriseName',data: accountInfo.enterpriseName})
+    wx.setStorage({key: 'accountLevel',data: accountInfo.accountLevel})
+    wx.setStorage({key: 'mobile',data: accountInfo.mobile})
+    let interfaceCode = accountInfo.interfaceCode
+    let login_mobile = accountInfo.mobile
     let data = {
-          mobile:this.data.mobile
+          mobile:login_mobile
     }
     homePage(interfaceCode,data).then(res=>{
-       if(res.data.resultCode==1){
-            wx.setStorage({ key: 'accountCode',data: res_data.accountCode})
-            wx.setStorage({ key: 'interfaceCode',data: res_data.interfaceCode})
-            wx.setStorage({key: 'accountLevel',data: res_data.accountLevel})
-            wx.setStorage({key: 'mobile',data: res_data.mobile})
-            wx.setStorage({key:'email',data:res.data.dataList[0].email})
+        if(res.data.resultCode==1){
             app.globalData.signVerify = res.data.dataList[1].signVerify;
+            wx.setStorage({key:'email',data:res.data.dataList[0].email});
+            wx.setStorage({ key: 'parentAccountmobile', data: res.data.dataList[1].parentAccountmobile });
             wx.switchTab({
                 url:'/pages/index/index'
             })

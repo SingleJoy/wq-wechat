@@ -14,23 +14,12 @@ Page({
     scrollHeight: 0,
     isRequest: false,
     changeChecked: false,
-    loading: true,
-    loaded: false,
+    // loading: false,
+    // loaded: false,
   },
   onLoad: function () {
-    wx.showLoading({
-      title: '加载中',
-      mask: true
-    })
-    //   这里要注意，微信的scroll-view必须要设置高度才能监听滚动事件，所以，需要在页面的onLoad事件中给scroll-view的高度赋值
+    //这里要注意，微信的scroll-view必须要设置高度才能监听滚动事件，所以，需要在页面的onLoad事件中给scroll-view的高度赋值
     var that = this;
-    wx.getSystemInfo({
-      success: function (res) {
-        that.setData({
-          scrollHeight: res.windowHeight
-        });
-      }
-    });
     if (wx.getStorageSync('mobileTemplate')) {
       this.setData({
         changeChecked: true
@@ -38,6 +27,13 @@ Page({
       this.getData("applet");
     }
     this.getData();
+    wx.getSystemInfo({
+      success: function (res) {
+        that.setData({
+          scrollHeight: res.windowHeight
+        });
+      }
+    });
   },
   // 查看详情
   lookUp(e) {
@@ -92,10 +88,14 @@ Page({
   },
   // 请求分页数据getData
   getData(data) {
-    this.setData({
-      hidden: false,
-      loading: true,
-    });
+    wx.showLoading({
+      title: '加载中',
+      mask: true
+    })
+    // this.setData({
+    //   hidden: false,
+    //   loading: true,
+    // });
     // let accountCode = "AC5c1a0198e0664418ad724eae234174fe";
     let accountCode = wx.getStorageSync('accountCode')
     let uploadData = {
@@ -118,9 +118,9 @@ Page({
     }
     getAccountTemplates(uploadData, accountCode).then(res => {
       wx.hideLoading()
-      this.setData({
-        loading: false,
-      });
+      // this.setData({
+      //   loading: false,
+      // });
       let totalItemNumber = res.data.totalItemNumber;
       var list = this.data.list;
       let contents = res.data.contents;
@@ -136,6 +136,11 @@ Page({
           isRequest: true,
         });
       }
+      if (totalItemNumber <= 0) {
+        this.setData({
+          scrollHeight: "100rpx"
+        });
+      }
       pageNum++
       this.setData({
         hidden: true
@@ -147,15 +152,23 @@ Page({
   },
   //页面滑动到底部
   bindDownLoad: function () {
+    console.log(this.data.isRequest)
     if (this.data.isRequest) {
-      this.setData({
-        loaded: true,
-      });
+      // this.setData({
+      //   loaded: true,
+      // });
+      // setTimeout(() => {
+      //   this.setData({
+      //     loaded: false,
+      //   });
+      // },2000)
+      wx.showLoading({
+        title: '没有更多数据了',
+        mask: true
+      })
       setTimeout(() => {
-        this.setData({
-          loaded: false,
-        });
-      },2000)
+        wx.hideLoading()
+      }, 1000)
       return false;
     }
     if(this.data.changeChecked) {

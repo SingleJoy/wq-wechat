@@ -77,6 +77,11 @@ const contractNum  = {
 function contractImgs(interfaceCode,contractNo){
     return request(api + '/v1/tenant/' + interfaceCode + '/contract/'+ contractNo+'/contractimgs', 'get')
 }
+//模板合同图片
+function contracttempimgs(interfaceCode,contractNo){
+    return request(api + '/v1/tenant/' + interfaceCode + '/contract/'+ contractNo+'/contracttempimgs', 'get')
+}
+
 //模板合同图片请求
 function templateImg(interfaceCode,templateNo,data){
     return request(api + '/v1/tenant/'+ interfaceCode +'/template/'+templateNo+'/getTemplateImags', 'get',data)
@@ -109,9 +114,17 @@ function getSignature(interfaceCode){
 function verifySignPassword(accountCode,data){
     return request(api+'/v1.7/tenant/account/'+accountCode+'/verifySignPassword','post',data) 
 }
-//签署提交
+//我的合同签署提交
 function contractmoresign(interfaceCode,contractNo,data){
     return request(api+'/v1/tenant/'+interfaceCode+'/user/'+interfaceCode+'/contractmoresign'+contractNo,'get',data)
+}
+//模板发起】
+function templateBatchSign(interfaceCode,data){
+    return request(api+'/v1/tenant/'+interfaceCode+'/templateBatchSign','post',data)
+}
+//对手方信息
+function userInfo(interfaceCode,contractTempNo){
+    return request(api+'/v1/tenant/'+interfaceCode+'/batchSign'+contractTempNo,'get')
 }
 //合同参数查询
 function templateVal(interfaceCode,templateNo,data){
@@ -120,6 +133,10 @@ function templateVal(interfaceCode,templateNo,data){
 //合同参数提交
 function template(interfaceCode,data){
     return request(api+'/v1/tenant/'+ interfaceCode + '/template','post',data)
+}
+//模板发起签署
+function contractkeywordsign(interfaceCode,contractNo){
+    return request(api+'/v1/tenant/'+ interfaceCode + '/user/'+interfaceCode +'/contractkeywordsign/'+contractNo ,'post')
 }
 //合同归档接口
 function contractFilings(interfaceCode,accountCode) {
@@ -162,6 +179,7 @@ module.exports = {
   contracts,
   b2bContrants,
   contractImgs,
+  contracttempimgs,
   templateImg,
   remind,
   signerpositions,
@@ -177,5 +195,8 @@ module.exports = {
   getSignLink,
   contractmoresign,
   templateVal,
-  template
+  template,
+  templateBatchSign,
+  userInfo,
+  contractkeywordsign
 }

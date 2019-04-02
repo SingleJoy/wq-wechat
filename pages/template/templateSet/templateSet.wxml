@@ -70,7 +70,7 @@
         <view>
           <view class="modal-input">
             <label>姓名：</label>
-            <input name="name" placeholder-class="input-holder" value="{{listValue.nameValue}}" maxlength="10" bindinput="inputChange" placeholder="请输入姓名"></input>
+            <input name="name" placeholder-class="input-holder" value="{{listValue.nameValue}}" maxlength="15" bindinput="inputChange" placeholder="请输入姓名"></input>
           </view>
           <view class="modal-input model-hint">
             <label></label>

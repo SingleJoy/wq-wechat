@@ -5,13 +5,11 @@
         <!-- 合同图片 -->
         <view class="contract-img">
             <image style="height:{{imgHeight}}px" class="contractImg" src='{{baseUrl}}/restapi/wesign/v1/tenant/contract/img?contractUrl={{item.contractUrl}}' wx:for="{{contractImgList}}" wx:key="{{item.contractUrlId}}"></image>
-            <image src="{{signImg}}" style="{{item.style}}" wx:if="{{signPositionList.length>0}}" wx:for="{{signPositionList}}" wx:key="item.pageNum"></image>
         </view>
     </view>
     <!-- 顶部操作按钮 -->
     <view class='operateBtn'>
-      <!-- <button class='contact-start cancel' bindtap='ImmediatelyCancel'>签署</button> -->
-      <button class='contact-start sure' bindtap='getSignPosition'>签署</button>
+      <button class='contact-start sure' bindtap='signContract'>签署</button>
     </view>
     <!-- 弹框 -->
     <view class="modal-mask" bindtap="hideModal" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
