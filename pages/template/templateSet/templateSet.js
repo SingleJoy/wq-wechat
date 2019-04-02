@@ -39,18 +39,21 @@ Page({
     },
     //添加签署人信息保存
     dataList: [
-      { name: "小明", idCard: "545214552233663321", mobile: "15685474458" },
-      { name: "大明", idCard: "545214552233663321", mobile: "15545454545" }
+      // { name: "小明", idCard: "545214552233663321", mobile: "15685474458" },
+      // { name: "大明", idCard: "545214552233663321", mobile: "15545454545" }
     ],
     showModal: false,
     //删除样式
     delate: "9",
   },
   onLoad: function (options) {
+    this.setData({
+      contactName: app.globalData.contractParam.templateName,
+      date: app.globalData.contractParam.strCreateTime.substring(0, 11)
+    })
     if (app.globalData.contractParam.operateType) {
       this.getSignInfo(); 
     }
-    console.log(app.globalData)
   },
   //获取签署设置
   getSignInfo() {
@@ -76,7 +79,6 @@ Page({
   },
   //右滑开始
   touchStart(e) {
-    console.log(e.target)
     this.setData({
       "touch.x": e.changedTouches[0].clientX,
       "touch.y": e.changedTouches[0].clientY
@@ -85,7 +87,6 @@ Page({
   //右滑操作
   getTouchData (endX, endY, startX, startY){
     let _this = this;
-    // console.log(_this.data.listIndex);
     let turn = "";
     if (endX - startX > 50 && Math.abs(endY - startY) < 50) {      //右滑
       turn = "right";
@@ -174,7 +175,7 @@ Page({
     return false;
   },
   preventTouchMove() {
-    console.log(111)
+    
   },
   //弹框关闭操作
   hideModal: function () {
@@ -184,11 +185,10 @@ Page({
   },
   //获取input输入的值
   inputChange: function(e) {
-    // console.log(e)
+    
   },
   //提交表单数据
   formSubmitModel: function(e) {
-    console.log(e)
     //验证姓名
     if (!e.detail.value.name) {
       this.setData({
@@ -225,7 +225,6 @@ Page({
       return;
     }
     if (!validateCard(e.detail.value.idCard)) {
-      console.log(222)
       this.setData({
         model: {
           idcardHint: "身份证格式错误",
@@ -302,7 +301,23 @@ Page({
   },
   //生成合同
   formSubmit: function(e) {
-    
+    let value = e.detail.value;
+    if(!value.input) {
+      wx.showModal({
+        title: '提示',
+        content: '合同名称不能为空',
+        success: function (res) {}
+      })
+      return;
+    }
+    if (!value.time && !this.data.perpetualValid) {
+      wx.showModal({
+        title: '提示',
+        content: '签署截止日期不能为空',
+        success: function (res) {}
+      })
+      return;
+    }
     let dataList = this.data.dataList;
     let names = "",
         idCards = "",

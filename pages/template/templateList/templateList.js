@@ -38,10 +38,11 @@ Page({
   // 查看详情
   lookUp(e) {
     let signParams ={
-        templateNo:e.target.dataset.templateno,
-        templateSpecificType:e.target.dataset.templatespecifictype,
-        operateType:'',
-        templateName:e.target.dataset.templatename
+      templateNo:e.target.dataset.templateno,
+      templateSpecificType:e.target.dataset.templatespecifictype,
+      operateType:'',
+      templateName:e.target.dataset.templatename,
+      strCreateTime: e.target.dataset.strcreatetime
     }
     Object.assign(app.globalData.contractParam,signParams)
     wx.navigateTo({
@@ -65,7 +66,6 @@ Page({
     }
     let accountCode = wx.getStorageSync('accountCode')
     // let accountCode = "ACdcbfa3bb0d4a898a5eae66ae411aaf";
-    console.log(accountCode)
     updateMobileTemplate(data, accountCode).then(res => {
       this.setData({
         changeChecked: changeValue
@@ -152,7 +152,6 @@ Page({
   },
   //页面滑动到底部
   bindDownLoad: function () {
-    console.log(this.data.isRequest)
     if (this.data.isRequest) {
       // this.setData({
       //   loaded: true,
