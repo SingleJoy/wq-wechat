@@ -47,6 +47,7 @@ Page({
         signPositionStr:'',
         submitBtn:false,  //签署按钮和提交按钮展示
         signPawssword:'',//签署密码
+        contractInfo:''      //合同信息
     },
 
     /**
@@ -58,7 +59,8 @@ Page({
             contractStatus:param_data.contractStatus,
             contractNo:param_data.contractNo,
             accountLevel:app.globalData.searchParam.accountLevel,
-            interfaceCode:wx.getStorageSync('interfaceCode')
+            interfaceCode:wx.getStorageSync('interfaceCode'),
+            contractInfo:param_data
         })
         wx.showLoading({
             title: '加载中',
@@ -170,42 +172,24 @@ Page({
             showModalStatus:true
         })
     },
-//是否永久有效
+    //是否永久有效
     changePermanent:function(e){
         this.setData({
             permanentLimit:!this.data.permanentLimit
         })
     },
-//弹框关闭
+    //弹框关闭
     cancelDialog:function(){
         this.setData({
             showModalStatus:false,
             passwordDialog:false
         })
     },
-//签署合同
+    //签署合同
     signContract:function(e){
-        if(app.globalData.searchParam.num == 2){    //b2b跳转签署面板
-            wx.redirectTo({
-                url:'/pages/canvas/canvas'
-            })
-        }else{
-            // //判断是否获取过图片签章可以提交
-            // if(this.data.submitBtn){
-            //     if(!this.data.signVerify){     //需要签署密码
-            //         this.setData({
-            //             passwordDialog:true
-            //         })
-            //     }else{
-            //         this.signSubmit()           //提交签署                    
-            //     }
-            // }else{
-                this.getSignPosition()      //签署
-            // }
-        }
+        this.getSignPosition()
     },
-
-// 获取签章位置并展示签章图片
+    // 签署合同获取签章位置并展示签章图片
     getSignPosition(){
         signerpositions(this.data.interfaceCode,this.data.contractNo).then(res=>{
             let arr = res.data.list;
@@ -256,6 +240,7 @@ Page({
 
         })
     },
+    //提交签署
     signSubmit(){
         if(!this.data.signVerify){     //需要签署密码
             this.setData({
@@ -287,7 +272,7 @@ Page({
 
         })
     },
-    //邮箱发送
+    // 邮箱发送
     emailSubmit:function(e){
         let data={
             email:'',

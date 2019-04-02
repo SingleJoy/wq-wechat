@@ -62,12 +62,12 @@
          </view>
          <!-- 合同详情操作 -->
         <view class="contract-option" >
-            <block wx:if="{{contractStatus == 1}}"> 
-                <button class='option' bindtap='signSubmit' wx:if="{{submitBtn}}">提交签署</button>
-                <button class='option' bindtap='signContract' wx:else>签署</button>
-                <!-- scope.row.operation === 1  && (scope.row.isCreater?accountCode == scope.row.operator:true) -->
+            <!-- 先判断合同是不是当前账号发起的，不是说明是接收方则有签署权限；是我发起的还要判断是一级账号的还是二级，一级只能看二级不能签 -->
+            <block wx:if="{{contractStatus == 1 && (contractInfo.creater == interfaceCode?accountCode==contractInfo.operator:true)}}"> 
+                <button class='option' bindtap='signContract' wx:if="{{!submitBtn}}">签署</button>
+                <button class='option' bindtap='signSubmit' wx:else>提交签署</button>
             </block>
-            <block wx:elif="{{contractStatus == 2}}"> 
+            <block wx:elif="{{contractStatus == 2 && (contractInfo.creater == interfaceCode?accountCode==contractInfo.operator:true)}}"> 
                 <view class="options">
                     <button class="" bindtap='smsTip'>短信提醒</button>
                     <button class="" bindtap='copyLink'>复制链接</button>
@@ -76,7 +76,7 @@
             <block wx:elif="{{contractStatus == 3}}"> 
                 <button class='option' bindtap='downContract'>下载</button>
             </block>
-            <block wx:else>
+            <block wx:elif="{{(contractInfo.creater == interfaceCode?accountCode==contractInfo.operator:true)}}">
                 <button class='option' bindtap='extendDate'>延长签署日期</button>
             </block>
         </view>

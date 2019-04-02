@@ -14,7 +14,7 @@ Page({
     },
     onConfirm:function(e){
         wx.navigateTo({
-            url: '../../template/templateAddInfo/templateAddInfo',
+            url: '/pages/contract/contractDetail/contractDetail',
           })
     }
   })
