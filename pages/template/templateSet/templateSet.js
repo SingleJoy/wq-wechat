@@ -13,7 +13,7 @@ Page({
       nameIdcard: "",
       namePhone: ""
     },
-    date: '2019-04-01',
+    date: '',
     //合同名称
     contactName: "1", 
     //签署日期
@@ -21,7 +21,7 @@ Page({
     //标识是否永久有效
     perpetualValid: "",
     //是否永久有效
-    isChecked: false,
+    isChecked: true,
     //编辑/添加签署人保存标识
     identification: "",
     //编辑/添加签署人数据索引
@@ -49,7 +49,6 @@ Page({
   onLoad: function (options) {
     this.setData({
       contactName: app.globalData.contractParam.templateName,
-      date: app.globalData.contractParam.strCreateTime.substring(0, 11)
     })
     if (app.globalData.contractParam.operateType) {
       this.getSignInfo(); 
@@ -318,6 +317,18 @@ Page({
       })
       return;
     }
+    if (!this.data.dataList.length) {
+      wx.showModal({
+        title: '提示',
+        content: '您还没有添加签署人',
+        success: function (res) {}
+      })
+      return;
+    }
+    wx.showLoading({
+      title: '加载中',
+      mask: true
+    })
     let dataList = this.data.dataList;
     let names = "",
         idCards = "",
@@ -377,7 +388,9 @@ Page({
             wx.navigateTo({
                 url: '../templateAddInfo/templateAddInfo'
             })
+            wx.hideLoading()
         }else{
+            wx.hideLoading()
             wx.showToast({
                 title: res.data.resultMessage,
                 icon:'none',
