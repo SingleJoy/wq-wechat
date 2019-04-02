@@ -161,8 +161,9 @@ Page({
       //     loaded: false,
       //   });
       // },2000)
-      wx.showLoading({
+      wx.showToast({
         title: '没有更多数据了',
+        icon: "none",
         mask: true
       })
       setTimeout(() => {
