@@ -115,7 +115,7 @@ Page({
             }
             Object.assign(app.globalData.contractParam,data)
             if(res.data.resultCode){
-                wx.navigateTo({
+                wx.redirectTo({
                     url: '/pages/template/templateSign/templateSign',
                 })
             }

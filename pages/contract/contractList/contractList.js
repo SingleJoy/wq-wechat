@@ -32,11 +32,17 @@ Page({
         folderList:[], //归档文件夹列表
         accountList:[], //账户角色列表
         pageNo:1, //页码数默认为1
-        folderNo:'', //选择归档文件编号 查询数据接口使用
+        filingNo:'', //选择归档文件编号 查询数据接口使用
         contractDataList:[], //查询数据
         scrollTop:'', //页面滑动
         secondAccountCode:'', //二级账号accountCode
         flag:true,
+       interfaceCode :wx.getStorageSync('interfaceCode'),
+       accountCode : wx.getStorageSync('accountCode'),
+        mobile : wx.getStorageSync('mobile'),
+        enterpriseName : wx.getStorageSync('enterpriseName'),
+        accountLevel :wx.getStorageSync('accountLevel'),
+
     },
 
     /**
@@ -370,9 +376,16 @@ Page({
             'accountTypeName':this.data.accountTypeName,
         };
         Object.assign(app.globalData.searchParam,signParams);
-        wx.navigateTo({
-            url: '/pages/contract/contractDetail/contractDetail'
-        });
+        if(this.data.num==1){
+            wx.navigateTo({
+                url: '/pages/contract/contractDetail/contractDetail'
+            });
+        }else{
+            wx.navigateTo({
+                url: '/pages/contract/b2bContractDetail/b2bContractDetail'
+            });
+        }
+
     },
     upper(){
 
@@ -423,12 +436,16 @@ Page({
 
         let searchParam=app.globalData.searchParam;
         let search=Object.keys(searchParam);
+        //判断页面是从哪个进入，如果是从contractSearch 保存从contractSearch 获取app.data存储的数据
         if (search.length>0) {
             // console.log(app.globalData.searchParam);
             Object.keys(searchParam).forEach((key)=>{
                 this.setData({
-                    [key]:searchParam[key]
-                })
+                    [key]:searchParam[key],
+                });
+            });
+            this.setData({
+                contractDataList:[]
             });
             //查询所有归档文件夹
             this.contractFilings();
@@ -436,19 +453,7 @@ Page({
             this.searchData();
 
         }else{
-            const interfaceCode = wx.getStorageSync('interfaceCode');
-            const accountCode = wx.getStorageSync('accountCode');
-            const mobile = wx.getStorageSync('mobile');
-            const enterpriseName = wx.getStorageSync('enterpriseName');
-            const accountLevel = wx.getStorageSync('accountLevel');
-            this.setData({
-                interfaceCode:interfaceCode,
-                accountCode:accountCode,
-                secondAccountCode:accountCode,
-                mobile:mobile,
-                enterpriseName:enterpriseName,
-                accountLevel:accountLevel,
-            });
+
             //查询所有归档文件夹
             this.contractFilings();
             this.getAccounts();

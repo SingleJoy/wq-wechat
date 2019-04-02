@@ -144,10 +144,19 @@ wx.getSystemInfo({
                             };
                             //往全局变量派发一个base64img 对象
                             Object.assign(app.globalData.contractParam,base64Image);
+                            let num=app.globalData.contractParam.num;
+                            // console.log(app.globalData)
 
-                            wx.navigateTo({
-                                url: '/pages/contract/contractDetail/contractDetail'
-                            });
+                            if(num==1){
+                                wx.navigateTo({
+                                    url: '/pages/contract/contractDetail/contractDetail'
+                                });
+                            }else {
+                                wx.navigateTo({
+                                    url: '/pages/contract/b2bContractShow/b2bContractShow'
+                                });
+                            }
+
                         }
                     })
 

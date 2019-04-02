@@ -78,3 +78,10 @@
     color: #4091FB;
     float: right;
 }
+.button-back {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: #4091FB;
+  color: #fff;
+}

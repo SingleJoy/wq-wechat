@@ -112,8 +112,7 @@
     display: none;
 }
 .list-item-on {
-    border-bottom: 1rpx solid #4091fb;
-    color: #4091fb;
+    color: #4091fb!important;
 }
 .tab-list{
     z-index: 1;

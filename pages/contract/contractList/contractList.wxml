@@ -41,19 +41,19 @@
 
                 <view class="{{selected==1?'show':'hidden'}}">
                     <view wx:for="{{folderList}}" wx:key="index">
-                        <view class="{{sum == 1?'list-item-on':'list-item'}}"  bindtap="chooseFolder" data-filingNo="{{item.filingNo}}" data-filingName="{{item.filingName}}" >{{item.filingName}}</view>
+                        <view class="{{item.filingNo == filingNo?'list-item-on':'list-item'}}"  bindtap="chooseFolder" data-filingNo="{{item.filingNo}}" data-filingName="{{item.filingName}}" >{{item.filingName}}</view>
                     </view>
 
                 </view>
 
                 <view class="{{selected==2?'show':'hidden'}}">
-                    <view class="{{sum == 1?'list-item-on':'list-item'}}" data-num="1" bindtap="chooseContractType" data-name="对个人合同">对个人合同</view>
-                    <view class="{{sum == 2?'list-item-on':'list-item'}}" data-num="2" bindtap="chooseContractType" data-name="对企业合同">对企业合同</view>
+                    <view class="{{num == 1?'list-item-on':'list-item'}}" data-num="1" bindtap="chooseContractType" data-name="对个人合同">对个人合同</view>
+                    <view class="{{num == 2?'list-item-on':'list-item'}}" data-num="2" bindtap="chooseContractType" data-name="对企业合同">对企业合同</view>
                 </view>
 
                 <view class="{{selected==3?'show':'hidden'}}">
                     <view wx:for="{{accountList}}" wx:key="index" >
-                        <view class="{{sum == 1?'list-item-on':'list-item'}}" data-accountCode="{{item.accountCode}}" bindtap="accountType" data-accountName="{{item.accountName}}">
+                        <view class="{{item.accountCode == accountCode?'list-item-on':'list-item'}}" data-accountCode="{{item.accountCode}}" bindtap="accountType" data-accountName="{{item.accountName}}">
                             {{item.accountName}}
                         </view>
 

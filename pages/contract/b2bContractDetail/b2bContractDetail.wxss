@@ -1,4 +1,4 @@
-
+/* pages/contract/contractDetail/b2bContractDetail.wxss */
 .title-option{
     width:100%;
     position:fixed;
@@ -138,8 +138,6 @@
     float: left;
     background: #4091FB;
     color:#fff;
-    border-radius:none;
-
 }
 
 .drawer-mask{
@@ -229,7 +227,6 @@
     color:#4091FB;
     margin-top:30rpx;
 }
-.options button::after {
-    border: none;
-    border-radius:0;
+.right-border{
+    border-left: 1px solid #fff;
 }

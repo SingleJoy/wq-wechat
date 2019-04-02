@@ -1,0 +1,6 @@
+.sign-picture{
+    position: absolute;
+}
+.sign-picture image{
+
+}
