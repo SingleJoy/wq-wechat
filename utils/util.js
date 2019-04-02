@@ -80,6 +80,11 @@ function validateCard(str) {
   const reg = /(^\d{18}$)|(^\d{17}(X|x)$)/
   return reg.test(str)
 }
+//验证手机号
+function validateMoblie(str) {
+  const reg = /^0?(13[0-9]|15[0123456789]|18[0123456789]|14[135789]|17[0123467859]|16[6]|19[89])[0-9]{8}$/
+  return reg.test(str)
+}
 module.exports = {
   formatTime,
   checkSession,
@@ -88,7 +93,8 @@ module.exports = {
   checkPhone,
   checkPwd,
   getToken,
-  validateCard
+  validateCard,
+  validateMoblie
 }
 
 

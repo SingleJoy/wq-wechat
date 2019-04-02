@@ -117,6 +117,7 @@ Page({
                                 homePage(res_data.interfaceCode,data).then(res=>{
                                     app.globalData.signVerify = res.data.dataList[1].signVerify;
                                     wx.setStorage({key:'email',data:res.data.dataList[0].email})
+                                    wx.setStorage({ key: 'parentAccountmobile', data: res.data.dataList[1].parentAccountmobile })
                                     if(res.data.resultCode==1){
                                         wx.switchTab({
                                             url: '/pages/index/index'
