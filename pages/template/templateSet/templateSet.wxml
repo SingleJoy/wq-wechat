@@ -13,8 +13,8 @@
             <picker
               mode="date"
               value="{{date}}"
-              start="2015-09-01"
-              end="2017-09-01"
+              start="2012-09-01"
+              end="2030-09-01"
               bindchange="bindDateChange"
             >
               <input name="time" class="picker picker-time" disabled='disabled' placeholder='请选择签署截止日' value='{{date}}'></input>

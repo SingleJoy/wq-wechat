@@ -96,7 +96,7 @@ Page({
                     icon:'none',
                     duration: 2000
                 })
-                wx.navigateTo({
+              wx.redirectTo({
                     url: '/pages/template/templateSuccess/templateSuccess',
                 })
             }else{
