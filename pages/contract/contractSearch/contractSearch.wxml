@@ -15,7 +15,7 @@
 
             <view class="search-data" >
                 <view class="data-lists" wx:for="{{contractDataList}}" wx:key="index" wx:if="{{contractDataList.length>0}}"
-                      data-contractNo="{{item.contractNum}}" data-contractStatus="{{item.contractStatus}}"   data-operator="{{item.operator}}" data-creater="{{item.creater}}"
+                      data-validTime="{{item.validTime}}"     data-contractNo="{{item.contractNum}}" data-contractStatus="{{item.contractStatus}}" data-contractType="{{item.contractType}}"  data-operator="{{item.operator}}" data-creater="{{item.creater}}"
                       bindtap="goDetail">
                     <view class="contract-name">{{item.contractName}}</view>
                     <view class="sign-user">{{item.signers}}</view>

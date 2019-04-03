@@ -37,33 +37,46 @@ Page({
         scrollTop:'', //页面滑动
         secondAccountCode:'', //二级账号accountCode
         flag:true,
-       interfaceCode :wx.getStorageSync('interfaceCode'),
-       accountCode : wx.getStorageSync('accountCode'),
-        mobile : wx.getStorageSync('mobile'),
-        enterpriseName : wx.getStorageSync('enterpriseName'),
-        accountLevel :wx.getStorageSync('accountLevel'),
+
 
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
+
     onPullDownRefresh() {
+
         this.setData({
             pageNo:1
         });
         this.searchData();
+        wx.stopPullDownRefresh();
     },
     onLoad: function (options) {
-
+        let interfaceCode =wx.getStorageSync('interfaceCode');
+        let  accountCode= wx.getStorageSync('accountCode');
+        let  mobile= wx.getStorageSync('mobile');
+        let enterpriseName= wx.getStorageSync('enterpriseName');
+        let   accountLevel=wx.getStorageSync('accountLevel');
         let contractStatus=options.contractStatus;
         if(contractStatus){
             this.setData({
-                contractStatus:contractStatus
+                contractStatus:contractStatus,
+                interfaceCode:interfaceCode,
+                accountCode:accountCode,
+                mobile:mobile,
+                enterpriseName:enterpriseName,
+                accountLevel:accountLevel,
             })
         }else{
             this.setData({
-                contractStatus:3
+                contractStatus:3,
+                interfaceCode:interfaceCode,
+                accountCode:accountCode,
+                mobile:mobile,
+                enterpriseName:enterpriseName,
+                accountLevel:accountLevel,
             })
         }
 
@@ -129,6 +142,7 @@ Page({
         let interfaceCode=this.data.interfaceCode;
         wx.showLoading({
             title: '加载中...',
+            mask: true
         });
         contracts(interfaceCode,param).then(res=>{
             let totalItemNumber=res.data.totalItemNumber;
@@ -164,6 +178,7 @@ Page({
         let interfaceCode=this.data.interfaceCode;
         wx.showLoading({
             title: '加载中...',
+            mask: true
         });
         b2bContrants(interfaceCode,param).then(res=>{
             let totalItemNumber=res.data.totalItemNumber;
@@ -356,6 +371,7 @@ Page({
         let contractStatus=e.currentTarget.dataset.contractstatus;
         let creater=e.currentTarget.dataset.creater;
         let operator=e.currentTarget.dataset.operator;
+        let validTime=e.currentTarget.dataset.validtime;
         this.setData({
             show:true
         });
@@ -364,6 +380,7 @@ Page({
             'contractStatus':contractStatus,
             'operator':operator,
             'creater':creater,
+            'validTime':validTime,
             'num':this.data.num,
             'show':false,
             'pageNo':1,
