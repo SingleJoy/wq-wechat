@@ -379,7 +379,7 @@ Page({
       }
     }
     contractTemp(zqUserContractTempVo, creater).then(res => {
-        if(res.data.resultCode==0){
+        if(res.data.resultCode=="0"){
             //临时合同编号
             let signParams = {
                 contractTempNo: res.data.data
