@@ -72,7 +72,7 @@
             <block wx:elif="{{contractStatus == 2}}">
                 <view class="options">
                     <button class="" bindtap='smsTip'>短信提醒</button>
-                    <button class="right-border" bindtap='copyLink'>复制链接</button>
+                    <button class="right-border" bindtap="copyLink">复制链接</button>
                 </view>
             </block>
             <block wx:elif="{{contractStatus == 3}}">
