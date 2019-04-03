@@ -1,4 +1,6 @@
 import {searchContractsForMiniProgram} from '../../../wxapi/api';
+
+const app = getApp();
 //获取设备高度
 let height;
 wx.getSystemInfo({
@@ -132,17 +134,28 @@ wx.getSystemInfo({
         goDetail(e){
             let contractNo=e.currentTarget.dataset.contractno;
             let contractStatus=e.currentTarget.dataset.contractstatus;
+            let contractType=e.currentTarget.dataset.contracttype;
             let creater=e.currentTarget.dataset.creater;
             let operator=e.currentTarget.dataset.operator;
-            let contract={
+            let signParams={
                 'contractNo':contractNo,
                 'contractStatus':contractStatus,
                 'operator':operator,
                 'creater':creater,
+                'num':contractType,
             };
-            wx.setStorage({ key: 'contractNo',data: contractNo});
-            wx.navigateTo({
-                url: '/pages/contract/contractDetail/contractDetail?contract='+JSON.stringify(contract)
-            });
+
+            Object.assign(app.globalData.searchParam,signParams);
+            // contractType 1是b2c 0是b2b
+            if(contractType==1){
+                wx.navigateTo({
+                    url: '/pages/contract/contractDetail/contractDetail'
+                });
+            }else{
+                wx.navigateTo({
+                    url: '/pages/contract/b2bContractDetail/b2bContractDetail'
+                });
+            }
+
         },
     })

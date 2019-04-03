@@ -37,11 +37,7 @@ Page({
         scrollTop:'', //页面滑动
         secondAccountCode:'', //二级账号accountCode
         flag:true,
-       interfaceCode :wx.getStorageSync('interfaceCode'),
-       accountCode : wx.getStorageSync('accountCode'),
-        mobile : wx.getStorageSync('mobile'),
-        enterpriseName : wx.getStorageSync('enterpriseName'),
-        accountLevel :wx.getStorageSync('accountLevel'),
+
 
     },
 
@@ -55,15 +51,29 @@ Page({
         this.searchData();
     },
     onLoad: function (options) {
-
+        let interfaceCode =wx.getStorageSync('interfaceCode');
+        let  accountCode= wx.getStorageSync('accountCode');
+        let  mobile= wx.getStorageSync('mobile');
+        let enterpriseName= wx.getStorageSync('enterpriseName');
+        let   accountLevel=wx.getStorageSync('accountLevel');
         let contractStatus=options.contractStatus;
         if(contractStatus){
             this.setData({
-                contractStatus:contractStatus
+                contractStatus:contractStatus,
+                interfaceCode:interfaceCode,
+                accountCode:accountCode,
+                mobile:mobile,
+                enterpriseName:enterpriseName,
+                accountLevel:accountLevel,
             })
         }else{
             this.setData({
-                contractStatus:3
+                contractStatus:3,
+                interfaceCode:interfaceCode,
+                accountCode:accountCode,
+                mobile:mobile,
+                enterpriseName:enterpriseName,
+                accountLevel:accountLevel,
             })
         }
 

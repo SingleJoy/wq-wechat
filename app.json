@@ -1,11 +1,11 @@
 {
   "pages": [
-    "pages/contract/contractList/contractList",
     "pages/start/start",
-    "pages/account/account",
-  
-    "pages/contract/contractSearch/contractSearch",
     "pages/auth/login/login",
+    "pages/contract/contractList/contractList",
+   
+    "pages/account/account",
+    "pages/contract/contractSearch/contractSearch",
     "pages/auth/roles/roles",
     "pages/contract/contractSign/contractSign",
     "pages/template/templateSet/templateSet",
