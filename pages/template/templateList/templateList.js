@@ -10,8 +10,8 @@ Page({
   data: {
     hidden: true,
     list: [],
-    scrollTop: 0,
-    scrollHeight: 0,
+    //scrollTop: 0,
+    //scrollHeight: 0,
     isRequest: false,
     changeChecked: false,
     // loading: false,
@@ -20,20 +20,23 @@ Page({
   onLoad: function () {
     //这里要注意，微信的scroll-view必须要设置高度才能监听滚动事件，所以，需要在页面的onLoad事件中给scroll-view的高度赋值
     var that = this;
+    wx.getSystemInfo({
+      success: function (res) {
+        // that.setData({
+        //   scrollHeight: res.windowHeight
+        // });
+      }
+    });
+    console.log(wx.getStorageSync('mobileTemplate'))
     if (wx.getStorageSync('mobileTemplate')) {
       this.setData({
         changeChecked: true
       });
       this.getData("applet");
+      return;
     }
     this.getData();
-    wx.getSystemInfo({
-      success: function (res) {
-        that.setData({
-          scrollHeight: res.windowHeight
-        });
-      }
-    });
+   
   },
   // 查看详情
   lookUp(e) {
@@ -51,6 +54,9 @@ Page({
   },
   //切换移动端
   switchChange(e) {
+    this.setData({
+      scrollTop: "0"
+    });
     wx.showLoading({
       title: '加载中',
       mask: true
@@ -65,15 +71,21 @@ Page({
       "mobileTemplate": changeValue
     }
     let accountCode = wx.getStorageSync('accountCode')
-    // let accountCode = "ACdcbfa3bb0d4a898a5eae66ae411aaf";
     updateMobileTemplate(data, accountCode).then(res => {
       if (res.data.resultCode == "1") {
         this.setData({
           changeChecked: changeValue
         });
+        this.setData({
+          isRequest: false,
+        });
         if (this.data.changeChecked) {
+          this.data.list = [];
+          pageNum = 1;
           this.getData("applet");
         } else {
+          this.data.list = [];
+          pageNum = 1;
           this.getData();
         }
         wx.setStorage({
@@ -121,7 +133,7 @@ Page({
         order: order,
         mobileTemplate: Number(this.data.changeChecked)
       }
-      this.data.list = [];
+      // this.data.list = [];
     }
     getAccountTemplates(uploadData, accountCode).then(res => {
       wx.hideLoading()
@@ -143,11 +155,12 @@ Page({
           isRequest: true,
         });
       }
-      if (totalItemNumber <= 0) {
-        this.setData({
-          scrollHeight: "100rpx"
-        });
-      }
+      console.log(this.data.isRequest)
+      // if (totalItemNumber <= 0) {
+      //   this.setData({
+      //     scrollHeight: "100rpx"
+      //   });
+      // }
       pageNum++
       this.setData({
         hidden: true
@@ -157,17 +170,18 @@ Page({
     })
 
   },
+  // onPullDownRefresh() {
+  //   console.log(3332134)
+  //   pageNum = 1;
+  //   this.setData({
+  //     isRequest: false,
+  //   });
+  //   this.getData();
+  // },
   //页面滑动到底部
-  bindDownLoad: function () {
+  onReachBottom: function () {
+    console.log(1111)
     if (this.data.isRequest) {
-      // this.setData({
-      //   loaded: true,
-      // });
-      // setTimeout(() => {
-      //   this.setData({
-      //     loaded: false,
-      //   });
-      // },2000)
       wx.showToast({
         title: '没有更多数据了',
         icon: "none",
@@ -180,21 +194,32 @@ Page({
     }
     if(this.data.changeChecked) {
       this.getData("applet");
+      return false;
     }
     this.getData();
   },
   // scroll: function (event) {
+  //   console.log(event.detail.scrollTop)
   //   //该方法绑定了页面滚动时的事件，记录了当前的position.y的值,为了请求数据之后把页面定位到这里来。
   //   this.setData({
   //     scrollTop: event.detail.scrollTop
   //   });
   // },
-  // topLoad: function (event) {
-  //   //   该方法绑定了页面滑动到顶部的事件，然后做上拉刷新
-  //   this.setData({
-  //     scrollTop: 0
-  //   });
-  //   this.getData(this.data.uploadData);
-  //   console.log("lower");
-  // }
+  onPullDownRefresh: function (event) {
+    //   该方法绑定了页面滑动到顶部的事件，然后做上拉刷新
+    // this.setData({
+    //   scrollTop: "0"
+    // });
+    this.setData({
+      isRequest: false,
+    });
+    console.log(333)
+    this.data.list = [];
+    pageNum = 1;
+    if (wx.getStorageSync('mobileTemplate')) {
+      this.getData("applet");
+      return;
+    }
+    this.getData();
+  }
 })
