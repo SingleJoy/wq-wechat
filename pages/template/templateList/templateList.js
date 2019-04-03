@@ -167,10 +167,7 @@ Page({
   },
   //页面滑动到底部
   onReachBottom: function () {
-    console.log(this.data.totalItemNumber)
-    console.log(this.data.list)
     if (this.data.totalItemNumber > this.data.list.length) {
-      console.log(2113234)
       this.setData({
         loading: true,
         loaded: false
@@ -181,7 +178,6 @@ Page({
       }
       this.getData();
     } else {
-      console.log(545454545)
       this.setData({
         loading: false,
         loaded: true
@@ -190,10 +186,6 @@ Page({
   },
   //下拉刷新
   onPullDownRefresh: function (event) {
-    // wx.showLoading({
-    //   title: '加载中',
-    //   mask: true
-    // })
     this.setData({
       loading: false,
       loaded: false,
