@@ -60,7 +60,7 @@ Page({
             contractNo:param_data.contractNo,
             accountLevel:app.globalData.searchParam.accountLevel,
             interfaceCode:wx.getStorageSync('interfaceCode'),
-            validTime:param_data.param_data,
+            validTime:param_data.validTime,
             contractInfo:param_data,
         })
         wx.showLoading({
@@ -177,7 +177,8 @@ Page({
     //是否永久有效
     changePermanent:function(e){
         this.setData({
-            permanentLimit:!this.data.permanentLimit
+            permanentLimit:!this.data.permanentLimit,
+            date:''
         })
     },
     //弹框关闭
@@ -303,9 +304,9 @@ Page({
     },
 //延期选择时间
     showPicker:function(e){
-        console.log(e)
         this.setData({
-            date: e.detail.value
+            date: e.detail.value,
+            permanentLimit:false
         })
     },
 
