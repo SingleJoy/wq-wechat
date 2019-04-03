@@ -166,7 +166,10 @@ function b2bContrants(interfaceCode,data){
 function searchContractsForMiniProgram(interfaceCode,data){
     return request(api+'/v1.8/applet/tenant/' + interfaceCode + '/contract/searchContractsForMiniProgram','get',data)
 }
-
+//合同延期
+function updateContractTime(interfaceCode,contractNo,data) {
+    return request(api+'/v1/tenant/' + interfaceCode + '/contract/'+contractNo+'/updateContractTime','post',data)
+}
 
 //b2b签署获取签章位置
 function b2bSignerpositions(interfaceCode,contractNo){
@@ -210,6 +213,7 @@ module.exports = {
   templateBatchSign,
   userInfo,
   contractkeywordsign,
-    b2bSignerpositions,
-    b2bContractmoresign
+b2bSignerpositions,
+b2bContractmoresign,
+updateContractTime
 }

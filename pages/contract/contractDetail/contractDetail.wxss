@@ -6,7 +6,7 @@
     font-size:24rpx;
     text-align: center;
     background: #fff;
-    height:40rpx;
+    height:50rpx;
     box-shadow: rgba(228, 228, 228, 0.5) 0px 1px 4px 2px;
     z-index:9;
 }
