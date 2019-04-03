@@ -159,5 +159,8 @@ Page({
             duration:500,
             timingFunctio
         })
+    },
+    onPullDownRefresh(){
+        console.log(333333333)
     }
 })

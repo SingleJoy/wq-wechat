@@ -102,7 +102,7 @@
         </view>
         <!-- 合同延期 -->
         <view class="contract-dialog">
-            <block wx:if="{{contractStatus == 4}}">
+            <block wx:if="{{contractStatus == 0}}">
                 <view class="drawer-mask" wx:if="{{showModalStatus}}"></view>
                 <view  class="drawer-box" wx:if="{{showModalStatus}}">
                 <!--drawer content-->

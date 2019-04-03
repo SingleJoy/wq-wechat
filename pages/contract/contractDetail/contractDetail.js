@@ -60,7 +60,8 @@ Page({
             contractNo:param_data.contractNo,
             accountLevel:app.globalData.searchParam.accountLevel,
             interfaceCode:wx.getStorageSync('interfaceCode'),
-            contractInfo:param_data
+            validTime:param_data.validTime,
+            contractInfo:param_data,
         })
         wx.showLoading({
             title: '加载中',
@@ -168,6 +169,7 @@ Page({
     },
 //延长签署日期
     extendDate:function(e){
+        console.log(this.data.contractStatus)
         this.setData({
             showModalStatus:true
         })
@@ -175,7 +177,8 @@ Page({
     //是否永久有效
     changePermanent:function(e){
         this.setData({
-            permanentLimit:!this.data.permanentLimit
+            permanentLimit:!this.data.permanentLimit,
+            date:''
         })
     },
     //弹框关闭
@@ -301,9 +304,9 @@ Page({
     },
 //延期选择时间
     showPicker:function(e){
-        console.log(e)
         this.setData({
-            date: e.detail.value
+            date: e.detail.value,
+            permanentLimit:false
         })
     },
 
@@ -378,3 +381,4 @@ Page({
     }
 
 })
+
