@@ -8,7 +8,8 @@ import {
     getSignature,
     verifySignPassword,
     contractmoresign,
-    signerpositions} from '../../../wxapi/api.js';
+    signerpositions,
+    updateContractTime} from '../../../wxapi/api.js';
 const app = getApp();
 const md5 = require('../../../utils/md5.js')
 Page({
@@ -47,6 +48,7 @@ Page({
         signPositionStr:'',
         submitBtn:false,  //签署按钮和提交按钮展示
         signPawssword:'',//签署密码
+        validTime:'',//签署截止日期
     },
 
     /**
@@ -59,12 +61,15 @@ Page({
         this.setData({
             creater:app.globalData.searchParam.creater,
             contractStatus:param_data.contractStatus,
+            validTime:param_data.validTime,
             operator:param_data.operator,
             contractNo:param_data.contractNo,
             accountLevel:app.globalData.searchParam.accountLevel,
-            interfaceCode:wx.getStorageSync('interfaceCode')
+            interfaceCode:wx.getStorageSync('interfaceCode'),
+            num:app.globalData.searchParam.num
         });
-
+        console.log(this.data.accountCode)
+        console.log(this.data.operator)
         wx.showLoading({
             title: '加载中',
         });
@@ -180,6 +185,11 @@ Page({
         this.setData({
             permanentLimit:!this.data.permanentLimit
         });
+        if(this.data.permanentLimit){
+            this.setData({
+                date:''
+            })
+        }
     },
 //弹框关闭
     cancelDialog:function(){
@@ -190,7 +200,7 @@ Page({
     },
 //签署合同
     signContract(){
-        console.log("1111111");
+
         wx.navigateTo({
             url:'/pages/canvas/canvas'
         });
@@ -264,8 +274,8 @@ Page({
             phoneHeight:this.data.windowHeight,
             phoneWidth:this.data.phoneWidth,
             signatureImg:this.data.signImg,
-            signH:this.data.windowWidth*0.21,
-            signW:this.data.windowWidth*0.21,
+            signH:this.data.windowWidth*19/90,
+            signW:this.data.windowWidth*19/90,
             signPositionStr:this.data.signPositionStr
         };
         contractmoresign(this.data.interfaceCode,contractNo,data).then(res=>{
@@ -303,14 +313,48 @@ Page({
     },
 //延期确定按钮
     dateSubmit:function(){
+        if((!this.data.date)&&!(this.data.permanentLimit)){
+            wx.showToast({
+                title: '请选择日期',
+                icon:'none',
+                duration: 1000
+            });
+            return false;
+        }
+
+        let data={
+            'validTime':this.data.date,
+             'perpetualValid':this.data.permanentLimit?'1':'0',
+        };
+        updateContractTime(this.data.interfaceCode,this.data.contractNo,data).then(res=>{
+           if(res.data.resultCode==0){
+               wx.showToast({
+                   title: res.data.resultMessage,
+                   icon:'none',
+                   duration: 1000
+               });
+               setTimeout(()=>{
+                   wx.switchTab({
+                       url: '/pages/contract/contractList/contractList'
+                   })
+               },1000)
+
+           }
+
+        })
+
 
     },
 //延期选择时间
-    showPicker:function(e){
-        console.log(e)
+    showPicker(e){
         this.setData({
             date: e.detail.value
         });
+        if(this.data.date){
+            this.setData({
+                permanentLimit: false
+            });
+        }
     },
 
     //获取签署密码
