@@ -116,8 +116,13 @@ function verifySignPassword(accountCode,data){
 }
 //我的合同签署提交
 function contractmoresign(interfaceCode,contractNo,data){
-    return request(api+'/v1/tenant/'+interfaceCode+'/user/'+interfaceCode+'/contractmoresign'+contractNo,'get',data)
+    return request(api+'/v1/tenant/'+interfaceCode+'/user/'+interfaceCode+'/contractmoresign/'+contractNo,'post',data)
 }
+//我的合同签署提交
+function b2bContractmoresign(interfaceCode,userCode,contractNo,data){
+    return request(api+'/v1.4/tenant/'+interfaceCode+'/user/'+userCode+'/contractmoresign/'+contractNo,'post',data)
+}
+
 //模板发起】
 function templateBatchSign(interfaceCode,data){
     return request(api+'/v1/tenant/'+interfaceCode+'/templateBatchSign','post',data)
@@ -162,6 +167,12 @@ function searchContractsForMiniProgram(interfaceCode,data){
     return request(api+'/v1.8/applet/tenant/' + interfaceCode + '/contract/searchContractsForMiniProgram','get',data)
 }
 
+
+//b2b签署获取签章位置
+function b2bSignerpositions(interfaceCode,contractNo){
+    return request(api+'/v1.4/tenant/'+ interfaceCode + '/contract/'+ contractNo +'/user/'+ interfaceCode + '/signerpositions','get')
+}
+
 module.exports = {
   tenant,
   login,
@@ -198,5 +209,7 @@ module.exports = {
   template,
   templateBatchSign,
   userInfo,
-  contractkeywordsign
+  contractkeywordsign,
+    b2bSignerpositions,
+    b2bContractmoresign
 }

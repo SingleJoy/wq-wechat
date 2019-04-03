@@ -94,35 +94,39 @@ Page({
 
     },
     signSetting:function(e){
-        let jsonVal = ''
-        this.data.renderLidst.map(function(item,index){
-            jsonVal += item.name + '=' + item.value +'&'
-        })
-        jsonVal = jsonVal.substring(0, jsonVal.length - 1) //去除最后一位&号
-        let data={
-            contractName:app.globalData.contractParam.templateName,
-            templateNum:app.globalData.contractParam.templateNo,
-            contractTempNo:app.globalData.contractParam.contractTempNo,
-            templateSpecificType:app.globalData.contractParam.templateSpecificType,
-            jsonVal:jsonVal,
-            operateType:'',
-            accountCode:wx.getStorageSync('accountCode')
-        }
-        templateBatchSign(this.data.interfaceCode,data).then(res=>{
-            //真实合同编号
-            let data = {          
-                contractTempNo:res.data.contractNo
-            }
-            Object.assign(app.globalData.contractParam,data)
-            if(res.data.resultCode){
-                wx.redirectTo({
-                    url: '/pages/template/templateSign/templateSign',
-                })
-            }
-        }).catch(err=>{
+      wx.showLoading({
+        title: '加载中',
+        mask: true
+      })
+      let jsonVal = ''
+      this.data.renderLidst.map(function(item,index){
+          jsonVal += item.name + '=' + item.value +'&'
+      })
+      jsonVal = jsonVal.substring(0, jsonVal.length - 1) //去除最后一位&号
+      let data={
+          contractName:app.globalData.contractParam.templateName,
+          templateNum:app.globalData.contractParam.templateNo,
+          contractTempNo:app.globalData.contractParam.contractTempNo,
+          templateSpecificType:app.globalData.contractParam.templateSpecificType,
+          jsonVal:jsonVal,
+          operateType:'',
+          accountCode:wx.getStorageSync('accountCode')
+      }
+      templateBatchSign(this.data.interfaceCode,data).then(res=>{
+          //真实合同编号
+          let data = {          
+              contractTempNo:res.data.contractNo
+          }
+          Object.assign(app.globalData.contractParam,data)
+          if(res.data.resultCode){
+            wx.hideLoading()
+            wx.navigateTo({
+                url: '/pages/template/templateSign/templateSign',
+            })
+          }
+      }).catch(err=>{
 
-        })
-       
+      })
     },
     bindUsernameInput:function(e){
         var fill_val = e.detail.value;

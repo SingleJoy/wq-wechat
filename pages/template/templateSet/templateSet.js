@@ -60,7 +60,7 @@ Page({
       operateType: app.globalData.contractParam.operateType,
       contractTempNo: app.globalData.contractParam.contractTempNo
     }
-    backContractTempSigner(data, accountCode).then(res => {
+    backContractTempSigner(data, wx.getStorageSync('accountCode')).then(res => {
       if (res.data.validTime !== null) {
         this.setData({
           contactName: res.data.contractName,
