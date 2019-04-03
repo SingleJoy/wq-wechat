@@ -60,7 +60,8 @@ Page({
             contractNo:param_data.contractNo,
             accountLevel:app.globalData.searchParam.accountLevel,
             interfaceCode:wx.getStorageSync('interfaceCode'),
-            contractInfo:param_data
+            validTime:param_data.param_data,
+            contractInfo:param_data,
         })
         wx.showLoading({
             title: '加载中',
