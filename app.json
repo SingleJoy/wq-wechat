@@ -3,7 +3,6 @@
     "pages/start/start",
     "pages/auth/login/login",
     "pages/contract/contractList/contractList",
-   
     "pages/account/account",
     "pages/contract/contractSearch/contractSearch",
     "pages/auth/roles/roles",
@@ -18,11 +17,9 @@
     "pages/template/templateList/templateList",
     "pages/template/templateDetail/templateDetail",
     "pages/index/index",
-   
     "pages/logs/logs",
     "pages/canvas/canvas",
     "pages/canvasImg/canvasImg"
-
   ],
   "window": {
     "backgroundTextStyle": "light",

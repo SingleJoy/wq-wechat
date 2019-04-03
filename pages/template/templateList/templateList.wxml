@@ -1,12 +1,13 @@
 
-<view class="container">
+<view class="">
   <view class='template-select'>
     <text class='template-apply'>仅显示可移动端发起合同的模板</text>
     <view class='change-switch'><switch color="#4091FB" checked="{{changeChecked}}" bindchange="switchChange" /></view>
   </view>
   <!--垂直滚动，这里必须设置高度-->
-    <scroll-view scroll-top="{{scrollTop}}" scroll-y="true" style="height:{{scrollHeight}}px;" 
-        class="list" bindscrolltolower="bindDownLoad" bindscrolltoupper="topLoad"  bindscroll="scroll">
+    <!-- <scroll-view scroll-top="{{scrollTop}}" scroll-y="true" style="height:{{scrollHeight}}px;" 
+        class="list" bindscrolltolower="bindDownLoad" bindscrolltoupper="topLoad"> -->
+      <view class='template-contain'>
         <view class='template-contain'>
           <view class='no-data' wx-if="{{list.length <= 0}}">暂无数据</view>
           <view class='template-lists' wx:for="{{list}}" wx:key="{{accountLevel}}">
@@ -19,12 +20,13 @@
             </view>
           </view>
         </view>
+      </view>
         <!-- <view class="load_more" hidden="{{!loading}}">
           <view class="load_loading"></view>
           <view class="load-tips">正在加载……</view>
         </view>
         <view class="load_end" hidden="{{!loaded}}">没有更多数据了……</view> -->
-    </scroll-view>
+    <!-- </scroll-view> -->
     
     
 </view>
