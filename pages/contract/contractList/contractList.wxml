@@ -69,7 +69,7 @@
 
             <view class="search-data" style="padding-bottom: 20rpx;">
                 <view class="data-lists" wx:for="{{contractDataList}}" wx:key="index" wx:if="{{contractDataList.length>0}}"
-                      data-contractNo="{{item.contractNum}}" data-contractStatus="{{item.contractStatus}}"   data-operator="{{item.operator}}" data-creater="{{item.creater}}"
+                      data-contractNo="{{item.contractNum}}" data-contractStatus="{{item.contractStatus}}"  data-validTime="{{item.validTime}}"  data-operator="{{item.operator}}" data-creater="{{item.creater}}"
                       bindtap="goDetail">
 
                     <view class="contract-name">{{item.contractName}}</view>

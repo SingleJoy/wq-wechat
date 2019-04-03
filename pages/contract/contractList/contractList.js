@@ -44,11 +44,14 @@ Page({
     /**
      * 生命周期函数--监听页面加载
      */
+
     onPullDownRefresh() {
+
         this.setData({
             pageNo:1
         });
         this.searchData();
+        wx.stopPullDownRefresh();
     },
     onLoad: function (options) {
         let interfaceCode =wx.getStorageSync('interfaceCode');
@@ -139,6 +142,7 @@ Page({
         let interfaceCode=this.data.interfaceCode;
         wx.showLoading({
             title: '加载中...',
+            mask: true
         });
         contracts(interfaceCode,param).then(res=>{
             let totalItemNumber=res.data.totalItemNumber;
@@ -174,6 +178,7 @@ Page({
         let interfaceCode=this.data.interfaceCode;
         wx.showLoading({
             title: '加载中...',
+            mask: true
         });
         b2bContrants(interfaceCode,param).then(res=>{
             let totalItemNumber=res.data.totalItemNumber;
@@ -366,6 +371,7 @@ Page({
         let contractStatus=e.currentTarget.dataset.contractstatus;
         let creater=e.currentTarget.dataset.creater;
         let operator=e.currentTarget.dataset.operator;
+        let validTime=e.currentTarget.dataset.validtime;
         this.setData({
             show:true
         });
@@ -374,6 +380,7 @@ Page({
             'contractStatus':contractStatus,
             'operator':operator,
             'creater':creater,
+            'validTime':validTime,
             'num':this.data.num,
             'show':false,
             'pageNo':1,
