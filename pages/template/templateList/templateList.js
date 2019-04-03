@@ -190,10 +190,10 @@ Page({
   },
   //下拉刷新
   onPullDownRefresh: function (event) {
-    wx.showLoading({
-      title: '加载中',
-      mask: true
-    })
+    // wx.showLoading({
+    //   title: '加载中',
+    //   mask: true
+    // })
     this.setData({
       loading: false,
       loaded: false,

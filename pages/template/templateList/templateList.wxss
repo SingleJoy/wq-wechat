@@ -21,7 +21,7 @@
   margin-top: -2rpx; */
 }
 .template-contain {
-  
+  padding-top: 60rpx;
 }
 .template-contain {
   height: 100%;
@@ -62,7 +62,6 @@
   margin-top: 32rpx;
 }
 .load_more {
-  
   text-align: center;
 }
 .load_end {
