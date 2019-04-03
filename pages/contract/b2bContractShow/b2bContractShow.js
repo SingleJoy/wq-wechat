@@ -1,4 +1,4 @@
-// pages/contract/contractDetail/b2bContractDetail.js
+
 import {
     contractImgs,
     getContractDetails,
@@ -6,10 +6,13 @@ import {
     getSignature,
     verifySignPassword,
     contractmoresign,
-    signerpositions} from '../../../wxapi/api.js';
+    signerpositions,
+    b2bSignerpositions,
+    b2bContractmoresign
+} from '../../../wxapi/api.js';
 const app = getApp();
+// const base64src=require("../../../utils/base64src");
 const md5 = require('../../../utils/md5.js');
-let base64src=require("../../../utils/base64src");
 Page({
 
     /**
@@ -35,17 +38,14 @@ Page({
         baseUrl:app.globalData.baseUrl,
         contractVo:'', //合同信息
         signUserVo:'', //签署人员
-        defaultEmail:wx.getStorageSync('email'),
-        sendEmail:'',//指定发送邮箱
         optionAuthority:true,  //合同详情按钮权限
         signRoomLink:'',
         passwordDialog:false,
-        signPassword:'123456',
         signImg:'',
         signPositionList:[],
         signPositionStr:'',
         submitBtn:false,  //签署按钮和提交按钮展示
-        signPawssword:'',//签署密码
+        signPassword:'',//签署密码
     },
 
     /**
@@ -62,22 +62,10 @@ Page({
             accountLevel:app.globalData.searchParam.accountLevel,
             interfaceCode:wx.getStorageSync('interfaceCode')
         });
-        let base64Image = "data:image/jpeg;base64,"+app.globalData.contractParam.base64Image;
-        let signPictureWidth=this.data.windowWidth*19/90;
-        let signPictureHeight=this.data.windowWidth*19/180;
-        this.setData({
-            signPictureWidth:signPictureWidth,
-            signPictureHeight:signPictureHeight,
-        });
-        base64src(base64Image, res => {
-            this.setData({
-                base64Image:res,
-            });
-        });
+
         wx.showLoading({
             title: '加载中',
         });
-
         contractImgs(this.data.interfaceCode,this.data.contractNo).then(res=>{
             this.setData({
                 contractImgList:res.data
@@ -114,8 +102,21 @@ Page({
             });
         }).catch(err=>{
 
-        })
+        });
+        let base64Image = "data:image/jpeg;base64,"+app.globalData.contractParam.base64;
 
+        let signPictureWidth=this.data.windowWidth*19/90;
+        let signPictureHeight=this.data.windowWidth*19/180;
+        this.setData({
+            signPictureWidth:signPictureWidth,
+            signPictureHeight:signPictureHeight,
+        });
+
+        this.setData({
+            base64Image:base64Image,
+        });
+
+        this.b2bSignerpositions()
     },
 
     //详情三角切换
@@ -136,10 +137,6 @@ Page({
         return false
     },
 
-
-
-
-
 //弹框关闭
     cancelDialog:function(){
         this.setData({
@@ -155,10 +152,18 @@ Page({
         });
     },
 
-// 获取签章位置并展示签章图片
-    getSignPosition(){
-        signerpositions(this.data.interfaceCode,this.data.contractNo).then(res=>{
-            let arr = res.data.list;
+    // 获取签章位置并展示签章图片
+    b2bSignerpositions(){
+        b2bSignerpositions(this.data.interfaceCode,this.data.contractNo).then(res=>{
+            console.log(res);
+            let arr = res.data.lists[0];
+            let signPositionStr='';
+            let signPositionStr2='';
+            let userCode=res.data.list[0].userCode;
+            this.setData({
+                userCode:userCode
+            });
+            let arr2 = res.data.lists[1];
             for(let i=0;i<arr.length;i++){
                 let item = arr[i];
                 let pageNum = item.pageNum;
@@ -170,14 +175,35 @@ Page({
                 let signImgW = this.data.windowWidth*19/90;  //宽高相等
                 item.style='position:absolute;top:'+topY+'px;left:'+leftX+'px;width:'+signImgW+'px;height:'+signImgW+'px;';
                 if(i == arr.length-1){
-                    this.data.signPositionStr += pageNum+","+leftX+","+offsetY * (imgHeight);
+                    signPositionStr += pageNum+","+leftX+","+offsetY * (imgHeight);
                 }else{
-                    this.data.signPositionStr+= pageNum+","+leftX+","+offsetY * (imgHeight)+"&";
+                    signPositionStr+= pageNum+","+leftX+","+offsetY * (imgHeight)+"&";
                 }
                 this.setData({
                     signPositionList:arr,
+                    signPositionStr:signPositionStr
+                });
+                console.log(this.data.signPositionStr)
+            }
+            for(let i=0;i<arr2.length;i++){
+                let item = arr2[i];
+                let pageNum = item.pageNum;
+                let offsetX = item.offsetX;
+                let offsetY = item.offsetY;
+                let imgHeight = this.data.imgHeight;
+                let leftX = offsetX * this.data.windowWidth;
+                let topY = (pageNum-1 + offsetY)*imgHeight;
+                let signImgW = this.data.windowWidth*19/90;  //个人签名  签章图片高度是宽度一半
+                item.style='position:absolute;top:'+topY+'px;left:'+leftX+'px;width:'+signImgW+'px;height:'+signImgW/2+'px;';
+                if(i == arr2.length-1){
+                   signPositionStr2 += pageNum+","+leftX+","+offsetY * (imgHeight);
+                }else{
+                    signPositionStr2+= pageNum+","+leftX+","+offsetY * (imgHeight)+"&";
+                }
+                this.setData({
+                    signPositionList2:arr2,
                     submitBtn:true,
-                    signPositionStr:this.data.signPositionStr
+                    signPositionStr2:signPositionStr2
                 });
             }
         }).catch(err=>{
@@ -186,8 +212,9 @@ Page({
     },
     //校验签署密码
     signPassword(){
+
         let data={
-            signVerifyPassword:md5(this.data.signPawssword)
+            signVerifyPassword:md5(this.data.signPassword)
         };
         verifySignPassword(this.data.accountCode,data).then(res=>{
             if(res.data.resultCode == 1){
@@ -207,7 +234,8 @@ Page({
         })
     },
     signSubmit(){
-        if(!this.data.signVerify){     //需要签署密码
+        if(!this.data.signVerify){
+            //需要签署密码
             this.setData({
                 passwordDialog:true
             });
@@ -219,18 +247,24 @@ Page({
     verifySuccess:function(){
         let contractNo = app.globalData.searchParam.contractNo;
         let data = {
-            contractNum:contractNo,
-            phoneHeight:this.data.windowHeight,
-            phoneWidth:this.data.phoneWidth,
-            signatureImg:this.data.signImg,
-            signH:this.data.windowWidth*0.21,
-            signW:this.data.windowWidth*0.21,
-            signPositionStr:this.data.signPositionStr
+            'tenantSignCode':this.data.interfaceCode,
+            'userSignCode':this.data.userCode,
+            'enterpriseSignImg':this.data.signImg.split(",")[1],  //企业签章
+            'signatureImg':app.globalData.contractParam.base64,      //
+            'phoneHeight':this.data.windowHeight,
+            'phoneWidth':this.data.windowWidth,
+            'signH':this.data.windowWidth*19/90,
+            'signW':this.data.windowWidth*19/90,
+            'signatureW':this.data.windowWidth*19/90,
+            'signatureH':this.data.windowWidth*19/180,
+            'enterprisePositionStr':this.data.signPositionStr,
+            'personalPositionStr':this.data.signPositionStr2,
         };
-        contractmoresign(this.data.interfaceCode,contractNo,data).then(res=>{
-            if(res.data.responseCode == 0){
+        b2bContractmoresign(this.data.interfaceCode,this.data.userCode,contractNo,data).then(res=>{
+          console.log(res)
+            if(res.data.responseCode == 1){
                 wx.reLaunch({
-                    url:'/pages/template/templateSuccess'
+                    url:'/pages/template/templateSuccess/templateSuccess'
                 });
             }
         }).catch(err=>{
@@ -241,18 +275,12 @@ Page({
 
     //获取签署密码
     getPwd(e){
-        let input_val = e.detail.value
+        let value = e.detail.value;
         this.setData({
-            signPawssword:input_val
+            signPassword:value
         });
     },
-    //获取邮箱
-    getEmail(e){
-        let input_email = e.detail.value
-        this.setData({
-            sendEmail:input_email
-        });
-    },
+
 
     /**
      * 生命周期函数--监听页面初次渲染完成
