@@ -13,7 +13,7 @@
   top: 0;
   left: 0;
   background-color: #ffffff;
-  z-index: 1000;
+  z-index: 100;
 }
 .change-switch {
   margin-right: 48rpx;
@@ -21,7 +21,7 @@
   margin-top: -2rpx; */
 }
 .template-contain {
-  /* margin-top: 110rpx; */
+  padding-top: 60rpx;
 }
 .template-contain {
   height: 100%;
@@ -70,4 +70,11 @@
 .no-data {
   margin-top: 160rpx;
   text-align: center;
+}
+.load_loading, .load-tips {
+  display: inline-block;
+}
+.load_loading image{
+  width: 120rpx;
+  vertical-align: middle;
 }
