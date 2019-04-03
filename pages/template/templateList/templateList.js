@@ -67,19 +67,26 @@ Page({
     let accountCode = wx.getStorageSync('accountCode')
     // let accountCode = "ACdcbfa3bb0d4a898a5eae66ae411aaf";
     updateMobileTemplate(data, accountCode).then(res => {
-      this.setData({
-        changeChecked: changeValue
-      });
-      if (this.data.changeChecked) {
-        this.getData("applet");
+      if (res.data.resultCode == "1") {
+        this.setData({
+          changeChecked: changeValue
+        });
+        if (this.data.changeChecked) {
+          this.getData("applet");
+        } else {
+          this.getData();
+        }
+        wx.setStorage({
+          key: 'mobileTemplate',
+          data: changeValue
+        })
       } else {
-        this.getData();
-      }
-      wx.setStorage({
-        key: 'mobileTemplate',
-        data: changeValue
-      })
-      
+        wx.showToast({
+          title: res.data.resultMessage,
+          icon: 'none',
+          duration: 2000
+        })
+      } 
     }).catch(res => {
       this.setData({
         changeChecked: !changeValue
