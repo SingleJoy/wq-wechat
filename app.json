@@ -6,7 +6,6 @@
     "pages/account/account",
     "pages/contract/contractSearch/contractSearch",
     "pages/auth/roles/roles",
-    "pages/contract/contractSign/contractSign",
     "pages/template/templateSet/templateSet",
     "pages/contract/contractDetail/contractDetail",
     "pages/contract/b2bContractShow/b2bContractShow",
@@ -18,8 +17,7 @@
     "pages/template/templateDetail/templateDetail",
     "pages/index/index",
     "pages/logs/logs",
-    "pages/canvas/canvas",
-    "pages/canvasImg/canvasImg"
+    "pages/canvas/canvas"
   ],
   "window": {
     "backgroundTextStyle": "light",
