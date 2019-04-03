@@ -23,7 +23,7 @@
                 </view>
                 <view class="info-item">
                     <text class="info-name">签署场景：</text>
-                    <text class="info-value">{{contractName}}</text>
+                    <text class="info-value">{{num=='1'?'企业对个人':'企业对企业'}}</text>
                 </view>
                 <view class="info-item">
                     <text class="info-name">当前状态：</text>
@@ -105,7 +105,7 @@
 
         <!-- 合同延期 -->
         <view class="contract-dialog" wx:if="{{accountCode==operator}}">
-            <block wx:if="{{contractStatus == 4}}">
+            <block wx:if="{{contractStatus == 0}}">
                 <view class="drawer-mask" wx:if="{{showModalStatus}}"></view>
                 <view  class="drawer-box" wx:if="{{showModalStatus}}">
                 <!--drawer content-->

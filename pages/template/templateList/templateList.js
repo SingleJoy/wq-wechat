@@ -180,7 +180,7 @@ Page({
   // },
   //页面滑动到底部
   onReachBottom: function () {
-    console.log(1111)
+
     if (this.data.isRequest) {
       wx.showToast({
         title: '没有更多数据了',

@@ -173,6 +173,11 @@ function b2bSignerpositions(interfaceCode,contractNo){
     return request(api+'/v1.4/tenant/'+ interfaceCode + '/contract/'+ contractNo +'/user/'+ interfaceCode + '/signerpositions','get')
 }
 
+//合同延期
+function updateContractTime(interfaceCode,contractNo,data){
+    return request(api+'/v1/tenant/'+interfaceCode+'/contract/'+contractNo+'/updateContractTime','post',data)
+}
+
 module.exports = {
   tenant,
   login,
@@ -211,5 +216,6 @@ module.exports = {
   userInfo,
   contractkeywordsign,
     b2bSignerpositions,
-    b2bContractmoresign
+    b2bContractmoresign,
+    updateContractTime
 }
