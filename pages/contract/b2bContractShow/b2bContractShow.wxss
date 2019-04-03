@@ -4,3 +4,91 @@
 .sign-picture image{
 
 }
+
+.drawer-mask{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    background: #000;
+    opacity: 0.5;
+    overflow: hidden;
+}
+.detail-mask{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 64rpx;
+    left: 0;
+    z-index: 1000;
+    background: #000;
+    opacity: 0.5;
+    overflow: hidden;
+}
+.drawer-box{
+    width: 550rpx;
+    overflow: hidden;
+    position: fixed;
+    top: 30%;
+    left: 50%;
+    z-index: 1001;
+    background: #FAFAFA;
+    border-radius: 10px;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+.drawer-title{
+    margin-top:42rpx;
+    text-align: center;
+    font-size: 32rpx;
+}
+.email-address{
+    border:2rpx solid #999;
+    border-radius: 5rpx;
+    width:360rpx;
+    height:50rpx;
+    margin:0 auto;
+    margin-top:28rpx;
+    margin-bottom:24rpx;
+    text-align: left;
+}
+.option-btn{
+    width: 100%;
+    margin-top:24rpx;
+}
+.btn-ok{
+    width:50%;
+    float: left;
+    background:#4091FB;
+    font-size: 32rpx;
+    line-height: 32rpx;
+    padding: 28rpx 0;
+    text-align: center;
+    color:#fff;
+}
+.radio{
+    width:30rpx;
+    height:30rpx;
+    border-radius: 50%;
+    border:1px solid #999;
+    margin-right: 20rpx;
+    margin-left: 50rpx;
+    margin-top: 7rpx;
+    text-align: center;
+    line-height: 30rpx;
+}
+.btn-cancel{
+    background: #999;
+}
+.email-err{
+    font-size: 26rpx;
+    color:#ff0000;
+}
+.bind-email{
+    font-size: 32rpx;
+    line-height: 32rpx;
+    color:#4091FB;
+    margin-top:30rpx;
+}

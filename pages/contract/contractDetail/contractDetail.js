@@ -1,4 +1,4 @@
-
+// pages/contract/contractDetail/b2bContractDetail.js
 import {
     contractImgs,
     getContractDetails,

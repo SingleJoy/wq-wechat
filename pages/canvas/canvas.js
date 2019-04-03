@@ -39,7 +39,7 @@ wx.getSystemInfo({
 
         // 画布的触摸移动手势响应
         move: function (e) {
-            let point = {x: e.touches[0].x, y: e.touches[0].y}
+            let point = {x: e.touches[0].x, y: e.touches[0].y};
             touchs.push(point)
             if (touchs.length >= 2) {
                 this.draw(touchs)
@@ -75,7 +75,8 @@ wx.getSystemInfo({
         onLoad: function (options) {
             // wx.hideTabBar({})
             //获得Canvas的上下文
-            content = wx.createCanvasContext('firstCanvas')
+            content = wx.createCanvasContext('firstCanvas');
+
             //设置线的颜色
             content.setStrokeStyle("#000");
             //设置线的宽度
@@ -145,7 +146,6 @@ wx.getSystemInfo({
                             //往全局变量派发一个base64img 对象
                             Object.assign(app.globalData.contractParam,base64Image);
                             let num=app.globalData.contractParam.num;
-                            // console.log(app.globalData)
 
                             if(num==1){
                                 wx.navigateTo({

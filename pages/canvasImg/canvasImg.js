@@ -1,5 +1,6 @@
 
-let base64src=require("../../utils/base64src");
+const app = getApp();
+const base64src=require("../../utils/base64src");
 let width;
 wx.getSystemInfo({
     success: function (res) {
@@ -8,7 +9,7 @@ wx.getSystemInfo({
 }),
     Page({
         data: {
-            baseImg:width+'px',
+            baseImg:'',
             imgWidth:width*19/90+'px',
             imgHeight:width*19/180+'px',
             top:'120px',
@@ -16,19 +17,19 @@ wx.getSystemInfo({
         },
         onLoad: function (options) {
 
-            let that=this;
-            wx.getStorage({
-                key:"base64",
-                success(res) {
-                    let result="data:image/jpeg;base64,"+res.data;
-                    // console.log(result)
-                    base64src(result, res => {
-
-                        that.setData({
-                            baseImg:res
-                        })
-                    });
-                }
+            let base64Image = "data:image/jpeg;base64,"+app.globalData.contractParam.base64Image;
+            console.log(app.globalData.contractParam);
+            console.log(base64Image);
+            // let signPictureWidth=this.data.windowWidth*19/90;
+            // let signPictureHeight=this.data.windowWidth*19/180;
+            // this.setData({
+            //     signPictureWidth:signPictureWidth,
+            //     signPictureHeight:signPictureHeight,
+            // });
+            base64src(base64Image, data => {
+                this.setData({
+                    baseImg:data,
+                });
             });
 
 
