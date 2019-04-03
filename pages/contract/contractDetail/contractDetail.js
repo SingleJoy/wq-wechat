@@ -168,6 +168,7 @@ Page({
     },
 //延长签署日期
     extendDate:function(e){
+        console.log(this.data.contractStatus)
         this.setData({
             showModalStatus:true
         })
