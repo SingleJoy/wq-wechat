@@ -168,7 +168,7 @@
     width: 550rpx;
     overflow: hidden;
     position: fixed;
-    top: 30%;
+    top: 40%;
     left: 50%;
     z-index: 1001;
     background: #FAFAFA;

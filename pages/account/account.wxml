@@ -57,19 +57,19 @@
                     <view class="digital-info-list">
                         <view>
                             <text class="left-side">识别码:</text>
-                            <text >{{certificateNo}}</text>
+                            <text class="right-side">{{certificateNo}}</text>
                         </view>
                         <view>
                             <text class="left-side">颁发给:</text>
-                            <text>{{companyName}}</text>
+                            <text class="right-side">{{companyName}}</text>
                         </view>
                         <view>
                             <text class="left-side">有效起始时间:</text>
-                            <text>{{effectiveStartTime}}</text>
+                            <text class="right-side">{{effectiveStartTime}}</text>
                         </view>
                         <view>
                             <text class="left-side">有效截止时间:</text>
-                            <text>{{effectiveEndTime}}</text>
+                            <text class="right-side">{{effectiveEndTime}}</text>
                         </view>
                     </view>
 
