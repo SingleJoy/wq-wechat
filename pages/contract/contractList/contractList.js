@@ -106,8 +106,12 @@ Page({
         let accountCode=this.data.accountCode;
         let enterpriseName=this.data.enterpriseName;
         getAccounts(interfaceCode).then(res=>{
+            let dataList=[];
             if(res.data.resultCode == 1){
-                let dataList=res.data.dataList;
+                if(res.data.dataList){
+                     dataList=res.data.dataList;
+                }
+
                 //一级账号 把一级账号数据
                 if(this.data.accountLevel==1){
                     dataList.unshift({accountCode:'',accountName:'全部'},{accountCode:accountCode,accountName:enterpriseName})
@@ -115,7 +119,7 @@ Page({
                 this.setData({
                     accountList:dataList
                 })
-                // console.log(this.data.accountList)
+                
             }else{
 
             }
