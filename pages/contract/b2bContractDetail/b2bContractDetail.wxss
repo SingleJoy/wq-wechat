@@ -139,7 +139,9 @@
     background: #4091FB;
     color:#fff;
 }
-
+.options .note-remind {
+  opacity: 0.6;
+}
 .drawer-mask{
     width: 100%;
     height: 100%;
