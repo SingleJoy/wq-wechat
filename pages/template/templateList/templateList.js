@@ -139,8 +139,8 @@ Page({
             // this.data.list = [];
         }
         getAccountTemplates(uploadData, accountCode).then(res => {
-            wx.stopPullDownRefresh()
-            wx.hideLoading()
+            wx.stopPullDownRefresh();
+            wx.hideLoading();
             this.setData({
                 loading: false,
                 refreshing: false,
@@ -149,7 +149,7 @@ Page({
             let totalItemNumber = res.data.totalItemNumber;
             var list = this.data.list;
             let contents = res.data.contents;
-            for (var i = 0; i < contents.length; i++) {
+            for (let i = 0; i < contents.length; i++) {
                 list.push(res.data.contents[i]);
             }
             if (this.data.list.length <= totalItemNumber) {
@@ -161,7 +161,7 @@ Page({
                     isRequest: true,
                 });
             }
-            pageNum++
+            pageNum++;
             this.setData({
                 hidden: true
             });
