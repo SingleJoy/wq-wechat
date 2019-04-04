@@ -119,7 +119,7 @@ Page({
                 this.setData({
                     accountList:dataList
                 })
-                
+
             }else{
 
             }

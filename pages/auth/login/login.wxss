@@ -46,7 +46,7 @@
     position: absolute;
     left:10rpx;
     color:#fe3627;
-    bottom:-40rpx;
+    bottom:-72rpx;
     font-size: 24rpx;
     z-index: 2
 }
