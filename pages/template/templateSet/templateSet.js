@@ -1,4 +1,3 @@
-
 import { backContractTempSigner, contractTemp } from '../../../wxapi/api.js';
 import { validateCard, validateMoblie } from '../../../utils/util.js';
 const app = getApp();

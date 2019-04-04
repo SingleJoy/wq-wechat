@@ -33,7 +33,6 @@ Page({
                 // });
             }
         });
-        console.log(wx.getStorageSync('mobileTemplate'))
         if (wx.getStorageSync('mobileTemplate')) {
             this.setData({
                 changeChecked: true
