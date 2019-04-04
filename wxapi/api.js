@@ -6,7 +6,7 @@ function tenant(data){
 }
 //登录接口
 function login(data){
-    return request(api +'/v1.8/applet/tenant/login','post',data)
+    return request(api +'/v1/tenant/login','get',data)
 }
 //查询企业数量
 function bindEnterprises(data){
@@ -51,9 +51,10 @@ function getSignLink(interfaceCode, contractNo) {
 function getSignatures(interfaceCode){
     return request(api+'/v1.5/tenant/'+interfaceCode+'/getSignatures', 'get')
 }
+
 //退出
 function exitAndDeleteSession(){
-    return request(api+'/v1.8/applet/tenant/exit','get')
+    return request(api+'/v1/tenant/exitAndDeleteSession','get')
 }
 
 //首页查询合同状态、数量
@@ -171,8 +172,8 @@ function updateContractTime(interfaceCode,contractNo,data) {
 }
 
 //b2b签署获取签章位置
-function b2bSignerpositions(interfaceCode,contractNo){
-    return request(api+'/v1.4/tenant/'+ interfaceCode + '/contract/'+ contractNo +'/user/'+ interfaceCode + '/signerpositions','get')
+function b2bSignerpositions(interfaceCode,contractNo,userCode){
+    return request(api+'/v1.4/tenant/'+ interfaceCode + '/contract/'+ contractNo +'/user/'+ userCode + '/signerpositions','get')
 }
 
 //合同延期
@@ -220,5 +221,4 @@ module.exports = {
     b2bSignerpositions,
     b2bContractmoresign,
     updateContractTime
-
 }
