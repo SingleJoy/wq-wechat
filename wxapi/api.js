@@ -6,7 +6,7 @@ function tenant(data){
 }
 //登录接口
 function login(data){
-    return request(api +'/v1/tenant/login','get',data)
+    return request(api +'/v1.8/applet/tenant/login','post',data)
 }
 //查询企业数量
 function bindEnterprises(data){
@@ -51,10 +51,9 @@ function getSignLink(interfaceCode, contractNo) {
 function getSignatures(interfaceCode){
     return request(api+'/v1.5/tenant/'+interfaceCode+'/getSignatures', 'get')
 }
-
 //退出
 function exitAndDeleteSession(){
-    return request(api+'/v1/tenant/exitAndDeleteSession','get')
+    return request(api+'/v1.8/applet/tenant/exit','get')
 }
 
 //首页查询合同状态、数量
