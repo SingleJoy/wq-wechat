@@ -172,8 +172,8 @@ function updateContractTime(interfaceCode,contractNo,data) {
 }
 
 //b2b签署获取签章位置
-function b2bSignerpositions(interfaceCode,contractNo){
-    return request(api+'/v1.4/tenant/'+ interfaceCode + '/contract/'+ contractNo +'/user/'+ interfaceCode + '/signerpositions','get')
+function b2bSignerpositions(interfaceCode,contractNo,userCode){
+    return request(api+'/v1.4/tenant/'+ interfaceCode + '/contract/'+ contractNo +'/user/'+ userCode + '/signerpositions','get')
 }
 
 //合同延期

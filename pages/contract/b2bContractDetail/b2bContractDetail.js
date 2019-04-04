@@ -28,8 +28,7 @@ Page({
         errMessage:'',
         permanentLimit:false,
         animationData:'',
-        interfaceCode:wx.getStorageSync('interfaceCode'),
-        accountCode:wx.getStorageSync('accountCode'),
+
         accountLevel:'',
         contractNo:'',
         contractType:'',
@@ -65,11 +64,11 @@ Page({
             operator:param_data.operator,
             contractNo:param_data.contractNo,
             accountLevel:app.globalData.searchParam.accountLevel,
+            accountCode:wx.getStorageSync('accountCode'),
             interfaceCode:wx.getStorageSync('interfaceCode'),
             num:app.globalData.searchParam.num
         });
-        console.log(this.data.accountCode)
-        console.log(this.data.operator)
+
         wx.showLoading({
             title: '加载中',
         });
