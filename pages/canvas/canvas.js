@@ -112,22 +112,11 @@ wx.getSystemInfo({
         },
         //保存图片
         saveClick: function () {
-            let that=this;
-            wx.showModal({
-                title: '提示',
-                content: '确定提交保存',
-                success(res) {
-                    if (res.confirm) {
-                        that.submit()
-                    } else if (res.cancel) {
-
-                    }
-                }
-            })
-
+            this.submit();
         },
         //提交保存
         submit(){
+
             wx.canvasToTempFilePath({
                 canvasId: 'firstCanvas',
                 success: (res) => {

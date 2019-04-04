@@ -57,12 +57,13 @@
                 <view class="contract-img">
                     <image style="height:{{imgHeight}}px" class="contractImg" src='{{baseUrl}}/restapi/wesign/v1/tenant/contract/img?contractUrl={{item.contractUrl}}' wx:for="{{contractImgList}}" wx:key="{{item.contractUrlId}}"></image>
                     <image src="{{signImg}}" style="{{item.style}}" wx:if="{{signPositionList.length>0}}" wx:for="{{signPositionList}}" wx:key="{{index}}"></image>
-                </view>
-
-                <view class="sign-picture" >
                     <image src="{{base64Image}}" wx:if="{{signPositionList2.length>0}}" wx:for="{{signPositionList2}}" wx:key="{{index}}"
                            style="{{item.style}}"></image>
                 </view>
+
+                <!--<view class="sign-picture" >-->
+                    <!---->
+                <!--</view>-->
             </view>
 
         </view>

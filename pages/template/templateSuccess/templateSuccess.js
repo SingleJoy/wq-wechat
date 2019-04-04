@@ -1,10 +1,7 @@
 // pages/template/templateSuccess/templateSuccess.js
 import { getContractSuccessDetails, getSignLink } from '../../../wxapi/api.js'
 const app = getApp();
-// let interfaceCode = app.globalData.contractParam.interfaceCode,
-//     contractNo = app.globalData.contractParam.contractNo;
-let contractNo = "5b9f7ecab4064a3eb611a7de85bca1cb",
-    interfaceCode = "ZQ3512d188874f05b3174d317090d2a2";
+
 Page({
   /**
    * 页面的初始数据
@@ -20,22 +17,18 @@ Page({
     signLink: '',
     //签署人员信息
     signList:[
-        {
-          signUserName:'测试1',
-          signStatus:'0'
-        },
-        {
-          signUserName:'测试2',
-          signStatus:'1'
-        },
-        {
-          signUserName:'测试3',
-          signStatus:'1'
-        },
+
     ]
   },
   //获取签署连接
   getLink() {
+      let interfaceCode =wx.getStorageSync('interfaceCode');
+      let contractNo = app.globalData.searchParam.contractNo;
+      this.setData({
+          contractNo:contractNo,
+          interfaceCode:interfaceCode,
+          contractStatus:3,
+      });
     getSignLink(interfaceCode, contractNo).then(res => {
       this.setData({
         signLink: res.data
@@ -47,7 +40,7 @@ Page({
   },
   //获取合同成功信息
   getContractInfo() {
-    getContractSuccessDetails(interfaceCode, contractNo).then(res => {
+    getContractSuccessDetails(this.data.interfaceCode, this.data.contractNo).then(res => {
       this.getLink();
       let contractVo = res.data.contractVo,
           signUserVo = res.data.signUserVo;
@@ -106,6 +99,7 @@ Page({
   },
   //跳转到首页
   backHome() {
+
     wx.switchTab({
       url: '../../index/index'
     })
