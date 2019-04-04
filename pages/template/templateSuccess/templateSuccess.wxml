@@ -13,7 +13,7 @@
         </view>
         <view class="info-item">  
             <text class="info-name">当前状态：</text>
-            <text class="info-value">{{contractStatus}}</text>
+            <text class="info-value">{{contractVo.status==1?'签署中':(contractVo.status==2?'已生效':'已截止')}}</text>
         </view>
         <view class="info-item">  
             <text class="info-name">截止时间：</text>

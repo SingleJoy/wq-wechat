@@ -33,7 +33,6 @@ Page({
                 // });
             }
         });
-        console.log(wx.getStorageSync('mobileTemplate'))
         if (wx.getStorageSync('mobileTemplate')) {
             this.setData({
                 changeChecked: true
@@ -87,11 +86,17 @@ Page({
                     isRequest: false,
                 });
                 if (this.data.changeChecked) {
-                    this.data.list = [];
+                    // this.data.list = [];
+                    this.setData({
+                      list: []
+                    })
                     pageNum = 1;
                     this.getData("applet");
                 } else {
-                    this.data.list = [];
+                    // this.data.list = [];
+                    this.setData({
+                      list: []
+                    })
                     pageNum = 1;
                     this.getData();
                 }
@@ -194,7 +199,9 @@ Page({
         this.setData({
             isRequest: false,
         });
-        this.data.list = [];
+        this.setData({
+          list: []
+        })
         pageNum = 1;
         if (wx.getStorageSync('mobileTemplate')) {
             this.getData("applet");

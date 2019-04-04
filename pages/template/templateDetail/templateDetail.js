@@ -6,9 +6,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    contractList:[],
+    contractImgList:[],
     baseUrl:app.globalData.baseUrl,
-    templateSpecificType:'',
     templateNo:'',
     interfaceCode:'',
     imgHeight:app.globalData.imgHeight,
@@ -19,9 +18,21 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
+  //图片预览
+  previewImage:function(e) {
+      let list=[];
+      for(let i=0;i<this.data.contractImgList.length;i++){
+          list.push(this.data.baseUrl+'/restapi/wesign/v1/tenant/contract/img?contractUrl='+this.data.contractImgList[i].contractUrl)
+      }
+      let current = e.target.dataset.src;
+      wx.previewImage({
+          current: current,
+          urls: list
+      })
+  },
   onLoad: function (options) {
     let param_data = app.globalData.contractParam;
-    console.log(this.data.interfaceCode)
+    console.log(this.data.interfaceCode);
     let param={
         templateSpecificType:param_data.templateSpecificType
     }
@@ -33,7 +44,7 @@ Page({
     })
     templateImg(this.data.interfaceCode,param_data.templateNo,param).then(res=>{
         this.setData({
-            contractList:res.data.list
+            contractImgList:res.data.list
         })
         setTimeout(function () {
             wx.hideLoading()

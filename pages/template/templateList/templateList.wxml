@@ -27,9 +27,10 @@
       </view>
         <view class="load_more" hidden="{{!loading}}">
         <!-- <view class="load_more"> -->
-          <view class="load_loading">
-            <image src="../../../../images/loading.gif" mode="widthFix"></image>
-          </view>
+          <!-- <view class="load_loading"> -->
+            <!-- <image src="../../../../images/loading.gif" mode="widthFix"></image> -->
+            <!-- <img src="../../../../images/loading.svg" width="300" /> -->
+          <!-- </view> -->
           <view class="load-tips">正在加载……</view>
         </view>
         <view class="load_end" hidden="{{!loaded}}">没有更多数据了……</view>

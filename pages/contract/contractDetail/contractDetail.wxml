@@ -53,7 +53,7 @@
             <view class="sign-contract-imgs">
                 <!-- 合同图片 -->
                 <view class="contract-img">
-                    <image style="height:{{imgHeight}}px" class="contractImg" src='{{baseUrl}}/restapi/wesign/v1/tenant/contract/img?contractUrl={{item.contractUrl}}' wx:for="{{contractImgList}}" wx:key="{{item.contractUrlId}}"></image>
+                    <image style="height:{{imgHeight}}px" class="contractImg" bindtap="previewImage" data-src="{{baseUrl}}/restapi/wesign/v1/tenant/contract/img?contractUrl={{item.contractUrl}}" src='{{baseUrl}}/restapi/wesign/v1/tenant/contract/img?contractUrl={{item.contractUrl}}' wx:for="{{contractImgList}}" wx:key="{{item.contractUrlId}}"></image>
                     <image src="{{signImg}}" style="{{item.style}}" wx:if="{{signPositionList.length>0}}" wx:for="{{signPositionList}}" wx:key="item.pageNum"></image>
                 </view>
             </view>

@@ -9,8 +9,8 @@ Page({
      * 页面的初始数据
      */
     data: {
-        username:'18201328018',
-        password:'test111111',
+        username:'',
+        password:'',
         usernameErr:'',
         passwordErr:'',
         canSubmit:true, //点击按钮
@@ -92,45 +92,54 @@ Page({
                         isSubmit:false
                     })
                     login(login_data).then(res=>{
-                        //获取登录列表
-                        bindEnterprises(hompage_data).then(res=>{
-                            if (res.data.bindTenantNum == 1) {
-                                let res_data = '';
-                                if (res.data.dataList[0].length > 0) {   //判断是一级账号还是二级账号直接进首页
-                                    res_data = res.data.dataList[0][0];
-                                } else {
-                                    res_data = res.data.dataList[1][0];
-                                }
-                                wx.setStorage({ key: 'accountCode',data: res_data.accountCode})
-                                wx.setStorage({ key: 'interfaceCode',data: res_data.interfaceCode})
-                                wx.setStorage({key: 'accountLevel',data: res_data.accountLevel})
-                                wx.setStorage({key: 'enterpriseName',data: res_data.enterpriseName})
-                                wx.setStorage({key: 'mobile',data: res_data.mobile})
-                                //登录=>主页
-                                let data={
-                                    mobile:res_data.mobile
-                                }
-                                homePage(res_data.interfaceCode,data).then(res=>{
-                                    app.globalData.signVerify = res.data.dataList[1].signVerify;
-                                    wx.setStorage({key:'email',data:res.data.dataList[0].email})
-                                    wx.setStorage({ key: 'parentAccountmobile', data: res.data.dataList[1].parentAccountmobile })
-                                    if(res.data.resultCode==1){
-                                        wx.switchTab({
-                                            url: '/pages/index/index'
-                                        })
-                                    }else{
-
+                        if(res.data.resultCode==1){
+                            //获取登录列表
+                            bindEnterprises(hompage_data).then(res=>{
+                                if (res.data.bindTenantNum == 1) {
+                                    let res_data = '';
+                                    if (res.data.dataList[0].length > 0) {   //判断是一级账号还是二级账号直接进首页
+                                        res_data = res.data.dataList[0][0];
+                                    } else {
+                                        res_data = res.data.dataList[1][0];
                                     }
-                                }).catch(err=>{
+                                    wx.setStorage({ key: 'accountCode',data: res_data.accountCode})
 
-                                })
-                            } else {
-                                wx.setStorage({key: 'dataList',data: JSON.stringify(res.data.dataList)})
-                                wx.redirectTo({
-                                    url: '/pages/auth/roles/roles'
-                                })
-                            }
-                        })
+                                    wx.setStorage({ key: 'interfaceCode',data: res_data.interfaceCode})
+                                    wx.setStorage({key: 'accountLevel',data: res_data.accountLevel})
+                                    wx.setStorage({key: 'enterpriseName',data: res_data.enterpriseName})
+                                    wx.setStorage({key: 'mobile',data: res_data.mobile})
+                                    //登录=>主页
+                                    let data={
+                                        mobile:res_data.mobile
+                                    }
+                                    homePage(res_data.interfaceCode,data).then(res=>{
+                                        app.globalData.signVerify = res.data.dataList[1].signVerify;
+                                        wx.setStorage({key:'email',data:res.data.dataList[0].email});
+                                        wx.setStorage({ key: 'userCode',data:res.data.dataList[0].userCode});
+                                        wx.setStorage({ key: 'parentAccountmobile', data: res.data.dataList[1].parentAccountmobile })
+                                        if(res.data.resultCode==1){
+                                            wx.switchTab({
+                                                url: '/pages/index/index'
+                                            })
+                                        }else{
+
+                                        }
+                                    }).catch(err=>{
+
+                                    })
+                                } else {
+                                    wx.setStorage({key: 'dataList',data: JSON.stringify(res.data.dataList)})
+                                    wx.redirectTo({
+                                        url: '/pages/auth/roles/roles'
+                                    })
+                                }
+                            })
+                        }else{
+                            this.setData({
+                                passwordErr:res.data.resultMessage
+                            });
+                        }
+
 
                     }).catch(err=>{
 

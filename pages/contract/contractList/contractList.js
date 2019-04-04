@@ -106,8 +106,12 @@ Page({
         let accountCode=this.data.accountCode;
         let enterpriseName=this.data.enterpriseName;
         getAccounts(interfaceCode).then(res=>{
+            let dataList=[];
             if(res.data.resultCode == 1){
-                let dataList=res.data.dataList;
+                if(res.data.dataList){
+                     dataList=res.data.dataList;
+                }
+
                 //一级账号 把一级账号数据
                 if(this.data.accountLevel==1){
                     dataList.unshift({accountCode:'',accountName:'全部'},{accountCode:accountCode,accountName:enterpriseName})
@@ -115,7 +119,9 @@ Page({
                 this.setData({
                     accountList:dataList
                 })
-                // console.log(this.data.accountList)
+
+            }else{
+
             }
         })
     },
@@ -455,7 +461,7 @@ Page({
         let search=Object.keys(searchParam);
         //判断页面是从哪个进入，如果是从contractSearch 保存从contractSearch 获取app.data存储的数据
         if (search.length>0) {
-            // console.log(app.globalData.searchParam);
+
             Object.keys(searchParam).forEach((key)=>{
                 this.setData({
                     [key]:searchParam[key],
@@ -464,9 +470,11 @@ Page({
             this.setData({
                 contractDataList:[]
             });
+            console.log(this.data.contractStatus)
             this.setData({
                 contractStatus:this.data.contractStatus==0?4:this.data.contractStatus,
             });
+            console.log(this.data.contractStatus)
             //查询所有归档文件夹
             this.contractFilings();
             this.getAccounts();
@@ -511,7 +519,7 @@ Page({
                 flag:true,
             });
             app.globalData.searchParam={};
-            // console.log(app.globalData.searchParam)
+
         }
 
 

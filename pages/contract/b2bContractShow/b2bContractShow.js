@@ -154,16 +154,19 @@ Page({
 
     // 获取签章位置并展示签章图片
     b2bSignerpositions(){
-        b2bSignerpositions(this.data.interfaceCode,this.data.contractNo).then(res=>{
-            console.log(res);
+        b2bSignerpositions(this.data.interfaceCode,this.data.contractNo,this.data.userCode).then(res=>{
+
             let arr = res.data.lists[0];
+            let arr2 = res.data.lists[1];
+            console.log(arr);
+            console.log(arr2);
             let signPositionStr='';
             let signPositionStr2='';
             let userCode=res.data.list[0].userCode;
             this.setData({
                 userCode:userCode
             });
-            let arr2 = res.data.lists[1];
+
             for(let i=0;i<arr.length;i++){
                 let item = arr[i];
                 let pageNum = item.pageNum;
@@ -183,7 +186,7 @@ Page({
                     signPositionList:arr,
                     signPositionStr:signPositionStr
                 });
-                console.log(this.data.signPositionStr)
+
             }
             for(let i=0;i<arr2.length;i++){
                 let item = arr2[i];
@@ -212,7 +215,6 @@ Page({
     },
     //校验签署密码
     signPassword(){
-
         let data={
             signVerifyPassword:md5(this.data.signPassword)
         };
@@ -271,8 +273,7 @@ Page({
 
         })
     },
-
-
+    
     //获取签署密码
     getPwd(e){
         let value = e.detail.value;
@@ -280,7 +281,6 @@ Page({
             signPassword:value
         });
     },
-
 
     /**
      * 生命周期函数--监听页面初次渲染完成

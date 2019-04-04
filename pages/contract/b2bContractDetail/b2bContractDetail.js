@@ -28,8 +28,7 @@ Page({
         errMessage:'',
         permanentLimit:false,
         animationData:'',
-        interfaceCode:wx.getStorageSync('interfaceCode'),
-        accountCode:wx.getStorageSync('accountCode'),
+
         accountLevel:'',
         contractNo:'',
         contractType:'',
@@ -54,6 +53,19 @@ Page({
     /**
      * 生命周期函数--监听页面加载
      */
+    //图片预览
+    previewImage:function(e) {
+        let list=[];
+        for(let i=0;i<this.data.contractImgList.length;i++){
+            list.push(this.data.baseUrl+'/restapi/wesign/v1/tenant/contract/img?contractUrl='+this.data.contractImgList[i].contractUrl)
+        }
+        let current = e.target.dataset.src;
+        wx.previewImage({
+            current: current,
+            urls: list
+        })
+    },
+
     onLoad: function (options) {
 
         let param_data = app.globalData.searchParam;
@@ -65,11 +77,11 @@ Page({
             operator:param_data.operator,
             contractNo:param_data.contractNo,
             accountLevel:app.globalData.searchParam.accountLevel,
+            accountCode:wx.getStorageSync('accountCode'),
             interfaceCode:wx.getStorageSync('interfaceCode'),
             num:app.globalData.searchParam.num
         });
-        console.log(this.data.accountCode)
-        console.log(this.data.operator)
+
         wx.showLoading({
             title: '加载中',
         });
