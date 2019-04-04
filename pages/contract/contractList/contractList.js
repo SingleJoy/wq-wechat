@@ -455,7 +455,7 @@ Page({
         let search=Object.keys(searchParam);
         //判断页面是从哪个进入，如果是从contractSearch 保存从contractSearch 获取app.data存储的数据
         if (search.length>0) {
-            // console.log(app.globalData.searchParam);
+
             Object.keys(searchParam).forEach((key)=>{
                 this.setData({
                     [key]:searchParam[key],
@@ -511,7 +511,7 @@ Page({
                 flag:true,
             });
             app.globalData.searchParam={};
-            // console.log(app.globalData.searchParam)
+
         }
 
 
