@@ -7,6 +7,6 @@
              bindtap="previewImage"
       >{{item}}</image>
     </view>
-    <button class='contact-start' v-if="{{templateSpecificType == 'fillreference'}}" bindtap='ImmediatelyStart'>立即发起</button>
+    <button class='contact-start' wx:if="{{templateSpecificType == 'fillreference'}}" bindtap='ImmediatelyStart'>立即发起</button>
   </view>
 </view>

@@ -64,7 +64,12 @@
             </view>
 
         </view>
-
+        <view style="position: absolute;width:100%;top:260rpx;" hidden="{{!refreshing}}">
+        <view class="load_more" >
+            <view class="load_loading"></view>
+            <view class="load-tips">正在刷新中……</view>
+        </view>
+        </view>
         <view style="position: absolute;width:100%;top:260rpx;">
 
             <view class="search-data" style="padding-bottom: 20rpx;">
