@@ -8,6 +8,7 @@ import {
     getSignature,
     verifySignPassword,
     contractmoresign,
+    updateContractTime,
     signerpositions} from '../../../wxapi/api.js';
 const app = getApp();
 const md5 = require('../../../utils/md5.js')
@@ -28,7 +29,7 @@ Page({
         permanentLimit:false,
         animationData:'',
         interfaceCode:'',
-        accountCode:wx.getStorageSync('accountCode'),
+        accountCode:'',
         accountLevel:'',
         contractNo:'',
         contractType:'',
@@ -36,7 +37,7 @@ Page({
         baseUrl:app.globalData.baseUrl,
         contractVo:'', //合同信息
         signUserVo:'', //签署人员
-        defaultEmail:wx.getStorageSync('email'),
+        defaultEmail:'',
         sendEmail:'',//指定发送邮箱
         optionAuthority:true,  //合同详情按钮权限
         signRoomLink:'',
@@ -58,15 +59,17 @@ Page({
         this.setData({
             contractStatus:param_data.contractStatus,
             contractNo:param_data.contractNo,
-            accountLevel:app.globalData.searchParam.accountLevel,
+            accountLevel:param_data.accountLevel,
             interfaceCode:wx.getStorageSync('interfaceCode'),
+            accountCode:wx.getStorageSync('accountCode'),
+            defaultEmail:wx.getStorageSync('email'),
             validTime:param_data.validTime,
+            num:param_data.num,
             contractInfo:param_data,
         })
         wx.showLoading({
             title: '加载中',
         })
-        console.log(param_data)
         contractImgs(this.data.interfaceCode,this.data.contractNo).then(res=>{
             this.setData({
                 contractImgList:res.data
@@ -300,7 +303,31 @@ Page({
     },
 //延期确定按钮
     dateSubmit:function(){
+        let data={
+            validTime:this.data.date,
+            perpetualValid:this.data.permanentLimit?1:0,
+        }
+        updateContractTime(this.data.interfaceCode,this.data.contractNo,data).then(res=>{
+            if(res.data.resultCode == 0){
+                wx.showToast({
+                    title: '截止时间修改成功',
+                    icon: 'none',
+                    duration: 2000
+                })
+                Object.assign(app.globalData.contractParam,{contractStatus:4})
+                wx.switchTab({
+                    url:'/pages/contract/contractList/contractList'
+                })
+            }else{
+                wx.showToast({
+                    title: res.data.resultMessage,
+                    icon: 'none',
+                    duration: 2000
+                })
+            }
+        }).catch(err=>{
 
+        })
     },
 //延期选择时间
     showPicker:function(e){

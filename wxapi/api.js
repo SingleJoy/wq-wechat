@@ -166,7 +166,10 @@ function b2bContrants(interfaceCode,data){
 function searchContractsForMiniProgram(interfaceCode,data){
     return request(api+'/v1.8/applet/tenant/' + interfaceCode + '/contract/searchContractsForMiniProgram','get',data)
 }
-
+//合同延期
+function updateContractTime(interfaceCode,contractNo,data) {
+    return request(api+'/v1/tenant/' + interfaceCode + '/contract/'+contractNo+'/updateContractTime','post',data)
+}
 
 //b2b签署获取签章位置
 function b2bSignerpositions(interfaceCode,contractNo){
@@ -179,43 +182,44 @@ function updateContractTime(interfaceCode,contractNo,data){
 }
 
 module.exports = {
-  tenant,
-  login,
-  bindEnterprises,
-  homePage,
-  contractNum,
-  getCertificate,
-  getAccountInformation,
-  getSignatures,
-  exitAndDeleteSession,
-  updateMobileTemplate,
-  getAccountTemplates,
-  contractFilings,
-  getAccounts,
-  contracts,
-  b2bContrants,
-  contractImgs,
-  contracttempimgs,
-  templateImg,
-  remind,
-  signerpositions,
-  getSignature,
-  verifySignPassword,
-  getContractDetails,
-  searchContractsForMiniProgram,
-  showSignRoomInfo,
-  sendEmailForUser,
-  backContractTempSigner,
-  contractTemp,
-  getContractSuccessDetails,
-  getSignLink,
-  contractmoresign,
-  templateVal,
-  template,
-  templateBatchSign,
-  userInfo,
-  contractkeywordsign,
+    tenant,
+    login,
+    bindEnterprises,
+    homePage,
+    contractNum,
+    getCertificate,
+    getAccountInformation,
+    getSignatures,
+    exitAndDeleteSession,
+    updateMobileTemplate,
+    getAccountTemplates,
+    contractFilings,
+    getAccounts,
+    contracts,
+    b2bContrants,
+    contractImgs,
+    contracttempimgs,
+    templateImg,
+    remind,
+    signerpositions,
+    getSignature,
+    verifySignPassword,
+    getContractDetails,
+    searchContractsForMiniProgram,
+    showSignRoomInfo,
+    sendEmailForUser,
+    backContractTempSigner,
+    contractTemp,
+    getContractSuccessDetails,
+    getSignLink,
+    contractmoresign,
+    templateVal,
+    template,
+    templateBatchSign,
+    userInfo,
+    contractkeywordsign,
     b2bSignerpositions,
     b2bContractmoresign,
     updateContractTime
+
 }
