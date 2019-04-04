@@ -34,7 +34,7 @@
                         <block wx:else>
                             <view class="account-status real-name">已实名</view>
                         </block>  
-                        <text class="account-option" bindtap="goIndex" data-account="{{item.accouunt}}">进入</text> 
+                        <text class="account-option" bindtap="goIndex" data-info="{{item}}">进入</text>
                     </view>
                 </view>
             </view>

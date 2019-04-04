@@ -27,8 +27,8 @@ Page({
       this.setData({
           contractNo:contractNo,
           interfaceCode:interfaceCode,
-          contractStatus:3,
       });
+      Object.assign(app.globalData.searchParam,{});
     getSignLink(interfaceCode, contractNo).then(res => {
       this.setData({
         signLink: res.data

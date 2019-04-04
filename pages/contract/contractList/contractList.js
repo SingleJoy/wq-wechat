@@ -116,6 +116,8 @@ Page({
                     accountList:dataList
                 })
                 // console.log(this.data.accountList)
+            }else{
+
             }
         })
     },
@@ -464,9 +466,11 @@ Page({
             this.setData({
                 contractDataList:[]
             });
+            console.log(this.data.contractStatus)
             this.setData({
                 contractStatus:this.data.contractStatus==0?4:this.data.contractStatus,
             });
+            console.log(this.data.contractStatus)
             //查询所有归档文件夹
             this.contractFilings();
             this.getAccounts();

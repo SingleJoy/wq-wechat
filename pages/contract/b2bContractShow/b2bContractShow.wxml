@@ -61,9 +61,7 @@
                            style="{{item.style}}"></image>
                 </view>
 
-                <!--<view class="sign-picture" >-->
-                    <!---->
-                <!--</view>-->
+
             </view>
 
         </view>

@@ -77,6 +77,7 @@ Page({
   },
   goIndex:function(e){
     let accountInfo = e.target.dataset.info;
+    console.log(e.target);
     wx.setStorage({key: 'accountCode',data: accountInfo.accountCode})
     wx.setStorage({key: 'interfaceCode',data: accountInfo.interfaceCode})
     wx.setStorage({key: 'enterpriseName',data: accountInfo.enterpriseName})
@@ -91,6 +92,7 @@ Page({
         if(res.data.resultCode==1){
             app.globalData.signVerify = res.data.dataList[1].signVerify;
             wx.setStorage({key:'email',data:res.data.dataList[0].email});
+            wx.setStorage({key:'userCode',data:res.data.dataList[0].userCode});
             wx.setStorage({ key: 'parentAccountmobile', data: res.data.dataList[1].parentAccountmobile });
             wx.switchTab({
                 url:'/pages/index/index'
