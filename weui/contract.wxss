@@ -41,7 +41,7 @@
 }
 .search-data .data-lists{
     box-sizing: border-box;
-    height: 160rpx;
+    /* height: 160rpx; */
     overflow: hidden;
     padding-left: 20rpx;
     border-bottom: 1px solid #ddd;
@@ -103,7 +103,7 @@
 .no-data{
     display: block;
     text-align: center;
-    padding-top: 40rpx;
+    padding-top: 200rpx;
 }
 .no-data text{
     font-size: 32rpx;

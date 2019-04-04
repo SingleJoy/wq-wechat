@@ -277,8 +277,8 @@ Page({
         let data = {
             contractNum:contractNo,
             phoneHeight:this.data.windowHeight,
-            phoneWidth:this.data.phoneWidth,
-            signatureImg:this.data.signImg,
+            phoneWidth: this.data.windowWidth,
+            signatureImg:this.data.signImg.split(',')[1],
             signH:this.data.windowWidth*0.21,
             signW:this.data.windowWidth*0.21,
             signPositionStr:this.data.signPositionStr
@@ -286,7 +286,7 @@ Page({
         contractmoresign(this.data.interfaceCode,contractNo,data).then(res=>{
             if(res.data.responseCode == 0){
                 wx.reLaunch({
-                    url:'/pages/template/templateSuccess'
+                  url:'/pages/template/templateSuccess/templateSuccess'
                 })
             }
         }).catch(err=>{
