@@ -37,7 +37,7 @@ Page({
         templateSpecificType:param_data.templateSpecificType
     }
     this.setData({
-        interfaceCode:wx.getStorageSync('interfaceCode')
+        interfaceCode:wx.getStorageSync('interfaceCode'),
     })
     wx.showLoading({
         title: '加载中',

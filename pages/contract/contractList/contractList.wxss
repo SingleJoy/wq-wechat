@@ -30,10 +30,15 @@
     position: relative;
     z-index: 99;
 }
+/*.swiper-tab-list{*/
+    /*width: 80%;*/
+    /*text-align: left;*/
+/*}*/
 .swiper-tab view {
-    overflow: hidden;
+    box-sizing: border-box;
     font-size: 28rpx;
     display: inline-block;
+    overflow: hidden;
     width: 33%;
     color: #666;
     border-bottom: 0rpx;
@@ -44,12 +49,12 @@
 }
 .swiper-tab view i{
     position: absolute;
-    top: 30rpx;
-    right: 10rpx;
+    top: 34rpx;
+    right: 26rpx;
     width: 0;
     height: 0;
-    border: 12rpx solid #999;
-    border-top-color: #999;
+    border: 12rpx solid #666;
+    border-top-color: #666;
     border-bottom-color: transparent;
     border-left-color: transparent;
     border-right-color: transparent;
@@ -117,14 +122,14 @@
 .tab-list{
     z-index: 1;
     width: 100%;
-    margin-top: 160rpx;
+    margin-top: 176rpx;
     background-color: #fff;
     margin-bottom:10rpx;
 }
 
 .tab-list .tab-item{
     margin:0 40rpx;
-    box-shadow:1px 2px 5px #ccc;
+    box-shadow:1px 2px 5px #ddd;
     border-radius: 5px;
     height: 80rpx;
 }
@@ -143,4 +148,7 @@
 }
 .tab-list .tab-item view.on{
     color: #4091fb;
+}
+.search-data .data-lists {
+  margin-top:10rpx;
 }

@@ -35,7 +35,7 @@
             <view class='list-name'>姓名</view>  
             <view class='list-idcard'>身份证</view>  
             <view class='list-mobile'>手机号</view> 
-            <view class='list-operate'></view> 
+            <view class='list-operate'>操作</view> 
           </view>
         </view>
         <view class='add-contract' bindtap="showDialogBtn">

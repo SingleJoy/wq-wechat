@@ -41,7 +41,6 @@ Page({
   //获取合同成功信息
   getContractInfo() {
     getContractSuccessDetails(this.data.interfaceCode, this.data.contractNo).then(res => {
-      this.getLink();
       let contractVo = res.data.contractVo,
           signUserVo = res.data.signUserVo;
       if (!contractVo.validTime) {
@@ -92,6 +91,7 @@ Page({
       title: '加载中',
     })
     this.getContractInfo();
+    this.getLink();    
     this.setData({
       navH: app.globalData.navHeight
     });

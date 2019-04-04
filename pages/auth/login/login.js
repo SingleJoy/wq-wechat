@@ -162,6 +162,7 @@ Page({
     //输入框事件
     bindUsernameInput: function (e) {
         var user_val =  e.detail.value;
+
         this.setData({
             username: user_val,
         },()=>{

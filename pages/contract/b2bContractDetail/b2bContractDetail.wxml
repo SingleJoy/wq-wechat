@@ -71,7 +71,7 @@
             </block>
             <block wx:elif="{{contractStatus == 2}}">
                 <view class="options">
-                    <button class="" bindtap='smsTip'>短信提醒</button>
+                    <button class="note-remind" bindtap='smsTip'>短信提醒</button>
                     <button class="right-border" bindtap="copyLink">复制链接</button>
                 </view>
             </block>
@@ -129,7 +129,7 @@
                             </view>
                         </view>
                         <view class="no-datelimit" bindtap="changePermanent">
-                                <view class="radio">
+                                <view class="radio {{permanentLimit ? 'border-color' : ''}}">
                                     <text class="radio-dot" wx:if="{{permanentLimit}}"></text>
                                 </view>
                                 <text>永久有效</text>

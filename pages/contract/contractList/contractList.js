@@ -37,16 +37,16 @@ Page({
         scrollTop:'', //页面滑动
         secondAccountCode:'', //二级账号accountCode
         flag:true,
-
-
+        refreshing:false,
     },
-
     /**
      * 生命周期函数--监听页面加载
      */
 
     onPullDownRefresh() {
-
+        this.setData({
+            refreshing: true
+        });
         this.setData({
             pageNo:1
         });
@@ -92,7 +92,6 @@ Page({
                 this.setData({
                     folderList: dataList
                 });
-
             }else{
 
             }
@@ -111,7 +110,6 @@ Page({
                 if(res.data.dataList){
                      dataList=res.data.dataList;
                 }
-
                 //一级账号 把一级账号数据
                 if(this.data.accountLevel==1){
                     dataList.unshift({accountCode:'',accountName:'全部'},{accountCode:accountCode,accountName:enterpriseName})
@@ -151,6 +149,7 @@ Page({
             mask: true
         });
         contracts(interfaceCode,param).then(res=>{
+
             let totalItemNumber=res.data.totalItemNumber;
             if(this.data.num==1){
                 setTimeout(()=>{
@@ -174,6 +173,9 @@ Page({
                     flag:false
                 });
             }
+            this.setData({
+                refreshing: false
+            });
         }).catch(error=>{
 
         })
@@ -187,6 +189,7 @@ Page({
             mask: true
         });
         b2bContrants(interfaceCode,param).then(res=>{
+
             let totalItemNumber=res.data.totalItemNumber;
             if(this.data.num==2){
                 setTimeout(()=>{
@@ -211,6 +214,9 @@ Page({
                     flag:false
                 });
             }
+            this.setData({
+                refreshing: false
+            });
         }).catch(error=>{
 
         })
