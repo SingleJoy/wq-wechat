@@ -22,12 +22,12 @@
   padding: 0 20rpx 50rpx 20rpx;
   box-sizing: border-box;
   border-radius: 10rpx;
-  box-shadow: rgba(228, 228, 228, 0.5) 0px 1px 4px 2px;
+  box-shadow:  0px 1px 4px 2px #ddd;
   margin-top:36rpx;
 }
 .account-item{
   display: flex;
-  border-bottom:2rpx solid #dddddd;
+  border-bottom:2rpx solid #ddd;
   height:100rpx;
   vertical-align: middle;
   justify-content: space-between;

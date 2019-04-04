@@ -30,10 +30,15 @@
     position: relative;
     z-index: 99;
 }
+/*.swiper-tab-list{*/
+    /*width: 80%;*/
+    /*text-align: left;*/
+/*}*/
 .swiper-tab view {
-    overflow: hidden;
+    box-sizing: border-box;
     font-size: 28rpx;
     display: inline-block;
+    overflow: hidden;
     width: 33%;
     color: #666;
     border-bottom: 0rpx;
@@ -124,7 +129,7 @@
 
 .tab-list .tab-item{
     margin:0 40rpx;
-    box-shadow:1px 2px 5px #ccc;
+    box-shadow:1px 2px 5px #ddd;
     border-radius: 5px;
     height: 80rpx;
 }

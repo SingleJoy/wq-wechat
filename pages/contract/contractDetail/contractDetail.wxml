@@ -89,7 +89,7 @@
                 <!--drawer content-->
                     <view class="drawer-title">请输入邮箱账号</view>
                     <view class="drawer-content">
-                        <input  class="email-address" value="{{sendEmail}}" bindinput="getEmail"></input>
+                        <input  class="email-address" value="{{sendEmail}}" bindinput="getEmail" bindblur="checkEmail"></input>
                         <view class="email-err">{{errMessage}}</view>
                         <view class="bind-email" wx:if="{{defaultEmail}}" bindtap="emailSubmit" data-type="default">发送至账号绑定邮箱</view>
                     </view>

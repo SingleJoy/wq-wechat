@@ -112,7 +112,7 @@
 .load_more {
     text-align: center;
     width: 420rpx;
-    margin: 0 auto;
+    margin: -30rpx auto 0 auto;
     background-size: 120rpx;
     height: 80rpx;
     line-height: 80rpx;

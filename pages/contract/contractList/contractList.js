@@ -149,9 +149,7 @@ Page({
             mask: true
         });
         contracts(interfaceCode,param).then(res=>{
-            this.setData({
-                refreshing: false
-            });
+
             let totalItemNumber=res.data.totalItemNumber;
             if(this.data.num==1){
                 setTimeout(()=>{
@@ -175,6 +173,9 @@ Page({
                     flag:false
                 });
             }
+            this.setData({
+                refreshing: false
+            });
         }).catch(error=>{
 
         })
@@ -188,9 +189,7 @@ Page({
             mask: true
         });
         b2bContrants(interfaceCode,param).then(res=>{
-            this.setData({
-                refreshing: false
-            });
+
             let totalItemNumber=res.data.totalItemNumber;
             if(this.data.num==2){
                 setTimeout(()=>{
@@ -215,6 +214,9 @@ Page({
                     flag:false
                 });
             }
+            this.setData({
+                refreshing: false
+            });
         }).catch(error=>{
 
         })

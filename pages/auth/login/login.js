@@ -9,8 +9,8 @@ Page({
      * 页面的初始数据
      */
     data: {
-        username:'',
-        password:'',
+        username:'18201328018',
+        password:'test111111',
         usernameErr:'',
         passwordErr:'',
         canSubmit:true, //点击按钮
@@ -163,6 +163,7 @@ Page({
     //输入框事件
     bindUsernameInput: function (e) {
         var user_val =  e.detail.value;
+
         this.setData({
             username: user_val,
         },()=>{

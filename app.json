@@ -1,8 +1,9 @@
 {
   "pages": [
+    "pages/contract/contractList/contractList",
     "pages/start/start",
     "pages/auth/login/login",
-    "pages/contract/contractList/contractList",
+
     "pages/account/account",
     "pages/contract/contractSearch/contractSearch",
     "pages/auth/roles/roles",
