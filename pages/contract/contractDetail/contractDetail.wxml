@@ -69,7 +69,7 @@
             </block>
             <block wx:elif="{{contractStatus == 2 && (contractInfo.creater == interfaceCode?accountCode==contractInfo.operator:true)}}"> 
                 <view class="options">
-                    <button class="" bindtap='smsTip'>短信提醒</button>
+                    <button class="note-remind" bindtap='smsTip'>短信提醒</button>
                     <button class="" bindtap='copyLink'>复制链接</button>
                 </view>
             </block>
