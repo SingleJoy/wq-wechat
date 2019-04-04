@@ -58,13 +58,14 @@
 /*}*/
  .contract-num-list{
      display: flex;
-     flex-direction: row;
-     margin-top: 58rpx;
-     text-align: center;
+     /* flex-direction: row; */
+     /* margin-top: 58rpx; */
+     /* text-align: center; */
+     padding: 0 32rpx;
 }
 
-.contract-num-list .contract-left,.contract-num-list .contract-right{
-  /* width: 50%; */
+.contract-num-list .contract-left, .contract-num-list .contract-right{
+  flex: auto;
   padding: 24rpx 0;
   text-align: center;
   background-color: #f5f5f5;
@@ -73,11 +74,14 @@
   border-radius: 5rpx;
   margin: 30rpx auto;
 }
+.contract-num-list .contract-right{
+  margin-left: 33rpx;
+}
 .contract-num-list image,.contract-num-list image{
     width: 48rpx;
     height: 48rpx;
     display: block;
-    margin: 0 auto;
+    margin: 10rpx auto;
 }
 
 .contract-num-list .contract-left text,.contract-num-list .contract-right text{

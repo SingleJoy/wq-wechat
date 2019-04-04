@@ -40,7 +40,7 @@
                             <image src="../../images/b2c@2x.png" class="real-name"></image>
                             <text>对个人合同数量 : {{b2cNum}}</text>
                         </view>
-                        <view class="contract-right" >
+                        <view class="contract-right">
                             <image src="../../images/b2b@2x.png" class="real-name"></image>
                             <text>对企业合同数量 : {{b2bNum}}</text>
                         </view>

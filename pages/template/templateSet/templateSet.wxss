@@ -247,7 +247,7 @@ input-holder {
   margin-left: 15rpx;
 }
 .right-slide {
-  margin-right: 200rpx;
+  margin-right: 140rpx;
   margin-left: -80rpx;
   -webkit-transition: all 0.4s;
   transition: all 0.4s;
@@ -259,8 +259,9 @@ input-holder {
   transition: all 0.4s;
 }
 .del {
-  flex: auto;
-  width: 66rpx;
-  margin-right: -200rpx;
+  /* flex: auto; */
+  flex: 2;
+  /* width: 66rpx; */
+  margin-right: -140rpx;
   margin-top: -2rpx;
 }
