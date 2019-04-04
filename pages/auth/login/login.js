@@ -9,8 +9,8 @@ Page({
      * 页面的初始数据
      */
     data: {
-        username:'',
-        password:'',
+        username:'13141253537',
+        password:'test111111',
         usernameErr:'',
         passwordErr:'',
         canSubmit:true, //点击按钮
@@ -139,11 +139,14 @@ Page({
                                 passwordErr:res.data.resultMessage
                             });
                         }
-
-
                     }).catch(err=>{
 
                     })
+                }else{
+                    this.setData({
+                        usernameErr:'账户不存在',
+                        isSubmit:false
+                    });
                 }
             }).catch(err=>{
 
