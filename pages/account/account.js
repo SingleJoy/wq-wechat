@@ -56,6 +56,9 @@ Page({
 
 
     onLoad: function () {
+      wx.showLoading({
+        title: '加载中',
+      })
         try {
             const interfaceCode = wx.getStorageSync('interfaceCode');
             const accountCode = wx.getStorageSync('accountCode');
@@ -75,6 +78,7 @@ Page({
     },
 
     getAccountInformation(){
+      wx.hideLoading()
         let accountCode=this.data.accountCode;
         getAccountInformation(accountCode).then(res=> {
             if(res.data.resultCode=='1'){
@@ -93,6 +97,7 @@ Page({
         })
     },
     getCertificate(){
+      wx.hideLoading()
         let interfaceCode=this.data.interfaceCode;
         getCertificate(interfaceCode).then(res=> {
             if(res.data.resultCode=='1'){
@@ -109,6 +114,7 @@ Page({
         })
     },
     getSignatures(){
+      wx.hideLoading()
         let interfaceCode=this.data.interfaceCode;
         getSignatures(interfaceCode).then(res=> {
 

@@ -14,8 +14,8 @@
   color:#fff;
 }
 .login-logo{
-  width: 122rpx;
-  height:106rpx;
+  width: 230rpx;
+  /* height:106rpx; */
   margin-top: 54rpx;
   display: inline-block;
 }
@@ -50,22 +50,31 @@
     font-size: 24rpx;
     z-index: 2
 }
+.clear-contain {
+  width: 60rpx;
+  height: 60rpx;
+  position:absolute;
+  top:20rpx;
+  right:0rpx;
+  z-index:2;
+  /* background-color: red; */
+}
 .form-item .clear {
   position:absolute;
-  top:40rpx;
-  right:18rpx;
+  top:10rpx;
+  right:10rpx;
   z-index:2;
   display:block;
   background:#fff;
-  height:30rpx;
-  width:30rpx;
+  /* height:30rpx; */
+  width:40rpx;
 }
 .username,.password{
   position:absolute;
   top:26rpx;
   left:10rpx;
   display:block;
-  width:100%;
+  width: 70%;
   height:44rpx;
   background:#fff;
   color:#333;
@@ -120,4 +129,3 @@ button[disabled]{
     color:#fff!important;
     transform:background;
 }
-

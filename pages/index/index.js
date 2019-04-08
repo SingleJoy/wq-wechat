@@ -16,20 +16,6 @@ Page({
         goods: [],
         scrollTop: 0,
         loadingMoreHidden: true,
-        banners:[
-            {
-                picUrl: '../../images/banner01.jpg',
-                id: 19181,
-            },
-            {
-                picUrl: '../../images/banner02.jpg',
-                id: 19182,
-            },
-            {
-                picUrl: '../../images/banner03.jpg',
-                id: 19183,
-            }
-        ],
         hasNoCoupons: true,
         coupons: [],
         searchInput: '',
@@ -52,16 +38,20 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
+      wx.showLoading({
+        title: '加载中',
+      })
         let requestType = ['waitForMeSign', 'waitForOtherSign', 'takeEffect', 'deadline'];
         const interfaceCode = wx.getStorageSync('interfaceCode');
         for (let i = 0; i < requestType.length; i++) {
             let type = requestType[i]
             contractNum[type](interfaceCode).then(res => {
+              wx.hideLoading()
                 this.setData({
                     [type]:res.data.count
                 })
             }).catch(error => {
-
+              wx.hideLoading()
             })
         }
     },

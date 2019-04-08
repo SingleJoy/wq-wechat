@@ -70,6 +70,9 @@ Page({
 
     },
     formSubmit:function(e){
+      wx.showLoading({
+        title: '加载中',
+      })
         if(!this.data.isSubmit){
             this.setData({
                 isSubmit:true
@@ -118,23 +121,26 @@ Page({
                                         wx.setStorage({ key: 'userCode',data:res.data.dataList[0].userCode});
                                         wx.setStorage({ key: 'parentAccountmobile', data: res.data.dataList[1].parentAccountmobile })
                                         if(res.data.resultCode==1){
+                                          wx.hideLoading()
                                             wx.switchTab({
                                                 url: '/pages/index/index'
                                             })
                                         }else{
-
+                                          wx.hideLoading()
                                         }
                                     }).catch(err=>{
 
                                     })
                                 } else {
                                     wx.setStorage({key: 'dataList',data: JSON.stringify(res.data.dataList)})
+                                  wx.hideLoading()
                                     wx.redirectTo({
                                         url: '/pages/auth/roles/roles'
                                     })
                                 }
                             })
                         }else{
+                          wx.hideLoading()
                             this.setData({
                                 passwordErr:res.data.resultMessage
                             });
@@ -143,6 +149,7 @@ Page({
 
                     })
                 }else{
+                  wx.hideLoading()
                     this.setData({
                         usernameErr:'账户不存在',
                         isSubmit:false
@@ -180,6 +187,7 @@ Page({
     },
     //清除事件
     clearInput: function (e) {
+      console.log(11111111)
         switch (e.currentTarget.id) {
             case 'clear-username':
                 this.setData({
@@ -199,6 +207,7 @@ Page({
                 });
                 break;
         }
+        return false;
     },
     //手机号校验
     checkPhone(e){
