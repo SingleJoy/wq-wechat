@@ -325,7 +325,7 @@ Page({
             contractNo:this.data.contractNo
         };
         if(e.target.dataset.type == 'default'){
-            data.email = this.data.defaultEmail
+            data.email = util.TrimAll(this.data.defaultEmail)
         }else{
             if(!this.data.sendEmail){
                 this.setData({
@@ -339,7 +339,7 @@ Page({
                 return false
             }
             else{
-                data.email = this.data.sendEmail;
+                data.email = util.TrimAll(this.data.sendEmail);
                 this.setData({
                     errMessage:''
                 });
