@@ -77,7 +77,6 @@ Page({
   },
   goIndex:function(e){
     let accountInfo = e.target.dataset.info;
-    console.log(e.target);
     wx.setStorage({key: 'accountCode',data: accountInfo.accountCode})
     wx.setStorage({key: 'interfaceCode',data: accountInfo.interfaceCode})
     wx.setStorage({key: 'enterpriseName',data: accountInfo.enterpriseName})

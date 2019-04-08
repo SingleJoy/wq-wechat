@@ -41,6 +41,7 @@ App({
   },
 
   globalData: {
+    signVerify:'',
     userInfo: null,
     appid: 'wx1c9cf5eea2984b74',//appid需自己提供
     accountCode:'',
