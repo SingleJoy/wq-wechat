@@ -2,6 +2,11 @@
   "pages": [
     "pages/start/start",
     "pages/contract/contractList/contractList",
+<<<<<<< HEAD
+=======
+    
+  
+>>>>>>> ed4a3bba1f37fb53930449b9737546a4cc33956b
     "pages/auth/login/login",
     "pages/account/account",
     "pages/contract/contractSearch/contractSearch",
@@ -38,6 +43,7 @@
         "selectedIconPath": "images/nav/home-on.png",
         "text": "首页"
       },
+      
       {
         "pagePath": "pages/template/templateList/templateList",
         "iconPath": "images/nav/template-off.png",
