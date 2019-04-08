@@ -107,6 +107,7 @@
     border-bottom: 1rpx solid #ddd;
     color: #666;
     padding-left: 50rpx;
+    box-sizing:border-box;
 }
 
 .show {

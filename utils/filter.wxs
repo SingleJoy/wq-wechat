@@ -1,13 +1,12 @@
 
 // 字符串过滤器
 function filterString(value) {
-    let length=value.length;
-    if (length>20){
-        let str=value.slice(0,10)+'...'+value.slice(length-10,length);
-        return str
-    }else{
-       return value
-    }
+
+ if (value.length > 25) {
+    return value.slice(0,12)+'...'+value.slice(value.length-11,value.length)
+  }else{
+    return  value
+  }
 }
 
 module.exports={

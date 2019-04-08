@@ -18,10 +18,10 @@ Page({
      * 页面的初始数据
      */
     data: {
-        windowHeight:app.globalData.userInfo.windowHeight,
-        windowWidth:app.globalData.userInfo.windowWidth,
-        imgHeight:app.globalData.imgHeight,
-        signVerify:app.globalData.signVerify, //签署密码设置
+        windowHeight:'',
+        windowWidth:'',
+        imgHeight:'',
+        signVerify:'', //签署密码设置
         contractStatus:'',   //合同状态:1 待我签署 2待他人签署 3已生效 4已截止
         showModalStatus:false,
         detailMask:false,
@@ -33,7 +33,7 @@ Page({
         contractNo:'',
         contractType:'',
         contractImgList:[],
-        baseUrl:app.globalData.baseUrl,
+        baseUrl:'',
         contractVo:'', //合同信息
         signUserVo:'', //签署人员
         sendEmail:'',//指定发送邮箱
@@ -80,7 +80,12 @@ Page({
             accountCode:wx.getStorageSync('accountCode'),
             interfaceCode:wx.getStorageSync('interfaceCode'),
             defaultEmail:wx.getStorageSync('email'),
-            num:app.globalData.searchParam.num
+            num:app.globalData.searchParam.num,
+            windowHeight:app.globalData.userInfo.windowHeight,
+            windowWidth:app.globalData.userInfo.windowWidth,
+            imgHeight:app.globalData.imgHeight,
+            signVerify:app.globalData.signVerify, //签署密码设置
+            baseUrl:app.globalData.baseUrl,
         });
 
         wx.showLoading({
