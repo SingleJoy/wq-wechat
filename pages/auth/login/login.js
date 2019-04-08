@@ -117,6 +117,7 @@ Page({
                                     }
                                     homePage(res_data.interfaceCode,data).then(res=>{
                                         app.globalData.signVerify = res.data.dataList[1].signVerify;
+                                        wx.setStorage({key:'signVerify',data:res.data.dataList[1].signVerify});
                                         wx.setStorage({key:'email',data:res.data.dataList[0].email});
                                         wx.setStorage({ key: 'userCode',data:res.data.dataList[0].userCode});
                                         wx.setStorage({ key: 'parentAccountmobile', data: res.data.dataList[1].parentAccountmobile })

@@ -11,10 +11,10 @@ Page({
         showModal: false,
         //密码提示信息标识
         psdHint: false,
-        windowHeight:app.globalData.userInfo.windowHeight,
-        windowWidth:app.globalData.userInfo.windowWidth,
-        imgHeight:app.globalData.imgHeight,
-        signVerify:app.globalData.signVerify, //签署密码设置
+        windowHeight:'',
+        windowWidth:'',
+        imgHeight:'',
+        signVerify:"", //签署密码设置
         interfaceCode: "",
         accountCode: "",
         contractTempNo:'',  //合同编号
@@ -38,7 +38,11 @@ Page({
         this.setData({
           contractTempNo: param_data.contractTempNo,
           interfaceCode: wx.getStorageSync('interfaceCode'),
-          accountCode: wx.getStorageSync('accountCode')
+          accountCode: wx.getStorageSync('accountCode'),
+            signVerify: app.globalData.signVerify,
+            windowHeight:app.globalData.userInfo.windowHeight,
+            windowWidth:app.globalData.userInfo.windowWidth,
+            imgHeight:app.globalData.imgHeight,
         })
       console.log(param_data);
         wx.showLoading({

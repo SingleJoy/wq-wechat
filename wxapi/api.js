@@ -185,6 +185,10 @@ function saveSignatureImg(signToken,data){
     return request(api+"/v1.4/signToken/"+signToken+'/saveSignatureImg','post',data)
 }
 
+// // 签署提交
+// function saveSignBoard(){
+//     return request(api+"/v1/user/"+signToken+'/saveSignatureImg','post',data)
+// }
 module.exports = {
     tenant,
     login,
@@ -225,5 +229,5 @@ module.exports = {
     b2bSignerpositions,
     b2bContractmoresign,
     updateContractTime,
-    saveSignatureImg
+    // saveSignatureImg
 }
