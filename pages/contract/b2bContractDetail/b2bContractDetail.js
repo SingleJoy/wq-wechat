@@ -67,9 +67,12 @@ Page({
     },
 
     onLoad: function (options) {
-
         let param_data = app.globalData.searchParam;
+<<<<<<< HEAD
         console.log(app.globalData)
+=======
+        console.log(app)
+>>>>>>> 0797c834b94b789cf030f8b2b6f0ffcdfa1cbd61
         this.setData({
             creater:app.globalData.searchParam.creater,
             contractStatus:param_data.contractStatus,

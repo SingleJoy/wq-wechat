@@ -1,5 +1,6 @@
 {
   "navigationBarTitleText": "合同",
   "navigationBarTextStyle": "white",
-  "backgroundColor": "#f4f4f4"
+  "backgroundColor": "#f4f4f4",
+  "enablePullDownRefresh": true
 }
