@@ -1,5 +1,6 @@
 import { backContractTempSigner, contractTemp } from '../../../wxapi/api.js';
-import { validateCard, validateMoblie } from '../../../utils/util.js';
+import { validateCard, validateMoblie,TrimAll } from '../../../utils/util.js';
+
 const app = getApp();
 Page({
   /**
@@ -58,13 +59,13 @@ Page({
     let data = {
       operateType: app.globalData.contractParam.operateType,
       contractTempNo: app.globalData.contractParam.contractTempNo
-    }
+    };
     backContractTempSigner(data, wx.getStorageSync('accountCode')).then(res => {
       if (res.data.validTime !== null) {
         this.setData({
           contactName: res.data.contractName,
           date: res.data.validTime
-        })
+        });
         return;
       }
       this.setData({
@@ -103,7 +104,7 @@ Page({
   touchEnd(e) {
     this.setData({
       listIndex: e.target.dataset.id
-    })
+    });
     let x = e.changedTouches[0].clientX;
     let y = e.changedTouches[0].clientY;
     this.getTouchData(x, y, this.data.touch.x, this.data.touch.y);
@@ -113,7 +114,7 @@ Page({
     let dataList = this.data.dataList;
     this.setData({
       delate: "100"
-    })
+    });
     dataList.splice(this.data.listIndex, 1)
     this.setData({
       dataList
@@ -146,14 +147,14 @@ Page({
           mobileHint: "请输入手机号",
           isShowMobileHint: false,
         }
-      })
+      });
       return;
     } 
     //修改签署人
     let modelList = this.data.dataList[e.target.dataset.id];
     this.setData({
       listIndex: e.target.dataset.id
-    })
+    });
     this.setData({
       listValue: {
         nameValue: modelList.name,
@@ -169,7 +170,7 @@ Page({
         mobileHint: modelList.mobile,
         isShowMobileHint: false,
       }
-    })
+    });
     return false;
   },
   preventTouchMove() {
@@ -188,13 +189,15 @@ Page({
   //提交表单数据
   formSubmitModel: function(e) {
     //验证姓名
+
+
     if (!e.detail.value.name) {
       this.setData({
         model: {
           nameHint: "请输入姓名",
           isShowNameHint: true,
         }
-      })
+      });
       return;
     } 
     if (e.detail.value.name.replace(/\s+/g, "").length < 2) {
@@ -279,33 +282,34 @@ Page({
         idcardHint: "手机号不能为空",
         isShowIdcardHint: false,
       }
-    })
+    });
     //添加签署人提交/修改签署人提交
     if (this.data.identification == "添加签署人") {
       let dataList = this.data.dataList;
       dataList.push(e.detail.value)
       this.setData({
         dataList
-      })
+      });
       this.hideModal()
     } else {
       let dataList = this.data.dataList;
       dataList[this.data.listIndex] = e.detail.value;
         this.setData({
             dataList
-        })
+        });
       this.hideModal()
     }
   },
   //生成合同
   formSubmit: function(e) {
+
     let value = e.detail.value;
     if(!value.input) {
       wx.showModal({
         title: '提示',
         content: '合同名称不能为空',
         success: function (res) {}
-      })
+      });
       return;
     }
     if (!value.time && !this.data.perpetualValid) {
@@ -313,7 +317,7 @@ Page({
         title: '提示',
         content: '签署截止日期不能为空',
         success: function (res) {}
-      })
+      });
       return;
     }
     if (!this.data.dataList.length) {
@@ -321,21 +325,21 @@ Page({
         title: '提示',
         content: '您还没有添加签署人',
         success: function (res) {}
-      })
+      });
       return;
     }
     wx.showLoading({
       title: '加载中',
       mask: true
-    })
+    });
     let dataList = this.data.dataList;
     let names = "",
         idCards = "",
         mobiles = "";
-    for (var i = 0; i < dataList.length; i++) {
-      names += dataList[i].name + ",";
-      idCards += dataList[i].idCard + ",";
-      mobiles += dataList[i].mobile + ",";
+    for (let i = 0; i < dataList.length; i++) {
+      names += TrimAll(dataList[i].name) + ",";
+      idCards += TrimAll(dataList[i].idCard)+ ",";
+      mobiles += TrimAll(dataList[i].mobile) + ",";
     }
     // return
     let creater = wx.getStorageSync('interfaceCode'),
@@ -399,7 +403,7 @@ Page({
         
     }).catch(res => {
 
-    })
+    });
     return;
   },
   //弹框确定操作

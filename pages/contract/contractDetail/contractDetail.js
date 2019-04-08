@@ -72,6 +72,8 @@ Page({
 
     onLoad: function (options) {
         let param_data = app.globalData.searchParam;
+         console.log(app.globalData);
+         console.log(app.globalData.signVerify);
         this.setData({
             contractStatus:param_data.contractStatus,
             contractNo:param_data.contractNo,
