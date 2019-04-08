@@ -2,7 +2,6 @@
   "pages": [
     "pages/start/start",
     "pages/contract/contractList/contractList",
-
     "pages/auth/login/login",
     "pages/account/account",
     "pages/contract/contractSearch/contractSearch",
@@ -11,7 +10,7 @@
     "pages/contract/contractDetail/contractDetail",
     "pages/contract/b2bContractShow/b2bContractShow",
     "pages/contract/b2bContractDetail/b2bContractDetail",
-    "pages/template/templateSuccess/templateSuccess",
+    "pages/template/templateSuccress/templateSuccess",
     "pages/template/templateAddInfo/templateAddInfo",
     "pages/template/templateSign/templateSign",
     "pages/template/templateList/templateList",
