@@ -1,4 +1,4 @@
-import util from '../../../utils/util.js';
+import {TrimAll} from '../../../utils/util.js';
 import {
     contractImgs,
     getContractDetails,
@@ -325,7 +325,7 @@ Page({
             contractNo:this.data.contractNo
         };
         if(e.target.dataset.type == 'default'){
-            data.email = util.TrimAll(this.data.defaultEmail)
+            data.email = TrimAll(this.data.defaultEmail)
         }else{
             if(!this.data.sendEmail){
                 this.setData({
@@ -339,7 +339,7 @@ Page({
                 return false
             }
             else{
-                data.email = util.TrimAll(this.data.sendEmail);
+                data.email = TrimAll(this.data.sendEmail);
                 this.setData({
                     errMessage:''
                 });
