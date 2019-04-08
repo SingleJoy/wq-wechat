@@ -101,14 +101,21 @@ Page({
 
     //签署提交
     signSubmit(){
+        wx.showLoading({
+            title: '提交中...',
+            mask: true
+        });
         contractkeywordsign(this.data.interfaceCode,this.data.contractTempNo).then(res=>{
             if(res.data.responseCode==0){
+                setTimeout(()=>{
+                    wx.hideLoading();
+                },500);
                 wx.showToast({
                     title: '签署成功',
                     icon:'none',
                     duration: 2000
                 })
-              wx.redirectTo({
+                wx.reLaunch({
                     url: '/pages/template/templateSuccess/templateSuccess',
                 })
             }else{

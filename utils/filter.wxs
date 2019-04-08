@@ -3,13 +3,26 @@
 function filterString(value) {
     let length=value.length;
     if (length>20){
-        let str=value.slice(0,10)+'...'+value.slice(length-10,length);
-        return str
+        let value=value.slice(0,10)+'...'+value.slice(length-10,length);
+        return value
     }else{
        return value
     }
 }
 
+
+// 价格格式化
+function price(value) {
+    if (!isNaN(value)){
+        var num = value/100;   // 这里除以100，是因为传进来的数值单位为分，请根据自己的情况定义
+        return num.toFixed(2);
+    }else{
+        return 0;
+    }
+}
+
+
 module.exports={
+     price : price
     filterString:filterString
 }

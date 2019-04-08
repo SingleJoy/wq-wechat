@@ -155,7 +155,7 @@ Page({
             if(this.data.num==1){
                 setTimeout(()=>{
                     wx.hideLoading();
-                },1000);
+                },500);
                 this.setData({
                     contractDataList:this.data.contractDataList.concat(res.data.content)
                 });
@@ -195,7 +195,7 @@ Page({
             if(this.data.num==2){
                 setTimeout(()=>{
                     wx.hideLoading();
-                },1000);
+                },500);
                 this.setData({
                     contractDataList:this.data.contractDataList.concat(res.data.content)
                 });
