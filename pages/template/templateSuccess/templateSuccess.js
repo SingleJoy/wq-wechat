@@ -18,18 +18,13 @@ Page({
     //签署人员信息
     signList:[
 
-    ]
+    ],
+    contractTempNo: '',
+    interfaceCode: ''
   },
   //获取签署连接
   getLink() {
-      let interfaceCode =wx.getStorageSync('interfaceCode');
-      let contractNo = app.globalData.searchParam.contractNo;
-      this.setData({
-          contractNo:contractNo,
-          interfaceCode:interfaceCode,
-      });
-      Object.assign(app.globalData.searchParam,{});
-    getSignLink(interfaceCode, contractNo).then(res => {
+    getSignLink(this.data.interfaceCode, this.data.contractTempNo).then(res => {
       this.setData({
         signLink: res.data
       });
@@ -40,7 +35,8 @@ Page({
   },
   //获取合同成功信息
   getContractInfo() {
-    getContractSuccessDetails(this.data.interfaceCode, this.data.contractNo).then(res => {
+    let newDate = new Date().getTime();
+    getContractSuccessDetails(this.data.interfaceCode, this.data.contractTempNo, { t: newDate}).then(res => {
       let contractVo = res.data.contractVo,
           signUserVo = res.data.signUserVo;
       if (!contractVo.validTime) {
@@ -90,6 +86,12 @@ Page({
     wx.showLoading({
       title: '加载中',
     })
+    let interfaceCode = wx.getStorageSync('interfaceCode');
+    let contractTempNo = app.globalData.contractParam.contractTempNo;
+    this.setData({
+      contractTempNo: contractTempNo,
+      interfaceCode: interfaceCode,
+    });
     this.getContractInfo();
     this.getLink();    
     this.setData({

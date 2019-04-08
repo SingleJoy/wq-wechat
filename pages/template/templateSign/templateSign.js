@@ -15,8 +15,8 @@ Page({
         windowWidth:app.globalData.userInfo.windowWidth,
         imgHeight:app.globalData.imgHeight,
         signVerify:app.globalData.signVerify, //签署密码设置
-        interfaceCode:wx.getStorageSync('interfaceCode'),
-        accountCode:wx.getStorageSync('accountCode'),
+        interfaceCode: "",
+        accountCode: "",
         contractTempNo:'',  //合同编号
         baseUrl:app.globalData.baseUrl,
 
@@ -34,11 +34,13 @@ Page({
         })
     },
     onLoad: function (options) {
-
         let param_data = app.globalData.contractParam;
         this.setData({
-            contractTempNo:param_data.contractTempNo,
+          contractTempNo: param_data.contractTempNo,
+          interfaceCode: wx.getStorageSync('interfaceCode'),
+          accountCode: wx.getStorageSync('accountCode')
         })
+      console.log(param_data);
         wx.showLoading({
             title: '加载中',
         })
