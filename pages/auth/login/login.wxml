@@ -2,7 +2,7 @@
 <view class="container common-box">
     <view class="main-content">
         <view class="logo">
-          <image class="login-logo" src="/images/logox3.png"></image>
+          <image class="login-logo" mode='widthFix' src="/images/logox3.png"></image>
         </view>
         <view class="form-box">
             <form bindsubmit="formSubmit">
@@ -10,7 +10,9 @@
                     <image class="login-icon" src="/images/phone.png"></image>
                     <view class="section">
                         <input class="username" placeholder="请输入手机号" value="{{username}}" bindinput="bindUsernameInput" type="number" maxlength="11" bindblur="checkPhone"/>
-                        <image class="clear" id="clear-username" wx:if="{{username.length>0}}"  src="/images/clear.png" bindtap="clearInput"></image>
+                        <view class='clear-contain' id="clear-username" bindtap="clearInput">
+                          <image class="clear" mode='widthFix'  wx:if="{{username.length>0}}"  src="/images/clear.png"></image>
+                        </view>
                         <text wx:if="usernameErr" class="errMsg">{{usernameErr}}</text>
                     </view>
                 </view>
@@ -18,7 +20,9 @@
                     <image class="login-icon" src="/images/pwd.png"></image>
                     <view class="section">
                         <input class="password" placeholder="请输入密码"  value="{{password}}" bindinput="bindPasswordInput" password bindblur="checkPwd"/>
-                        <image class="clear" id="clear-password"  wx:if="{{password.length>0}}" src="/images/clear.png" bindtap="clearInput"></image>
+                      <view class='clear-contain' id="clear-password" bindtap="clearInput">
+                        <image class="clear" mode='widthFix' wx:if="{{password.length>0}}" src="/images/clear.png"></image>
+                        </view>
                         <text wx:if="passwordErr" class="errMsg">{{passwordErr}}</text>
                     </view>
                 </view>
