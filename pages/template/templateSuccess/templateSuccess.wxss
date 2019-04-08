@@ -1,7 +1,5 @@
-/* pages/template/templateSuccess/templateSuccess.wxss */
-.main-content{
-  width: auto;
-  padding: 0 32rpx;
+.common-box {
+  margin: 0 32rpx;
 }
 .success-icon{
   text-align: center;

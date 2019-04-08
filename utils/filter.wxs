@@ -1,0 +1,14 @@
+
+// 字符串过滤器
+function filterString(value) {
+
+ if (value.length > 25) {
+    return value.slice(0,12)+'...'+value.slice(value.length-11,value.length)
+  }else{
+    return  value
+  }
+}
+
+module.exports={
+    filterString:filterString
+}

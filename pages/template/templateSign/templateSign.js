@@ -15,8 +15,8 @@ Page({
         windowWidth:app.globalData.userInfo.windowWidth,
         imgHeight:app.globalData.imgHeight,
         signVerify:app.globalData.signVerify, //签署密码设置
-        interfaceCode:wx.getStorageSync('interfaceCode'),
-        accountCode:wx.getStorageSync('accountCode'),
+        interfaceCode: "",
+        accountCode: "",
         contractTempNo:'',  //合同编号
         baseUrl:app.globalData.baseUrl,
 
@@ -34,11 +34,13 @@ Page({
         })
     },
     onLoad: function (options) {
-
         let param_data = app.globalData.contractParam;
         this.setData({
-            contractTempNo:param_data.contractTempNo,
+          contractTempNo: param_data.contractTempNo,
+          interfaceCode: wx.getStorageSync('interfaceCode'),
+          accountCode: wx.getStorageSync('accountCode')
         })
+      console.log(param_data);
         wx.showLoading({
             title: '加载中',
         })
@@ -101,14 +103,21 @@ Page({
 
     //签署提交
     signSubmit(){
+        wx.showLoading({
+            title: '提交中...',
+            mask: true
+        });
         contractkeywordsign(this.data.interfaceCode,this.data.contractTempNo).then(res=>{
             if(res.data.responseCode==0){
+                setTimeout(()=>{
+                    wx.hideLoading();
+                },500);
                 wx.showToast({
                     title: '签署成功',
                     icon:'none',
                     duration: 2000
                 })
-              wx.redirectTo({
+                wx.reLaunch({
                     url: '/pages/template/templateSuccess/templateSuccess',
                 })
             }else{

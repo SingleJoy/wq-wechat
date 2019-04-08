@@ -1,3 +1,4 @@
+<wxs module='filter' src='../../../utils/filter.wxs'></wxs>
 
 <view class="container common-box" style="height: 100%;overflow: auto;box-sizing: border-box" >
     <view class="main-content" >
@@ -10,13 +11,16 @@
             </view>
             <view id="swiper-tab-container">
                 <view class="swiper-tab">
-                    <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-current="1"   bindtap="tabFolder">{{folderName}}
+                    <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-current="1"   bindtap="tabFolder">
+                        <view>{{folderName}}</view>
                         <i></i>
                     </view>
-                    <view class="swiper-tab-list {{currentTab==2 ? 'on' : ''}}" data-current="2"  bindtap="tabContractType">{{contractTypeName}}
+                    <view class="swiper-tab-list {{currentTab==2 ? 'on' : ''}}" data-current="2"  bindtap="tabContractType">
+                        <view>{{contractTypeName}}</view>
                         <i></i>
                     </view>
-                    <view class="swiper-tab-list {{currentTab==3 ? 'on' : ''}}" data-current="3"  bindtap="tabAccountNo" >{{accountTypeName}}
+                    <view class="swiper-tab-list {{currentTab==3 ? 'on' : ''}}" data-current="3"  bindtap="tabAccountNo" >
+                        <view>{{accountTypeName}}</view>
                         <i></i>
                     </view>
                 </view>
@@ -41,7 +45,11 @@
 
                 <view class="{{selected==1?'show':'hidden'}}">
                     <view wx:for="{{folderList}}" wx:key="index">
-                        <view class="{{item.filingNo == filingNo?'list-item-on':'list-item'}}"  bindtap="chooseFolder" data-filingNo="{{item.filingNo}}" data-filingName="{{item.filingName}}" >{{item.filingName}}</view>
+                        <view class="{{item.filingNo == filingNo?'list-item-on':'list-item'}}"  bindtap="chooseFolder" data-filingNo="{{item.filingNo}}" data-filingName="{{item.filingName}}" >
+                            {{filter.filterString(item.filingName)}}
+                            <!--{{filter.price(1125)}}-->
+                            <!--{{item.filingName}}-->
+                        </view>
                     </view>
 
                 </view>
@@ -56,7 +64,6 @@
                         <view class="{{item.accountCode == accountCode?'list-item-on':'list-item'}}" data-accountCode="{{item.accountCode}}" bindtap="accountType" data-accountName="{{item.accountName}}">
                             {{item.accountName}}
                         </view>
-
                     </view>
 
                 </view>

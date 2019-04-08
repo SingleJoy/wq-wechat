@@ -23,8 +23,7 @@
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#4091fb",
     "navigationBarTitleText": "微签",
-    "navigationBarTextStyle": "white",
-    "enablePullDownRefresh": true
+    "navigationBarTextStyle": "white"
   },
   "tabBar": {
     "color": "#6e6d6b",
@@ -38,6 +37,7 @@
         "selectedIconPath": "images/nav/home-on.png",
         "text": "首页"
       },
+      
       {
         "pagePath": "pages/template/templateList/templateList",
         "iconPath": "images/nav/template-off.png",

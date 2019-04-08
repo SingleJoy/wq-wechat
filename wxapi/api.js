@@ -40,8 +40,8 @@ function getAccountInformation(accountCode) {
     return request(api+'/v1.5/tenant/'+accountCode+'/getAccountInformation', 'get')
 }
 //合同签署成功获取信息
-function getContractSuccessDetails(interfaceCode, contractNo) {
-  return request(api + '/v1/tenant/' + interfaceCode + '/contract/' + contractNo + '/getContractDetails', 'get')
+function signFinish(contractTempNo) {
+  return request(api + '/v1.8/contract/' + contractTempNo + '/signFinish', 'get')
 }
 //获取合同连接
 function getSignLink(interfaceCode, contractNo) {
@@ -84,7 +84,7 @@ function contracttempimgs(interfaceCode,contractNo){
 
 //模板合同图片请求
 function templateImg(interfaceCode,templateNo,data){
-    return request(api + '/v1/tenant/'+ interfaceCode +'/template/'+templateNo+'/getTemplateImags', 'get',data)
+    return request(api + '/v1/tenant/'+ interfaceCode +'/template/'+templateNo+'/getTemplateImgs', 'get',data)
 }
 //合同图片
 function getContractDetails(interfaceCode,contractNo){
@@ -210,7 +210,7 @@ module.exports = {
     sendEmailForUser,
     backContractTempSigner,
     contractTemp,
-    getContractSuccessDetails,
+    signFinish,
     getSignLink,
     contractmoresign,
     templateVal,

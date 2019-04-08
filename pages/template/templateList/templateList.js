@@ -199,9 +199,9 @@ Page({
         this.setData({
             isRequest: false,
         });
-        this.setData({
-          list: []
-        })
+        // this.setData({
+        //   list: []
+        // })
         pageNum = 1;
         if (wx.getStorageSync('mobileTemplate')) {
             this.getData("applet");

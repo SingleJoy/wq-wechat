@@ -18,10 +18,10 @@ Page({
      * 页面的初始数据
      */
     data: {
-        windowHeight:app.globalData.userInfo.windowHeight,
-        windowWidth:app.globalData.userInfo.windowWidth,
-        imgHeight:app.globalData.imgHeight,
-        signVerify:app.globalData.signVerify, //签署密码设置
+        windowHeight:'',
+        windowWidth:'',
+        imgHeight:'',
+        signVerify:'', //签署密码设置
         contractStatus:'',   //合同状态:1 待我签署 2待他人签署 3已生效 4已截止
         showModalStatus:false,
         detailMask:false,
@@ -34,7 +34,7 @@ Page({
         contractNo:'',
         contractType:'',
         contractImgList:[],
-        baseUrl:app.globalData.baseUrl,
+        baseUrl:'',
         contractVo:'', //合同信息
         signUserVo:'', //签署人员
         defaultEmail:'',
@@ -72,6 +72,8 @@ Page({
 
     onLoad: function (options) {
         let param_data = app.globalData.searchParam;
+         console.log(app.globalData);
+         console.log(app.globalData.signVerify);
         this.setData({
             contractStatus:param_data.contractStatus,
             contractNo:param_data.contractNo,
@@ -82,6 +84,11 @@ Page({
             validTime:param_data.validTime,
             num:param_data.num,
             contractInfo:param_data,
+            windowHeight:app.globalData.userInfo.windowHeight,
+            windowWidth:app.globalData.userInfo.windowWidth,
+            imgHeight:app.globalData.imgHeight,
+            signVerify:app.globalData.signVerify, //签署密码设置
+            baseUrl:app.globalData.baseUrl,
         });
         wx.showLoading({
             title: '加载中',
@@ -315,7 +322,7 @@ Page({
             contractNo:this.data.contractNo
         };
         if(e.target.dataset.type == 'default'){
-            data.email = this.data.defaultEmail;
+            data.email = util.TrimAll(this.data.defaultEmail);
         }else{
             if(!this.data.sendEmail){
                 this.setData({
@@ -329,7 +336,7 @@ Page({
                 return false
             }
             else{
-                data.email = this.data.sendEmail;
+                data.email = util.TrimAll(this.data.sendEmail);
                 this.setData({
                     errMessage:''
                 });

@@ -5,6 +5,7 @@ import {
     b2bContrants
 } from '../../../wxapi/api';
 const app = getApp();
+
 //获取设备高度
 let height;
 wx.getSystemInfo({
@@ -55,10 +56,10 @@ Page({
     },
     onLoad: function (options) {
         let interfaceCode =wx.getStorageSync('interfaceCode');
-        let  accountCode= wx.getStorageSync('accountCode');
-        let  mobile= wx.getStorageSync('mobile');
+        let accountCode= wx.getStorageSync('accountCode');
+        let mobile= wx.getStorageSync('mobile');
         let enterpriseName= wx.getStorageSync('enterpriseName');
-        let   accountLevel=wx.getStorageSync('accountLevel');
+        let accountLevel=wx.getStorageSync('accountLevel');
         let contractStatus=options.contractStatus;
         if(contractStatus){
             this.setData({
@@ -154,7 +155,7 @@ Page({
             if(this.data.num==1){
                 setTimeout(()=>{
                     wx.hideLoading();
-                },1000);
+                },500);
                 this.setData({
                     contractDataList:this.data.contractDataList.concat(res.data.content)
                 });
@@ -194,7 +195,7 @@ Page({
             if(this.data.num==2){
                 setTimeout(()=>{
                     wx.hideLoading();
-                },1000);
+                },500);
                 this.setData({
                     contractDataList:this.data.contractDataList.concat(res.data.content)
                 });

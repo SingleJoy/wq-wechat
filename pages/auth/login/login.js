@@ -191,7 +191,7 @@ Page({
     },
     //清除事件
     clearInput: function (e) {
-      console.log(11111111)
+
         switch (e.currentTarget.id) {
             case 'clear-username':
                 this.setData({

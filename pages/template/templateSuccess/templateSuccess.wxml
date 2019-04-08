@@ -1,5 +1,5 @@
 
-<view class="container common-box">
+<view class="common-box">
   <view class="main-content">
     <view class="success-icon">
         <image src="/images/success.png"></image>
@@ -13,14 +13,10 @@
             <text class="info-value">{{contractName}}</text>
         </view>
         <view class="info-item">  
-            <text class="info-name">当前状态：</text>
-            <text class="info-value">{{contractVo.status==1?'签署中':(contractVo.status==2?'已生效':'已截止')}}</text>
-        </view>
-        <view class="info-item">  
             <text class="info-name">截止时间：</text>
             <text class="info-value">{{validTime}}</text>
         </view>
-        <view class="info-item signer-box">  
+        <!-- <view class="info-item signer-box">  
             <text class="info-name signer-title">签署人员：</text>
             <view class="signer-list">
                 <view wx:for="{{signList}}" wx:key="{{item.signUserName}}" class="signer-item">
@@ -33,11 +29,10 @@
                     </block>
                 </view>
             </view>
-           
-        </view>
+        </view> -->
         <view class="info-item">  
             <text class="info-name">签署链接：</text>
-            <text class="info-value sign-link">{{signLink}}</text>
+            <text class="info-value sign-link">{{signRoomLink}}</text>
             <text class="copy-link" bindtap='copyBtn'>复制链接</text>
         </view>
     </view>

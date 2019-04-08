@@ -216,11 +216,8 @@ input-holder {
   color: #333333;
 }
 .list-operate {
-  font-size: 28rpx;
-}
-.list-operate {
   flex: 2;
-  font-size: 24rpx;
+  font-size: 28rpx;
   color: #4091FB;
   height: 100%;
   padding: 43rpx 0;
