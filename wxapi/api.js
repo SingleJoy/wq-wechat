@@ -40,8 +40,8 @@ function getAccountInformation(accountCode) {
     return request(api+'/v1.5/tenant/'+accountCode+'/getAccountInformation', 'get')
 }
 //合同签署成功获取信息
-function getContractSuccessDetails(interfaceCode, contractNo) {
-  return request(api + '/v1/tenant/' + interfaceCode + '/contract/' + contractNo + '/getContractDetails', 'get')
+function getContractSuccessDetails(interfaceCode, contractNo, data) {
+  return request(api + '/v1/tenant/' + interfaceCode + '/contract/' + contractNo + '/getContractDetails', 'get', data)
 }
 //获取合同连接
 function getSignLink(interfaceCode, contractNo) {
