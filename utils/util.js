@@ -45,7 +45,12 @@ function checkPwd(str){
     }
 }
 
-
+//去除输入框所有空格
+function TrimAll(str){
+    if(str){
+    return str.replace(/\s/g, "");
+    }
+}
 //检查微信会话是否过期
 function checkSession() {
   return new Promise(function (resolve, reject) {
@@ -115,7 +120,8 @@ module.exports = {
   getToken,
   validateCard,
   validateMoblie,
-    validateEmail
+    validateEmail,
+    TrimAll
 }
 
 
