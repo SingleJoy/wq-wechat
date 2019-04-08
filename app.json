@@ -2,11 +2,6 @@
   "pages": [
     "pages/start/start",
     "pages/contract/contractList/contractList",
-<<<<<<< HEAD
-=======
-    
-  
->>>>>>> ed4a3bba1f37fb53930449b9737546a4cc33956b
     "pages/auth/login/login",
     "pages/account/account",
     "pages/contract/contractSearch/contractSearch",
@@ -15,7 +10,7 @@
     "pages/contract/contractDetail/contractDetail",
     "pages/contract/b2bContractShow/b2bContractShow",
     "pages/contract/b2bContractDetail/b2bContractDetail",
-    "pages/template/templateSuccess/templateSuccess",
+    "pages/template/templateSuccress/templateSuccess",
     "pages/template/templateAddInfo/templateAddInfo",
     "pages/template/templateSign/templateSign",
     "pages/template/templateList/templateList",
