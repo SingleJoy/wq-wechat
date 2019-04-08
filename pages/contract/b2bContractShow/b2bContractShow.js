@@ -60,7 +60,8 @@ Page({
             operator:param_data.operator,
             contractNo:param_data.contractNo,
             accountLevel:app.globalData.searchParam.accountLevel,
-            interfaceCode:wx.getStorageSync('interfaceCode')
+            interfaceCode:wx.getStorageSync('interfaceCode'),
+            userCode:wx.getStorageSync('userCode'),
         });
 
         wx.showLoading({
@@ -155,17 +156,21 @@ Page({
     // 获取签章位置并展示签章图片
     b2bSignerpositions(){
         b2bSignerpositions(this.data.interfaceCode,this.data.contractNo,this.data.userCode).then(res=>{
+            let array = res.data.list;
+            let arr=[];
+            let arr2=[];
+            for (let i =0 ; i<array.length; i++){
+                let userCode = array[i].userCode;
+                if(userCode == this.data.interfaceCode){
+                    arr.push(array[i])
+                }
+                if(userCode != this.data.interfaceCode){
+                    arr2.push(array[i])
+                }
+            }
 
-            let arr = res.data.lists[0];
-            let arr2 = res.data.lists[1];
-            console.log(arr);
-            console.log(arr2);
             let signPositionStr='';
             let signPositionStr2='';
-            let userCode=res.data.list[0].userCode;
-            this.setData({
-                userCode:userCode
-            });
 
             for(let i=0;i<arr.length;i++){
                 let item = arr[i];
