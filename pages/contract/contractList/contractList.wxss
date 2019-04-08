@@ -30,10 +30,7 @@
     position: relative;
     z-index: 99;
 }
-/*.swiper-tab-list{*/
-    /*width: 80%;*/
-    /*text-align: left;*/
-/*}*/
+
 .swiper-tab view {
     box-sizing: border-box;
     font-size: 28rpx;
@@ -90,6 +87,11 @@
     z-index: 9999;
     background-color: #fff;
 }
+.swiper-tab-list view{
+    display: inline-block;
+    width:160rpx ;
+    overflow: hidden;
+}
 .swiper-item {
     width: 100%;
     font-size:28rpx;
@@ -104,7 +106,7 @@
     line-height:70rpx;
     border-bottom: 1rpx solid #ddd;
     color: #666;
-    padding-left: 60rpx;
+    padding-left: 50rpx;
 }
 
 .show {

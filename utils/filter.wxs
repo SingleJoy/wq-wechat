@@ -1,0 +1,15 @@
+
+// 字符串过滤器
+function filterString(value) {
+    let length=value.length;
+    if (length>20){
+        let str=value.slice(0,10)+'...'+value.slice(length-10,length);
+        return str
+    }else{
+       return value
+    }
+}
+
+module.exports={
+    filterString:filterString
+}

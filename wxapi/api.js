@@ -84,7 +84,7 @@ function contracttempimgs(interfaceCode,contractNo){
 
 //模板合同图片请求
 function templateImg(interfaceCode,templateNo,data){
-    return request(api + '/v1/tenant/'+ interfaceCode +'/template/'+templateNo+'/getTemplateImags', 'get',data)
+    return request(api + '/v1/tenant/'+ interfaceCode +'/template/'+templateNo+'/getTemplateImgs', 'get',data)
 }
 //合同图片
 function getContractDetails(interfaceCode,contractNo){

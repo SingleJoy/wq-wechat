@@ -14,6 +14,18 @@ const formatNumber = n => {
   return n[1] ? n : '0' + n
 }
 
+
+//自定义过滤字符串长度  str为字符串 length为自定义长度
+const filterStr =function (value) {
+  let length=value.length;
+    if (length>20){
+       let str=value.slice(0,10)+'...'+value.slice(length-10,length);
+        return str
+    }
+
+}
+
+
 /**
  * @param {*moblie} str
 */
@@ -94,6 +106,7 @@ function validateEmail(str) {
 
 module.exports = {
   formatTime,
+    filterStr,
   checkSession,
   loginByWeiXin,
   checkLogin,
