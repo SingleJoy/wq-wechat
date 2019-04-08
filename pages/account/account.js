@@ -19,6 +19,9 @@ Page({
         signaturePath:''
 
     },
+  onPullDownRefresh() {
+    wx.stopPullDownRefresh()
+  },
     //事件处理函数
     loginOut(){
 
