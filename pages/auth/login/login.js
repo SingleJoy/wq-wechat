@@ -9,7 +9,7 @@ Page({
      * 页面的初始数据
      */
     data: {
-        username:'18201328018',
+        username:'13141253537',
         password:'test111111',
         usernameErr:'',
         passwordErr:'',
@@ -21,10 +21,6 @@ Page({
      */
     onLoad: function (options) {
         console.log(app.globalData)
-    },
-    login(){
-
-
     },
     /**
      * 生命周期函数--监听页面初次渲染完成
@@ -143,11 +139,14 @@ Page({
                                 passwordErr:res.data.resultMessage
                             });
                         }
-
-
                     }).catch(err=>{
 
                     })
+                }else{
+                    this.setData({
+                        usernameErr:'账户不存在',
+                        isSubmit:false
+                    });
                 }
             }).catch(err=>{
 

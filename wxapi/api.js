@@ -221,5 +221,4 @@ module.exports = {
     b2bSignerpositions,
     b2bContractmoresign,
     updateContractTime
-
 }
