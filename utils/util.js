@@ -85,6 +85,13 @@ function validateMoblie(str) {
   const reg = /^0?(13[0-9]|15[0123456789]|18[0123456789]|14[135789]|17[0123467859]|16[6]|19[89])[0-9]{8}$/
   return reg.test(str)
 }
+
+function validateEmail(str) {
+
+    const reg = /^[A-Za-z\d]+([-_.][A-Za-z\d]+)*@([A-Za-z\d]+[-.])+[A-Za-z\d]{2,4}$/
+    return reg.test(str)
+}
+
 module.exports = {
   formatTime,
   checkSession,
@@ -94,7 +101,8 @@ module.exports = {
   checkPwd,
   getToken,
   validateCard,
-  validateMoblie
+  validateMoblie,
+    validateEmail
 }
 
 

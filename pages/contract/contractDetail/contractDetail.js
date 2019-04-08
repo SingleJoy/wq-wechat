@@ -1,4 +1,4 @@
-// pages/contract/contractDetail/b2bContractDetail.js
+import util from '../../../utils/util.js';
 import {
     contractImgs,
     getContractDetails,
@@ -42,13 +42,14 @@ Page({
         optionAuthority:true,  //合同详情按钮权限
         signRoomLink:'',
         passwordDialog:false,
-        signPassword:'123456',
+        signPassword:'',
         signImg:'',
         signPositionList:[],
         signPositionStr:'',
         submitBtn:false,  //签署按钮和提交按钮展示
         signPawssword:'',//签署密码
-        contractInfo:''      //合同信息
+        contractInfo:'',      //合同信息
+        remindOnce:''      //短信提醒单击操作
     },
 
     /**
@@ -59,7 +60,7 @@ Page({
         let list=[];
         for(let i=0;i<this.data.contractImgList.length;i++){
             list.push(this.data.baseUrl+'/restapi/wesign/v1/tenant/contract/img?contractUrl='+this.data.contractImgList[i].contractUrl)
-          console.log(list[i])
+            console.log(list[i])
         }
         let current = e.target.dataset.src;
         wx.previewImage({
@@ -81,10 +82,10 @@ Page({
             validTime:param_data.validTime,
             num:param_data.num,
             contractInfo:param_data,
-        })
+        });
         wx.showLoading({
             title: '加载中',
-        })
+        });
         contractImgs(this.data.interfaceCode,this.data.contractNo).then(res=>{
             this.setData({
                 contractImgList:res.data
@@ -102,7 +103,7 @@ Page({
             }, 1000)
         }).catch(err=>{
 
-        })
+        });
         //待他人签署时展示复制链接按钮调此接口获取签署连接
         if(this.data.contractStatus==2){
             showSignRoomInfo(this.data.interfaceCode).then(res=>{
@@ -111,7 +112,7 @@ Page({
                 })
             }).catch(err=>{
 
-            })
+            });
         }
         //获取签章图片
         getSignature(this.data.interfaceCode).then(res=>{
@@ -121,8 +122,8 @@ Page({
             })
         }).catch(err=>{
 
-        })
-        
+        });
+
     },
 
     //详情三角切换
@@ -130,7 +131,7 @@ Page({
         // console.log(this.data.detailMask)
         this.setData({
             detailMask:!this.data.detailMask
-        })
+        });
     },
 //隐藏mask
     powerDrawer:function(e){
@@ -147,8 +148,17 @@ Page({
         let data ={
             contractType:1,
             remindType:0
+        };
+        if(this.data.remindOnce){
+            return false;
         }
+        this.setData({
+            remindOnce:true
+        });
         remind(this.data.interfaceCode,this.data.contractNo,data).then(res=>{
+            this.setData({
+                remindOnce:false
+            });
             if(res.data.resultCode == 0){
                 wx.showToast({
                     title: '提醒成功',
@@ -187,7 +197,7 @@ Page({
     },
 //延长签署日期
     extendDate:function(e){
-        console.log(this.data.contractStatus)
+
         this.setData({
             showModalStatus:true
         })
@@ -243,10 +253,11 @@ Page({
     signPassword(){
         let data={
             signVerifyPassword:md5(this.data.signPawssword)
-        }
+        };
+
         verifySignPassword(this.data.accountCode,data).then(res=>{
             if(res.data.resultCode == 1){
-                this.verifySuccess()    //校验成功提交签署
+                this.verifySuccess();    //校验成功提交签署
                 this.setData({
                     passwordDialog:true
                 })
@@ -282,16 +293,19 @@ Page({
             signH:this.data.windowWidth*0.21,
             signW:this.data.windowWidth*0.21,
             signPositionStr:this.data.signPositionStr
-        }
+        };
+        this.setData({
+            passwordDialog:false
+        });
         contractmoresign(this.data.interfaceCode,contractNo,data).then(res=>{
             if(res.data.responseCode == 0){
                 wx.reLaunch({
-                  url:'/pages/template/templateSuccess/templateSuccess'
+                    url:'/pages/template/templateSuccess/templateSuccess'
                 })
             }
         }).catch(err=>{
 
-        })
+        });
     },
     // 邮箱发送
     emailSubmit:function(e){
@@ -299,21 +313,46 @@ Page({
             email:'',
             type:'1',
             contractNo:this.data.contractNo
-        }
+        };
         if(e.target.dataset.type == 'default'){
-            data.email = this.data.defaultEmail
+            data.email = this.data.defaultEmail;
         }else{
-            data.email = this.data.sendEmail
+            if(!this.data.sendEmail){
+                this.setData({
+                    errMessage:'邮箱不可为空！'
+                });
+                return false;
+            }else if(this.data.sendEmail&&!util.validateEmail(this.data.sendEmail)){
+                this.setData({
+                    errMessage:'邮箱格式不正确'
+                });
+                return false
+            }
+            else{
+                data.email = this.data.sendEmail;
+                this.setData({
+                    errMessage:''
+                });
+            }
         }
-        sendEmailForUser(this.data.interfaceCode,data).then(res=>{
+        wx.showLoading({
+            title: '下载中...',
+            mask: true
+        });
+        this.setData({
+            showModalStatus:false
+        });
+        sendEmailForUser(this.data.interfaceCode,data).then((res)=>{
+            wx.hideLoading();
             wx.showToast({
                 title: '邮件发送成功',
                 icon: 'none',
                 duration: 2000
-            })
+            });
+
         }).catch(err=>{
 
-        })
+        });
 
     },
 //延期确定按钮
@@ -321,24 +360,28 @@ Page({
         let data={
             validTime:this.data.date,
             perpetualValid:this.data.permanentLimit?1:0,
-        }
+        };
+        this.setData({
+            showModalStatus:false
+        });
+
         updateContractTime(this.data.interfaceCode,this.data.contractNo,data).then(res=>{
             if(res.data.resultCode == 0){
                 wx.showToast({
                     title: '截止时间修改成功',
                     icon: 'none',
                     duration: 2000
-                })
+                });
                 Object.assign(app.globalData.contractParam,{contractStatus:4})
                 wx.switchTab({
                     url:'/pages/contract/contractList/contractList'
-                })
+                });
             }else{
                 wx.showToast({
                     title: res.data.resultMessage,
                     icon: 'none',
                     duration: 2000
-                })
+                });
             }
         }).catch(err=>{
 
@@ -349,78 +392,24 @@ Page({
         this.setData({
             date: e.detail.value,
             permanentLimit:false
-        })
+        });
     },
 
     //获取签署密码
     getPwd(e){
-        let input_val = e.detail.value
+        let input_val = e.detail.value;
         this.setData({
             signPawssword:input_val
-        })
+        });
     },
     //获取邮箱
     getEmail(e){
-        let input_email = e.detail.value
+        let input_email = e.detail.value;
         this.setData({
             sendEmail:input_email
-        })
+        });
     },
 
-    /**
-     * 生命周期函数--监听页面初次渲染完成
-     */
-    onReady: function () {
-
-    },
-
-    /**
-     * 生命周期函数--监听页面显示
-     */
-    onShow: function () {
-
-    },
-
-    /**
-     * 生命周期函数--监听页面隐藏
-     */
-    onHide: function () {
-
-    },
-
-    /**
-     * 生命周期函数--监听页面卸载
-     */
-    onUnload: function () {
-        // var pages = getCurrentPages();
-        // var currPage = pages[pages.length - 1];   //当前页面
-        // var prevPage = pages[pages.length - 2];  //上一个页面
-        // //直接调用上一个页面的setData()方法，把数据存到上一个页面中去
-        // prevPage.setData({
-        //     param: this.data.searchData
-        // })
-    },
-
-    /**
-     * 页面相关事件处理函数--监听用户下拉动作
-     */
-    onPullDownRefresh: function () {
-
-    },
-
-    /**
-     * 页面上拉触底事件的处理函数
-     */
-    onReachBottom: function () {
-
-    },
-
-    /**
-     * 用户点击右上角分享
-     */
-    onShareAppMessage: function () {
-
-    }
 
 })
 

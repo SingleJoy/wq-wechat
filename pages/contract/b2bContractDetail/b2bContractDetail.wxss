@@ -168,7 +168,7 @@
     width: 550rpx;
     overflow: hidden;
     position: fixed;
-    top: 30%;
+    top: 40%;
     left: 50%;
     z-index: 1001;
     background: #FAFAFA;
@@ -181,16 +181,7 @@
     text-align: center;
     font-size: 32rpx;
 }
-.email-address{
-    border:2rpx solid #999;
-    border-radius: 5rpx;
-    width:360rpx;
-    height:50rpx;
-    margin:0 auto;
-    margin-top:28rpx;
-    margin-bottom:24rpx;
-    text-align: left;
-}
+
 .option-btn{
     width: 100%;
     margin-top:24rpx;
@@ -225,12 +216,50 @@
 .email-err{
     font-size: 26rpx;
     color:#ff0000;
+    text-align: left;
+    margin-left: 20rpx;
+}
+.email-content{
+    display: flex;
+    flex-direction: row;
+    margin-top: 40rpx;
+    margin-left: 20rpx;
+}
+ .email-address{
+    box-sizing: border-box;
+    display: inline-block;
+    border:2rpx solid #999;
+    border-radius: 5rpx;
+    width:360rpx;
+    height:50rpx;
+    text-align: left;
+    padding-left: 10rpx;
+}
+.email-content .send-email{
+    display: inline-block;
+    width: 112rpx;
+    height: 56rpx;
+    background-color: #4091FB;
+    font-size: 28rpx;
+    color: #fff;
+    text-align: center;
+    line-height: 56rpx;
+    border-radius: 4px;
+}
+.close-model {
+    position: absolute;
+    right: 10rpx;
+    top:10rpx;
+}
+.close-model image{
+    display: block;
+    width: 40rpx;
 }
 .bind-email{
     font-size: 32rpx;
     line-height: 32rpx;
     color:#4091FB;
-    margin-top:30rpx;
+    margin:40rpx 0;
 }
 .right-border{
     border-left: 1px solid #fff;

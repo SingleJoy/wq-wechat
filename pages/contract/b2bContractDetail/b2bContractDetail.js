@@ -1,4 +1,4 @@
-// pages/contract/contractDetail/b2bContractDetail.js
+import util from '../../../utils/util.js';
 import {
     contractImgs,
     getContractDetails,
@@ -36,7 +36,6 @@ Page({
         baseUrl:app.globalData.baseUrl,
         contractVo:'', //合同信息
         signUserVo:'', //签署人员
-        defaultEmail:wx.getStorageSync('email'),
         sendEmail:'',//指定发送邮箱
         optionAuthority:true,  //合同详情按钮权限
         signRoomLink:'',
@@ -48,6 +47,7 @@ Page({
         submitBtn:false,  //签署按钮和提交按钮展示
         signPawssword:'',//签署密码
         validTime:'',//签署截止日期
+        remindOnce:'',//提醒按钮单点操作
     },
 
     /**
@@ -79,13 +79,13 @@ Page({
             accountLevel:app.globalData.searchParam.accountLevel,
             accountCode:wx.getStorageSync('accountCode'),
             interfaceCode:wx.getStorageSync('interfaceCode'),
+            defaultEmail:wx.getStorageSync('email'),
             num:app.globalData.searchParam.num
         });
 
         wx.showLoading({
             title: '加载中',
         });
-
         contractImgs(this.data.interfaceCode,this.data.contractNo).then(res=>{
             this.setData({
                 contractImgList:res.data
@@ -149,7 +149,16 @@ Page({
             contractType:1,
             remindType:0
         };
+        if(this.data.remindOnce){
+            return false;
+        }
+        this.setData({
+            remindOnce:true
+        });
         remind(this.data.interfaceCode,this.data.contractNo,data).then(res=>{
+            this.setData({
+                remindOnce:false
+            });
             if(res.data.resultCode == 0){
                 wx.showToast({
                     title: '提醒成功',
@@ -280,6 +289,9 @@ Page({
     },
     //密码校验成功提交操作
     verifySuccess:function(){
+        this.setData({
+            passwordDialog:false
+        });
         let contractNo = app.globalData.searchParam.contractNo;
         let data = {
             contractNum:contractNo,
@@ -300,7 +312,7 @@ Page({
 
         })
     },
-    //邮箱发送
+    // 邮箱发送
     emailSubmit:function(e){
         let data={
             email:'',
@@ -308,16 +320,35 @@ Page({
             contractNo:this.data.contractNo
         };
         if(e.target.dataset.type == 'default'){
-            data.email = this.data.defaultEmail;
+            data.email = this.data.defaultEmail
         }else{
-            data.email = this.data.sendEmail;
+            if(!this.data.sendEmail){
+                this.setData({
+                    errMessage:'邮箱不可为空！'
+                });
+                return false
+            }else if(this.data.sendEmail&&!util.validateEmail(this.data.sendEmail)){
+                this.setData({
+                    errMessage:'邮箱格式不正确'
+                });
+                return false
+            }
+            else{
+                data.email = this.data.sendEmail;
+                this.setData({
+                    errMessage:''
+                });
+            }
         }
-        sendEmailForUser(this.data.interfaceCode,data).then(res=>{
+        this.setData({
+            showModalStatus:false
+        });
+        sendEmailForUser(this.data.interfaceCode,data).then((res)=>{
             wx.showToast({
                 title: '邮件发送成功',
                 icon: 'none',
                 duration: 2000
-            });
+            })
         }).catch(err=>{
 
         })
@@ -338,6 +369,9 @@ Page({
             'validTime':this.data.date,
              'perpetualValid':this.data.permanentLimit?'1':'0',
         };
+        this.setData({
+            showModalStatus:false
+        });
         updateContractTime(this.data.interfaceCode,this.data.contractNo,data).then(res=>{
            if(res.data.resultCode==0){
                wx.showToast({

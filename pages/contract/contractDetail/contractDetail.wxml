@@ -88,15 +88,19 @@
                 <view  class="drawer-box" wx:if="{{showModalStatus}}">
                 <!--drawer content-->
                     <view class="drawer-title">请输入邮箱账号</view>
+                    <view class="close-model">
+                        <image src="/images/close-model.png" mode='widthFix' bindtap="cancelDialog" data-status="close"></image>
+                    </view>
                     <view class="drawer-content">
-                        <input  class="email-address" value="{{sendEmail}}" bindinput="getEmail" bindblur="checkEmail"></input>
+                        <view class="email-content">
+                            <input  class="email-address" value="{{sendEmail}}" bindinput="getEmail" bindblur="checkEmail" />
+                            <button type="button" class="send-email" bindtap="emailSubmit" data-status="close" data-type="addemail">发送</button>
+                        </view>
+
                         <view class="email-err">{{errMessage}}</view>
-                        <view class="bind-email" wx:if="{{defaultEmail}}" bindtap="emailSubmit" data-type="default">发送至账号绑定邮箱</view>
+                        <view class="bind-email" wx:if="{{defaultEmail}}" bindtap="emailSubmit" data-type="default">点击发送至账号绑定邮箱</view>
                     </view>
-                    <view class="option-btn">
-                        <view class="btn-ok btn-cancel" bindtap="cancelDialog" data-status="close">取消</view>
-                        <view class="btn-ok" bindtap="emailSubmit" data-status="close" data-type="addemail">确定</view>
-                    </view>
+
                 </view>
             </block>
         </view>
@@ -146,7 +150,7 @@
                 <!--drawer content-->
                     <view class="drawer-title">请输入签署密码</view>
                     <view class="drawer-content">
-                        <input  class="email-address" value="{{signPawssword}}" bindinput="getPwd"></input>
+                        <input  class="email-address" value="{{signPawssword}}" bindinput="getPwd" />
                         <view class="email-err">{{errMessage}}</view>
                     </view>
                     <view class="option-btn">

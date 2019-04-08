@@ -421,7 +421,7 @@ Page({
     },
     // 上滑懒加载
     onReachBottom(){
-        console.log("onReachBottom");
+        // console.log("onReachBottom");
         if(this.data.flag){
             this.setData({
                 pageNo:this.data.pageNo+1
@@ -476,11 +476,11 @@ Page({
             this.setData({
                 contractDataList:[]
             });
-            console.log(this.data.contractStatus)
+            // console.log(this.data.contractStatus)
             this.setData({
                 contractStatus:this.data.contractStatus==0?4:this.data.contractStatus,
             });
-            console.log(this.data.contractStatus)
+            // console.log(this.data.contractStatus)
             //查询所有归档文件夹
             this.contractFilings();
             this.getAccounts();
