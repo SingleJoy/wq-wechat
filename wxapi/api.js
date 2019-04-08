@@ -180,6 +180,10 @@ function b2bSignerpositions(interfaceCode,contractNo,userCode){
 function updateContractTime(interfaceCode,contractNo,data){
     return request(api+'/v1/tenant/'+interfaceCode+'/contract/'+contractNo+'/updateContractTime','post',data)
 }
+//b2b
+function saveSignatureImg(signToken,data){
+    return request(api+"/v1.4/signToken/"+signToken+'/saveSignatureImg','post',data)
+}
 
 module.exports = {
     tenant,
@@ -220,5 +224,6 @@ module.exports = {
     contractkeywordsign,
     b2bSignerpositions,
     b2bContractmoresign,
-    updateContractTime
+    updateContractTime,
+    saveSignatureImg
 }

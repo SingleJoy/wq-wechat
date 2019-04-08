@@ -123,6 +123,7 @@ wx.getSystemInfo({
                     //打印图片路径console.log(res.tempFilePath)
                     //设置保存的图片
                     this.clearClick();
+
                     wx.getFileSystemManager().readFile({
                         filePath: res.tempFilePath, //选择图片返回的相对路径
                         encoding: 'base64', //编码格式

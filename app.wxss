@@ -32,7 +32,6 @@
     border-radius: 40rpx;
     text-align: center;
     float: right;
-    font-size: 26rpx;
 }
 .signed{
     background: #ff1111;
@@ -84,14 +83,7 @@ view,text{
 .hidden{
   overflow: hidden;
 }
-.contract-img{
-    width:100%;
-    height:100100%;
-}
-.contract-img image{
-    width:100%;
-    height: 100%;
-}
+
 .contract-option{
     width:100%;
 }
@@ -111,14 +103,4 @@ button::after {
 button{
     border-radius: 0;
 }
-/* page::before{
-    content: '';
-    position: fixed;
-    left: 0;
-    bottom: 20rpx;
-    width: 100%;
-    height: 2rpx;
-    background-color: #F6F8FC;
-    z-index: 9999;
-} */
 
