@@ -57,7 +57,7 @@ Page({
             }, 1000)
         }).catch(err=>{
 
-        }) 
+        })
     },
     // 签署验证是否需要签署密码
     signContract(){
@@ -69,7 +69,7 @@ Page({
             this.signSubmit()
         }
     },
-     //提交表单数据并验证
+    //提交表单数据并验证
     formSubmitModel: function(e) {
         if (!e.detail.value.input) {
           this.setData({
@@ -87,26 +87,26 @@ Page({
     },
     //验证签署密码
     verifySignPwd(value){
-      let data={
+      let data = {
         signVerifyPassword: md5(value)
       }
-        verifySignPassword(this.data.accountCode,data).then(res=>{
-            if(res.data.resultCode == 1){
-                this.signSubmit()    //校验成功提交签署
-                this.setData({
-                    showModal:false
-                })
-            }else{
-              console.log(111)
-              wx.showToast({
-                title: res.data.resultMessage,
-                icon: 'none',
-                duration: 2000
-              })
-            }
-        }).catch(err=>{
+      verifySignPassword(this.data.accountCode,data).then(res=>{
+          if(res.data.resultCode == 1){
+              this.signSubmit()    //校验成功提交签署
+              this.setData({
+                  showModal:false
+              });
+          }else{
+            console.log(111)
+            wx.showToast({
+              title: res.data.resultMessage,
+              icon: 'none',
+              duration: 2000
+            })
+          }
+      }).catch(err=>{
 
-        })
+      })
     },
 
     //签署提交
@@ -148,8 +148,8 @@ Page({
     //取消操作
     hideModal: function() {
         this.setData({
-        showModal: false
+            showModal: false
         });
     },
- 
+
 })

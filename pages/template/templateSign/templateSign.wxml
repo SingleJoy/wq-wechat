@@ -24,7 +24,7 @@
         <view class="modal-content">
           <input name="input" maxlength='6' value='{{signPawssword}}' placeholder='请输入签署密码' type="password"></input>
         </view>
-        <view class='psd-hint' wx-if="{{psdHint}}">签署密码不能为空</view>
+        <view class='psd-hint' wx:if="{{psdHint}}">签署密码不能为空</view>
         <view class="modal-footer">
           <button form-type="submit" class="btn-confirm" data-status="confirm">确定</button>
         </view>
