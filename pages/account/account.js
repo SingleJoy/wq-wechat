@@ -86,12 +86,12 @@ Page({
         getAccountInformation(accountCode).then(res=> {
             if(res.data.resultCode=='1'){
                 this.setData({
-                    mobile:res.data.data.mobile,
-                    email:res.data.data.email,
-                    enterpriseName:res.data.data.enterpriseName,
-                    b2bNum:res.data.data.b2bNum,
-                    b2cNum:res.data.data.b2cNum,
-                    authorizerName:res.data.data.authorizerName,
+                  mobile: res.data.data.mobile != null ? res.data.data.mobile: "",
+                  email: res.data.data.email != null ? res.data.data.email: "",
+                  enterpriseName: res.data.data.enterpriseName != null ? res.data.data.enterpriseName: "",
+                  b2bNum: res.data.data.b2bNum != null ? res.data.data.b2bNum : "",
+                  b2cNum: res.data.data.b2cNum != null ? res.data.data.b2cNum : "",
+                  authorizerName: res.data.data.authorizerName != null ? res.data.data.authorizerName : "",
                 })
 
             }
