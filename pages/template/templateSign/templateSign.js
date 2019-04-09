@@ -1,3 +1,4 @@
+const md5 = require('../../../utils/md5.js')
 import {
     contracttempimgs,
     getSignature,
@@ -39,12 +40,11 @@ Page({
           contractTempNo: param_data.contractTempNo,
           interfaceCode: wx.getStorageSync('interfaceCode'),
           accountCode: wx.getStorageSync('accountCode'),
-            signVerify: app.globalData.signVerify,
-            windowHeight:app.globalData.userInfo.windowHeight,
-            windowWidth:app.globalData.userInfo.windowWidth,
-            imgHeight:app.globalData.imgHeight,
+          signVerify: wx.getStorageSync('signVerify'),
+          windowHeight:app.globalData.userInfo.windowHeight,
+          windowWidth:app.globalData.userInfo.windowWidth,
+          imgHeight:app.globalData.imgHeight,
         })
-      console.log(param_data);
         wx.showLoading({
             title: '加载中',
         })
@@ -71,12 +71,11 @@ Page({
     },
      //提交表单数据并验证
     formSubmitModel: function(e) {
-        console.log(e.detail.value.input)
         if (!e.detail.value.input) {
-        this.setData({
-            psdHint: true
-        });
-        return;
+          this.setData({
+              psdHint: true
+          });
+          return;
         } 
         this.setData({
             psdHint: false
@@ -84,13 +83,13 @@ Page({
         this.setData({
             showModal: false
         });
+      this.verifySignPwd(e.detail.value.input);
     },
     //验证签署密码
-    verifySignPwd(){
-        let data={
-            signVerifyPassword:this.data.signPawssword
-        }
-        // console.log(this.data.signPawssword)
+    verifySignPwd(value){
+      let data={
+        signVerifyPassword: md5(value)
+      }
         verifySignPassword(this.data.accountCode,data).then(res=>{
             if(res.data.resultCode == 1){
                 this.signSubmit()    //校验成功提交签署
@@ -98,7 +97,12 @@ Page({
                     showModal:false
                 })
             }else{
-                
+              console.log(111)
+              wx.showToast({
+                title: res.data.resultMessage,
+                icon: 'none',
+                duration: 2000
+              })
             }
         }).catch(err=>{
 
