@@ -1,5 +1,6 @@
 import { backContractTempSigner, contractTemp } from '../../../wxapi/api.js';
 import { validateCard, validateMoblie,TrimAll } from '../../../utils/util.js';
+import {conNum} from "../../../wxapi/api";
 
 const app = getApp();
 Page({
@@ -48,6 +49,7 @@ Page({
   onLoad: function (options) {
     this.setData({
       contactName: app.globalData.contractParam.templateName,
+      interfaceCode:wx.getStorageSync('interfaceCode'),
     })
     if (app.globalData.contractParam.operateType) {
       this.getSignInfo(); 
@@ -380,30 +382,50 @@ Page({
         "accountCode": accountCode
       }
     }
+    //判断合同余量
+      let interfaceCode=this.data.interfaceCode;
+      conNum(interfaceCode).then((res)=>{
+          if(res.data.resultCode==1){
+              let b2cNum=res.data.data.b2bNum;
+              if(b2cNum<this.data.dataList.length){
+                  wx.showModal({
+                      title: '提示',
+                      content: '合同余量不足',
+                      success(res) {
+
+                      }
+                  });
+
+                  return false;
+              }
+          }
+      }).catch(error=>{
+
+      });
     contractTemp(zqUserContractTempVo, creater).then(res => {
         if(res.data.resultCode=="0"){
             //临时合同编号
             let signParams = {
                 contractTempNo: res.data.data
-            }
-            Object.assign(app.globalData.contractParam,signParams)
+            };
+            Object.assign(app.globalData.contractParam,signParams);
             wx.navigateTo({
                 url: '../templateAddInfo/templateAddInfo'
-            })
-            wx.hideLoading()
+            });
+            wx.hideLoading();
         }else{
-            wx.hideLoading()
+            wx.hideLoading();
             wx.showToast({
                 title: res.data.resultMessage,
                 icon:'none',
                 duration: 2000
-            })
+            });
         }
         
     }).catch(res => {
 
     });
-    return;
+    return false;
   },
   //弹框确定操作
   onConfirm: function (e) {

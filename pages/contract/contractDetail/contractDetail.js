@@ -9,7 +9,8 @@ import {
     verifySignPassword,
     contractmoresign,
     updateContractTime,
-    signerpositions} from '../../../wxapi/api.js';
+    signerpositions,
+} from '../../../wxapi/api.js';
 const app = getApp();
 const md5 = require('../../../utils/md5.js')
 Page({
