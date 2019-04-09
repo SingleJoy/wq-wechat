@@ -225,6 +225,14 @@ Page({
     },
     //校验签署密码
     signPassword(){
+      if (!this.data.signPassword) {
+        wx.showToast({
+          title: "签署密码不能为空",
+          icon: 'none',
+          duration: 2000
+        });
+        return false;
+      }
         let data={
             signVerifyPassword:md5(this.data.signPassword)
         };
