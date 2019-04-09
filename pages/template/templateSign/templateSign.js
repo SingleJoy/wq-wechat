@@ -36,15 +36,15 @@ Page({
     onLoad: function (options) {
         let param_data = app.globalData.contractParam;
         this.setData({
-          contractTempNo: param_data.contractTempNo,
-          interfaceCode: wx.getStorageSync('interfaceCode'),
-          accountCode: wx.getStorageSync('accountCode'),
+            contractTempNo: param_data.contractTempNo,
+            interfaceCode: wx.getStorageSync('interfaceCode'),
+            accountCode: wx.getStorageSync('accountCode'),
             signVerify: app.globalData.signVerify,
             windowHeight:app.globalData.userInfo.windowHeight,
             windowWidth:app.globalData.userInfo.windowWidth,
             imgHeight:app.globalData.imgHeight,
         })
-      console.log(param_data);
+        console.log(param_data);
         wx.showLoading({
             title: '加载中',
         })
@@ -57,7 +57,7 @@ Page({
             }, 1000)
         }).catch(err=>{
 
-        }) 
+        })
     },
     // 签署验证是否需要签署密码
     signContract(){
@@ -69,36 +69,35 @@ Page({
             this.signSubmit()
         }
     },
-     //提交表单数据并验证
+    //提交表单数据并验证
     formSubmitModel: function(e) {
-        console.log(e.detail.value.input)
+
         if (!e.detail.value.input) {
+            this.setData({
+                psdHint: true
+            });
+            return;
+        }
         this.setData({
-            psdHint: true
-        });
-        return;
-        } 
-        this.setData({
-            psdHint: false
-        });
-        this.setData({
+            psdHint: false,
             showModal: false
         });
+
     },
     //验证签署密码
     verifySignPwd(){
         let data={
             signVerifyPassword:this.data.signPawssword
-        }
-        // console.log(this.data.signPawssword)
+        };
+
         verifySignPassword(this.data.accountCode,data).then(res=>{
             if(res.data.resultCode == 1){
                 this.signSubmit()    //校验成功提交签署
                 this.setData({
                     showModal:false
-                })
+                });
             }else{
-                
+
             }
         }).catch(err=>{
 
@@ -144,8 +143,8 @@ Page({
     //取消操作
     hideModal: function() {
         this.setData({
-        showModal: false
+            showModal: false
         });
     },
- 
+
 })
