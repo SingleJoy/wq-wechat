@@ -67,7 +67,7 @@ Page({
     },
 
     onLoad: function (options) {
-        let param_data = app.globalData.searchParam;
+        let param_data = app.globalData.searchParam;1
         this.setData({
             creater:app.globalData.searchParam.creater,
             contractStatus:param_data.contractStatus,
@@ -82,7 +82,7 @@ Page({
             windowHeight:app.globalData.userInfo.windowHeight,
             windowWidth:app.globalData.userInfo.windowWidth,
             imgHeight:app.globalData.imgHeight,
-            signVerify:wx.getStorageSync('signVerify'), //签署密码设置
+            signVerify:app.globalData.signVerify, //签署密码设置
             baseUrl:app.globalData.baseUrl,
         });
 
