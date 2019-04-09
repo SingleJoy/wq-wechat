@@ -97,7 +97,6 @@ Page({
                   showModal:false
               });
           }else{
-            console.log(111)
             wx.showToast({
               title: res.data.resultMessage,
               icon: 'none',
