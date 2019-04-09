@@ -103,4 +103,6 @@ button::after {
 button{
     border-radius: 0;
 }
-
+image {
+  width: 100%;
+}

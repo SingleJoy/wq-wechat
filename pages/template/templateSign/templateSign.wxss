@@ -1,6 +1,7 @@
 .contact-img {
   padding: 36rpx 32rpx;
   margin-bottom: 104rpx;
+  text-align: center;
 }
 .contact-img image {
   width: 100%;
