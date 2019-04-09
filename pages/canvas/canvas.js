@@ -1,3 +1,4 @@
+import { saveSignatureImg } from '../../wxapi/api.js';
 var content = null;
 var touchs = [];
 var canvasw = 0;
@@ -26,6 +27,7 @@ wx.getSystemInfo({
             height:height,
             canvasWidth:width,
             canvasHeight:height-140,
+            flag:false
         },
         // 画布的触摸移动开始手势响应
         start: function (event) {
@@ -75,7 +77,6 @@ wx.getSystemInfo({
             // wx.hideTabBar({})
             //获得Canvas的上下文
             content = wx.createCanvasContext('firstCanvas');
-
             //设置线的颜色
             content.setStrokeStyle("#000");
             //设置线的宽度
@@ -85,8 +86,6 @@ wx.getSystemInfo({
             //设置两条线连接处更加圆润
             content.setLineJoin('round');
         },
-
-
 
         //绘制
         draw: function (touchs) {
@@ -114,7 +113,7 @@ wx.getSystemInfo({
         },
         //提交保存
         submit(){
-            content.rotate( 90*Math.PI / 180);
+
             wx.canvasToTempFilePath({
                 canvasId: 'firstCanvas',
                 success: (res) => {
@@ -135,16 +134,42 @@ wx.getSystemInfo({
                             //往全局变量派发一个base64img 对象
                             Object.assign(app.globalData.contractParam,base64Image);
                             let num=app.globalData.contractParam.num;
+                            let contractNo=app.globalData.searchParam.contractNo;
+                            let  userCode=wx.getStorageSync('userCode');
+                            let dataParams={
+                                 signatureImg:'data:image/png;base64,'+base64
+                             };
+                            wx.showLoading({
+                                title: '提交中...',
+                                mask: true
+                            });
+                            saveSignatureImg(contractNo,userCode,dataParams).then((res)=>{
 
-                            if(num==1){
-                                wx.navigateTo({
-                                    url: '/pages/contract/contractDetail/contractDetail'
-                                });
-                            }else {
-                                wx.navigateTo({
-                                    url: '/pages/contract/b2bContractShow/b2bContractShow'
-                                });
-                            }
+                                console.log(res)
+                                if(res.data.resultCode==1){
+                                    wx.showToast({
+                                        title: '签署成功',
+                                        icon: 'none',
+                                        duration: 1000
+                                    });
+                                    if(num==1){
+                                        wx.hideLoading();
+                                        wx.navigateTo({
+                                            url: '/pages/contract/contractDetail/contractDetail'
+                                        });
+                                    }else {
+                                        wx.hideLoading();
+                                        wx.navigateTo({
+                                            url: '/pages/contract/b2bContractShow/b2bContractShow'
+                                        });
+                                    }
+                                }
+
+                            }).catch(error=>{
+
+                            })
+
+
 
                         }
                     })
