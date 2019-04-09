@@ -127,9 +127,18 @@ Page({
                                         wx.setStorage({ key: 'parentAccountmobile', data: res.data.dataList[1].parentAccountmobile })
                                         if(res.data.resultCode==1){
                                           wx.hideLoading()
-                                            wx.switchTab({
-                                                url: '/pages/index/index'
-                                            })
+                                            if(res.data.dataList[1].auditSteps=='3'){
+                                                wx.switchTab({
+                                                    url: '/pages/index/index'
+                                                })
+                                            }else{
+                                                wx.showToast({
+                                                    title: '您的微签账号未实名，请实名后再登录！',
+                                                    icon: 'none',
+                                                    duration: 1000
+                                                });
+                                            }
+
                                         }else{
                                           wx.hideLoading()
                                         }
