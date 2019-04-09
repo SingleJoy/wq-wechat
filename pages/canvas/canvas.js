@@ -77,6 +77,7 @@ wx.getSystemInfo({
             //获得Canvas的上下文
             content = wx.createCanvasContext('firstCanvas');
 
+
             //设置线的颜色
             content.setStrokeStyle("#000");
             //设置线的宽度
@@ -87,11 +88,7 @@ wx.getSystemInfo({
             content.setLineJoin('round');
         },
 
-        /**
-         * 生命周期函数--监听页面初次渲染完成
-         */
-        onReady: function () {
-        },
+
 
         //绘制
         draw: function (touchs) {
@@ -101,7 +98,9 @@ wx.getSystemInfo({
             content.moveTo(point1.x, point1.y);
             content.lineTo(point2.x, point2.y);
             content.stroke();
+
             content.draw(true);
+
         },
 
         //清除操作
@@ -116,13 +115,14 @@ wx.getSystemInfo({
         },
         //提交保存
         submit(){
-
+            content.rotate( 90*Math.PI / 180);
             wx.canvasToTempFilePath({
                 canvasId: 'firstCanvas',
                 success: (res) => {
                     //打印图片路径console.log(res.tempFilePath)
                     //设置保存的图片
                     this.clearClick();
+                      console.log(res)
                     wx.getFileSystemManager().readFile({
                         filePath: res.tempFilePath, //选择图片返回的相对路径
                         encoding: 'base64', //编码格式
