@@ -1,5 +1,5 @@
 
-import {templateImg} from '../../../wxapi/api.js'
+import {templateImg,conNum} from '../../../wxapi/api.js'
 const app = getApp();
 Page({
     /**
@@ -22,7 +22,7 @@ Page({
     previewImage:function(e) {
         let list=[];
         for(let i=0;i<this.data.contractImgList.length;i++){
-          console.log(this.data.contractImgList[i])
+
             list.push(this.data.baseUrl+'/restapi/wesign/v1/tenant/contract/img?contractUrl='+this.data.contractImgList[i])
         }
         let current = e.target.dataset.src;
@@ -108,8 +108,19 @@ Page({
 
     },
     ImmediatelyStart: function() {
-        wx.navigateTo({
-            url: '../templateSet/templateSet?templateSpecificType='+this.data.templateSpecificType+'&templateNo='+this.data.templateNo,
+        let interfaceCode=this.data.interfaceCode;
+        conNum(interfaceCode).then((res)=>{
+            if(res.data.resultCode==1){
+                let b2cNum=res.data.data.b2bNum;
+                if(b2cNum>0){
+                    wx.navigateTo({
+                        url: '../templateSet/templateSet?templateSpecificType='+this.data.templateSpecificType+'&templateNo='+this.data.templateNo,
+                    })
+                }
+            }
+        }).catch(error=>{
+
         })
+
     },
 })

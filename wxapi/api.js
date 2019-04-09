@@ -193,7 +193,10 @@ function saveSignatureImg(contractNo,userCode,data){
     return request(api+'/v1.8/applet/contract/'+contractNo+'/user/'+userCode+'/saveSignatureImg','post',data)
 }
 
-
+//剩余合同数量
+function conNum(interfaceCode){
+    return request(api+'/v1.6/tenant/'+interfaceCode+'/conNum','get')
+}
 
 module.exports = {
     tenant,
@@ -237,5 +240,6 @@ module.exports = {
     updateContractTime,
     saveSignatureImg,
     getSignatureImg,
-    b2bsignFinish
+    b2bsignFinish,
+    conNum
 }
