@@ -5,6 +5,8 @@
     "pages/auth/login/login",
     "pages/account/account",
     "pages/contract/contractSearch/contractSearch",
+    "pages/contract/b2bContractSuccess/b2bContractSuccess",
+    "pages/contract/b2cContractSuccess/b2cContractSuccess",
     "pages/auth/roles/roles",
     "pages/template/templateSet/templateSet",
     "pages/contract/contractDetail/contractDetail",

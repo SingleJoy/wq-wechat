@@ -1,5 +1,6 @@
-const request = require('./main.js')
-const api = '/zqsign-web-wesign/restapi/wesign'
+const request = require('./main.js');
+// const api = '/zqsign-web-wesign/restapi/wesign';
+const api = '/api';
 //查询账户
 function tenant(data){
     return request(api+'/v1/tenant','get',data)
@@ -42,6 +43,9 @@ function getAccountInformation(accountCode) {
 //合同签署成功获取信息
 function signFinish(contractTempNo) {
   return request(api + '/v1.8/contract/' + contractTempNo + '/signFinish', 'get')
+}
+function b2bsignFinish(contract) {
+    return request(api + '/v1.4/contract/' + contract + '/signFinish', 'get')
 }
 //获取合同连接
 function getSignLink(interfaceCode, contractNo) {
@@ -232,5 +236,6 @@ module.exports = {
     b2bContractmoresign,
     updateContractTime,
     saveSignatureImg,
-    getSignatureImg
+    getSignatureImg,
+    b2bsignFinish
 }

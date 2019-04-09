@@ -1,5 +1,5 @@
-// pages/template/templateSuccess/templateSuccess.js
-import {signFinish} from '../../../wxapi/api.js'
+
+import {getContractDetails,getSignLink} from '../../../wxapi/api.js'
 
 const app = getApp();
 
@@ -15,32 +15,20 @@ Page({
         //签署链接
         signRoomLink: '',
         //签署人员信息
-        signList:[
-
-        ],
-        contractTempNo: '',
+        signList:[],
         interfaceCode: ''
     },
     //获取合同成功信息
     getContractInfo() {
-        signFinish(this.data.contractTempNo).then(res => {
-            const signInfo = res.data.data;
-            if (res.data.resultCode == "1") {
-                this.setData({
-                    contractName: signInfo.contractName,
-                    signRoomLink: signInfo.signRoomLink,
-                    validTime: signInfo.validTime
-                });
-                wx.hideLoading()
-            } else {
-                wx.hideLoading()
-                wx.showToast({
-                    title: res.data.resultMessage,
-                    icon: 'none',
-                    duration: 2000
-                })
-            }
+        getContractDetails(this.data.interfaceCode,this.data.contractNo).then(res => {
+          console.log(res)
+          this.setData({
+              signList:res.data.signUserVo,
+              contractName:res.data.contractVo.contractName,
+              validTime:res.data.contractVo.validTime,
+          })
         }).catch(res => {
+
         })
     },
     //复制链接
@@ -48,7 +36,7 @@ Page({
         wx.setClipboardData({
             //准备复制的数据
             data: this.data.signRoomLink,
-            success: function (res) {
+            success: (res)=> {
                 wx.showToast({
                     title: '复制成功',
                 });
@@ -66,17 +54,30 @@ Page({
             title: '加载中',
         });
         let interfaceCode = wx.getStorageSync('interfaceCode');
-        let contractTempNo = app.globalData.contractParam.contractTempNo;
+
         let contractNo = app.globalData.searchParam.contractNo;
 
         this.setData({
-            contractTempNo:contractTempNo?contractTempNo:contractNo,
+            contractNo:contractNo,
             interfaceCode: interfaceCode,
         });
         this.getContractInfo();
+        this.getSignLink();
         this.setData({
             navH: app.globalData.navHeight
         });
+        setTimeout(()=>{
+            wx.hideLoading();
+        },500);
+    },
+    getSignLink(){
+        getSignLink(this.data.interfaceCode,this.data.contractNo).then((res)=>{
+            this.setData({
+                signRoomLink: res.data
+            });
+        }).catch(error=>{
+
+        })
     },
     //跳转到首页
     backHome() {

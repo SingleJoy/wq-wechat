@@ -1,0 +1,45 @@
+
+<view class="common-box">
+  <view class="main-content">
+    <view class="success-icon">
+        <image src="/images/success.png"></image>
+    </view>
+      <view style="margin: 20rpx 0;">
+          <view class="success-text1">合同签署成功啦</view>
+          <!-- <view class="success-text2">众签已将该合同最新动态通过短信方式通知到其他人</view> -->
+          <view class="success-text2">短信通知已发出</view>
+      </view>
+
+    <view class="success-info">
+        <view class="info-item">  
+            <text class="info-name">合同名称：</text>
+            <text class="info-value">{{contractName}}</text>
+        </view>
+        <view class="info-item">  
+            <text class="info-name">截止时间：</text>
+            <text class="info-value">{{validTime}}</text>
+        </view>
+      <view class="info-item signer-box">
+                    <text class="info-name signer-title">签署人员：</text>
+                    <view class="signer-list">
+                        <view wx:for="{{signList}}" wx:key="{{item.signUserName}}" class="signer-item">
+                            <text class="signer-name">{{item.signUserName}}</text>
+                            <block wx:if="{{item.signStatus == 0}}">
+                                <text class="sign-status unsign">未签署</text>
+                            </block>
+                            <block wx:else>
+                                <text class="sign-status signed">已签署</text>
+                            </block>
+                        </view>
+                    </view>
+                </view>
+        <!--<view class="info-item">  -->
+            <!--<text class="info-name">签署链接：</text>-->
+            <!--<text class="info-value sign-link">{{signRoomLink}}</text>-->
+            <!--<text class="copy-link" bindtap='copyBtn'>复制链接</text>-->
+        <!--</view>-->
+
+    </view>
+  </view>
+  <button class='button-back' bindtap='backHome'>返回首页</button>
+</view>

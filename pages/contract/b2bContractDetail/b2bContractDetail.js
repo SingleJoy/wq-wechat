@@ -282,7 +282,7 @@ Page({
         })
     },
     signSubmit(){
-        if(!this.data.signVerify){     //需要签署密码
+        if(this.data.signVerify){     //需要签署密码
             this.setData({
                 passwordDialog:true
             });

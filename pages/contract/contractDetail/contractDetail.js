@@ -280,7 +280,7 @@ Page({
     },
     //提交签署
     signSubmit(){
-        if(!this.data.signVerify){     //需要签署密码
+        if(this.data.signVerify){     //需要签署密码
             this.setData({
                 passwordDialog:true
             })
@@ -306,7 +306,7 @@ Page({
         contractmoresign(this.data.interfaceCode,contractNo,data).then(res=>{
             if(res.data.responseCode == 0){
                 wx.reLaunch({
-                    url:'/pages/template/templateSuccess/templateSuccess'
+                    url:'/pages/contract/b2cContractSuccess/b2cContractSuccess'
                 })
             }
         }).catch(err=>{

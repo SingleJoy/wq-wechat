@@ -108,13 +108,15 @@ Page({
         }).catch(err=>{
 
         });
-
+        //获取签章签名位置
         this.b2bSignerpositions();
-
+        //获取签名图片
+        this.getSignatureImg();
     },
+    //获取签名图片
     getSignatureImg(){
         let contractNo=app.globalData.searchParam.contractNo;
-        let  userCode=wx.getStorageSync('userCode');
+        let userCode=wx.getStorageSync('userCode');
         getSignatureImg(contractNo,userCode).then((res)=>{
             let base64Image=res.data;
             let signPictureWidth=this.data.windowWidth*19/90;
@@ -250,7 +252,7 @@ Page({
         })
     },
     signSubmit(){
-        if(!this.data.signVerify){
+        if(this.data.signVerify){
             //需要签署密码
             this.setData({
                 passwordDialog:true
@@ -280,7 +282,7 @@ Page({
           console.log(res)
             if(res.data.responseCode == 1){
                 wx.reLaunch({
-                    url:'/pages/template/templateSuccess/templateSuccess'
+                    url:'/pages/contract/b2bContractSuccess/b2bContractSuccess'
                 });
             }
         }).catch(err=>{

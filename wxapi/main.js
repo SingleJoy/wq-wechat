@@ -12,18 +12,27 @@ const request = (url, method, data, contentType) => {
   //post 需要application/x-www-form-urlencoded 格式
   let content_type = contentType?contentType:(method.toLowerCase() == 'get'?'application/json':'application/x-www-form-urlencoded')
   return new Promise((resolve, reject) => {
+
     wx.request({
         url: _url,
         method: method,
         data: data,
             header: {
                 'Content-Type':content_type,
-                // 'token':''
+                'cookie':wx.getStorageSync("sessionid")
             },
         success(res) {
+
+            let sessionid=res.header["Set-Cookie"];
+            if(sessionid){
+                wx.setStorageSync("sessionid",sessionid)
+            }
+
             if (res.statusCode == 200) {
+
             if (res.data.sessionStatus == '000000') {
-                return util.getToken()
+
+                // return util.getToken()
             } else {
                 resolve(res)
             }

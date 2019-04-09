@@ -115,9 +115,10 @@ Page({
       templateBatchSign(this.data.interfaceCode,data).then(res=>{
           //真实合同编号
           let data = {          
-              contractTempNo:res.data.contractNo
-          }
-          Object.assign(app.globalData.contractParam,data)
+              contractTempNo:res.data.contractNo,
+              contractNo:res.data.contractNo,
+          };
+          Object.assign(app.globalData.contractParam,data);
           if(res.data.resultCode){
             wx.hideLoading()
             wx.navigateTo({
