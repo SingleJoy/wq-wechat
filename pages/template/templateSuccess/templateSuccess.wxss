@@ -1,6 +1,11 @@
 .common-box {
     margin: 0 auto;
 }
+.main-content {
+    padding:0 32rpx 0 32rpx;
+    box-sizing:border-box;
+}
+
 .success-icon{
     text-align: center;
 }
