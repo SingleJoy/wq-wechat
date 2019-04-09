@@ -22,8 +22,8 @@ Page({
     getContractInfo() {
         b2bsignFinish(this.data.contractNo).then(res => {
 
-             console.log(res)
-            if (res.data.resultCode == "1") {
+
+
                 this.setData({
                     contractName: res.data.data.contractName,
                     validTime: res.data.data.validTime,
@@ -31,10 +31,6 @@ Page({
 
                 });
 
-            } else {
-
-
-            }
         }).catch(res => {
         })
     },
@@ -72,6 +68,10 @@ Page({
         this.setData({
             navH: app.globalData.navHeight
         });
+
+        setTimeout(()=>{
+            wx.hideLoading();
+        },500);
     },
     //跳转到首页
     backHome() {
