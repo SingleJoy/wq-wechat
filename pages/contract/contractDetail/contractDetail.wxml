@@ -154,7 +154,7 @@
                 <!--drawer content-->
                     <view class="drawer-title">请输入签署密码</view>
                     <view class="drawer-content">
-                        <input  class="email-address" value="{{signPawssword}}" bindinput="getPwd" />
+                        <input  class="email-address" value="{{signPawssword}}" bindinput="getPwd" type="password"/>
                         <view class="email-err">{{errMessage}}</view>
                     </view>
                     <view class="option-btn">

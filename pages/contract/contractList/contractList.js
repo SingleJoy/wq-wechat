@@ -49,7 +49,8 @@ Page({
             refreshing: true
         });
         this.setData({
-            pageNo:1
+            pageNo:1,
+            contractDataList:[],
         });
         this.searchData();
         wx.stopPullDownRefresh();
@@ -113,7 +114,7 @@ Page({
                 }
                 //一级账号 把一级账号数据
                 if(this.data.accountLevel==1){
-                    dataList.unshift({accountCode:'',accountName:'全部'},{accountCode:accountCode,accountName:enterpriseName})
+                    dataList.unshift({accountCode:'',accountName:'全部账号'},{accountCode:accountCode,accountName:enterpriseName})
                 }
                 this.setData({
                     accountList:dataList
@@ -247,12 +248,12 @@ Page({
         // console.log(e.currentTarget.dataset)
         if(folderNo!=this.data.folderNo){
             this.setData({
-                contractDataList:[],
                 flag:true,
                 pageNo:1,
             })
         }
         this.setData({
+            contractDataList:[],
             folderName:filingName,
             folderNo:folderNo,
         });
@@ -296,14 +297,15 @@ Page({
         let num=e.currentTarget.dataset.num;
         if(num!=this.data.num){
             this.setData({
-                contractDataList:[],
                 flag:true,
                 pageNo:1,
             });
         }
         this.setData({
-            num:num
+            num:num,
+            contractDataList:[],
         });
+
         if(this.data.num==1){
             this.setData({
                 contractTypeName:"企业对个人",
@@ -320,14 +322,16 @@ Page({
         this.resetStyle();
         let accountName=e.currentTarget.dataset.accountname;
         let secondAccountCode=e.currentTarget.dataset.accountcode;
+        let accountCode=e.currentTarget.dataset.accountcode;
         if(secondAccountCode!=this.data.secondAccountCode){
             this.setData({
-                contractDataList:[],
                 flag:true,
                 pageNo:1,
             });
         }
         this.setData({
+            contractDataList:[],
+            accountCode:accountCode,
             accountTypeName:accountName,
             secondAccountCode:secondAccountCode,
         });

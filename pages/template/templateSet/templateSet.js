@@ -154,8 +154,11 @@ Page({
     //修改签署人
     let modelList = this.data.dataList[e.target.dataset.id];
     this.setData({
-      listIndex: e.target.dataset.id
+      listIndex: e.target.dataset.id?e.target.dataset.id:''
     });
+    if(!modelList){
+        modelList=[];
+    }
     this.setData({
       listValue: {
         nameValue: modelList.name,

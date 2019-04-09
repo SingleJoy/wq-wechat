@@ -27,7 +27,9 @@
     z-index: 99;
 }
 .swiper-tab{
-    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
     z-index: 99;
 }
 
@@ -36,18 +38,20 @@
     font-size: 28rpx;
     display: inline-block;
     overflow: hidden;
-    width: 33%;
+    /*width: 33%;*/
     color: #666;
     border-bottom: 0rpx;
     position: relative;
     text-align: center;
     height:68rpx;
     line-height: 80rpx;
+    padding:0 10rpx;
+
 }
 .swiper-tab view i{
-    position: absolute;
-    top: 34rpx;
-    right: 26rpx;
+    /*position: absolute;*/
+    /*top: 34rpx;*/
+    /*right: 26rpx;*/
     width: 0;
     height: 0;
     border: 12rpx solid #666;
@@ -57,14 +61,14 @@
     border-right-color: transparent;
 
 }
-.swiper-tab view.on{
+.swiper-tab view.on view{
     color: #4091fb;
 }
 .swiper-tab view.on i{
     top: 20rpx;
     border: 12rpx solid #4091fb;
     border-bottom-color: #4091fb;
-    border-top-color: transparent;
+    border-top-color: #4091fb;
     border-left-color: transparent;
     border-right-color: transparent;
 }
