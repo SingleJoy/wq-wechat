@@ -22,7 +22,8 @@ Page({
     previewImage:function(e) {
         let list=[];
         for(let i=0;i<this.data.contractImgList.length;i++){
-            list.push(this.data.baseUrl+'/restapi/wesign/v1/tenant/contract/img?contractUrl='+this.data.contractImgList[i].contractUrl)
+          console.log(this.data.contractImgList[i])
+            list.push(this.data.baseUrl+'/restapi/wesign/v1/tenant/contract/img?contractUrl='+this.data.contractImgList[i])
         }
         let current = e.target.dataset.src;
         wx.previewImage({
