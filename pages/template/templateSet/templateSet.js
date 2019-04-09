@@ -39,8 +39,7 @@ Page({
     },
     //添加签署人信息保存
     dataList: [
-      { name: "小明", idCard: "545214552233663321", mobile: "15685474458" },
-      { name: "大明", idCard: "545214552233663321", mobile: "15545454545" }
+
     ],
     showModal: false,
     //删除样式

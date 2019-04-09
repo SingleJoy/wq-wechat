@@ -30,8 +30,7 @@ wx.getSystemInfo({
         // 画布的触摸移动开始手势响应
         start: function (event) {
             // console.log(event);
-            // console.log("触摸开始" + event.changedTouches[0].x)
-            // console.log("触摸开始" + event.changedTouches[0].y)
+
             //获取触摸开始的 x,y
             let point = {x: event.changedTouches[0].x, y: event.changedTouches[0].y}
             touchs.push(point);
@@ -77,7 +76,6 @@ wx.getSystemInfo({
             //获得Canvas的上下文
             content = wx.createCanvasContext('firstCanvas');
 
-
             //设置线的颜色
             content.setStrokeStyle("#000");
             //设置线的宽度
@@ -111,6 +109,7 @@ wx.getSystemInfo({
         },
         //保存图片
         saveClick: function () {
+
             this.submit();
         },
         //提交保存
@@ -119,10 +118,10 @@ wx.getSystemInfo({
             wx.canvasToTempFilePath({
                 canvasId: 'firstCanvas',
                 success: (res) => {
-                    //打印图片路径console.log(res.tempFilePath)
+
                     //设置保存的图片
                     this.clearClick();
-                      console.log(res)
+
                     wx.getFileSystemManager().readFile({
                         filePath: res.tempFilePath, //选择图片返回的相对路径
                         encoding: 'base64', //编码格式
@@ -132,6 +131,7 @@ wx.getSystemInfo({
                             let base64Image={
                                 'base64':base64
                             };
+
                             //往全局变量派发一个base64img 对象
                             Object.assign(app.globalData.contractParam,base64Image);
                             let num=app.globalData.contractParam.num;
@@ -152,5 +152,8 @@ wx.getSystemInfo({
                 },
 
             })
-        }
-    })
+        },
+
+
+
+})
