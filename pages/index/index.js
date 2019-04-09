@@ -30,7 +30,8 @@ Page({
         waitForMeSign:'',
         waitForOtherSign:'',
         takeEffect:'',
-        deadline:''
+        deadline:'',
+        interfaceCode: ''
 
     },
     onPullDownRefresh() {
@@ -40,23 +41,30 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        console.log(app)
       wx.showLoading({
         title: '加载中',
       })
-        let requestType = ['waitForMeSign', 'waitForOtherSign', 'takeEffect', 'deadline'];
-        const interfaceCode = wx.getStorageSync('interfaceCode');
-        for (let i = 0; i < requestType.length; i++) {
-            let type = requestType[i]
-            contractNum[type](interfaceCode).then(res => {
-              wx.hideLoading()
-                this.setData({
-                    [type]:res.data.count
-                })
-            }).catch(error => {
-              wx.hideLoading()
-            })
-        }
+      this.setData({
+        interfaceCode: wx.getStorageSync('interfaceCode')
+      })
+      this.getSignerList();
+    },
+    getSignerList() {
+      let requestType = ['waitForMeSign', 'waitForOtherSign', 'takeEffect', 'deadline'];
+      let accountCode = {
+        accountCode: wx.getStorageSync('interfaceCode')
+      }
+      for (let i = 0; i < requestType.length; i++) {
+        let type = requestType[i]
+        contractNum[type](this.data.interfaceCode, accountCode).then(res => {
+          wx.hideLoading()
+          this.setData({
+            [type]: res.data.count
+          })
+        }).catch(error => {
+          wx.hideLoading()
+        })
+      }
     },
 
     /**
@@ -70,7 +78,7 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
-
+      this.getSignerList();
     },
 
     /**

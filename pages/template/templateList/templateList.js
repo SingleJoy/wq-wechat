@@ -4,7 +4,7 @@ const app = getApp();
 let pageNum = 1,
     useStatus = 1,
     pageSize = 10,
-    templateSpecies = "batch",
+    // templateSpecies = "batch",
     order = "DESC";
 Page({
     data: {
@@ -124,7 +124,7 @@ Page({
             pageNum: pageNum,
             useStatus: useStatus,
             pageSize: pageSize,
-            templateSpecies: templateSpecies,
+            // templateSpecies: templateSpecies,
             order: order
         }
         if (data == "applet") {
@@ -132,7 +132,7 @@ Page({
                 pageNum: pageNum,
                 useStatus: useStatus,
                 pageSize: pageSize,
-                templateSpecies: templateSpecies,
+                // templateSpecies: templateSpecies,
                 order: order,
                 mobileTemplate: Number(this.data.changeChecked)
             }
