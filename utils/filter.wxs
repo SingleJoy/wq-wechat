@@ -3,7 +3,7 @@
 function filterString(value) {
 
  if (value.length > 25) {
-    return value.slice(0,12)+'...'+value.slice(value.length-11,value.length)
+    return value.slice(0,10)+'....'+value.slice(value.length-10,value.length)
   }else{
     return  value
   }

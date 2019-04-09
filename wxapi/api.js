@@ -106,9 +106,13 @@ function showSignRoomInfo(interfaceCode){
 function signerpositions(interfaceCode,contractNo){
     return request(api+'/v1/tenant/'+ interfaceCode + '/contract/'+ contractNo +'/user/'+ interfaceCode + '/signerpositions','get')
 }
-//获取签章图片
+//b2c获取签章图片
 function getSignature(interfaceCode){
     return request(api+'/v1/user/'+interfaceCode+'/signature','get')
+}
+//b2b获取签章图片
+function getSignatureImg(contractNo,userCode){
+    return request(api+'/v1.4/contract/'+contractNo+'/user/'+userCode+'/getSignatureImg','get')
 }
 //校验签署密码
 function verifySignPassword(accountCode,data){
@@ -180,15 +184,13 @@ function b2bSignerpositions(interfaceCode,contractNo,userCode){
 function updateContractTime(interfaceCode,contractNo,data){
     return request(api+'/v1/tenant/'+interfaceCode+'/contract/'+contractNo+'/updateContractTime','post',data)
 }
-//b2b
-function saveSignatureImg(signToken,data){
-    return request(api+"/v1.4/signToken/"+signToken+'/saveSignatureImg','post',data)
+//b2b 合同提交
+function saveSignatureImg(contractNo,userCode,data){
+    return request(api+'/v1.8/applet/contract/'+contractNo+'/user/'+userCode+'/saveSignatureImg','post',data)
 }
 
-// // 签署提交
-// function saveSignBoard(){
-//     return request(api+"/v1/user/"+signToken+'/saveSignatureImg','post',data)
-// }
+
+
 module.exports = {
     tenant,
     login,
@@ -229,5 +231,6 @@ module.exports = {
     b2bSignerpositions,
     b2bContractmoresign,
     updateContractTime,
-    // saveSignatureImg
+    saveSignatureImg,
+    getSignatureImg
 }

@@ -5,8 +5,7 @@ import {
     showSignRoomInfo,
     getSignature,
     verifySignPassword,
-    contractmoresign,
-    signerpositions,
+    getSignatureImg,
     b2bSignerpositions,
     b2bContractmoresign
 } from '../../../wxapi/api.js';
@@ -109,22 +108,27 @@ Page({
         }).catch(err=>{
 
         });
-        let base64Image = "data:image/jpeg;base64,"+app.globalData.contractParam.base64;
 
-        let signPictureWidth=this.data.windowWidth*19/90;
-        let signPictureHeight=this.data.windowWidth*19/180;
-        this.setData({
-            signPictureWidth:signPictureWidth,
-            signPictureHeight:signPictureHeight,
-        });
+        this.b2bSignerpositions();
 
-        this.setData({
-            base64Image:base64Image,
-        });
-
-        this.b2bSignerpositions()
     },
+    getSignatureImg(){
+        let contractNo=app.globalData.searchParam.contractNo;
+        let  userCode=wx.getStorageSync('userCode');
+        getSignatureImg(contractNo,userCode).then((res)=>{
+            let base64Image=res.data;
+            let signPictureWidth=this.data.windowWidth*19/90;
+            let signPictureHeight=this.data.windowWidth*19/180;
+            this.setData({
+                signPictureWidth:signPictureWidth,
+                signPictureHeight:signPictureHeight,
+                base64Image:base64Image,
+            });
 
+        }).catch(error=>{
+
+        })
+    },
     //详情三角切换
     changeDetailBox:function(e){
 
