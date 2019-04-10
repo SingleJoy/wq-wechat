@@ -1,0 +1,21 @@
+<!--pages/login/login.wxml-->
+<view class="container common-box">
+    <view class="main-content">
+        <view class="tips">
+            <view class="header-title">
+                <text>您还未获得登录权限呦</text>
+            </view>
+            <view class="">
+                <view>
+                    <image src="../../../images/"></image>
+                </view>
+                <view>
+                    <view>
+
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
+

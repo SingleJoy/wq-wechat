@@ -31,6 +31,7 @@
     flex-direction: row;
     justify-content: space-between;
     z-index: 99;
+    padding: 0 16rpx;
 }
 
 .swiper-tab view {
@@ -45,13 +46,13 @@
     text-align: center;
     height:68rpx;
     line-height: 80rpx;
-    padding:0 10rpx;
+    padding-right:16rpx;
 
 }
 .swiper-tab view i{
-    /*position: absolute;*/
-    /*top: 34rpx;*/
-    /*right: 26rpx;*/
+    position: absolute;
+    top: 34rpx;
+    right: 0rpx;
     width: 0;
     height: 0;
     border: 12rpx solid #666;
@@ -68,7 +69,7 @@
     top: 20rpx;
     border: 12rpx solid #4091fb;
     border-bottom-color: #4091fb;
-    border-top-color: #4091fb;
+    border-top-color: transparent;
     border-left-color: transparent;
     border-right-color: transparent;
 }
@@ -93,7 +94,7 @@
 }
 .swiper-tab-list view{
     display: inline-block;
-    width:160rpx ;
+    width:172rpx ;
     overflow: hidden;
 }
 .swiper-item {
