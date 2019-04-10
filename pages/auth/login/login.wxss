@@ -121,7 +121,7 @@
   font-size: 24rpx;
 }
 .link-news{
-  margin-top:44rpx;
+  margin-top:38rpx;
 }
 button[disabled]{
     background: #4091fb !important;

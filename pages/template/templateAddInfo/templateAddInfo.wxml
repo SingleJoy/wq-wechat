@@ -8,6 +8,6 @@
         </view>
         <view class="line"></view>
       </view>
-      <button class='contact-setting' bindtap='signSetting'>参数提交</button>
+      <button class='contact-setting' bindtap='signSetting'>生成合同</button>
   </view>
 </view>

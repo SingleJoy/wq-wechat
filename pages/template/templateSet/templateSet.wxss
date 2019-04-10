@@ -223,6 +223,9 @@ input-holder {
   padding: 43rpx 0;
   display: inline-block;
 }
+.list-title-operate {
+  color: #333333;
+}
 .create-contract {
   position: fixed;
   bottom: 0;
