@@ -48,7 +48,9 @@
     color:#fe3627;
     bottom:-40rpx;
     font-size: 24rpx;
-    z-index: 2
+    z-index: 2;
+    display: inline-block;
+    top:82rpx;
 }
 .clear-contain {
   width: 60rpx;
