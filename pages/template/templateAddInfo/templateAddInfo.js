@@ -121,7 +121,7 @@ Page({
           Object.assign(app.globalData.contractParam,data);
           if(res.data.resultCode){
             wx.hideLoading()
-            wx.navigateTo({
+            wx.reLaunch({
                 url: '/pages/template/templateSign/templateSign',
             })
           }
