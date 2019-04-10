@@ -11,7 +11,7 @@
             </view>
             <view id="swiper-tab-container">
                 <view class="swiper-tab">
-                    <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-current="1"   bindtap="tabFolder">
+                    <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-current="1"   bindtap="tabFolder" style="text-align: left;">
                         <view>{{folderName}}</view>
                         <i></i>
                     </view>
