@@ -45,6 +45,7 @@ Page({
     showModal: false,
     //删除样式
     delate: "9",
+    hasContract:true,
   },
   onLoad: function (options) {
     this.setData({
@@ -304,6 +305,8 @@ Page({
       this.hideModal()
     }
   },
+
+  
   //生成合同
   formSubmit: function(e) {
 
@@ -355,7 +358,7 @@ Page({
       templateNo = app.globalData.contractParam.templateNo,
       operateType = app.globalData.contractParam.operateType,
       validTime = this.data.date,
-      perpetualValid = this.data.perpetualValid,
+      perpetualValid = this.data.perpetualValid?1:0,
       templateSpecificType = app.globalData.contractParam.templateSpecificType;
     let zqUserContractTempVo = {};
     if (operateType != '') {
@@ -387,26 +390,33 @@ Page({
         "accountCode": accountCode
       }
     }
-    //判断合同余量
-      let interfaceCode=this.data.interfaceCode;
-      conNum(interfaceCode).then((res)=>{
-          if(res.data.resultCode==1){
-              let b2cNum=res.data.data.b2bNum;
-              if(b2cNum<this.data.dataList.length){
-                  wx.showModal({
-                      title: '提示',
-                      content: '合同余量不足',
-                      success(res) {
+    //查询合同余量
+    let interfaceCode=this.data.interfaceCode;
+    conNum(interfaceCode).then((res)=>{
+        if(res.data.resultCode==1){
+            let b2cNum=res.data.data.b2cNum;
+            if(b2cNum<this.data.dataList.length){
+                wx.showModal({
+                    title: '提示',
+                    content: '合同余量不足',
+                    success(res) {
+                    }
+                });
+                wx.hideLoading();
+            }else{
+                this.submitSigner(zqUserContractTempVo,creater)
+            }
+        }else{
+            
+        }
+    }).catch(error=>{
 
-                      }
-                  });
-
-                  return false;
-              }
-          }
-      }).catch(error=>{
-
-      });
+    });
+   
+    return false;
+  },
+  //提交签署人
+  submitSigner(zqUserContractTempVo,creater){
     contractTemp(zqUserContractTempVo, creater).then(res => {
         if(res.data.resultCode=="0"){
             //临时合同编号
@@ -430,7 +440,6 @@ Page({
     }).catch(res => {
 
     });
-    return false;
   },
   //弹框确定操作
   onConfirm: function (e) {
@@ -438,16 +447,10 @@ Page({
   },
   //多选框操作
   checkboxChange: function (e) {
-    if (e.detail.value == '') {
       this.setData({
-        perpetualValid: "",
+        perpetualValid:!this.data.perpetualValid
       })
-    } else {
-      this.setData({
-        date: "",
-        perpetualValid: "1",
-      })
-    }
+      console.log(this.data.perpetualValid)
   }, 
   //日期时间选择控件
   bindDateChange(e) {
@@ -455,12 +458,14 @@ Page({
       date: e.detail.value
     })
     if (this.data.date) {
-      this.setData({
-        isChecked: false
-      })
+        this.setData({
+            isChecked: false,
+            perpetualValid:false
+        })
     } else {
       this.setData({
         isChecked: true,
+        perpetualValid:true
       })
     }
   },

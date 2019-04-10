@@ -106,7 +106,6 @@ Page({
                                         res_data = res.data.dataList[1][0];
                                     }
                                     wx.setStorage({ key: 'accountCode',data: res_data.accountCode})
-
                                     wx.setStorage({ key: 'interfaceCode',data: res_data.interfaceCode})
                                     wx.setStorage({key: 'accountLevel',data: res_data.accountLevel})
                                     wx.setStorage({key: 'enterpriseName',data: res_data.enterpriseName})
@@ -116,16 +115,10 @@ Page({
                                         mobile:res_data.mobile
                                     }
                                     homePage(res_data.interfaceCode,data).then(res=>{
-                                        // let globalData = {
-                                        //     signVerify:res.data.dataList[1].signVerify
-                                        // }
-                                        // Object.assign(app.globalData,globalData)
-                                        // app.globalData.signVerify = res.data.dataList[1].signVerify;
-                                      let signVerify = {
-                                        signVerify: res.data.dataList[1].signVerify
-                                      }
-                                      Object.assign(app.globalData, signVerify)
-                                      console.log(app.globalData)
+                                        let signVerify = {
+                                            signVerify: res.data.dataList[1].signVerify
+                                        }
+                                        Object.assign(app.globalData, signVerify)
                                         wx.setStorage({key:'signVerify',data:res.data.dataList[1].signVerify});
                                         wx.setStorage({key:'email',data:res.data.dataList[0].email});
                                         wx.setStorage({ key: 'userCode',data:res.data.dataList[0].userCode});
