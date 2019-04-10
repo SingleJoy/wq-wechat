@@ -47,7 +47,7 @@ Page({
       this.setData({
         interfaceCode: wx.getStorageSync('interfaceCode')
       })
-      this.getSignerList();
+      // this.getSignerList();
     },
     getSignerList() {
       let requestType = ['waitForMeSign', 'waitForOtherSign', 'takeEffect', 'deadline'];

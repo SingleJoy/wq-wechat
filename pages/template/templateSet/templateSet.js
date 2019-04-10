@@ -345,16 +345,18 @@ Page({
       idCards += TrimAll(dataList[i].idCard)+ ",";
       mobiles += TrimAll(dataList[i].mobile) + ",";
     }
-    // return
+    names = names.substring(0, names.length - 1);
+    idCards = idCards.substring(0, idCards.length - 1);
+    mobiles = mobiles.substring(0, mobiles.length - 1);
     let creater = wx.getStorageSync('interfaceCode'),
-        contractName = this.data.contactName,
-        accountCode = wx.getStorageSync('accountCode'),
-        contractTempNo = app.globalData.contractParam.contractTempNo,
-        templateNo = app.globalData.contractParam.templateNo,
-        operateType = app.globalData.contractParam.operateType,
-        validTime = this.data.date,
-        perpetualValid = this.data.perpetualValid,
-        templateSpecificType = app.globalData.contractParam.templateSpecificType;
+      contractName = value.input,
+      accountCode = wx.getStorageSync('accountCode'),
+      contractTempNo = app.globalData.contractParam.contractTempNo,
+      templateNo = app.globalData.contractParam.templateNo,
+      operateType = app.globalData.contractParam.operateType,
+      validTime = this.data.date,
+      perpetualValid = this.data.perpetualValid,
+      templateSpecificType = app.globalData.contractParam.templateSpecificType;
     let zqUserContractTempVo = {};
     if (operateType != '') {
       zqUserContractTempVo = {

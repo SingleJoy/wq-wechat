@@ -88,7 +88,11 @@ Page({
           mobile:login_mobile
     }
     homePage(interfaceCode,data).then(res=>{
-        if(res.data.resultCode==1){
+        if (res.data.resultCode == 1) {
+            let signVerify = {
+                signVerify: res.data.dataList[1].signVerify
+            }
+            Object.assign(app.globalData, signVerify)
             app.globalData.signVerify = res.data.dataList[1].signVerify;
             wx.setStorage({key:'email',data:res.data.dataList[0].email});
             wx.setStorage({key:'userCode',data:res.data.dataList[0].userCode});

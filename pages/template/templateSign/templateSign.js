@@ -1,3 +1,4 @@
+const md5 = require('../../../utils/md5.js')
 import {
     contracttempimgs,
     getSignature,
@@ -36,15 +37,14 @@ Page({
     onLoad: function (options) {
         let param_data = app.globalData.contractParam;
         this.setData({
-            contractTempNo: param_data.contractTempNo,
-            interfaceCode: wx.getStorageSync('interfaceCode'),
-            accountCode: wx.getStorageSync('accountCode'),
-            signVerify: app.globalData.signVerify,
-            windowHeight:app.globalData.userInfo.windowHeight,
-            windowWidth:app.globalData.userInfo.windowWidth,
-            imgHeight:app.globalData.imgHeight,
+          contractTempNo: param_data.contractTempNo,
+          interfaceCode: wx.getStorageSync('interfaceCode'),
+          accountCode: wx.getStorageSync('accountCode'),
+          signVerify: wx.getStorageSync('signVerify'),
+          windowHeight:app.globalData.userInfo.windowHeight,
+          windowWidth:app.globalData.userInfo.windowWidth,
+          imgHeight:app.globalData.imgHeight,
         })
-        console.log(param_data);
         wx.showLoading({
             title: '加载中',
         })
@@ -71,37 +71,41 @@ Page({
     },
     //提交表单数据并验证
     formSubmitModel: function(e) {
-
         if (!e.detail.value.input) {
-            this.setData({
-                psdHint: true
-            });
-            return;
-        }
+          this.setData({
+              psdHint: true
+          });
+          return;
+        } 
         this.setData({
-            psdHint: false,
+            psdHint: false
+        });
+        this.setData({
             showModal: false
         });
-
+      this.verifySignPwd(e.detail.value.input);
     },
     //验证签署密码
-    verifySignPwd(){
-        let data={
-            signVerifyPassword:this.data.signPawssword
-        };
+    verifySignPwd(value){
+      let data = {
+        signVerifyPassword: md5(value)
+      }
+      verifySignPassword(this.data.accountCode,data).then(res=>{
+          if(res.data.resultCode == 1){
+              this.signSubmit()    //校验成功提交签署
+              this.setData({
+                  showModal:false
+              });
+          }else{
+            wx.showToast({
+              title: res.data.resultMessage,
+              icon: 'none',
+              duration: 2000
+            })
+          }
+      }).catch(err=>{
 
-        verifySignPassword(this.data.accountCode,data).then(res=>{
-            if(res.data.resultCode == 1){
-                this.signSubmit()    //校验成功提交签署
-                this.setData({
-                    showModal:false
-                });
-            }else{
-
-            }
-        }).catch(err=>{
-
-        })
+      })
     },
 
     //签署提交
