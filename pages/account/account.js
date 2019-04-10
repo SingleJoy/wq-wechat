@@ -119,7 +119,7 @@ Page({
             if(res.data.resultCode=='1'){
 
                 for(let i=0;i<res.data.dataList.length;i++){
-                    if(res.data.dataList[i].defultCode==1){
+                    if(res.data.dataList[i].defultCode==0){
                         this.setData({
                             signaturePath:res.data.dataList[i].signaturePath
                         });
