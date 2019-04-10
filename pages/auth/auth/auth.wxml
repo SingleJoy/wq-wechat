@@ -11,7 +11,7 @@
                 </view>
                 <view class="reason">
                     <view class="reason-title">
-                       可能有以下原因：
+                       可能有以下原因:
                     </view>
                     <view class="tips-info">
                         <view> 1.您是一级账号管理员，但还未完成企业实名认证</view>

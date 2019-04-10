@@ -2,6 +2,7 @@
   "pages": [
     "pages/auth/auth/auth",
     "pages/start/start",
+
     "pages/contract/contractList/contractList",
     "pages/auth/login/login",
     "pages/account/account",
