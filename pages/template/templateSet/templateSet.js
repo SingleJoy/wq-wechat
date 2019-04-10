@@ -366,7 +366,7 @@ Page({
             perpetualValid = this.data.perpetualValid?1:0,
             templateSpecificType = app.globalData.contractParam.templateSpecificType;
             if(validTime){
-                validTime += '23:59:59'
+                validTime += ' 23:59:59'
             }
         let zqUserContractTempVo = {};
         if (operateType != '') {

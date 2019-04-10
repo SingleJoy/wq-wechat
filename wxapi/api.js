@@ -1,6 +1,6 @@
 const request = require('./main.js');
-// const api = '/zqsign-web-wesign/restapi/wesign';
-const api = '/api';
+const CONFIG = require('../config.js')
+const api = CONFIG.PROJECT_NAME
 //查询账户
 function tenant(data){
     return request(api+'/v1/tenant','get',data)
