@@ -221,7 +221,7 @@
     font-size: 26rpx;
     color:#ff0000;
     text-align: left;
-    margin-left: 20rpx;
+    margin-left: 40rpx;
 }
 .bind-email{
     font-size: 32rpx;
@@ -251,7 +251,7 @@
 }
 .email-content .send-email{
     display: inline-block;
-    width: 112rpx;
+    /* width: 112rpx; */
     height: 56rpx;
     background-color: #4091FB;
     font-size: 28rpx;
