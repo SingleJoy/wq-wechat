@@ -55,8 +55,8 @@
                 </view>
 
                 <view class="{{selected==2?'show':'hidden'}}">
-                    <view class="{{num == 1?'list-item-on':'list-item'}}" data-num="1" bindtap="chooseContractType" data-name="对个人合同">对个人合同</view>
-                    <view class="{{num == 2?'list-item-on':'list-item'}}" data-num="2" bindtap="chooseContractType" data-name="对企业合同">对企业合同</view>
+                    <view class="{{num == 1?'list-item-on':'list-item'}} list-item-people" data-num="1" bindtap="chooseContractType" data-name="对个人合同">对个人合同</view>
+                    <view class="{{num == 2?'list-item-on':'list-item'}} list-item-people" data-num="2" bindtap="chooseContractType" data-name="对企业合同">对企业合同</view>
                 </view>
 
                 <view class="{{selected==3?'show':'hidden'}}">

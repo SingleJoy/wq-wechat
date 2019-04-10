@@ -145,7 +145,7 @@
 
 }
 .options .note-remind {
-  opacity: 0.6;
+  background-color: #9fc8fd;
 }
 
 .drawer-mask{

@@ -134,7 +134,9 @@
     background-color: #fff;
     margin-bottom:10rpx;
 }
-
+.swiper-item view .list-item-people {
+  padding-left: 24rpx;
+}
 .tab-list .tab-item{
     margin:0 40rpx;
     box-shadow:1px 2px 5px #ddd;
