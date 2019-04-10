@@ -1,0 +1,47 @@
+.tips{
+    position:relative;
+    background: #fff;
+}
+.tips .header-title {
+   text-align: center;
+    margin-top: 40rpx;
+    margin-bottom: 60rpx;
+}
+.tips .header-title text{
+    margin: 20rpx auto;
+    font-size: 36rpx;
+    color: #4091fb;
+    text-align: center;
+}
+.body-content{
+    margin-top: 40rpx;
+    margin-bottom: 60rpx;
+}
+.body-content .image{
+    margin: 0 auto;
+    display: block;
+    width:160rpx;
+}
+.body-content .reason{
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+    box-shadow:1px 2px 5px 1px #ddd;
+    margin-left:20rpx;
+    margin-right:20rpx;
+}
+
+.reason-title{
+    display: block;
+    padding: 30rpx 0 10rpx 30rpx;
+}
+.reason view{
+    text-align: left;
+    display: block;
+    font-size: 28rpx;
+    padding: 10rpx 20rpx;
+    color: #666;
+}
+.color-blue{
+    color: #4091fb;
+}

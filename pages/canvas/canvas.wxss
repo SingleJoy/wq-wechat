@@ -33,7 +33,7 @@
     width: 100rpx;
     height:100rpx;
     border-radius: 50%;
-    font-size:12px;
+    font-size:24rpx;
     text-align: center;
     line-height: 100rpx;
     background-color: #1e91f9;

@@ -1,16 +1,16 @@
 
 import util from '../../../utils/util.js';
 import { tenant, login, bindEnterprises,homePage} from '../../../wxapi/api.js';
-const md5 = require('../../../utils/md5.js')
-const app = getApp()
+const md5 = require('../../../utils/md5.js');
+const app = getApp();
 Page({
 
     /**
      * 页面的初始数据
      */
     data: {
-        username:'',
-        password:'',
+        username:'18410171430',
+        password:'test111111',
         usernameErr:'',
         passwordErr:'',
         canSubmit:true, //点击按钮
@@ -137,10 +137,8 @@ Page({
                                                     url: '/pages/index/index'
                                                 })
                                             }else{
-                                                wx.showToast({
-                                                    title: '您的微签账号未实名，请实名后再登录！',
-                                                    icon: 'none',
-                                                    duration: 1000
+                                                wx.navigateTo({
+                                                    url: '/pages/auth/auth/auth'
                                                 });
                                             }
 
