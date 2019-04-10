@@ -143,8 +143,6 @@ Page({
         });
     },
     move:function(e){
-        console.log(e);
-        return false
     },
 //短信提醒
     smsTip:function(e){

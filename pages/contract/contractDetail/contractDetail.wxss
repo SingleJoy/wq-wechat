@@ -34,7 +34,8 @@
     border-top:none;
     position: absolute;
     right: 18rpx;
-    top:10rpx;
+    top:16rpx;
+    background-color: #fff;
 }
 .angle-transform{
     transition:transform 0.2s;
