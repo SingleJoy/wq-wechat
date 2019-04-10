@@ -5,6 +5,7 @@ module.exports = {
   API_BASE_URL: 'https://testwesign.zqsign.com',
 
 
+//   BASE_URL:'http://192.168.2.182:8080/zqsign-web-wesign'
 //   BASE_URL:'http://192.168.2.64:8080/zqsign-web-wesign'
   BASE_URL:'https://testwesign.zqsign.com'
 }

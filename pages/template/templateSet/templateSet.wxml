@@ -13,7 +13,7 @@
             <picker
               mode="date"
               value="{{date}}"
-              start="2012-09-01"
+              start="{{startDate}}"
               end="2030-09-01"
               bindchange="bindDateChange"
             >

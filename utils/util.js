@@ -1,12 +1,22 @@
-const formatTime = date => {
+
+/**
+ * @param {*} 
+ * date:时间;hms;是否显示时分秒（true,false）line:分割线类型('/''-')
+*/
+
+const formatTime = (date,hms,line) => {
   const year = date.getFullYear()
   const month = date.getMonth() + 1
   const day = date.getDate()
   const hour = date.getHours()
   const minute = date.getMinutes()
   const second = date.getSeconds()
-
-  return [year, month, day].map(formatNumber).join('/') + ' ' + [hour, minute, second].map(formatNumber).join(':')
+    if(hms){
+        return [year, month, day].map(formatNumber).join(line) + ' ' + [hour, minute, second].map(formatNumber).join(':')
+    }else{
+        return [year, month, day].map(formatNumber).join(line)
+    }
+  
 }
 
 const formatNumber = n => {

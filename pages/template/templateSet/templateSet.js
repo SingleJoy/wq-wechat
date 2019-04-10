@@ -1,5 +1,5 @@
 import { backContractTempSigner, contractTemp } from '../../../wxapi/api.js';
-import { validateCard, validateMoblie,TrimAll } from '../../../utils/util.js';
+import { validateCard, validateMoblie,TrimAll ,formatTime} from '../../../utils/util.js';
 import {conNum} from "../../../wxapi/api";
 
 const app = getApp();
@@ -51,6 +51,7 @@ Page({
     this.setData({
       contactName: app.globalData.contractParam.templateName,
       interfaceCode:wx.getStorageSync('interfaceCode'),
+      startDate:formatTime(new Date(),false,'-')
     })
     if (app.globalData.contractParam.operateType) {
       this.getSignInfo(); 
@@ -256,13 +257,13 @@ Page({
       return;
     }
     if (!validateMoblie(e.detail.value.mobile)) {
-      this.setData({
-        model: {
-          mobileHint: "手机号格式错误",
-          isShowMobileHint: true,
-        }
-      });
-      return;
+        this.setData({
+            model: {
+            mobileHint: "手机号格式错误",
+            isShowMobileHint: true,
+            }
+        });
+        return;
     }
     if (e.detail.value.mobile == wx.getStorageSync('mobile')) {
       this.setData({
@@ -353,18 +354,21 @@ Page({
             idCards += TrimAll(dataList[i].idCard)+ ",";
             mobiles += TrimAll(dataList[i].mobile) + ",";
         }
-        names = names.substring(0, names.length - 1);
-        idCards = idCards.substring(0, idCards.length - 1);
-        mobiles = mobiles.substring(0, mobiles.length - 1);
+            names = names.substring(0, names.length - 1);
+            idCards = idCards.substring(0, idCards.length - 1);
+            mobiles = mobiles.substring(0, mobiles.length - 1);
         let creater = wx.getStorageSync('interfaceCode'),
-        contractName = value.input,
-        accountCode = wx.getStorageSync('accountCode'),
-        contractTempNo = app.globalData.contractParam.contractTempNo,
-        templateNo = app.globalData.contractParam.templateNo,
-        operateType = app.globalData.contractParam.operateType,
-        validTime = this.data.date,
-        perpetualValid = this.data.perpetualValid?1:0,
-        templateSpecificType = app.globalData.contractParam.templateSpecificType;
+            contractName = value.input,
+            accountCode = wx.getStorageSync('accountCode'),
+            contractTempNo = app.globalData.contractParam.contractTempNo,
+            templateNo = app.globalData.contractParam.templateNo,
+            operateType = app.globalData.contractParam.operateType,
+            validTime = this.data.date,
+            perpetualValid = this.data.perpetualValid?1:0,
+            templateSpecificType = app.globalData.contractParam.templateSpecificType;
+            if(validTime){
+                validTime += '23:59:59'
+            }
         let zqUserContractTempVo = {};
         if (operateType != '') {
             zqUserContractTempVo = {

@@ -135,7 +135,7 @@ Page({
                 })
             }
         }).catch(err=>{
-
+            wx.hideLoading();
         })
     },
     //确定操作
