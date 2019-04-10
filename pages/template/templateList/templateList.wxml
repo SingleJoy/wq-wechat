@@ -8,10 +8,10 @@
     <!-- <scroll-view scroll-top="{{scrollTop}}" scroll-y="true" style="height:{{scrollHeight}}px;" 
         class="list" bindscrolltolower="bindDownLoad" bindscrolltoupper="topLoad"> -->
       <view class='template-contain'>
-        <view class="load_more" hidden="{{!refreshing}}">
+        <!-- <view class="load_more" hidden="{{!refreshing}}">
           <view class="load_loading"></view>
           <view class="load-tips">正在刷新中……</view>
-        </view>
+        </view> -->
         <view class='template-contain'>
           <view class='no-data' wx:if="{{list.length == 0}}">暂无数据</view>
           <view class='template-lists' wx:for="{{list}}" wx:key="{{accountLevel}}">

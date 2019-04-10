@@ -141,9 +141,10 @@ Page({
         getAccountTemplates(uploadData, accountCode).then(res => {
             wx.stopPullDownRefresh();
             wx.hideLoading();
+          wx.hideNavigationBarLoading()
             this.setData({
                 loading: false,
-                refreshing: false,
+                // refreshing: false,
                 totalItemNumber: res.data.totalItemNumber
             });
             let totalItemNumber = res.data.totalItemNumber;
@@ -191,10 +192,11 @@ Page({
     },
     //下拉刷新
     onPullDownRefresh: function (event) {
+      wx.showNavigationBarLoading()
         this.setData({
             loading: false,
             loaded: false,
-            refreshing: true
+            // refreshing: true
         })
         this.setData({
             isRequest: false,
