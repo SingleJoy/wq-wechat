@@ -1,6 +1,5 @@
 {
   "pages": [
-
     "pages/start/start",
     "pages/auth/auth/auth",
     "pages/contract/contractList/contractList",

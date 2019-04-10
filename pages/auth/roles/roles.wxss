@@ -52,11 +52,28 @@
   box-sizing: border-box;
 }
 .unreal-name{
-  background:#999999;
+  background:#999;
 }
 .real-name{
   background:#ff1111;
 }
+.no-active{
+  background: #4091fb;
+}
+.actived{
+  background: #09a13b;
+}
+.finishing{
+  background: #ff8400;
+}
+.forever-frozen{
+  background: #000;
+}
+.frozen{
+  background: #ccc;
+}
+
+
 .account-option{
   font-size:28rpx;
   color:#4091fb;

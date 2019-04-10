@@ -1,5 +1,5 @@
 module.exports = {
-  appid: "wx53eb2881be1748cb",
+  appid: "wxf99fe1c6afe2f836",
 //   API_BASE_URL: 'http://192.168.2.182:8080',
 //   API_BASE_URL: 'http://192.168.2.64:8080',
   API_BASE_URL: 'https://testwesign.zqsign.com',
