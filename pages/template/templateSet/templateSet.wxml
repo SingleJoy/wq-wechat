@@ -80,7 +80,7 @@
         <view>
           <view class="modal-input">
             <label>身份证：</label>
-            <input name="idCard" placeholder-class="input-holder" value="{{listValue.nameIdcard}}" type="number" maxlength="18" bindinput="inputChange" placeholder="请输入身份证"></input>
+            <input name="idCard" placeholder-class="input-holder" value="{{listValue.nameIdcard}}" maxlength="18" bindinput="inputChange" placeholder="请输入身份证"></input>
           </view>
           <view class="modal-input model-hint">
             <label></label>
