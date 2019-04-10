@@ -43,7 +43,7 @@ App({
   globalData: {
     signVerify:'',
     userInfo: null,
-    appid: 'wxf99fe1c6afe2f836',//appid需自己提供
+    appid: 'wx53eb2881be1748cb',//appid需自己提供
     accountCode:'',
     interfaceCode:'',
     accountLevel:'',
