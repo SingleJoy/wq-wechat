@@ -87,7 +87,7 @@
     height: auto;
     max-height: 402rpx;
     overflow-y: scroll;
-    top:160rpx;
+    top:148rpx;
     left: 0;
     z-index: 9999;
     background-color: #fff;
