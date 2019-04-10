@@ -33,7 +33,7 @@
     border-left:none;
     border-top:none;
     position: absolute;
-    right: 20rpx;
+    right: 18rpx;
     top:10rpx;
 }
 .angle-transform{
@@ -145,7 +145,7 @@
 
 }
 .options .note-remind {
-  opacity: 0.6;
+  background-color: #9fc8fd;
 }
 
 .drawer-mask{

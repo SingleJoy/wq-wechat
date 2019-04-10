@@ -125,7 +125,7 @@ Page({
                                         signVerify: res.data.dataList[1].signVerify
                                       }
                                       Object.assign(app.globalData, signVerify)
-                                      console.log(app.globalData)
+                                      wx.setStorage({ key: 'mobileTemplate', data: res.data.dataList[1].mobileTemplate });
                                         wx.setStorage({key:'signVerify',data:res.data.dataList[1].signVerify});
                                         wx.setStorage({key:'email',data:res.data.dataList[0].email});
                                         wx.setStorage({ key: 'userCode',data:res.data.dataList[0].userCode});
