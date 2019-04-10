@@ -184,7 +184,7 @@ Page({
     },
 //复制链接
     copyLink:function(e){
-        console.log(this.data.signRoomLink)
+
         wx.setClipboardData({
             data: this.data.signRoomLink,
             success(res) {
