@@ -165,7 +165,7 @@
     overflow: hidden;
 }
 .drawer-box{
-    width: 550rpx;
+    width: 600rpx;
     overflow: hidden;
     position: fixed;
     top: 40%;
@@ -223,11 +223,10 @@
     display: flex;
     flex-direction: row;
     margin-top: 40rpx;
-    margin-left: 20rpx;
+    margin-left: 40rpx;
 }
  .email-address{
     box-sizing: border-box;
-    display: inline-block;
     border:2rpx solid #999;
     border-radius: 5rpx;
     width:360rpx;
@@ -236,7 +235,6 @@
     padding-left: 10rpx;
 }
 .email-content .send-email{
-    display: inline-block;
     width: 112rpx;
     height: 56rpx;
     background-color: #4091FB;
