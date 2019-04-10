@@ -9,8 +9,8 @@ Page({
      * 页面的初始数据
      */
     data: {
-        username:'18410171430',
-        password:'test111111',
+        username:'',
+        password:'',
         usernameErr:'',
         passwordErr:'',
         canSubmit:true, //点击按钮
