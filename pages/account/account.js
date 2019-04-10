@@ -47,22 +47,17 @@ Page({
 
                     })
 
-
-
                 } else if (res.cancel) {
                     return false
                 }
             }
-        })
-
-
+        });
     },
-
 
     onLoad: function () {
       wx.showLoading({
         title: '加载中',
-      })
+      });
         try {
             const interfaceCode = wx.getStorageSync('interfaceCode');
             const accountCode = wx.getStorageSync('accountCode');
@@ -82,7 +77,7 @@ Page({
     },
 
     getAccountInformation(){
-      wx.hideLoading()
+      wx.hideLoading();
         let accountCode=this.data.accountCode;
         getAccountInformation(accountCode).then(res=> {
             if(res.data.resultCode=='1'){
@@ -98,7 +93,7 @@ Page({
             }
         }).catch(error=>{
 
-        })
+        });
     },
     getCertificate(){
       wx.hideLoading()
@@ -110,8 +105,7 @@ Page({
                     effectiveEndTime:res.data.data.certificateDueTime,
                     companyName:res.data.data.companyName,
                     certificateNo:res.data.data.certificateNo,
-                })
-
+                });
             }
         }).catch(error=>{
 
@@ -128,9 +122,8 @@ Page({
                     if(res.data.dataList[i].defultCode==1){
                         this.setData({
                             signaturePath:res.data.dataList[i].signaturePath
-                        })
+                        });
 
-                        console.log(res.data.dataList[i].signaturePath)
                     }
                 }
 
