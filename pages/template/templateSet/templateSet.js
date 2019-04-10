@@ -306,12 +306,13 @@ Page({
   },
   //生成合同
   formSubmit: function(e) {
-
     let value = e.detail.value;
     if(!value.input) {
       wx.showModal({
         title: '提示',
         content: '合同名称不能为空',
+        confirmColor: '#4091fb',
+        cancelColor: '#666',
         success: function (res) {}
       });
       return;
@@ -320,6 +321,8 @@ Page({
       wx.showModal({
         title: '提示',
         content: '签署截止日期不能为空',
+        confirmColor: '#4091fb',
+        cancelColor: '#666',
         success: function (res) {}
       });
       return;
@@ -328,6 +331,8 @@ Page({
       wx.showModal({
         title: '提示',
         content: '您还没有添加签署人',
+        confirmColor: '#4091fb',
+        cancelColor: '#666',
         success: function (res) {}
       });
       return;
@@ -394,11 +399,13 @@ Page({
               let b2cNum=res.data.data.b2bNum;
               if(b2cNum<this.data.dataList.length){
                   wx.showModal({
-                      title: '提示',
-                      content: '合同余量不足',
-                      success(res) {
+                    title: '提示',
+                    content: '合同余量不足',
+                    confirmColor: '#4091fb',
+                    cancelColor: '#666',
+                    success(res) {
 
-                      }
+                    }
                   });
 
                   return false;

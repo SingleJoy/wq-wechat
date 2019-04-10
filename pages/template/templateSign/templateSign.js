@@ -9,7 +9,7 @@ const app = getApp();
 Page({
     data: {
         //弹框显示标识
-        showModal: false,
+        showModal: true,
         //密码提示信息标识
         psdHint: false,
         windowHeight:'',
