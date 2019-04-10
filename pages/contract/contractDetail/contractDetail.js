@@ -82,7 +82,7 @@ Page({
             interfaceCode:wx.getStorageSync('interfaceCode'),
             accountCode:wx.getStorageSync('accountCode'),
             defaultEmail:wx.getStorageSync('email'),
-            validTime:param_data.validTime,
+            validTime:param_data.validTime.substring(0,10),
             num:param_data.num,
             contractInfo:param_data,
             windowHeight:app.globalData.userInfo.windowHeight,

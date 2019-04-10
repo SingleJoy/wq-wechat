@@ -52,10 +52,10 @@ Page({
     getSignerList() {
       let requestType = ['waitForMeSign', 'waitForOtherSign', 'takeEffect', 'deadline'];
       let accountCode = {
-        accountCode: wx.getStorageSync('interfaceCode')
+        accountCode: wx.getStorageSync('accountCode')
       }
       for (let i = 0; i < requestType.length; i++) {
-        let type = requestType[i]
+        let type = requestType[i];
         contractNum[type](this.data.interfaceCode, accountCode).then(res => {
           wx.hideLoading()
           this.setData({

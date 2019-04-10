@@ -79,3 +79,10 @@
   color:#4091fb;
   line-height: 100rpx;
 }
+.no-data{
+  display: block;
+  font-size:28rpx;
+  line-height:100rpx;
+  text-align: center;
+  width:100%;
+}

@@ -131,7 +131,7 @@ Page({
             'pageNo':this.data.pageNo,
             'pageSize':10,
             'contractStatus':this.data.contractStatus,
-            'accountCode':this.data.secondAccountCode,
+            'accountCode':this.data.accountLevel==2?this.data.accountCode:'',
             'filingNo':this.data.folderNo?this.data.folderNo:'',
             'accountLevel':this.data.accountLevel,
         };

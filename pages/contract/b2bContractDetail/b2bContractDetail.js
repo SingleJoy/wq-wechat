@@ -71,7 +71,7 @@ Page({
         this.setData({
             creater:app.globalData.searchParam.creater,
             contractStatus:param_data.contractStatus,
-            validTime:param_data.validTime,
+            validTime:param_data.validTime.substring(0,10),
             operator:param_data.operator,
             contractNo:param_data.contractNo,
             accountLevel:app.globalData.searchParam.accountLevel,

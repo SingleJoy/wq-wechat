@@ -7,29 +7,16 @@
                 <view class="account-item" wx:for="{{accountList}}" wx:key="item.accountCode">
                     <text class="account-name">{{item.accountName}}</text>
                     <view class="">
-                        <block wx:if="{{item.accountStatus==0}}">
-                            <view class="account-status unreal-name">关闭</view>
+
+                        <block wx:if="{{item.auditSteps==3}}">
+                            <view class="account-status real-name">已实名</view>
                         </block>
-                        <block wx:elif="{{item.accountStatus==1}}">
-                            <view class="account-status real-name">开通</view>
-                        </block>  
-                        <block wx:elif="{{item.accountStatus==2}}">
-                            <view class="account-status no-active">未激活</view>
+                        <block wx:else>
+                            <view class="account-status unreal-name">未实名</view>
                         </block>
-                        <block wx:elif="{{item.accountStatus==3}}">
-                            <view class="account-status actived">已激活</view>
-                        </block>
-                        <block wx:elif="{{item.accountStatus==4}}">
-                            <view class="account-status finishing">待完善</view>
-                        </block>
-                        <block wx:elif="{{item.accountStatus==5}}">
-                            <view class="account-status forever-frozen">永久冻结</view>
-                        </block>
-                        <block wx:elif="{{item.accountStatus==6}}">
-                            <view class="account-status frozen">冻结</view>
-                        </block>
-                        <text class="account-option" bindtap="goIndex" data-info="{{item}}" wx:if="{{item.accountStatus==1}}">进入</text>
-                        </view>
+                        <text class="account-option" bindtap="goIndex" data-info="{{item}}"
+                              wx:if="{{item.auditSteps==3}}">进入</text>
+                    </view>
                 </view>
             </view>
         </view>
@@ -37,18 +24,40 @@
         <view class="business-account sub-account">
             <text class="account-title">企业子账号</text>
             <view class="account-list">
-                <view class="account-item" wx:for="{{subAccountList}}" wx:key="item.name">
-                    <text class="account-name">{{item.accountName}}</text>
-                    <view class="">
-                        <block wx:if="{{item.status==0}}">
-                                <view class="account-status unreal-name">未实名</view>
-                        </block>
-                        <block wx:else>
-                            <view class="account-status real-name">已实名</view>
-                        </block>  
-                        <text class="account-option" bindtap="goIndex" data-info="{{item}}">进入</text>
+                <block wx:if="{{subAccountList.length>0}}">
+                    <view class="account-item" wx:for="{{subAccountList}}" wx:key="item.name" >
+                        <text class="account-name">{{item.accountName}}</text>
+                        <view class="">
+                            <block wx:if="{{item.accountStatus==0}}">
+                                <view class="account-status unreal-name">关闭</view>
+                            </block>
+                            <block wx:elif="{{item.accountStatus==1}}">
+                                <view class="account-status real-name">开通</view>
+                            </block>
+                            <block wx:elif="{{item.accountStatus==2}}">
+                                <view class="account-status no-active">未激活</view>
+                            </block>
+                            <block wx:elif="{{item.accountStatus==3}}">
+                                <view class="account-status actived">已激活</view>
+                            </block>
+                            <block wx:elif="{{item.accountStatus==4}}">
+                                <view class="account-status finishing">待完善</view>
+                            </block>
+                            <block wx:elif="{{item.accountStatus==5}}">
+                                <view class="account-status forever-frozen">永久冻结</view>
+                            </block>
+                            <block wx:elif="{{item.accountStatus==6}}">
+                                <view class="account-status frozen">冻结</view>
+                            </block>
+                            <text class="account-option" bindtap="goIndex" data-info="{{item}}" wx:if="{{item.accountStatus==3}}">进入</text>
+                        </view>
                     </view>
-                </view>
+                </block>
+                <block wx:else>
+                    <view class="account-item" >
+                        <text class="no-data">暂无子账号</text>
+                    </view>
+                </block>
             </view>
         </view>
     </view>
