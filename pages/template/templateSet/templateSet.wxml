@@ -60,7 +60,7 @@
     
   </view>
   <!-- 添加/修改签署人弹框 -->
-  <view class="modal-mask" bindtap="hideModal" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
+  <view class="modal-mask" catchtap:touchstart="hideModal" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
   <form bindsubmit="formSubmitModel">
     <view class="modal-dialog" wx:if="{{showModal}}">
       <view class="modal-title">
