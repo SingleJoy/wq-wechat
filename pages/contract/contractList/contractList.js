@@ -349,12 +349,12 @@ Page({
         let contractStatus=e.currentTarget.dataset.current;
         if(contractStatus!=this.data.contractStatus){
             this.setData({
-                contractDataList:[],
                 flag:true,
                 pageNo:1
             });
         }
         this.setData({
+            contractDataList:[],
             contractStatus:contractStatus,
         });
         this.searchData();
