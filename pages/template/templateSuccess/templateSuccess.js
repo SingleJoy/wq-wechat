@@ -49,9 +49,9 @@ Page({
             //准备复制的数据
             data: this.data.signRoomLink,
             success: function (res) {
-                wx.showToast({
-                    title: '复制成功',
-                });
+              wx.showToast({
+                  title: '链接已复制',
+              });
             }
         });
     },

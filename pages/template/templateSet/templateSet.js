@@ -40,7 +40,6 @@ Page({
     },
     //添加签署人信息保存
     dataList: [
-
     ],
     showModal: false,
     //删除样式
