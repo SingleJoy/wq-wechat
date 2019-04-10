@@ -1,0 +1,27 @@
+<!--pages/login/login.wxml-->
+<view class="container common-box">
+    <view class="main-content">
+        <view class="tips">
+            <view class="header-title">
+                <text>您还未获得登录权限</text>
+            </view>
+            <view class="body-content">
+                <view class="image">
+                    <image src="../../../images/mascot.png" mode='widthFix'></image>
+                </view>
+                <view class="reason">
+                    <view class="reason-title">
+                       可能有以下原因:
+                    </view>
+                    <view class="tips-info">
+                        <view> 1.您是一级账号管理员，但还未完成企业实名认证</view>
+                        <view> 2.您是子账号管理员，但还未完成账号激活操作</view>
+                        <view> 您可去PC端完善您的信息获取登录权限</view>
+                        <view>如有疑问:<text class="color-blue">请联系众签客服：010-5762-5108</text></view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
+

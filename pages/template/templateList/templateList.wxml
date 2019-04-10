@@ -33,6 +33,6 @@
           <!-- </view> -->
           <view class="load-tips">正在加载……</view>
         </view>
-        <view class="load_end" hidden="{{!loaded}}">没有更多数据了……</view>
+        <view class="load_end" hidden="{{!loaded}}">我也是有底线的哟……</view>
     <!-- </scroll-view> -->
 </view>

@@ -20,7 +20,6 @@ Page({
         totalItemNumber: 0,
     },
     onLoad: function () {
-      console.log(app)
         wx.showLoading({
             title: '加载中',
             mask: true

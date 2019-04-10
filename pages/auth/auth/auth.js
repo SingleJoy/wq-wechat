@@ -1,4 +1,4 @@
-// pages/tips/tips.js
+// pages/tips/auth.js
 Page({
 
   /**

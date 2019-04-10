@@ -44,10 +44,10 @@
         </view>
         <view wx:for="{{dataList}}" wx:key="key" class="signtory-list">
           <view animation="{{animationData}}" class='list-content {{delate == index ? "right-slide" : "restore"}}' data-id="{{index}}" capture-bind:touchstart='touchStart' capture-bind:touchend="touchEnd">
-            <view class='list-name' data-id="{{index}}">{{item.name}}</view>
-            <view class='list-idcard' data-id="{{index}}">{{item.idCard}}</view>
-            <view class='list-mobile' data-id="{{index}}">{{item.mobile}}</view>
-            <view wx-if='{{delate !== index ? "delate" : ""}}' class='list-operate {{delate == index ? "edit" : ""}}' data-id="{{index}}" bindtap='showDialogBtn'>编辑</view>
+            <view class='list-name list-size' data-id="{{index}}">{{item.name}}</view>
+            <view class='list-idcard list-size' data-id="{{index}}">{{item.idCard}}</view>
+            <view class='list-mobile list-size' data-id="{{index}}">{{item.mobile}}</view>
+            <view wx-if='{{delate !== index ? "delate" : ""}}' class='list-operate list-size {{delate == index ? "edit" : ""}}' data-id="{{index}}" bindtap='showDialogBtn'>编辑</view>
             <view wx-if='{{delate == index ? "delate" : ""}}' class='delate-style del' data-id="{{index}}" bindtap='delDialogBtn'>删除</view>
           </view>
         </view>

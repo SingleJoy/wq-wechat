@@ -47,7 +47,7 @@
                 </view>
             </view>
             <view class="title-option" bindtap="changeDetailBox">
-                查看详情
+                展开查看更多
                 <text class="select-angle {{detailMask?'angle-transform':''}}" ></text>
             </view>
             <view class="sign-contract-imgs">

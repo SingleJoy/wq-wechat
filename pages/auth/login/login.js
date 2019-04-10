@@ -1,8 +1,8 @@
 
 import util from '../../../utils/util.js';
 import { tenant, login, bindEnterprises,homePage} from '../../../wxapi/api.js';
-const md5 = require('../../../utils/md5.js')
-const app = getApp()
+const md5 = require('../../../utils/md5.js');
+const app = getApp();
 Page({
 
     /**
@@ -106,6 +106,7 @@ Page({
                                         res_data = res.data.dataList[1][0];
                                     }
                                     wx.setStorage({ key: 'accountCode',data: res_data.accountCode})
+
                                     wx.setStorage({ key: 'interfaceCode',data: res_data.interfaceCode})
                                     wx.setStorage({key: 'accountLevel',data: res_data.accountLevel})
                                     wx.setStorage({key: 'enterpriseName',data: res_data.enterpriseName})
@@ -115,10 +116,11 @@ Page({
                                         mobile:res_data.mobile
                                     }
                                     homePage(res_data.interfaceCode,data).then(res=>{
-                                        let signVerify = {
-                                            signVerify: res.data.dataList[1].signVerify
-                                        }
-                                        Object.assign(app.globalData, signVerify)
+                                      let signVerify = {
+                                        signVerify: res.data.dataList[1].signVerify
+                                      }
+                                      Object.assign(app.globalData, signVerify)
+                                      wx.setStorage({ key: 'mobileTemplate', data: res.data.dataList[1].mobileTemplate });
                                         wx.setStorage({key:'signVerify',data:res.data.dataList[1].signVerify});
                                         wx.setStorage({key:'email',data:res.data.dataList[0].email});
                                         wx.setStorage({ key: 'userCode',data:res.data.dataList[0].userCode});
@@ -130,10 +132,8 @@ Page({
                                                     url: '/pages/index/index'
                                                 })
                                             }else{
-                                                wx.showToast({
-                                                    title: '您的微签账号未实名，请实名后再登录！',
-                                                    icon: 'none',
-                                                    duration: 1000
+                                                wx.navigateTo({
+                                                    url: '/pages/auth/auth/auth'
                                                 });
                                             }
 
