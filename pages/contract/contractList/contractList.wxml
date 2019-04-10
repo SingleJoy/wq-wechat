@@ -75,10 +75,10 @@
         <view style="position: absolute;width:100%;top:260rpx;">
 
             <view class="search-data" style="padding-bottom: 20rpx;">
-                <view class="load_more" hidden="{{!refreshing}}">
+                <!-- <view class="load_more" hidden="{{!refreshing}}">
                     <view class="load_loading"></view>
                     <view class="load-tips">正在刷新中……</view>
-                </view>
+                </view> -->
                 <view class="data-lists" wx:for="{{contractDataList}}" wx:key="index" wx:if="{{contractDataList.length>0}}"
                       data-contractNo="{{item.contractNum}}" data-contractStatus="{{item.contractStatus}}"  data-validTime="{{item.validTime}}"  data-operator="{{item.operator}}" data-creater="{{item.creater}}"
                       bindtap="goDetail">

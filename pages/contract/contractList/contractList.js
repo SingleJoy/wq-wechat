@@ -45,15 +45,15 @@ Page({
      */
 
     onPullDownRefresh() {
+      wx.showNavigationBarLoading()
         this.setData({
-            refreshing: true
+            // refreshing: true
         });
         this.setData({
             pageNo:1,
             contractDataList:[],
         });
         this.searchData();
-        wx.stopPullDownRefresh();
     },
     onLoad: function (options) {
         let interfaceCode =wx.getStorageSync('interfaceCode');
@@ -146,12 +146,13 @@ Page({
     contracts(param){
 
         let interfaceCode=this.data.interfaceCode;
-        wx.showLoading({
-            title: '加载中...',
-            mask: true
-        });
+        // wx.showLoading({
+        //     title: '加载中...',
+        //     mask: true
+        // });
         contracts(interfaceCode,param).then(res=>{
-
+          wx.stopPullDownRefresh();
+          wx.hideNavigationBarLoading();
             let totalItemNumber=res.data.totalItemNumber;
             if(this.data.num==1){
                 setTimeout(()=>{
@@ -184,12 +185,13 @@ Page({
     },
     //b2b列表
     b2bContrants(param){
-
+      wx.stopPullDownRefresh();
+      wx.hideNavigationBarLoading()
         let interfaceCode=this.data.interfaceCode;
-        wx.showLoading({
-            title: '加载中...',
-            mask: true
-        });
+        // wx.showLoading({
+        //     title: '加载中...',
+        //     mask: true
+        // });
         b2bContrants(interfaceCode,param).then(res=>{
 
             let totalItemNumber=res.data.totalItemNumber;
