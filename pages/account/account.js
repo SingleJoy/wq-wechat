@@ -24,10 +24,11 @@ Page({
   },
     //事件处理函数
     loginOut(){
-
         wx.showModal({
-            title: '提示',
-            content: '确定退出当前账号?',
+          title: '提示',
+          content: '确定退出当前账号?',
+          confirmColor: '#4091fb',
+          cancelColor: '#666',
             success(res) {
                 if (res.confirm) {
                     exitAndDeleteSession().then((res)=>{
