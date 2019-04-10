@@ -456,7 +456,8 @@ Page({
   //多选框操作
   checkboxChange: function (e) {
       this.setData({
-        perpetualValid:!this.data.perpetualValid
+        perpetualValid:!this.data.perpetualValid,
+        date:''
       })
       console.log(this.data.perpetualValid)
   }, 
