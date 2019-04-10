@@ -19,16 +19,16 @@ Page({
         signaturePath:''
 
     },
-  onPullDownRefresh() {
-    wx.stopPullDownRefresh()
-  },
+    onPullDownRefresh() {
+        wx.stopPullDownRefresh()
+    },
     //事件处理函数
     loginOut(){
         wx.showModal({
-          title: '提示',
-          content: '确定退出当前账号?',
-          confirmColor: '#4091fb',
-          cancelColor: '#666',
+            title: '提示',
+            content: '确定退出当前账号?',
+            confirmColor: '#4091fb',
+            cancelColor: '#666',
             success(res) {
                 if (res.confirm) {
                     exitAndDeleteSession().then((res)=>{
@@ -47,22 +47,17 @@ Page({
 
                     })
 
-
-
                 } else if (res.cancel) {
                     return false
                 }
             }
-        })
-
-
+        });
     },
 
-
     onLoad: function () {
-      wx.showLoading({
-        title: '加载中',
-      })
+        wx.showLoading({
+            title: '加载中',
+        });
         try {
             const interfaceCode = wx.getStorageSync('interfaceCode');
             const accountCode = wx.getStorageSync('accountCode');
@@ -82,26 +77,26 @@ Page({
     },
 
     getAccountInformation(){
-      wx.hideLoading()
+        wx.hideLoading();
         let accountCode=this.data.accountCode;
         getAccountInformation(accountCode).then(res=> {
             if(res.data.resultCode=='1'){
                 this.setData({
-                  mobile: res.data.data.mobile != null ? res.data.data.mobile: "",
-                  email: res.data.data.email != null ? res.data.data.email: "",
-                  enterpriseName: res.data.data.enterpriseName != null ? res.data.data.enterpriseName: "",
-                  b2bNum: res.data.data.b2bNum != null ? res.data.data.b2bNum : "",
-                  b2cNum: res.data.data.b2cNum != null ? res.data.data.b2cNum : "",
-                  authorizerName: res.data.data.authorizerName != null ? res.data.data.authorizerName : "",
+                    mobile: res.data.data.mobile != null ? res.data.data.mobile: "",
+                    email: res.data.data.email != null ? res.data.data.email: "",
+                    enterpriseName: res.data.data.enterpriseName != null ? res.data.data.enterpriseName: "",
+                    b2bNum: res.data.data.b2bNum != null ? res.data.data.b2bNum : "",
+                    b2cNum: res.data.data.b2cNum != null ? res.data.data.b2cNum : "",
+                    authorizerName: res.data.data.authorizerName != null ? res.data.data.authorizerName : "",
                 })
 
             }
         }).catch(error=>{
 
-        })
+        });
     },
     getCertificate(){
-      wx.hideLoading()
+        wx.hideLoading()
         let interfaceCode=this.data.interfaceCode;
         getCertificate(interfaceCode).then(res=> {
             if(res.data.resultCode=='1'){
@@ -110,15 +105,14 @@ Page({
                     effectiveEndTime:res.data.data.certificateDueTime,
                     companyName:res.data.data.companyName,
                     certificateNo:res.data.data.certificateNo,
-                })
-
+                });
             }
         }).catch(error=>{
 
         })
     },
     getSignatures(){
-      wx.hideLoading()
+        wx.hideLoading()
         let interfaceCode=this.data.interfaceCode;
         getSignatures(interfaceCode).then(res=> {
 
@@ -128,9 +122,8 @@ Page({
                     if(res.data.dataList[i].defultCode==1){
                         this.setData({
                             signaturePath:res.data.dataList[i].signaturePath
-                        })
+                        });
 
-                        console.log(res.data.dataList[i].signaturePath)
                     }
                 }
 

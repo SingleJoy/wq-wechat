@@ -23,7 +23,7 @@
                 </view>
                 <view class="info-item">
                     <text class="info-name">签署场景：</text>
-                    <text class="info-value">{{contractName}}</text>
+                    <text class="info-value">{{num=='1'?'企业对个人':'企业对企业'}}</text>
                 </view>
                 <view class="info-item">
                     <text class="info-name">当前状态：</text>
@@ -49,7 +49,7 @@
                 </view>
             </view>
             <view class="title-option" bindtap="changeDetailBox">
-                查看详情
+                展开查看更多
                 <text class="select-angle {{detailMask?'angle-transform':''}}" ></text>
             </view>
             <view class="sign-contract-imgs">
