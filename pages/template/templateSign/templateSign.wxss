@@ -20,6 +20,10 @@
   background: #4091FB;
   border-radius: 0;
   color: #ffffff;
+  border: none;
+}
+.cancel-btn {
+  background-color: #9fc8fd;
 }
 .cancel {
   background: #9fc8fd;

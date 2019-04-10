@@ -1,4 +1,4 @@
-import {TrimAll} from '../../../utils/util.js';
+import {TrimAll,formatTime} from '../../../utils/util.js';
 import {
     contractImgs,
     getContractDetails,
@@ -84,6 +84,7 @@ Page({
             imgHeight:app.globalData.imgHeight,
             signVerify:app.globalData.signVerify, //签署密码设置
             baseUrl:app.globalData.baseUrl,
+            startDate:formatTime(new Date(),false,'-')
         });
 
         wx.showLoading({
@@ -180,17 +181,15 @@ Page({
     },
 //复制链接
     copyLink:function(e){
-        console.log(this.data.signRoomLink);
         wx.setClipboardData({
+            //准备复制的数据
             data: this.data.signRoomLink,
-            success(res) {
-                wx.getClipboardData({
-                    success(res) {
-                        console.log(res.data) // data
-                    }
-                })
+            success: function (res) {
+                wx.showToast({
+                    title: '链接已复制',
+                });
             }
-        })
+        });
     },
 //下载
     downContract:function(e){

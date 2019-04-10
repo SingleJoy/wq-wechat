@@ -13,7 +13,7 @@
             <picker
               mode="date"
               value="{{date}}"
-              start="2012-09-01"
+              start="{{startDate}}"
               end="2030-09-01"
               bindchange="bindDateChange"
             >
@@ -60,7 +60,7 @@
     
   </view>
   <!-- 添加/修改签署人弹框 -->
-  <view class="modal-mask" bindtap="hideModal" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
+  <view class="modal-mask" catchtap:touchstart="hideModal" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
   <form bindsubmit="formSubmitModel">
     <view class="modal-dialog" wx:if="{{showModal}}">
       <view class="modal-title">
@@ -83,7 +83,7 @@
         <view>
           <view class="modal-input">
             <label>身份证：</label>
-            <input name="idCard" placeholder-class="input-holder" value="{{listValue.nameIdcard}}" type="number" maxlength="18" bindinput="inputChange" placeholder="请输入身份证"></input>
+            <input name="idCard" placeholder-class="input-holder" value="{{listValue.nameIdcard}}" maxlength="18" bindinput="inputChange" placeholder="请输入身份证"></input>
           </view>
           <view class="modal-input model-hint">
             <label></label>

@@ -1,4 +1,5 @@
-import util from '../../../utils/util.js';
+
+import { TrimAll,formatTime,validateEmail} from '../../../utils/util.js';
 import {
     contractImgs,
     getContractDetails,
@@ -89,6 +90,7 @@ Page({
             imgHeight:app.globalData.imgHeight,
             signVerify:app.globalData.signVerify, //签署密码设置
             baseUrl:app.globalData.baseUrl,
+            startDate:formatTime(new Date(),false,'-')
         });
         wx.showLoading({
             title: '加载中',
@@ -183,18 +185,16 @@ Page({
         })
     },
 //复制链接
-    copyLink:function(e){
-
+    copyLink: function (e) {
         wx.setClipboardData({
+            //准备复制的数据
             data: this.data.signRoomLink,
-            success(res) {
-                wx.getClipboardData({
-                    success(res) {
-                        console.log(res.data) // data
-                    }
-                })
+            success: (res) => {
+                wx.showToast({
+                    title: '链接已复制',
+                });
             }
-        })
+        });
     },
 //下载
     downContract:function(e){
@@ -330,21 +330,21 @@ Page({
             contractNo:this.data.contractNo
         };
         if(e.target.dataset.type == 'default'){
-            data.email = util.TrimAll(this.data.defaultEmail);
+            data.email = TrimAll(this.data.defaultEmail);
         }else{
             if(!this.data.sendEmail){
                 this.setData({
                     errMessage:'邮箱不可为空！'
                 });
                 return false;
-            }else if(this.data.sendEmail&&!util.validateEmail(this.data.sendEmail)){
+            }else if(this.data.sendEmail&&!validateEmail(this.data.sendEmail)){
                 this.setData({
                     errMessage:'邮箱格式不正确'
                 });
                 return false
             }
             else{
-                data.email = util.TrimAll(this.data.sendEmail);
+                data.email = TrimAll(this.data.sendEmail);
                 this.setData({
                     errMessage:''
                 });

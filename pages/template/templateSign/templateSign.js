@@ -135,8 +135,14 @@ Page({
                 })
             }
         }).catch(err=>{
-
+            wx.hideLoading();
         })
+    },
+    //取消合同签署
+    cancelContract() {
+      wx.switchTab({
+        url: '/pages/template/templateList/templateList',
+      })
     },
     //确定操作
     ImmediatelySure: function() {

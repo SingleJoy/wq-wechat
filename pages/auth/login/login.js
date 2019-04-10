@@ -116,11 +116,6 @@ Page({
                                         mobile:res_data.mobile
                                     }
                                     homePage(res_data.interfaceCode,data).then(res=>{
-                                        // let globalData = {
-                                        //     signVerify:res.data.dataList[1].signVerify
-                                        // }
-                                        // Object.assign(app.globalData,globalData)
-                                        // app.globalData.signVerify = res.data.dataList[1].signVerify;
                                       let signVerify = {
                                         signVerify: res.data.dataList[1].signVerify
                                       }

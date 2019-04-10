@@ -111,10 +111,16 @@ Page({
         let interfaceCode=this.data.interfaceCode;
         conNum(interfaceCode).then((res)=>{
             if(res.data.resultCode==1){
-                let b2cNum=res.data.data.b2bNum;
+                let b2cNum=res.data.data.b2cNum;
                 if(b2cNum>0){
                     wx.navigateTo({
                         url: '../templateSet/templateSet?templateSpecificType='+this.data.templateSpecificType+'&templateNo='+this.data.templateNo,
+                    })
+                }else{
+                    wx.showToast({
+                        title: '合同余量不足',
+                        icon: 'none',
+                        duration: 2000
                     })
                 }
             }

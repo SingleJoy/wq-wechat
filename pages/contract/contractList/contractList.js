@@ -20,7 +20,7 @@ Page({
      */
     data: {
         folderName:'默认文件夹',
-        contractTypeName:'对个人合同',
+        contractTypeName:'企业对个人',
         accountTypeName:'全部账号',
         accountNo:'',
         currentTab:0,
@@ -510,7 +510,7 @@ Page({
         }else{
             this.setData({
                 folderName:'默认文件夹',
-                contractTypeName:'对个人合同',
+                contractTypeName:'企业对个人',
                 accountTypeName:'全部账号',
                 accountNo:'',
                 currentTab:0,
