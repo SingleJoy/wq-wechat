@@ -124,7 +124,7 @@
                                 <view class="old-date">{{validTime}}</view>
                                  <!-- 日期选择 -->
                                 <view class="section select-date ">
-                                    <picker mode="date" value="{{date}}"  start="2015-09-01" end="2090-09-01" bindchange="showPicker">
+                                    <picker mode="date" value="{{date}}"  start="{{startDate}}" end="2090-09-01" bindchange="showPicker">
                                         <view class="picker color-them">
                                             <text class="color-them" wx:if="{{!date}}">选择其他日期</text>
                                             {{date}}

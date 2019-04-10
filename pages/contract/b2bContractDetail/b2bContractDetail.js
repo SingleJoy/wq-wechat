@@ -1,4 +1,4 @@
-import {TrimAll} from '../../../utils/util.js';
+import {TrimAll,formatTime} from '../../../utils/util.js';
 import {
     contractImgs,
     getContractDetails,
@@ -84,6 +84,7 @@ Page({
             imgHeight:app.globalData.imgHeight,
             signVerify:app.globalData.signVerify, //签署密码设置
             baseUrl:app.globalData.baseUrl,
+            startDate:formatTime(new Date(),false,'-')
         });
 
         wx.showLoading({

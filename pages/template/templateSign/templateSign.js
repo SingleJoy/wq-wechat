@@ -135,7 +135,7 @@ Page({
                 })
             }
         }).catch(err=>{
-
+            wx.hideLoading();
         })
     },
     //取消合同签署
