@@ -38,7 +38,7 @@ Page({
             data: this.data.signRoomLink,
             success: (res)=> {
                 wx.showToast({
-                    title: '复制成功',
+                    title: '链接已复制',
                 });
             }
         });

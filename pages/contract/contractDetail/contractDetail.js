@@ -183,18 +183,16 @@ Page({
         })
     },
 //复制链接
-    copyLink:function(e){
-
+    copyLink: function (e) {
         wx.setClipboardData({
+            //准备复制的数据
             data: this.data.signRoomLink,
-            success(res) {
-                wx.getClipboardData({
-                    success(res) {
-                        console.log(res.data) // data
-                    }
-                })
+            success: (res) => {
+                wx.showToast({
+                    title: '链接已复制',
+                });
             }
-        })
+        });
     },
 //下载
     downContract:function(e){

@@ -180,17 +180,15 @@ Page({
     },
 //复制链接
     copyLink:function(e){
-        console.log(this.data.signRoomLink);
         wx.setClipboardData({
+            //准备复制的数据
             data: this.data.signRoomLink,
-            success(res) {
-                wx.getClipboardData({
-                    success(res) {
-                        console.log(res.data) // data
-                    }
-                })
+            success: function (res) {
+                wx.showToast({
+                    title: '链接已复制',
+                });
             }
-        })
+        });
     },
 //下载
     downContract:function(e){
