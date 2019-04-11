@@ -251,10 +251,10 @@ Page({
         if(folderNo!=this.data.folderNo){
             this.setData({
                 flag:true,
-                pageNo:1,
             })
         }
         this.setData({
+            pageNo:1,
             contractDataList:[],
             folderName:filingName,
             folderNo:folderNo,
@@ -300,10 +300,10 @@ Page({
         if(num!=this.data.num){
             this.setData({
                 flag:true,
-                pageNo:1,
             });
         }
         this.setData({
+            pageNo:1,
             num:num,
             contractDataList:[],
         });
@@ -352,10 +352,10 @@ Page({
         if(contractStatus!=this.data.contractStatus){
             this.setData({
                 flag:true,
-                pageNo:1
             });
         }
         this.setData({
+            pageNo:1,
             contractDataList:[],
             contractStatus:contractStatus,
         });
@@ -501,7 +501,9 @@ Page({
         }
 
     },
+    move(){
 
+    },
     /**
      * 生命周期函数--监听页面隐藏
      */
@@ -533,6 +535,7 @@ Page({
             app.globalData.searchParam={};
 
         }
+
 
 
     },
