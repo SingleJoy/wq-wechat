@@ -9,6 +9,7 @@
     height:60rpx;
     box-shadow: 0px 1px 4px 2px  #ddd;
     z-index:9;
+    background: #fff;
 }
 .contract-info-box{
     padding:36rpx 32rpx;
@@ -140,7 +141,8 @@
     color:#fff;
 }
 .options .note-remind {
-  opacity: 0.6;
+  /* opacity: 0.6; */
+  background: #9fc8fd
 }
 .drawer-mask{
     width: 100%;
