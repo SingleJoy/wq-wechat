@@ -73,9 +73,11 @@ Page({
             title: '加载中',
         });
         contractImgs(this.data.interfaceCode,this.data.contractNo).then(res=>{
-            this.setData({
-                contractImgList:res.data
-            });
+            if(res.data.resultCode == 1){
+                this.setData({
+                    contractImgList:res.data.dataList
+                });
+            }
         }).catch(err=>{
 
         });

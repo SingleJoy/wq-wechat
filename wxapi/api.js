@@ -77,10 +77,15 @@ const contractNum  = {
         return request(api + '/v1/tenant/' + interfaceCode + '/deadline', 'get', data)
     }
 }
-//合同详情图片
+//b2c合同详情图片
 function contractImgs(interfaceCode,contractNo){
     return request(api + '/v1/tenant/' + interfaceCode + '/contract/'+ contractNo+'/contractimgs', 'get')
 }
+//b2b合同详情图片
+function b2bContractImgs(interfaceCode,contractNo){
+    return request(api + '/v1.4/tenant/' + interfaceCode + '/contract/'+ contractNo+'/contractimgs', 'get')
+}
+
 //模板合同图片
 function contracttempimgs(interfaceCode,contractNo){
     return request(api + '/v1/tenant/' + interfaceCode + '/contract/'+ contractNo+'/contracttempimgs', 'get')
@@ -215,6 +220,7 @@ module.exports = {
     contracts,
     b2bContrants,
     contractImgs,
+    b2bContractImgs,
     contracttempimgs,
     templateImg,
     remind,
