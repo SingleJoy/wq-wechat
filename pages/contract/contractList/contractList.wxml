@@ -38,7 +38,7 @@
         </view>
         <!-- 下拉菜单   -->
 
-        <view class="model" wx:if="{{selected!=0}}" bindtap="closeModel" style="height:{{height}}px;"></view>
+        <view class="model" wx:if="{{selected!=0}}" bindtap="closeModel" style="height:{{height}}px;" catchtouchmove="move"></view>
         <view wx:if="{{selected!=0}}"  class="swiper" >
 
             <view class="swiper-item">
