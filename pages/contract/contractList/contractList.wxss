@@ -85,7 +85,7 @@
     position: fixed;
     width: 100%;
     height: auto;
-    max-height: 402rpx;
+    max-height: 440rpx;
     overflow-y: scroll;
     top:148rpx;
     left: 0;
