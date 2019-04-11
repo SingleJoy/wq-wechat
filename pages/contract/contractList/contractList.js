@@ -120,7 +120,7 @@ Page({
                 this.setData({
                     accountList:dataList,
                     accountTypeName:dataList[0].accountName
-                })
+                });
 
             }else{
 
@@ -335,7 +335,6 @@ Page({
         }
         this.setData({
             contractDataList:[],
-            accountCode:accountCode,
             queryAccountCode:accountCode,
             accountTypeName:accountName,
             secondAccountCode:secondAccountCode,
