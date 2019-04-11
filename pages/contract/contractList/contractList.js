@@ -118,7 +118,8 @@ Page({
                     dataList.unshift({accountCode:'',accountName:'全部账号'},{accountCode:accountCode,accountName:enterpriseName})
                 }
                 this.setData({
-                    accountList:dataList
+                    accountList:dataList,
+                    accountTypeName:dataList[0].accountName
                 })
 
             }else{
