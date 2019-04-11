@@ -184,7 +184,6 @@
     background: #FAFAFA;
     border-radius: 10px;
     transform: translate(-50%, -50%);
-    text-align: center;
 }
 .drawer-title{
     margin-top:42rpx;
@@ -194,7 +193,7 @@
 
 .option-btn{
     width: 100%;
-    margin-top:24rpx;
+    margin-top:44rpx;
 }
 .btn-ok{
     width:50%;
@@ -224,7 +223,8 @@
     font-size: 26rpx;
     color:#ff0000;
     text-align: left;
-    margin-left: 40rpx;
+    margin-left: 62rpx;
+    margin-top: 10rpx;
 }
 .bind-email{
     font-size: 32rpx;
@@ -277,4 +277,9 @@
 .close-model image{
     display: block;
     width: 40rpx;
+}
+.psd-hint {
+  font-size: 24rpx;
+  color: #FF0000;
+  margin-left: 120rpx;
 }

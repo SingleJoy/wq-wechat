@@ -18,33 +18,34 @@ Page({
      * 页面的初始数据
      */
     data: {
-        windowHeight:'',
-        windowWidth:'',
-        imgHeight:'',
-        signVerify:'', //签署密码设置
-        contractStatus:'',   //合同状态:1 待我签署 2待他人签署 3已生效 4已截止
-        showModalStatus:false,
-        detailMask:false,
-        errMessage:'',
-        permanentLimit:false,
-        animationData:'',
-        interfaceCode:'',
-        accountCode:'',
-        accountLevel:'',
-        contractNo:'',
-        contractType:'',
-        contractImgList:[],
-        baseUrl:app.globalData.baseUrl,
-        contractVo:'', //合同信息
-        signUserVo:'', //签署人员
-        optionAuthority:true,  //合同详情按钮权限
-        signRoomLink:'',
-        passwordDialog:false,
-        signImg:'',
-        signPositionList:[],
-        signPositionStr:'',
-        submitBtn:false,  //签署按钮和提交按钮展示
-        signPassword:'',//签署密码
+      windowHeight:'',
+      windowWidth:'',
+      imgHeight:'',
+      signVerify:'', //签署密码设置
+      contractStatus:'',   //合同状态:1 待我签署 2待他人签署 3已生效 4已截止
+      showModalStatus:false,
+      detailMask:false,
+      errMessage:'',
+      permanentLimit:false,
+      animationData:'',
+      interfaceCode:'',
+      accountCode:'',
+      accountLevel:'',
+      contractNo:'',
+      contractType:'',
+      contractImgList:[],
+      baseUrl:app.globalData.baseUrl,
+      contractVo:'', //合同信息
+      signUserVo:'', //签署人员
+      optionAuthority:true,  //合同详情按钮权限
+      signRoomLink:'',
+      passwordDialog:false,
+      signImg:'',
+      signPositionList:[],
+      signPositionStr:'',
+      submitBtn:false,  //签署按钮和提交按钮展示
+      signPassword:'',//签署密码
+      psdHint: false, //签署密码为空提示
     },
 
     /**
@@ -72,9 +73,11 @@ Page({
             title: '加载中',
         });
         contractImgs(this.data.interfaceCode,this.data.contractNo).then(res=>{
-            this.setData({
-                contractImgList:res.data
-            });
+            if(res.data.resultCode == 1){
+                this.setData({
+                    contractImgList:res.data.dataList
+                });
+            }
         }).catch(err=>{
 
         });
@@ -152,8 +155,10 @@ Page({
 //弹框关闭
     cancelDialog:function(){
         this.setData({
-            showModalStatus:false,
-            passwordDialog:false
+          showModalStatus:false,
+          passwordDialog:false,
+          psdHint: false,
+          signPassword: '',
         });
     },
 //签署合同
@@ -232,16 +237,20 @@ Page({
     //校验签署密码
     signPassword(){
       if (!this.data.signPassword) {
-        wx.showToast({
-          title: "签署密码不能为空",
-          icon: 'none',
-          duration: 2000
-        });
+        this.setData({
+          psdHint: true
+        })
         return false;
       }
-        let data={
-            signVerifyPassword:md5(this.data.signPassword)
-        };
+      this.setData({
+        psdHint: false
+      })
+      let data={
+          signVerifyPassword:md5(this.data.signPassword)
+      };
+      this.setData({
+        psdHint: true
+      })
         verifySignPassword(this.data.accountCode,data).then(res=>{
             if(res.data.resultCode == 1){
                 this.verifySuccess();    //校验成功提交签署
@@ -300,6 +309,7 @@ Page({
     
     //获取签署密码
     getPwd(e){
+      console.log(e.detail.value)
         let value = e.detail.value;
         this.setData({
             signPassword:value

@@ -176,7 +176,6 @@
     background: #FAFAFA;
     border-radius: 10px;
     transform: translate(-50%, -50%);
-    text-align: center;
 }
 .drawer-title{
     margin-top:42rpx;
@@ -195,7 +194,7 @@
 }
 .option-btn{
     width: 100%;
-    margin-top:24rpx;
+    margin-top:44rpx;
 }
 .btn-ok{
     width:50%;
@@ -234,3 +233,8 @@
 /*.right-border{*/
     /*border-left: 1px solid #fff;*/
 /*}*/
+.psd-hint {
+  font-size: 24rpx;
+  color: #FF0000;
+  margin-left: 96rpx;
+}
