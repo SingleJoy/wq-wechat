@@ -256,104 +256,7 @@ Page({
 
         })
     },
-    //校验签署密码
-    signPassword(){
-        let data={
-            signVerifyPassword:md5(this.data.signPawssword)
-        };
-        verifySignPassword(this.data.accountCode,data).then(res=>{
-            if(res.data.resultCode == 1){
-                this.verifySuccess();    //校验成功提交签署
-                this.setData({
-                    passwordDialog:true
-                });
-            }else{
-                wx.showToast({
-                    title: res.data.resultMessage,
-                    icon:'none',
-                    duration: 2000
-                });
-            }
-        }).catch(err=>{
 
-        })
-    },
-    signSubmit(){
-        if(this.data.signVerify){     //需要签署密码
-            this.setData({
-                passwordDialog:true
-            });
-        }else{
-            this.verifySuccess();        //提交签署
-        }
-    },
-    //密码校验成功提交操作
-    verifySuccess:function(){
-        this.setData({
-            passwordDialog:false
-        });
-        let contractNo = app.globalData.searchParam.contractNo;
-        let data = {
-            contractNum:contractNo,
-            phoneHeight:this.data.windowHeight,
-            phoneWidth:this.data.phoneWidth,
-            signatureImg:this.data.signImg,
-            signH:this.data.windowWidth*19/90,
-            signW:this.data.windowWidth*19/90,
-            signPositionStr:this.data.signPositionStr
-        };
-        contractmoresign(this.data.interfaceCode,contractNo,data).then(res=>{
-            if(res.data.responseCode == 0){
-                wx.reLaunch({
-                    url:'/pages/template/templateSuccess'
-                });
-            }
-        }).catch(err=>{
-
-        })
-    },
-    // 邮箱发送
-    emailSubmit:function(e){
-        let data={
-            email:'',
-            type:'1',
-            contractNo:this.data.contractNo
-        };
-        if(e.target.dataset.type == 'default'){
-            data.email = TrimAll(this.data.defaultEmail)
-        }else{
-            if(!this.data.sendEmail){
-                this.setData({
-                    errMessage:'邮箱不可为空！'
-                });
-                return false
-            }else if(this.data.sendEmail&&!util.validateEmail(this.data.sendEmail)){
-                this.setData({
-                    errMessage:'邮箱格式不正确'
-                });
-                return false
-            }
-            else{
-                data.email = TrimAll(this.data.sendEmail);
-                this.setData({
-                    errMessage:''
-                });
-            }
-        }
-        this.setData({
-            showModalStatus:false
-        });
-        sendEmailForUser(this.data.interfaceCode,data).then((res)=>{
-            wx.showToast({
-                title: '邮件发送成功',
-                icon: 'none',
-                duration: 2000
-            })
-        }).catch(err=>{
-
-        })
-
-    },
 //延期确定按钮
     dateSubmit:function(){
         if((!this.data.date)&&!(this.data.permanentLimit)){
@@ -364,10 +267,9 @@ Page({
             });
             return false;
         }
-
         let data={
-            'validTime':this.data.date,
-             'perpetualValid':this.data.permanentLimit?'1':'0',
+            'validTime':this.data.date+' 23:59:59',
+             'perpetualValid':this.data.permanentLimit?1:0,
         };
         this.setData({
             showModalStatus:false

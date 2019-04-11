@@ -55,7 +55,11 @@
             <view class="sign-contract-imgs">
                 <!-- 合同图片 -->
                 <view class="contract-img">
-                    <image style="height:{{imgHeight}}px" class="contractImg" data-src="{{baseUrl}}/restapi/wesign/v1/tenant/contract/img?contractUrl={{item.contractUrl}}" src='{{baseUrl}}/restapi/wesign/v1/tenant/contract/img?contractUrl={{item.contractUrl}}' wx:for="{{contractImgList}}" wx:key="{{item.contractUrlId}}" bindtap="previewImage"></image>
+                    <image style="height:{{imgHeight}}px" 
+                    class="contractImg" 
+                    data-src="{{baseUrl}}/restapi/wesign/v1/tenant/contract/img?contractUrl={{item.contractUrl}}" 
+                    src='{{baseUrl}}/restapi/wesign/v1/tenant/contract/img?contractUrl={{item.contractUrl}}' 
+                    wx:for="{{contractImgList}}" wx:key="{{item.contractUrlId}}" bindtap="previewImage"></image>
                     <image src="{{signImg}}" style="{{item.style}}" wx:if="{{signPositionList.length>0}}" wx:for="{{signPositionList}}" wx:key="item.pageNum"></image>
                 </view>
             </view>
@@ -67,7 +71,7 @@
             <block wx:if="{{contractStatus == 1}}">
                 <button class='option' bindtap="signSubmit" wx:if="{{submitBtn}}">提交签署</button>
                 <button class='option' bindtap="signContract" wx:else>签署</button>
-                <!-- scope.row.operation === 1  && (scope.row.isCreater?accountCode == scope.row.operator:true) -->
+
             </block>
             <block wx:elif="{{contractStatus == 2}}">
                 <view class="options">
@@ -145,21 +149,6 @@
             </block>
         </view>
 
-        <!-- 签署密码 -->
-        <view class="contract-dialog">
-            <view class="drawer-mask" wx:if="{{passwordDialog}}"></view>
-                <view class="drawer-box" wx:if="{{passwordDialog}}">
-                <!--drawer content-->
-                    <view class="drawer-title">请输入签署密码</view>
-                    <view class="drawer-content">
-                        <input  class="email-address" value="{{signPawssword}}" bindinput="getPwd"></input>
-                        <view class="email-err">{{errMessage}}</view>
-                    </view>
-                    <view class="option-btn">
-                        <view class="btn-ok btn-cancel" bindtap="cancelDialog" data-status="close">取消</view>
-                        <view class="btn-ok" bindtap="signPassword" data-status="close" data-type="addemail">确定</view>
-                    </view>
-                </view>
-        </view>
+
     </view>
 </view>

@@ -250,7 +250,7 @@ Page({
                 });
             }else{
                 wx.showToast({
-                    title: res.data.resultMessage,
+                    title: "签署密码错误",
                     icon:'none',
                     duration: 2000
                 });

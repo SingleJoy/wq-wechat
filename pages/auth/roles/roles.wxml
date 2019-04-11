@@ -1,10 +1,11 @@
-<!--pages/roles/roles.wxml-->
+
 <view class="container common-box">
     <view class="main-content">
         <view class="business-account">
             <text class="account-title">企业账号</text>
-            <view class="account-list">
-                <view class="account-item" wx:for="{{accountList}}" wx:key="item.accountCode">
+            <view class="account-list" >
+                <block wx:if="{{accountList.length>0}}">
+                  <view class="account-item" wx:for="{{accountList}}" wx:key="item.accountCode" >
                     <text class="account-name">{{item.accountName}}</text>
                     <view class="">
 
@@ -14,10 +15,13 @@
                         <block wx:else>
                             <view class="account-status unreal-name">未实名</view>
                         </block>
-                        <text class="account-option" bindtap="goIndex" data-info="{{item}}"
-                              wx:if="{{item.auditSteps==3}}">进入</text>
+                        <text class="account-option {{item.auditSteps==3?'':'account-hidden'}}" bindtap="goIndex" data-info="{{item}}">进入</text>
                     </view>
                 </view>
+                </block>
+                <block wx:else>
+                    <text class="no-data">暂无企业账号</text>
+                </block>
             </view>
         </view>
         <view class="business-line"></view>
@@ -49,7 +53,7 @@
                             <block wx:elif="{{item.accountStatus==6}}">
                                 <view class="account-status frozen">冻结</view>
                             </block>
-                            <text class="account-option" bindtap="goIndex" data-info="{{item}}" wx:if="{{item.accountStatus==3}}">进入</text>
+                            <text class="account-option {{item.accountStatus==3?'':'account-hidden'}}" bindtap="goIndex" data-info="{{item}}">进入</text>
                         </view>
                     </view>
                 </block>

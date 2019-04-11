@@ -86,6 +86,7 @@
     width: 100%;
     height: auto;
     max-height: 440rpx;
+    min-height: 100rpx;
     overflow-y: scroll;
     top:148rpx;
     left: 0;
