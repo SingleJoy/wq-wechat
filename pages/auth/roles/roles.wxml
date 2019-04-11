@@ -1,10 +1,11 @@
-<!--pages/roles/roles.wxml-->
+
 <view class="container common-box">
     <view class="main-content">
         <view class="business-account">
             <text class="account-title">企业账号</text>
-            <view class="account-list">
-                <view class="account-item" wx:for="{{accountList}}" wx:key="item.accountCode">
+            <view class="account-list" >
+                <block wx:if="{{accountList.length>0}}">
+                  <view class="account-item" wx:for="{{accountList}}" wx:key="item.accountCode" >
                     <text class="account-name">{{item.accountName}}</text>
                     <view class="">
 
@@ -17,6 +18,10 @@
                         <text class="account-option {{item.auditSteps==3?'':'account-hidden'}}" bindtap="goIndex" data-info="{{item}}">进入</text>
                     </view>
                 </view>
+                </block>
+                <block wx:else>
+                    <text class="no-data">暂无企业账号</text>
+                </block>
             </view>
         </view>
         <view class="business-line"></view>

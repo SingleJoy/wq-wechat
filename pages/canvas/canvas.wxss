@@ -30,12 +30,12 @@
     left: 90rpx;
 }
 .btn-style{
-    width: 100rpx;
-    height:100rpx;
+    width: 120rpx;
+    height:120rpx;
     border-radius: 50%;
     font-size:24rpx;
     text-align: center;
-    line-height: 100rpx;
+    line-height: 120rpx;
     background-color: #1e91f9;
     color: #fff;
 
