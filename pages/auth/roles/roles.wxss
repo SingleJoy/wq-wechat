@@ -6,13 +6,13 @@
   padding: 20rpx 32rpx 0 32rpx;
 }
 .sub-account{
-    margin-top:20rpx;
+    /* margin-top:20rpx; */
 }
 .business-line{
     width:100%;
     background: #f7f7f7;
     height: 20rpx;
-    margin-top:24rpx;
+    margin-top:32rpx;
 }
 .account-hidden{
     visibility: hidden;
@@ -64,7 +64,7 @@
   background: #4091fb;
 }
 .actived{
-  background: #09a13b;
+  background: #ff8400;
 }
 .finishing{
   background: #ff8400;
@@ -81,6 +81,7 @@
   font-size:28rpx;
   color:#4091fb;
   line-height: 100rpx;
+  font-weight: 700;
 }
 .no-data{
   display: block;

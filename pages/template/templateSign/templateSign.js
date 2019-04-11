@@ -9,7 +9,7 @@ const app = getApp();
 Page({
     data: {
         //弹框显示标识
-        showModal: false,
+        showModal: true,
         //密码提示信息标识
         psdHint: false,
         windowHeight:'',
@@ -138,6 +138,13 @@ Page({
             wx.hideLoading();
         })
     },
+    //签署密码取消
+  formReset() {
+    this.setData({
+      showModal: false,
+      psdHint: false
+    })
+  },
     //取消合同签署
     cancelContract() {
       wx.switchTab({

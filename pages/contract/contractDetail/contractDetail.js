@@ -373,8 +373,8 @@ Page({
 //延期确定按钮
     dateSubmit:function(){
         let data={
-            validTime:this.data.date,
-            perpetualValid:this.data.permanentLimit?1:0,
+           'validTime':this.data.date+' 23:59:59',
+           'perpetualValid':this.data.permanentLimit?1:0,
         };
         this.setData({
             showModalStatus:false

@@ -98,7 +98,9 @@
                     <view class="drawer-content">
                         <view class="email-content">
                             <input  class="email-address" value="{{sendEmail}}" bindinput="getEmail" bindblur="checkEmail" />
-                            <button type="button" class="send-email" bindtap="emailSubmit" data-status="close" data-type="addemail">发送</button>
+                            <view class='send-contain'>
+                              <button type="button" class="send-email" bindtap="emailSubmit" data-status="close" data-type="addemail">发送</button>
+                            </view>
                         </view>
 
                         <view class="email-err">{{errMessage}}</view>
@@ -150,18 +152,18 @@
         <!-- 签署密码 -->
         <view class="contract-dialog">
             <view class="drawer-mask" wx:if="{{passwordDialog}}"></view>
-                <view class="drawer-box" wx:if="{{passwordDialog}}">
-                <!--drawer content-->
-                    <view class="drawer-title">请输入签署密码</view>
-                    <view class="drawer-content">
-                        <input  class="email-address" value="{{signPawssword}}" bindinput="getPwd" type="password"/>
-                        <view class="email-err">{{errMessage}}</view>
-                    </view>
-                    <view class="option-btn">
-                        <view class="btn-ok btn-cancel" bindtap="cancelDialog" data-status="close">取消</view>
-                        <view class="btn-ok" bindtap="signPassword" data-status="close" data-type="addemail">确定</view>
-                    </view>
-                </view>
+              <view class="drawer-box" wx:if="{{passwordDialog}}">
+              <!--drawer content-->
+                  <view class="drawer-title">请输入签署密码</view>
+                  <view class="drawer-content">
+                      <input  class="email-address sign-pwd" value="{{signPawssword}}" bindinput="getPwd" type="password"/>
+                      <view class="email-err">{{errMessage}}</view>
+                  </view>
+                  <view class="option-btn">
+                      <view class="btn-ok btn-cancel" bindtap="cancelDialog" data-status="close">取消</view>
+                      <view class="btn-ok" bindtap="signPassword" data-status="close" data-type="addemail">确定</view>
+                  </view>
+              </view>
         </view>
     </view>
 </view>
