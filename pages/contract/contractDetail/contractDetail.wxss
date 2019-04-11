@@ -255,6 +255,9 @@
     text-align: left;
     padding-left: 10rpx;
 }
+.sign-pwd {
+  margin: 30rpx auto;
+}
 .email-content .send-email{
     /* display: inline-block; */
     /* width: 112rpx; */
