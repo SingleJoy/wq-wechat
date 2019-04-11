@@ -9,7 +9,7 @@ const app = getApp();
 Page({
     data: {
         //弹框显示标识
-        showModal: true,
+        showModal: false,
         //密码提示信息标识
         psdHint: false,
         windowHeight:'',
@@ -75,13 +75,10 @@ Page({
           this.setData({
               psdHint: true
           });
-          return;
+          return false;
         } 
         this.setData({
             psdHint: false
-        });
-        this.setData({
-            showModal: false
         });
       this.verifySignPwd(e.detail.value.input);
     },
@@ -98,7 +95,7 @@ Page({
               });
           }else{
             wx.showToast({
-                title: "签署密码错误",
+              title: "签署密码错误",
               icon: 'none',
               duration: 2000
             })
@@ -154,7 +151,7 @@ Page({
     //确定操作
     ImmediatelySure: function() {
         this.setData({
-            showModal: true
+            showModal: false
         });
     },
     //取消操作

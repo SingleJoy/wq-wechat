@@ -79,7 +79,7 @@
 .psd-hint {
   font-size: 24rpx;
   color: #FF0000;
-  margin-left:64rpx;
+  margin-left:110rpx;
 }
 input-holder {
   /* color: #666; */

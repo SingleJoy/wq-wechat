@@ -15,9 +15,9 @@
       <button class='contact-start sure' bindtap='signContract'>签署</button>
     </view>
     <!-- 弹框 -->
-    <view class="modal-mask" bindtap="hideModal" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
-    <form bindsubmit="formSubmitModel" bindreset="formReset">
-      <view class="modal-dialog" wx:if="{{showModal}}">
+    <view class="modal-mask" wx:if="{{showModal}}"></view>
+    <form bindsubmit="formSubmitModel" wx:if="{{showModal}}" bindreset="formReset">
+      <view class="modal-dialog">
         <view class="modal-title">
           <text>请输入签署密码</text>
           <!-- <image bindtap='hideModal' src='../../../images/close-model.png'></image> -->

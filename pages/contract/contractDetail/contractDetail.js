@@ -267,6 +267,9 @@ Page({
         })
         return false;
       }
+      this.setData({
+        psdHint: false,
+      })
         let data={
             signVerifyPassword:md5(this.data.signPawssword)
         };

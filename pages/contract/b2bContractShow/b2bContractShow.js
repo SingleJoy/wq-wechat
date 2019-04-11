@@ -248,9 +248,6 @@ Page({
       let data={
           signVerifyPassword:md5(this.data.signPassword)
       };
-      this.setData({
-        psdHint: true
-      })
         verifySignPassword(this.data.accountCode,data).then(res=>{
             if(res.data.resultCode == 1){
                 this.verifySuccess();    //校验成功提交签署
