@@ -21,7 +21,7 @@ Page({
     data: {
         folderName:'默认文件夹',
         contractTypeName:'企业对个人',
-        accountTypeName:'全部账号',
+        accountTypeName:'',
         accountNo:'',
         currentTab:0,
         height:height,
@@ -118,7 +118,8 @@ Page({
                     dataList.unshift({accountCode:'',accountName:'全部账号'},{accountCode:accountCode,accountName:enterpriseName})
                 }
                 this.setData({
-                    accountList:dataList
+                    accountList:dataList,
+                    accountTypeName:dataList[0].accountName
                 })
 
             }else{
@@ -517,7 +518,7 @@ Page({
             this.setData({
                 folderName:'默认文件夹',
                 contractTypeName:'企业对个人',
-                accountTypeName:'全部账号',
+                accountTypeName:'',
                 accountNo:'',
                 currentTab:0,
                 model:true,
