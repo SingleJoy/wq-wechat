@@ -194,7 +194,7 @@
 
 .option-btn{
     width: 100%;
-    margin-top:24rpx;
+    margin-top:44rpx;
 }
 .btn-ok{
     width:50%;
@@ -224,7 +224,8 @@
     font-size: 26rpx;
     color:#ff0000;
     text-align: left;
-    margin-left: 40rpx;
+    margin-left: 62rpx;
+    margin-top: 10rpx;
 }
 .bind-email{
     font-size: 32rpx;

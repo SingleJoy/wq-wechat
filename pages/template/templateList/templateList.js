@@ -19,29 +19,30 @@ Page({
         refreshing: false,
         totalItemNumber: 0,
     },
-    onLoad: function () {
-        wx.showLoading({
-            title: '加载中',
-            mask: true
-        })
-        //这里要注意，微信的scroll-view必须要设置高度才能监听滚动事件，所以，需要在页面的onLoad事件中给scroll-view的高度赋值
-        var that = this;
-        wx.getSystemInfo({
-            success: function (res) {
-                // that.setData({
-                //   scrollHeight: res.windowHeight
-                // });
-            }
+    onShow: function () {
+      wx.showLoading({
+        title: '加载中',
+        mask: true
+      })
+      if (wx.getStorageSync('mobileTemplate')) {
+        this.setData({
+          changeChecked: true
         });
-        if (wx.getStorageSync('mobileTemplate')) {
-            this.setData({
-                changeChecked: true
-            });
-            this.getData("applet");
-            return;
-        }
-        this.getData();
-
+        this.getData("applet");
+        return;
+      }
+      this.getData();
+    },
+    onLoad: function () {
+      //这里要注意，微信的scroll-view必须要设置高度才能监听滚动事件，所以，需要在页面的onLoad事件中给scroll-view的高度赋值
+      var that = this;
+      wx.getSystemInfo({
+          success: function (res) {
+              // that.setData({
+              //   scrollHeight: res.windowHeight
+              // });
+          }
+      });
     },
     // 查看详情
     lookUp(e) {

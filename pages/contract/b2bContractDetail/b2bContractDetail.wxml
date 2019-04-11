@@ -99,7 +99,9 @@
                     <view class="drawer-content">
                         <view class="email-content">
                             <input  class="email-address" value="{{sendEmail}}" bindinput="getEmail" bindblur="checkEmail" />
-                            <button type="button" class="send-email" bindtap="emailSubmit" data-status="close" data-type="addemail">发送</button>
+                            <view class='send-contain'>
+                              <button type="button" class="send-email" bindtap="emailSubmit" data-status="close" data-type="addemail">发送</button>
+                              </view>
                         </view>
 
                         <view class="email-err">{{errMessage}}</view>

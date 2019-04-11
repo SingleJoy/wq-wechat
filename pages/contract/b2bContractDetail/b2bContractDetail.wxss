@@ -189,7 +189,7 @@
 
 .option-btn{
     width: 100%;
-    margin-top:24rpx;
+    margin-top:44rpx;
 }
 .btn-ok{
     width:50%;
@@ -226,27 +226,33 @@
 }
 .email-content{
     display: flex;
-    flex-direction: row;
-    margin-top: 40rpx;
-    margin-left: 40rpx;
+    margin: 0 auto;
+    margin-left: 64rpx;
+    margin-top: 30rpx;
 }
  .email-address{
     box-sizing: border-box;
-    border:2rpx solid #999;
-    border-radius: 5rpx;
+    /* display: inline-block; */
+    border:1rpx solid #999;
+    /* border-radius: 5rpx; */
     width:360rpx;
-    height:50rpx;
+    height:56rpx;
     text-align: left;
     padding-left: 10rpx;
 }
+.sign-pwd {
+  margin: 30rpx auto;
+}
 .email-content .send-email{
+    /* display: inline-block; */
+    /* width: 112rpx; */
     height: 56rpx;
     background-color: #4091FB;
     font-size: 28rpx;
     color: #fff;
     text-align: center;
     line-height: 56rpx;
-    border-radius: 4px;
+    
 }
 .close-model {
     position: absolute;
