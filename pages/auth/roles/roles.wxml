@@ -14,8 +14,7 @@
                         <block wx:else>
                             <view class="account-status unreal-name">未实名</view>
                         </block>
-                        <text class="account-option" bindtap="goIndex" data-info="{{item}}"
-                              wx:if="{{item.auditSteps==3}}">进入</text>
+                        <text class="account-option {{item.auditSteps==3?'':'account-hidden'}}" bindtap="goIndex" data-info="{{item}}">进入</text>
                     </view>
                 </view>
             </view>
@@ -49,7 +48,7 @@
                             <block wx:elif="{{item.accountStatus==6}}">
                                 <view class="account-status frozen">冻结</view>
                             </block>
-                            <text class="account-option" bindtap="goIndex" data-info="{{item}}" wx:if="{{item.accountStatus==3}}">进入</text>
+                            <text class="account-option {{item.accountStatus==3?'':'account-hidden'}}" bindtap="goIndex" data-info="{{item}}">进入</text>
                         </view>
                     </view>
                 </block>

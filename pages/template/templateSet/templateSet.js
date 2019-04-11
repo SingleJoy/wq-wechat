@@ -155,7 +155,7 @@ Page({
     //修改签署人
     let modelList = this.data.dataList[e.target.dataset.id];
     this.setData({
-      listIndex: e.target.dataset.id?e.target.dataset.id:''
+      listIndex: e.target.dataset.id || e.target.dataset.id==0 ?e.target.dataset.id:''
     });
     if(!modelList){
         modelList=[];
@@ -290,13 +290,13 @@ Page({
     });
     //添加签署人提交/修改签署人提交
     if (this.data.identification == "添加签署人") {
-      let dataList = this.data.dataList;
+        let dataList = this.data.dataList;
         dataList.push(e.detail.value)
         this.setData({
             dataList
         });
         this.hideModal()
-        } else {
+    } else {
         let dataList = this.data.dataList;
         dataList[this.data.listIndex] = e.detail.value;
             this.setData({
