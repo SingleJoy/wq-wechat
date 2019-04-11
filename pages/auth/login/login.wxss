@@ -50,7 +50,7 @@
     font-size: 24rpx;
     z-index: 2;
     display: inline-block;
-    top:82rpx;
+    top:92rpx;
 }
 .clear-contain {
   width: 60rpx;

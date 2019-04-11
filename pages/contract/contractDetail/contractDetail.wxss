@@ -8,7 +8,7 @@
     height:60rpx;
     line-height:60rpx;
     box-shadow:  0px 1px 4px 2px #ddd;
-    z-index:1001;
+    z-index:999;
     background: #fff;
 }
 .contract-info-box{
@@ -235,22 +235,25 @@
 }
 .email-content{
     display: flex;
-    flex-direction: row;
-    margin-top: 40rpx;
-    margin-left: 40rpx;
+    margin: 0 auto;
+    margin-left: 64rpx;
+    margin-top: 30rpx;
+    /* flex-direction: row; */
+    /* margin-top: 40rpx; */
+    /* margin-left: 40rpx; */
 }
  .email-address{
     box-sizing: border-box;
-    display: inline-block;
-    border:2rpx solid #999;
-    border-radius: 5rpx;
+    /* display: inline-block; */
+    border:1rpx solid #999;
+    /* border-radius: 5rpx; */
     width:360rpx;
-    height:50rpx;
+    height:56rpx;
     text-align: left;
     padding-left: 10rpx;
 }
 .email-content .send-email{
-    display: inline-block;
+    /* display: inline-block; */
     /* width: 112rpx; */
     height: 56rpx;
     background-color: #4091FB;
@@ -258,7 +261,7 @@
     color: #fff;
     text-align: center;
     line-height: 56rpx;
-    border-radius: 4px;
+    
 }
 .close-model {
     position: absolute;

@@ -7,7 +7,7 @@
         <view class="form-box">
             <form bindsubmit="formSubmit">
                 <view class="form-item">
-                    <image class="login-icon" src="/images/phone.png"></image>
+                    <image class="login-icon" mode='widthFix' src="/images/phone.png"></image>
                     <view class="section">
                         <input class="username" placeholder="请输入手机号" value="{{username}}" bindinput="bindUsernameInput" type="number" maxlength="11" bindblur="checkPhone"/>
                         <view class='clear-contain' id="clear-username" bindtap="clearInput">
@@ -17,7 +17,7 @@
                     </view>
                 </view>
                 <view class="form-item">
-                    <image class="login-icon" src="/images/pwd.png"></image>
+                    <image class="login-icon" mode='widthFix' src="/images/pwd.png"></image>
                     <view class="section">
                         <input class="password" placeholder="请输入密码"  value="{{password}}" bindinput="bindPasswordInput" password bindblur="checkPwd"/>
                       <view class='clear-contain' id="clear-password" bindtap="clearInput">

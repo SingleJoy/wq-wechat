@@ -8,6 +8,7 @@
 
 .success-icon{
     text-align: center;
+    margin-top: 40rpx;
 }
 .success-icon image{
     width: 80rpx;
@@ -22,12 +23,12 @@
 }
 .success-text2{
     font-size: 32rpx;
-    margin-top:28rpx;
+    margin-top:14rpx;
 }
 .success-info{
     box-shadow:  0 1px 4px 2px #ddd;
     padding: 40rpx 28rpx;
-    margin:60prx 32rpx 0 32rpx;
+    margin: 66rpx 32rpx 0 32rpx;
 
 }
 .info-item{

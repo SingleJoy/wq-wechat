@@ -19,7 +19,7 @@
     text-align: center;
 }
 .sign-tips text{
-    font-size: 16px;
+    font-size: 24px;
     color: #999;
 }
 .sign-operation{
@@ -41,9 +41,9 @@
 
 }
 .clear-sign{
-    left:160rpx;
+    left: 132rpx;
     bottom: 30rpx;
 }
 .sign-submit{
-    left:160rpx;
+    left:132rpx;
 }
