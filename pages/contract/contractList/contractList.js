@@ -36,7 +36,6 @@ Page({
         filingNo:'', //选择归档文件编号 查询数据接口使用
         contractDataList:[], //查询数据
         scrollTop:'', //页面滑动
-        secondAccountCode:'', //二级账号accountCode
         flag:true,
         refreshing:false,
         queryAccountCode:'', //筛选列表 accountCode
@@ -120,7 +119,7 @@ Page({
                 this.setData({
                     accountList:dataList,
                     accountTypeName:dataList[0].accountName
-                })
+                });
 
             }else{
 
@@ -325,9 +324,8 @@ Page({
     accountType(e){
         this.resetStyle();
         let accountName=e.currentTarget.dataset.accountname;
-        let secondAccountCode=e.currentTarget.dataset.accountcode;
-        let accountCode=e.currentTarget.dataset.accountcode;
-        if(secondAccountCode!=this.data.secondAccountCode){
+        let queryAccountCode=e.currentTarget.dataset.accountcode;
+        if(queryAccountCode!=this.data.queryAccountCode){
             this.setData({
                 flag:true,
                 pageNo:1,
@@ -335,10 +333,8 @@ Page({
         }
         this.setData({
             contractDataList:[],
-            accountCode:accountCode,
-            queryAccountCode:accountCode,
             accountTypeName:accountName,
-            secondAccountCode:secondAccountCode,
+            queryAccountCode:queryAccountCode,
         });
         this.searchData();
     },
@@ -375,7 +371,7 @@ Page({
             'pageNo':1,
             'pageSize':10,
             'show':false,
-            'secondAccountCode':this.data.secondAccountCode,
+            'queryAccountCode':this.data.queryAccountCode,
             'filingNo':this.data.folderNo?this.data.folderNo:'',
             'accountLevel':this.data.accountLevel,
             'folderName':this.data.folderName,
@@ -407,7 +403,7 @@ Page({
             'show':false,
             'pageNo':1,
             'pageSize':10,
-            'secondAccountCode':this.data.secondAccountCode,
+            'queryAccountCode':this.data.queryAccountCode,
             'filingNo':this.data.folderNo?this.data.folderNo:'',
             'accountLevel':this.data.accountLevel,
             'folderName':this.data.folderName,
@@ -532,7 +528,7 @@ Page({
                 folderNo:'', //选择归档文件编号 查询数据接口使用
                 contractDataList:[], //查询数据
                 scrollTop:'', //页面滑动
-                secondAccountCode:'', //二级账号accountCode
+                queryAccountCode:'', //二级账号accountCode
                 flag:true,
             });
             app.globalData.searchParam={};

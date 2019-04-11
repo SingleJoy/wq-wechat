@@ -158,6 +158,7 @@ function contractkeywordsign(interfaceCode,contractNo){
 }
 //合同归档接口
 function contractFilings(interfaceCode,accountCode) {
+
     return request(api+'/v1.7/tenant/'+interfaceCode+'/contract/'+accountCode+'/contractFilings','get')
 }
 //查询合同列表角色
