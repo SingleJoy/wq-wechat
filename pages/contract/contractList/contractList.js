@@ -21,7 +21,7 @@ Page({
     data: {
         folderName:'默认文件夹',
         contractTypeName:'企业对个人',
-        accountTypeName:'全部账号',
+        accountTypeName:'',
         accountNo:'',
         currentTab:0,
         height:height,
@@ -517,7 +517,7 @@ Page({
             this.setData({
                 folderName:'默认文件夹',
                 contractTypeName:'企业对个人',
-                accountTypeName:'全部账号',
+                accountTypeName:'',
                 accountNo:'',
                 currentTab:0,
                 model:true,
