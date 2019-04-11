@@ -184,7 +184,6 @@
     background: #FAFAFA;
     border-radius: 10px;
     transform: translate(-50%, -50%);
-    text-align: center;
 }
 .drawer-title{
     margin-top:42rpx;
@@ -278,4 +277,9 @@
 .close-model image{
     display: block;
     width: 40rpx;
+}
+.psd-hint {
+  font-size: 24rpx;
+  color: #FF0000;
+  margin-left: 120rpx;
 }

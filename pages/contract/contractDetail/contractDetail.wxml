@@ -159,6 +159,7 @@
                       <input  class="email-address sign-pwd" value="{{signPawssword}}" bindinput="getPwd" type="password"/>
                       <view class="email-err">{{errMessage}}</view>
                   </view>
+                  <view class='psd-hint' wx:if="{{psdHint}}">签署密码不能为空</view>
                   <view class="option-btn">
                       <view class="btn-ok btn-cancel" bindtap="cancelDialog" data-status="close">取消</view>
                       <view class="btn-ok" bindtap="signPassword" data-status="close" data-type="addemail">确定</view>

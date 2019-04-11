@@ -51,7 +51,8 @@ Page({
         submitBtn:false,  //签署按钮和提交按钮展示
         signPawssword:'',//签署密码
         contractInfo:'',      //合同信息
-        remindOnce:''      //短信提醒单击操作
+        remindOnce:'',      //短信提醒单击操作
+        psdHint: false //签署密码为空提示
     },
 
     /**
@@ -219,8 +220,10 @@ Page({
     //弹框关闭
     cancelDialog:function(){
         this.setData({
-            showModalStatus:false,
-            passwordDialog:false
+          showModalStatus:false,
+          passwordDialog:false,
+          psdHint: false,
+          signPawssword: '',
         })
     },
     //签署合同
@@ -259,11 +262,9 @@ Page({
     //校验签署密码
     signPassword(){
       if (!this.data.signPawssword) {
-        wx.showToast({
-          title: "签署密码不能为空",
-          icon: 'none',
-          duration: 2000
-        });
+        this.setData({
+          psdHint: true,
+        })
         return false;
       }
         let data={
