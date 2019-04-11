@@ -148,7 +148,6 @@ Page({
         });
     },
     move:function(e){
-        console.log(e);
         return false
     },
 
@@ -293,7 +292,6 @@ Page({
             'personalPositionStr':this.data.signPositionStr2,
         };
         b2bContractmoresign(this.data.interfaceCode,this.data.userCode,contractNo,data).then(res=>{
-          console.log(res)
             if(res.data.responseCode == 1){
                 wx.reLaunch({
                     url:'/pages/contract/b2bContractSuccess/b2bContractSuccess'
@@ -306,7 +304,6 @@ Page({
     
     //获取签署密码
     getPwd(e){
-      console.log(e.detail.value)
         let value = e.detail.value;
         this.setData({
             signPassword:value

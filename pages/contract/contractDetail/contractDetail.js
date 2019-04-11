@@ -63,7 +63,6 @@ Page({
         let list=[];
         for(let i=0;i<this.data.contractImgList.length;i++){
             list.push(this.data.baseUrl+'/restapi/wesign/v1/tenant/contract/img?contractUrl='+this.data.contractImgList[i].contractUrl)
-            console.log(list[i])
         }
         let current = e.target.dataset.src;
         wx.previewImage({
@@ -138,7 +137,6 @@ Page({
 
     //详情三角切换
     changeDetailBox:function(e){
-        // console.log(this.data.detailMask)
         this.setData({
             detailMask:!this.data.detailMask
         });
@@ -150,7 +148,6 @@ Page({
         })
     },
     move:function(e){
-        console.log(e)
         return
     },
 //短信提醒
