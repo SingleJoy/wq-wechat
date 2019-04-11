@@ -16,7 +16,9 @@ Page({
         companyName:'',
         effectiveStartTime:'',
         effectiveEndTime:'',
-        signaturePath:''
+        signaturePath:'',
+        accountName:' //账户名称',
+        accountLevel:'' //1为一级账号， 2为二级账号
 
     },
     onPullDownRefresh() {
@@ -62,10 +64,12 @@ Page({
             const interfaceCode = wx.getStorageSync('interfaceCode');
             const accountCode = wx.getStorageSync('accountCode');
             const mobile = wx.getStorageSync('mobile');
+            const accountLevel = wx.getStorageSync('accountLevel');
             this.setData({
                 interfaceCode:interfaceCode,
                 accountCode:accountCode,
                 mobile:mobile,
+                accountLevel:accountLevel,
             });
             this.getAccountInformation();
             this.getCertificate();
@@ -82,12 +86,13 @@ Page({
         getAccountInformation(accountCode).then(res=> {
             if(res.data.resultCode=='1'){
                 this.setData({
-                    mobile: res.data.data.mobile != null ? res.data.data.mobile: "",
-                    email: res.data.data.email != null ? res.data.data.email: "",
-                    enterpriseName: res.data.data.enterpriseName != null ? res.data.data.enterpriseName: "",
-                    b2bNum: res.data.data.b2bNum != null ? res.data.data.b2bNum : "",
-                    b2cNum: res.data.data.b2cNum != null ? res.data.data.b2cNum : "",
-                    authorizerName: res.data.data.authorizerName != null ? res.data.data.authorizerName : "",
+                    mobile: res.data.data.mobile,
+                    email: res.data.data.email,
+                    enterpriseName: res.data.data.enterpriseName,
+                    b2bNum: res.data.data.b2bNum,
+                    b2cNum: res.data.data.b2cNum,
+                    authorizerName: res.data.data.authorizerName,
+                    accountName: res.data.data.accountName,
                 })
 
             }
