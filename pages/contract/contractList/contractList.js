@@ -39,6 +39,7 @@ Page({
         secondAccountCode:'', //二级账号accountCode
         flag:true,
         refreshing:false,
+        queryAccountCode:'', //筛选列表 accountCode
     },
     /**
      * 生命周期函数--监听页面加载
@@ -131,7 +132,7 @@ Page({
             'pageNo':this.data.pageNo,
             'pageSize':10,
             'contractStatus':this.data.contractStatus,
-            'accountCode':this.data.accountLevel==2?this.data.accountCode:'',
+            'accountCode':this.data.queryAccountCode,
             'filingNo':this.data.folderNo?this.data.folderNo:'',
             'accountLevel':this.data.accountLevel,
         };
@@ -334,6 +335,7 @@ Page({
         this.setData({
             contractDataList:[],
             accountCode:accountCode,
+            queryAccountCode:accountCode,
             accountTypeName:accountName,
             secondAccountCode:secondAccountCode,
         });

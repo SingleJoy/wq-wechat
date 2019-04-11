@@ -45,7 +45,7 @@
 
                 <view class="{{selected==1?'show':'hidden'}}">
                     <view wx:for="{{folderList}}" wx:key="index">
-                        <view class="{{item.filingNo == folderNo?'list-item-on':'list-item'}}"  bindtap="chooseFolder" data-filingNo="{{item.filingNo}}" data-filingName="{{item.filingName}}" >
+                        <view class="{{item.filingNo == filingNo?'list-item-on':'list-item'}}"  bindtap="chooseFolder" data-filingNo="{{item.filingNo}}" data-filingName="{{item.filingName}}" >
                             {{filter.filterString(item.filingName)}}
 
                         </view>
@@ -60,7 +60,7 @@
 
                 <view class="{{selected==3?'show':'hidden'}}">
                     <view wx:for="{{accountList}}" wx:key="index" >
-                        <view class="{{item.accountCode == accountCode?'list-item-on':'list-item'}}" data-accountCode="{{item.accountCode}}" bindtap="accountType" data-accountName="{{item.accountName}}">
+                        <view class="{{item.accountCode == queryAccountCode?'list-item-on':'list-item'}}" data-accountCode="{{item.accountCode}}" bindtap="accountType" data-accountName="{{item.accountName}}">
                             {{item.accountName}}
                         </view>
                     </view>
