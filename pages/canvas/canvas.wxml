@@ -5,7 +5,7 @@
 
     <view class="sign-operation">
         <button type="button" value="" bindtouchstart="clearClick" bindtap="clearClick" class="btn-style clear-sign">清屏</button>
-        <button type="button" value="提交" bindtouchstart="saveClick" bindtap="saveClick" class="btn-style sign-submit">提交</button>
+        <button type="button" value="提交" bindtouchstart="saveClick" class="btn-style sign-submit">提交</button>
     </view>
 
     <canvas class="firstCanvas" style="width:{{canvasWidth}}px;height:{{canvasHeight}}px;border: 1px solid transparent;"

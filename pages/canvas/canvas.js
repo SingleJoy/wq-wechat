@@ -108,19 +108,19 @@ wx.getSystemInfo({
         },
         //保存图片
         saveClick: function () {
-
-            this.submit();
+          wx.showLoading({
+            title: '加载中',
+            mask: true
+          });
+          this.submit();
         },
         //提交保存
         submit(){
-
             wx.canvasToTempFilePath({
                 canvasId: 'firstCanvas',
                 success: (res) => {
-
                     //设置保存的图片
                     this.clearClick();
-
                     wx.getFileSystemManager().readFile({
                         filePath: res.tempFilePath, //选择图片返回的相对路径
                         encoding: 'base64', //编码格式
@@ -144,8 +144,6 @@ wx.getSystemInfo({
                                 mask: true
                             });
                             saveSignatureImg(contractNo,userCode,dataParams).then((res)=>{
-
-                                console.log(res)
                                 if(res.data.resultCode==1){
                                     wx.showToast({
                                         title: '签署成功',
@@ -153,12 +151,10 @@ wx.getSystemInfo({
                                         duration: 1000
                                     });
                                     if(num==1){
-                                        wx.hideLoading();
                                         wx.navigateTo({
                                             url: '/pages/contract/contractDetail/contractDetail'
                                         });
                                     }else {
-                                        wx.hideLoading();
                                         wx.navigateTo({
                                             url: '/pages/contract/b2bContractShow/b2bContractShow'
                                         });
