@@ -45,7 +45,7 @@ Page({
      */
 
     onPullDownRefresh() {
-      wx.showNavigationBarLoading()
+      wx.showNavigationBarLoading();
         this.setData({
             // refreshing: true
         });
@@ -248,12 +248,7 @@ Page({
         this.resetStyle();
         let folderNo=e.currentTarget.dataset.filingno;
         let filingName=e.currentTarget.dataset.filingname;
-        // console.log(e.currentTarget.dataset)
-        if(folderNo!=this.data.folderNo){
-            this.setData({
-                flag:true,
-            })
-        }
+
         this.setData({
             pageNo:1,
             contractDataList:[],
@@ -298,11 +293,7 @@ Page({
     chooseContractType(e){
         this.resetStyle();
         let num=e.currentTarget.dataset.num;
-        if(num!=this.data.num){
-            this.setData({
-                flag:true,
-            });
-        }
+
         this.setData({
             pageNo:1,
             num:num,
@@ -325,13 +316,9 @@ Page({
         this.resetStyle();
         let accountName=e.currentTarget.dataset.accountname;
         let queryAccountCode=e.currentTarget.dataset.accountcode;
-        if(queryAccountCode!=this.data.queryAccountCode){
-            this.setData({
-                flag:true,
-                pageNo:1,
-            });
-        }
+
         this.setData({
+            pageNo:1,
             contractDataList:[],
             accountTypeName:accountName,
             queryAccountCode:queryAccountCode,
