@@ -10,7 +10,9 @@
                         <view class="account-name">
                             <text >{{enterpriseName}}</text>
                         </view>
-
+                        <view class="accountName" wx:if="{{accountLevel==2}}">
+                            <text >{{accountName}}</text>
+                        </view>
                         <view class="phone">
                             <text >{{mobile}}</text>
                         </view>
