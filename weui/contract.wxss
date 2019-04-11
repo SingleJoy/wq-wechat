@@ -7,6 +7,7 @@
     overflow: hidden;
     height: 80rpx;
     width: 100%;
+    padding-top: 10rpx;
 }
 .search-arr {
     display: block;
@@ -48,7 +49,7 @@
     position: relative;
 }
 .search-data .data-lists .contract-name{
-    width: 500rpx;
+    width: 410rpx;
     overflow: hidden;
     text-overflow:ellipsis;
     white-space: nowrap;

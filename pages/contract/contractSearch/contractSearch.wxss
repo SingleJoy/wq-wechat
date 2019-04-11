@@ -11,7 +11,7 @@
 
 .operate {
     position: absolute;
-    right: 48rpx;
+    right: 20rpx;
     top: 60rpx;
 }
 .operate button{
