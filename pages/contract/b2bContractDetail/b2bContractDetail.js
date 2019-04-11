@@ -267,10 +267,9 @@ Page({
             });
             return false;
         }
-
         let data={
-            'validTime':this.data.date,
-             'perpetualValid':this.data.permanentLimit?'1':'0',
+            'validTime':this.data.date+' 23:59:59',
+             'perpetualValid':this.data.permanentLimit?1:0,
         };
         this.setData({
             showModalStatus:false
