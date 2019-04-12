@@ -104,7 +104,7 @@
                         </view>
 
                         <view class="email-err">{{errMessage}}</view>
-                        <view class="bind-email" wx:if="{{defaultEmail}}" bindtap="emailSubmit" data-type="default"  style="text-decoration: underline;">点击发送至账号绑定邮箱</view>
+                        <view class="bind-email bind-email-center" wx:if="{{defaultEmail}}" bindtap="emailSubmit" data-type="default"  style="text-decoration: underline;">点击发送至账号绑定邮箱</view>
                     </view>
 
                 </view>
