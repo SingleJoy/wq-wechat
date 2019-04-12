@@ -1,6 +1,7 @@
 
 import { TrimAll,formatTime,validateEmail} from '../../../utils/util.js';
 import {
+    homePage,
     contractImgs,
     getContractDetails,
     remind,
@@ -12,6 +13,7 @@ import {
     updateContractTime,
     signerpositions,
 } from '../../../wxapi/api.js';
+import {homePage} from "../../../wxapi/api";
 const app = getApp();
 const md5 = require('../../../utils/md5.js')
 Page({
@@ -83,6 +85,7 @@ Page({
             interfaceCode:wx.getStorageSync('interfaceCode'),
             accountCode:wx.getStorageSync('accountCode'),
             defaultEmail:wx.getStorageSync('email'),
+            mobile:wx.getStorageSync('mobile'),
             enterpriseName:wx.getStorageSync('enterpriseName'),
             validTime:param_data.validTime.substring(0,10),
             num:param_data.num,
@@ -227,6 +230,9 @@ Page({
     },
     //签署合同
     signContract:function(e){
+
+
+
         this.getSignPosition()
     },
     // 签署合同获取签章位置并展示签章图片
@@ -292,13 +298,32 @@ Page({
     },
     //提交签署
     signSubmit(){
-        if(this.data.signVerify){     //需要签署密码
-            this.setData({
-                passwordDialog:true
-            })
-        }else{
-            this.verifySuccess()           //提交签署                    
-        }
+        let data={
+            'mobile':this.data.mobile
+        };
+        homePage(this.data.interfaceCode,data).then(res=>{
+            if (res.data.resultCode == 1) {
+
+                let  signVerify= res.data.dataList[1].signVerify;
+
+                this.setData({
+                    signVerify:signVerify
+                });
+
+                if(this.data.signVerify){
+                    this.setData({
+                        passwordDialog:true
+                    });
+                }else{
+                    this.verifySuccess();          //提交签署
+                }
+            }else{
+
+            }
+        }).catch(err=>{
+
+        });
+
     },
     //密码校验成功提交操作
     verifySuccess:function(){

@@ -9,6 +9,7 @@ import {
     b2bSignerpositions,
     b2bContractmoresign
 } from '../../../wxapi/api.js';
+import {homePage} from "../../../wxapi/api";
 const app = getApp();
 // const base64src=require("../../../utils/base64src");
 const md5 = require('../../../utils/md5.js');
@@ -62,6 +63,7 @@ Page({
             accountLevel:app.globalData.searchParam.accountLevel,
             interfaceCode:wx.getStorageSync('interfaceCode'),
             accountCode:wx.getStorageSync('accountCode'),
+            mobile:wx.getStorageSync('mobile'),
             userCode:wx.getStorageSync('userCode'),
             windowHeight:app.globalData.userInfo.windowHeight,
             windowWidth:app.globalData.userInfo.windowWidth,
@@ -265,14 +267,29 @@ Page({
         })
     },
     signSubmit(){
-        if(this.data.signVerify){
-            //需要签署密码
-            this.setData({
-                passwordDialog:true
-            });
-        }else{
-            this.verifySuccess();        //提交签署
-        }
+        let data={
+            'mobile':this.data.mobile
+        };
+        homePage(this.data.interfaceCode,data).then(res=>{
+            if (res.data.resultCode == 1) {
+                let  signVerify= res.data.dataList[1].signVerify;
+                this.setData({
+                    signVerify:signVerify
+                });
+                if(this.data.signVerify){
+                    this.setData({
+                        passwordDialog:true
+                    });
+                }else{
+                    this.verifySuccess();         //提交签署
+                }
+            }else{
+
+            }
+        }).catch(err=>{
+
+        });
+        
     },
     //密码校验成功提交操作
     verifySuccess:function(){

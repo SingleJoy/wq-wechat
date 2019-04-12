@@ -1,9 +1,9 @@
-import {homePage} from "../../../wxapi/api";
+
 
 const md5 = require('../../../utils/md5.js')
 import {
     contracttempimgs,
-    getSignature,
+    homePage,
     contractkeywordsign,
     verifySignPassword,
     contractmoresign,} from '../../../wxapi/api.js';
@@ -69,12 +69,13 @@ Page({
         };
         homePage(this.data.interfaceCode,data).then(res=>{
             if (res.data.resultCode == 1) {
-                let signVerify = {
-                    signVerify: res.data.dataList[1].signVerify
-                };
+
+                 let  signVerify= res.data.dataList[1].signVerify;
+
                this.setData({
                    signVerify:signVerify
                });
+
                 if(this.data.signVerify){
                     this.setData({
                         showModal:true
