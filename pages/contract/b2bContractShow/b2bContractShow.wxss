@@ -72,13 +72,14 @@
 .contract-img{
     padding-bottom:104rpx;
     width:100%;
-    margin-top: 60rpx;
+    position: relative;
 }
 .sign-contract-imgs{
     margin-top:60rpx;
 }
 .drawer-content{
     padding: 0 10rpx;
+    margin: 10rpx 0;
 }
 .contract-img image{
     width:100%;
