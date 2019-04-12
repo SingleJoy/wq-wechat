@@ -1,10 +1,10 @@
 import { saveSignatureImg } from '../../wxapi/api.js';
-var content = null;
-var touchs = [];
-var canvasw = 0;
-var canvash = 0;
-var height,width;
-var canvasWidth,canvasHeight;
+let content = null;
+let touchs = [];
+let canvasw = 0;
+let canvash = 0;
+let height,width;
+let canvasWidth,canvasHeight;
 const app = getApp();
 //获取系统信息
 wx.getSystemInfo({
@@ -34,14 +34,14 @@ wx.getSystemInfo({
             // console.log(event);
 
             //获取触摸开始的 x,y
-            let point = {x: event.changedTouches[0].x, y: event.changedTouches[0].y}
+            let point = {x: event.changedTouches[0].x, y: event.changedTouches[0].y};
             touchs.push(point);
         },
 
         // 画布的触摸移动手势响应
         move: function (e) {
             let point = {x: e.touches[0].x, y: e.touches[0].y};
-            touchs.push(point)
+            touchs.push(point);
             if (touchs.length >= 2) {
                 this.draw(touchs)
             }
@@ -49,12 +49,10 @@ wx.getSystemInfo({
 
         // 画布的触摸移动结束手势响应
         end: function (e) {
-            // console.log("触摸结束" + e)
+             // console.log("触摸结束" + e)
             //清空轨迹数组
-            for (let i = 0; i < touchs.length; i++) {
-                touchs.pop()
-            }
 
+            touchs=[]
         },
 
         // 画布的触摸取消响应
