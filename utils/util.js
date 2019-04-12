@@ -65,7 +65,8 @@ function TrimAll(str){
 function checkSession() {
   return new Promise(function (resolve, reject) {
     wx.checkSession({
-      success: function () {
+      success: function (res) {
+
         resolve(true);
       },
       fail: function () {

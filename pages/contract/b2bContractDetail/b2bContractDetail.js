@@ -1,7 +1,7 @@
 import {TrimAll,formatTime} from '../../../utils/util.js';
 import {
     b2bContractImgs,
-    getContractDetails,
+    b2bsignFinish,
     remind,
     showSignRoomInfo,
     sendEmailForUser,
@@ -49,6 +49,7 @@ Page({
         signPawssword:'',//签署密码
         validTime:'',//签署截止日期
         remindOnce:'',//提醒按钮单点操作
+        signParams:''
     },
 
     /**
@@ -68,7 +69,11 @@ Page({
     },
 
     onLoad: function (options) {
-        let param_data = app.globalData.searchParam;1
+        let param_data = app.globalData.searchParam;
+
+        console.log("operator"+param_data.operator);
+        console.log("accountCode"+wx.getStorageSync('accountCode'));
+        console.log(this.data);
         this.setData({
             creater:app.globalData.searchParam.creater,
             contractStatus:param_data.contractStatus,
@@ -76,6 +81,7 @@ Page({
             operator:param_data.operator,
             contractNo:param_data.contractNo,
             accountLevel:app.globalData.searchParam.accountLevel,
+            signParams:app.globalData.contractParam.signParams,
             accountCode:wx.getStorageSync('accountCode'),
             interfaceCode:wx.getStorageSync('interfaceCode'),
             enterpriseName:wx.getStorageSync('enterpriseName'),
@@ -102,11 +108,13 @@ Page({
         }).catch(err=>{
 
         });
-        getContractDetails(this.data.interfaceCode,this.data.contractNo).then(res=>{
+        b2bsignFinish(this.data.contractNo).then(res=>{
+
             this.setData({
-                contractVo:res.data.contractVo,
-                signUserVo:res.data.signUserVo,
-                sponsorInterfaceCode:res.data.contractVo.interfaceCode,
+                contractVo:res.data.data,
+                signUserVo:res.data.dataList,
+                sponsorInterfaceCode:res.data.data.interfaceCode,
+
             });
             setTimeout(function () {
                 wx.hideLoading()

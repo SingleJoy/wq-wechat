@@ -19,8 +19,12 @@
                         <view>{{contractTypeName}}</view>
                         <i></i>
                     </view>
-                    <view class="swiper-tab-list {{currentTab==3 ? 'on' : ''}}" data-current="3"  bindtap="tabAccountNo" >
+                    <view class="swiper-tab-list {{currentTab==3 ? 'on' : ''}}" data-current="3"  bindtap="tabAccountNo" wx:if="{{accountLevel==1}}">
                         <view>{{accountTypeName}}</view>
+                        <i></i>
+                    </view>
+                    <view class="swiper-tab-list {{currentTab==3 ? 'on' : ''}}" data-current="3"   wx:if="{{accountLevel==2}}">
+                        <view>{{accountName}}</view>
                         <i></i>
                     </view>
                 </view>

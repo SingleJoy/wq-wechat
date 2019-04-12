@@ -40,10 +40,11 @@ function contractTemp(data, interfaceCode) {
 function getAccountInformation(accountCode) {
     return request(api+'/v1.5/tenant/'+accountCode+'/getAccountInformation', 'get')
 }
-//合同签署成功获取信息
+//1.8  合同签署成功获取信息
 function signFinish(contractTempNo) {
   return request(api + '/v1.8/contract/' + contractTempNo + '/signFinish', 'get')
 }
+//b2b合同签署成功
 function b2bsignFinish(contract) {
     return request(api + '/v1.4/contract/' + contract + '/signFinish', 'get')
 }

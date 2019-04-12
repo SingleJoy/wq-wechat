@@ -1,5 +1,5 @@
-import {contractNum} from '../../wxapi/api'
-
+import {contractNum,} from '../../wxapi/api'
+import { checkSession} from '../../utils/util.js';
 const app = getApp()
 
 Page({
@@ -41,6 +41,9 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
+       checkSession().then((res)=>{
+           console.log(res)
+       })
       wx.showLoading({
         title: '加载中',
       })

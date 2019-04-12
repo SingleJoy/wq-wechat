@@ -72,23 +72,40 @@
          </view>
 
          <!-- 合同详情操作 -->
-        <view class="contract-option" wx:if="{{accountCode==operator}}">
+
+            <view class="contract-option" wx:if="{{interfaceCode==creater}}">
+                <view wx:if="{{accountCode==operator}}">
+                    <block wx:if="{{contractStatus == 1}}">
+                        <button class='option' bindtap="signSubmit" wx:if="{{submitBtn}}">提交签署</button>
+                        <button class='option' bindtap="signContract" wx:else>签署</button>
+
+                    </block>
+                    <block wx:elif="{{contractStatus == 2}}">
+                        <view class="options">
+                            <button class="note-remind " bindtap='smsTip' style="width: 100%;">短信提醒</button>
+                            <!--<button class="right-border" bindtap="copyLink">复制链接</button>-->
+                        </view>
+                    </block>
+                    <block wx:elif="{{contractStatus == 3}}">
+                        <button class='option' bindtap='downContract'>下载</button>
+                    </block>
+                    <block wx:else>
+                        <button class='option' bindtap='extendDate'>延长签署日期</button>
+                    </block>
+                </view>
+
+
+            </view>
+
+        <view class="contract-option" wx:if="{{interfaceCode!=creater}}">
+
             <block wx:if="{{contractStatus == 1}}">
                 <button class='option' bindtap="signSubmit" wx:if="{{submitBtn}}">提交签署</button>
                 <button class='option' bindtap="signContract" wx:else>签署</button>
+            </block>
 
-            </block>
-            <block wx:elif="{{contractStatus == 2}}">
-                <view class="options">
-                    <button class="note-remind" bindtap='smsTip'>短信提醒</button>
-                    <button class="right-border" bindtap="copyLink">复制链接</button>
-                </view>
-            </block>
             <block wx:elif="{{contractStatus == 3}}">
                 <button class='option' bindtap='downContract'>下载</button>
-            </block>
-            <block wx:else>
-                <button class='option' bindtap='extendDate'>延长签署日期</button>
             </block>
         </view>
 
