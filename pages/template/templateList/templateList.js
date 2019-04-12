@@ -52,8 +52,8 @@ Page({
             operateType:'',
             templateName:e.target.dataset.templatename,
             strCreateTime: e.target.dataset.strcreatetime
-        }
-        Object.assign(app.globalData.contractParam,signParams)
+        };
+        Object.assign(app.globalData.contractParam,signParams);
         wx.navigateTo({
             url: '../templateDetail/templateDetail'
         })

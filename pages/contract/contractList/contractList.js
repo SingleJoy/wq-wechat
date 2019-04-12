@@ -2,7 +2,8 @@ import {
     contractFilings,
     getAccounts,
     contracts,
-    b2bContrants
+    b2bContrants, getAccountInformation,
+
 } from '../../../wxapi/api';
 const app = getApp();
 
@@ -81,7 +82,24 @@ Page({
                 accountLevel:accountLevel,
             })
         }
+        if(this.data.accountLevel==2){
+            this.getAccountInformation();
+        }
 
+    },
+    getAccountInformation(){
+
+        let accountCode=this.data.accountCode;
+        getAccountInformation(accountCode).then(res=> {
+            if(res.data.resultCode=='1'){
+                this.setData({
+                    accountName: res.data.data.accountName,
+                })
+
+            }
+        }).catch(error=>{
+
+        });
     },
     //查询所有规定文件夹
     contractFilings(){
@@ -116,6 +134,7 @@ Page({
                 if(this.data.accountLevel==1){
                     dataList.unshift({accountCode:'',accountName:'全部账号'},{accountCode:accountCode,accountName:enterpriseName})
                 }
+
                 this.setData({
                     accountList:dataList,
                     accountTypeName:app.globalData.searchParam.accountTypeName?app.globalData.searchParam.accountTypeName:dataList[0].accountName,
@@ -381,6 +400,7 @@ Page({
         this.setData({
             show:true
         });
+
         let signParams={
             'contractNo':contractNo,
             'contractStatus':contractStatus,
@@ -397,6 +417,7 @@ Page({
             'folderName':this.data.folderName,
             'contractTypeName':this.data.contractTypeName,
             'accountTypeName':this.data.accountTypeName,
+            'showSign':this.data.showSign,
         };
         Object.assign(app.globalData.searchParam,signParams);
         if(this.data.num==1){
@@ -476,14 +497,18 @@ Page({
             // console.log(this.data.contractStatus)
             //查询所有归档文件夹
             this.contractFilings();
-            this.getAccounts();
+            if(this.data.accountLevel==1){
+                this.getAccounts();
+            }
             this.searchData();
 
         }else{
 
             //查询所有归档文件夹
             this.contractFilings();
-            this.getAccounts();
+            if(this.data.accountLevel==1){
+                this.getAccounts();
+            }
             this.searchData();
         }
 
