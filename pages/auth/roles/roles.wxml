@@ -5,7 +5,7 @@
             <text class="account-title">企业账号</text>
             <view class="account-list" >
                 <block wx:if="{{accountList.length>0}}">
-                  <view class="account-item" wx:for="{{accountList}}" wx:key="item.accountCode" >
+                  <view class="account-item" wx:for="{{accountList}}" wx:key="item.accountCode" bindtap="goIndex" data-info="{{item}}">
                     <text class="account-name">{{item.accountName}}</text>
                     <view class="">
 
@@ -15,7 +15,7 @@
                         <block wx:else>
                             <view class="account-status unreal-name">未实名</view>
                         </block>
-                        <text class="account-option {{item.auditSteps==3?'':'account-hidden'}}" bindtap="goIndex" data-info="{{item}}">进入</text>
+                        <text class="account-option {{item.auditSteps==3?'':'account-hidden'}}">进入</text>
                     </view>
                 </view>
                 </block>
@@ -29,7 +29,7 @@
             <text class="account-title">企业子账号</text>
             <view class="account-list">
                 <block wx:if="{{subAccountList.length>0}}">
-                    <view class="account-item" wx:for="{{subAccountList}}" wx:key="item.name" >
+                    <view class="account-item" wx:for="{{subAccountList}}" wx:key="item.name" bindtap="goIndex" data-info="{{item}}">
                         <text class="account-name">{{item.accountName}}</text>
                         <view class="">
                             <block wx:if="{{item.accountStatus==0}}">
@@ -53,7 +53,7 @@
                             <block wx:elif="{{item.accountStatus==6}}">
                                 <view class="account-status frozen">冻结</view>
                             </block>
-                            <text class="account-option {{item.accountStatus==3?'':'account-hidden'}}" bindtap="goIndex" data-info="{{item}}">进入</text>
+                            <text class="account-option {{item.accountStatus==3?'':'account-hidden'}}">进入</text>
                         </view>
                     </view>
                 </block>
