@@ -142,7 +142,10 @@ Page({
                 console.log(this.data.accountList)
 
             }else{
-
+                this.setData({
+                    accountList:dataList,
+                    accountTypeName:app.globalData.searchParam.accountTypeName?app.globalData.searchParam.accountTypeName:'',
+                });
             }
         })
     },
