@@ -1,6 +1,6 @@
 
 import {
-    contractImgs,
+    b2bContractImgs,
     getContractDetails,
     showSignRoomInfo,
     getSignature,
@@ -72,7 +72,7 @@ Page({
         wx.showLoading({
             title: '加载中',
         });
-        contractImgs(this.data.interfaceCode,this.data.contractNo).then(res=>{
+        b2bContractImgs(this.data.interfaceCode,this.data.contractNo).then(res=>{
             if(res.data.resultCode == 1){
                 this.setData({
                     contractImgList:res.data.dataList

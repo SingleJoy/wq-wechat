@@ -1,17 +1,14 @@
-import {TrimAll,formatTime} from '../../../utils/util.js';
+import {formatTime} from '../../../utils/util.js';
 import {
     b2bContractImgs,
     b2bsignFinish,
     remind,
     showSignRoomInfo,
-    sendEmailForUser,
     getSignature,
-    verifySignPassword,
-    contractmoresign,
     signerpositions,
     updateContractTime} from '../../../wxapi/api.js';
 const app = getApp();
-const md5 = require('../../../utils/md5.js')
+
 Page({
 
     /**
