@@ -1,5 +1,6 @@
-import {formatTime} from '../../../utils/util.js';
+import {formatTime,TrimAll,validateEmail} from '../../../utils/util.js';
 import {
+    sendEmailForUser,
     b2bContractImgs,
     b2bsignFinish,
     remind,
@@ -329,7 +330,48 @@ Page({
             sendEmail:input_email
         });
     },
+// 邮箱发送
+    emailSubmit:function(e){
+        let data={
+            email:'',
+            type:'1',
+            contractNo:this.data.contractNo
+        };
+        if(e.target.dataset.type == 'default'){
+            data.email = TrimAll(this.data.defaultEmail)
+        }else{
+            if(!this.data.sendEmail){
+                this.setData({
+                    errMessage:'邮箱不可为空！'
+                });
+                return false
+            }else if(this.data.sendEmail&&!validateEmail(this.data.sendEmail)){
+                this.setData({
+                    errMessage:'邮箱格式不正确'
+                });
+                return false
+            }
+            else{
+                data.email = TrimAll(this.data.sendEmail);
+                this.setData({
+                    errMessage:''
+                });
+            }
+        }
+        this.setData({
+            showModalStatus:false
+        });
+        sendEmailForUser(this.data.interfaceCode,data).then((res)=>{
+            wx.showToast({
+                title: '邮件发送成功',
+                icon: 'none',
+                duration: 2000
+            })
+        }).catch(err=>{
 
+        })
+
+    },
     /**
      * 生命周期函数--监听页面初次渲染完成
      */
