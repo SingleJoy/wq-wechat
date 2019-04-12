@@ -1,5 +1,6 @@
 
 import {
+    homePage,
     b2bContractImgs,
     getContractDetails,
     showSignRoomInfo,
@@ -9,7 +10,7 @@ import {
     b2bSignerpositions,
     b2bContractmoresign
 } from '../../../wxapi/api.js';
-import {homePage} from "../../../wxapi/api";
+
 const app = getApp();
 // const base64src=require("../../../utils/base64src");
 const md5 = require('../../../utils/md5.js');
@@ -289,7 +290,7 @@ Page({
         }).catch(err=>{
 
         });
-        
+
     },
     //密码校验成功提交操作
     verifySuccess:function(){

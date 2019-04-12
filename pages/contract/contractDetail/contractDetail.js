@@ -13,7 +13,7 @@ import {
     updateContractTime,
     signerpositions,
 } from '../../../wxapi/api.js';
-import {homePage} from "../../../wxapi/api";
+
 const app = getApp();
 const md5 = require('../../../utils/md5.js')
 Page({
