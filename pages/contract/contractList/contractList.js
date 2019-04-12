@@ -417,7 +417,6 @@ Page({
             'folderName':this.data.folderName,
             'contractTypeName':this.data.contractTypeName,
             'accountTypeName':this.data.accountTypeName,
-            'showSign':this.data.showSign,
         };
         Object.assign(app.globalData.searchParam,signParams);
         if(this.data.num==1){

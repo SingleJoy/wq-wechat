@@ -73,7 +73,7 @@ Page({
 
         console.log("operator"+param_data.operator);
         console.log("accountCode"+wx.getStorageSync('accountCode'));
-        console.log(this.data);
+        console.log(app.globalData.searchParam);
         this.setData({
             creater:app.globalData.searchParam.creater,
             contractStatus:param_data.contractStatus,
@@ -81,7 +81,6 @@ Page({
             operator:param_data.operator,
             contractNo:param_data.contractNo,
             accountLevel:app.globalData.searchParam.accountLevel,
-            signParams:app.globalData.contractParam.signParams,
             accountCode:wx.getStorageSync('accountCode'),
             interfaceCode:wx.getStorageSync('interfaceCode'),
             enterpriseName:wx.getStorageSync('enterpriseName'),
