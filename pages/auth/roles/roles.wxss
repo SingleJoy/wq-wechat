@@ -43,15 +43,15 @@
   float:left;
   font-size:28rpx;
   line-height: 28prx;
-  width:126rpx;
+  /* width:120rpx; */
   border-radius: 40rpx;
   color:#fff;
   height: 56rpx;
   vertical-align: middle;
   text-align: center;
-  margin-top:20rpx;
-  margin-right:16rpx;
-  padding-top:10rpx;
+  margin-top:24rpx;
+  margin-right:28rpx;
+  padding:10rpx 20rpx;
   box-sizing: border-box;
 }
 .unreal-name{
