@@ -44,7 +44,7 @@
     overflow:hidden;
     height: 32rpx;
     text-overflow:ellipsis;
-    width: 320rpx;
+    width: 270rpx;
     display: inline-block;
     vertical-align: middle;
 }
