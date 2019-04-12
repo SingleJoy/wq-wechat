@@ -28,7 +28,7 @@ Page({
         errMessage:'',
         permanentLimit:false,
         animationData:'',
-
+        enterpriseName:'',//企业名称
         accountLevel:'',
         contractNo:'',
         contractType:'',
@@ -42,6 +42,7 @@ Page({
         passwordDialog:false,
         signPassword:'123456',
         signImg:'',
+        sponsorInterfaceCode:'',
         signPositionList:[],
         signPositionStr:'',
         submitBtn:false,  //签署按钮和提交按钮展示
@@ -77,6 +78,7 @@ Page({
             accountLevel:app.globalData.searchParam.accountLevel,
             accountCode:wx.getStorageSync('accountCode'),
             interfaceCode:wx.getStorageSync('interfaceCode'),
+            enterpriseName:wx.getStorageSync('enterpriseName'),
             defaultEmail:wx.getStorageSync('email'),
             num:app.globalData.searchParam.num,
             windowHeight:app.globalData.userInfo.windowHeight,
@@ -103,7 +105,8 @@ Page({
         getContractDetails(this.data.interfaceCode,this.data.contractNo).then(res=>{
             this.setData({
                 contractVo:res.data.contractVo,
-                signUserVo:res.data.signUserVo
+                signUserVo:res.data.signUserVo,
+                sponsorInterfaceCode:res.data.contractVo.interfaceCode,
             });
             setTimeout(function () {
                 wx.hideLoading()

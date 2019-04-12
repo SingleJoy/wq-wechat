@@ -27,6 +27,7 @@ Page({
         contractStatus:'',   //合同状态:1 待我签署 2待他人签署 3已生效 4已截止
         showModalStatus:false,
         detailMask:false,
+        enterpriseName:'', //企业名称
         errMessage:'',
         permanentLimit:false,
         animationData:'',
@@ -74,7 +75,7 @@ Page({
 
     onLoad: function (options) {
         let param_data = app.globalData.searchParam;
-
+        console.log(param_data.contractStatus)
         this.setData({
             contractStatus:param_data.contractStatus,
             contractNo:param_data.contractNo,
@@ -82,6 +83,7 @@ Page({
             interfaceCode:wx.getStorageSync('interfaceCode'),
             accountCode:wx.getStorageSync('accountCode'),
             defaultEmail:wx.getStorageSync('email'),
+            enterpriseName:wx.getStorageSync('enterpriseName'),
             validTime:param_data.validTime.substring(0,10),
             num:param_data.num,
             contractInfo:param_data,

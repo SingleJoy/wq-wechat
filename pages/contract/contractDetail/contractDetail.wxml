@@ -7,7 +7,11 @@
             <view class="detail-mask" wx:if="{{detailMask}}" bindtap="powerDrawer" catchtouchmove="move"></view>
             <!-- 合同基本信息 -->
             <view class="contract-info-box" animation="{{animationData}}" wx:if="{{detailMask}}" catchtouchmove="move">
-                <view class="info-item">  
+                <view class="info-item" wx:if="{{accountLevel==2}}">
+                    <text class="info-name">所属账号：</text>
+                    <text class="info-value">{{enterpriseName}}</text>
+                </view>
+                <view class="info-item">
                     <text class="info-name">合同名称：</text>
                     <text class="info-value">{{contractVo.contractName}}</text>
                 </view>

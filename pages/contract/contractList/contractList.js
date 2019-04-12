@@ -109,10 +109,10 @@ Page({
         getAccounts(interfaceCode).then(res=>{
             let dataList=[];
             if(res.data.resultCode == 1){
-                if(res.data.dataList){
+                if(res.data.dataList&&res.data.dataList.length){
                      dataList=res.data.dataList;
                 }
-                //一级账号 把一级账号数据
+                //一级账号 把一级账号数据Push进入数组
                 if(this.data.accountLevel==1){
                     dataList.unshift({accountCode:'',accountName:'全部账号'},{accountCode:accountCode,accountName:enterpriseName})
                 }
@@ -120,6 +120,7 @@ Page({
                     accountList:dataList,
                     accountTypeName:app.globalData.searchParam.accountTypeName?app.globalData.searchParam.accountTypeName:dataList[0].accountName,
                 });
+                console.log(this.data.accountList)
 
             }else{
 
