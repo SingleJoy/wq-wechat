@@ -5,10 +5,9 @@
             <text class="account-title">企业账号</text>
             <view class="account-list" >
                 <block wx:if="{{accountList.length>0}}">
-                  <view class="account-item" wx:for="{{accountList}}" wx:key="item.accountCode" bindtap="goIndex" data-info="{{item}}">
+                  <view class="account-item" wx:for="{{accountList}}" wx:key="item.accountCode" data-info="{{item}}" bindtap="goIndex" >
                     <text class="account-name">{{item.accountName}}</text>
                     <view class="">
-
                         <block wx:if="{{item.auditSteps==3}}">
                             <view class="account-status real-name">已实名</view>
                         </block>
