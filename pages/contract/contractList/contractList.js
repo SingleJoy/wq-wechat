@@ -126,6 +126,7 @@ Page({
         let enterpriseName=this.data.enterpriseName;
         getAccounts(interfaceCode).then(res=>{
             let dataList=[];
+            //有二级账号角色
             if(res.data.resultCode == 1){
                 if(res.data.dataList&&res.data.dataList.length){
                      dataList=res.data.dataList;
@@ -142,6 +143,7 @@ Page({
                 console.log(this.data.accountList)
 
             }else{
+                //没有二级账号
                 this.setData({
                     accountList:dataList,
                     accountTypeName:app.globalData.searchParam.accountTypeName?app.globalData.searchParam.accountTypeName:'',
