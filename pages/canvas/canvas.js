@@ -51,10 +51,8 @@ wx.getSystemInfo({
         end: function (e) {
              // console.log("触摸结束" + e)
             //清空轨迹数组
-            for (let i = 0; i < touchs.length; i++) {
-                touchs=[]
-            }
 
+            touchs=[]
         },
 
         // 画布的触摸取消响应

@@ -118,7 +118,7 @@ Page({
                 }
                 this.setData({
                     accountList:dataList,
-                    accountTypeName:dataList[0].accountName
+                    accountTypeName:app.globalData.searchParam.accountTypeName?app.globalData.searchParam.accountTypeName:dataList[0].accountName,
                 });
 
             }else{
@@ -147,10 +147,10 @@ Page({
     contracts(param){
 
         let interfaceCode=this.data.interfaceCode;
-        // wx.showLoading({
-        //     title: '加载中...',
-        //     mask: true
-        // });
+        wx.showLoading({
+            title: '加载中...',
+            mask: true
+        });
         contracts(interfaceCode,param).then(res=>{
           wx.stopPullDownRefresh();
           wx.hideNavigationBarLoading();
@@ -189,10 +189,10 @@ Page({
       wx.stopPullDownRefresh();
       wx.hideNavigationBarLoading()
         let interfaceCode=this.data.interfaceCode;
-        // wx.showLoading({
-        //     title: '加载中...',
-        //     mask: true
-        // });
+        wx.showLoading({
+            title: '加载中...',
+            mask: true
+        });
         b2bContrants(interfaceCode,param).then(res=>{
 
             let totalItemNumber=res.data.totalItemNumber;
@@ -414,7 +414,7 @@ Page({
     },
     // 上滑懒加载
     onReachBottom(){
-        // console.log("onReachBottom");
+
         if(this.data.flag){
             this.setData({
                 pageNo:this.data.pageNo+1
@@ -468,7 +468,7 @@ Page({
             this.setData({
                 contractDataList:[]
             });
-            // console.log(this.data.contractStatus)
+           console.log(this.data.queryAccountCode)
             this.setData({
                 contractStatus:this.data.contractStatus==0?4:this.data.contractStatus,
             });
