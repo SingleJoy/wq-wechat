@@ -73,7 +73,7 @@
         <view>
           <view class="modal-input">
             <label>姓名：</label>
-            <input name="name" placeholder-class="input-holder" value="{{listValue.nameValue}}" maxlength="15" bindinput="inputChange" placeholder="请输入姓名"/>
+            <input name="name" placeholder-class="input-holder" focus="{{focus}}" value="{{listValue.nameValue}}" type='text' maxlength="15" bindinput="inputChange" placeholder="请输入姓名"/>
           </view>
           <view class="modal-input model-hint">
             <label></label>
@@ -83,7 +83,7 @@
         <view>
           <view class="modal-input">
             <label>身份证：</label>
-            <input name="idCard" placeholder-class="input-holder" value="{{listValue.nameIdcard}}" maxlength="18" bindinput="inputChange" placeholder="请输入身份证" />
+            <input name="idCard" placeholder-class="input-holder" focus="{{focus}}" type='idcard' value="{{listValue.nameIdcard}}" maxlength="18" bindinput="inputChange" placeholder="请输入身份证" />
           </view>
           <view class="modal-input model-hint">
             <label></label>
@@ -93,7 +93,7 @@
         <view>
           <view class="modal-input">
             <label>手机号码：</label>
-            <input name="mobile" placeholder-class="input-holder" value="{{listValue.namePhone}}" type="number" maxlength="11" bindinput="inputChange" placeholder="请输入手机号码"/>
+            <input name="mobile" placeholder-class="input-holder" focus="{{focus}}" value="{{listValue.namePhone}}" type="number" maxlength="11" bindinput="inputChange" placeholder="请输入手机号码"/>
           </view>
           <view class="modal-input model-hint">
             <label></label>

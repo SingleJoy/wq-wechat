@@ -4,9 +4,8 @@
   height:auto;
   overflow:hidden;
   padding:0 40rpx;
-  margin-top:80rpx;
+  margin-top:60rpx;
   background:#fff;
-
 }
 .title{
   text-align: center;
@@ -16,7 +15,7 @@
 .login-logo{
   width: 230rpx;
   /* height:106rpx; */
-  margin-top: 54rpx;
+  margin-top: 100rpx;
   display: inline-block;
 }
 .logo{
@@ -85,10 +84,9 @@
 
 }
 .btn-area{
-    width:80%;
-    margin:0 auto;
-    margin-top:210rpx;
-
+  width: 670rpx;
+  margin:0 auto;
+  margin-top:120rpx;
 }
 .btn-area button{
     background: #4091fb;
@@ -96,16 +94,17 @@
     color:#fff;
     height:80rpx;
     line-height: 80rpx;
-    width:520rpx;
+    width:100%;
+    border-radius:10rpx;
 }
 .QR-code{
     text-align: center;
-    margin-top:100rpx;
+    margin-top:90rpx;
     display: block;
 }
 .QRimg{
-    width:130rpx;
-    height:130rpx;
+    width:180rpx;
+    /* height:130rpx; */
     margin: 0 auto;
     display: block;
 }
@@ -116,14 +115,15 @@
 }
 .login-link {
   text-align: center;
+  margin-top: 28rpx;
 }
 .login-link text{
   text-align: center;
-  color:#4091fb;
+  color:#e30013;
   font-size: 24rpx;
 }
 .link-news{
-  margin-top:38rpx;
+  margin-top:8rpx;
 }
 button[disabled]{
     background: #4091fb !important;
