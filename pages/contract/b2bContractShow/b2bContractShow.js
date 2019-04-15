@@ -1,6 +1,6 @@
 
 import {
-    homePage,
+    accountInformation,
     b2bContractImgs,
     getContractDetails,
     showSignRoomInfo,
@@ -268,12 +268,9 @@ Page({
         })
     },
     signSubmit(){
-        let data={
-            'mobile':this.data.mobile
-        };
-        homePage(this.data.interfaceCode,data).then(res=>{
+        accountInformation(this.data.interfaceCode, this.data.accountCode).then(res=>{
             if (res.data.resultCode == 1) {
-                let  signVerify= res.data.dataList[1].signVerify;
+                let signVerify = res.data.data.signVerify;
                 this.setData({
                     signVerify:signVerify
                 });

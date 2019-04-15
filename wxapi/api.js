@@ -208,6 +208,10 @@ function conNum(interfaceCode){
     return request(api+'/v1.6/tenant/'+interfaceCode+'/conNum','get')
 }
 
+//查询当前账户信息
+function accountInformation(interfaceCode, accountCode) {
+  return request(api + '/tenant/' + interfaceCode + '/account/' + accountCode + '/accountInformation', 'get')
+}
 module.exports = {
     tenant,
     login,
@@ -252,5 +256,6 @@ module.exports = {
     saveSignatureImg,
     getSignatureImg,
     b2bsignFinish,
-    conNum
+    conNum,
+  accountInformation
 }

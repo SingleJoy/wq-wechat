@@ -3,7 +3,7 @@
 const md5 = require('../../../utils/md5.js')
 import {
     contracttempimgs,
-    homePage,
+  accountInformation,
     contractkeywordsign,
     verifySignPassword,
     contractmoresign,} from '../../../wxapi/api.js';
@@ -64,29 +64,23 @@ Page({
     },
     // 签署验证是否需要签署密码
     signContract(){
-        let data={
-            'mobile':this.data.mobile
-        };
-        homePage(this.data.interfaceCode,data).then(res=>{
-            if (res.data.resultCode == 1) {
+      accountInformation(this.data.interfaceCode, this.data.accountCode).then(res=>{
+        if (res.data.resultCode == 1) {
+          let signVerify = res.data.data.signVerify;
+          this.setData({
+            signVerify:signVerify
+          });
+          if(this.data.signVerify){
+              this.setData({
+                  showModal:true
+              });
+          }else{
+              this.signSubmit();
+          }
+        }else{
 
-                 let  signVerify= res.data.dataList[1].signVerify;
-
-               this.setData({
-                   signVerify:signVerify
-               });
-
-                if(this.data.signVerify){
-                    this.setData({
-                        showModal:true
-                    });
-                }else{
-                    this.signSubmit();
-                }
-            }else{
-
-            }
-        }).catch(err=>{
+        }
+      }).catch(err=>{
 
         });
 

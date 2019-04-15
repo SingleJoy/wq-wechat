@@ -1,7 +1,7 @@
 
 import { TrimAll,formatTime,validateEmail} from '../../../utils/util.js';
 import {
-    homePage,
+    accountInformation,
     contractImgs,
     getContractDetails,
     remind,
@@ -298,18 +298,12 @@ Page({
     },
     //提交签署
     signSubmit(){
-        let data={
-            'mobile':this.data.mobile
-        };
-        homePage(this.data.interfaceCode,data).then(res=>{
+        accountInformation(this.data.interfaceCode, this.data.accountCode).then(res=>{
             if (res.data.resultCode == 1) {
-
-                let  signVerify= res.data.dataList[1].signVerify;
-
+                let signVerify = res.data.data.signVerify;
                 this.setData({
                     signVerify:signVerify
                 });
-
                 if(this.data.signVerify){
                     this.setData({
                         passwordDialog:true
