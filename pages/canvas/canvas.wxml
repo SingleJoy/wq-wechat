@@ -4,9 +4,9 @@
     </view>
 
     <view class="sign-operation">
-        <button type="button" value="提交" bindtouchstart="getImg"  bindtap="getImg"    class="btn-style sign-submit">提交</button>
+        <button type="button" value="提交" bindtouchstart="getImg"     class="btn-style sign-submit">提交</button>
 
-        <button type="button" value="" bindtouchstart="cleardraw" bindtap="cleardraw" class="btn-style clear-sign">清屏</button>
+        <button type="button" value="" bindtouchstart="cleardraw"  class="btn-style clear-sign">清屏</button>
     </view>
 
     <canvas id="canvas" canvas-id="canvas" disable-scroll="true" bindtouchstart="canvasStart"

@@ -75,20 +75,26 @@ Page({
         arrx = [];
         arry = [];
         arrz = [];
-
         context.clearRect(0, 0, canvasw, canvash);
         context.draw(true);
     },
     //导出图片
     getImg: function () {
+
         if (arrx.length == 0) {
-            wx.showModal({
-                title: '提示',
-                content: '签名内容不能为空！',
-                showCancel: false
+            wx.showToast({
+                title: '签名内容不能为空！',
+                icon: 'none',
+                duration: 1000
             });
+
             return false;
         }else{
+            wx.showLoading({
+                title: '加载中',
+                mask: true
+            });
+            this.cleardraw();
             this.submit()
         }
     },
@@ -98,8 +104,8 @@ Page({
                     canvasId: 'canvas',
                     success: (res) => {
                         //设置保存的图片
-                        console.log(res);
-                        this.cleardraw();
+
+
                         wx.getFileSystemManager().readFile({
                             filePath: res.tempFilePath, //选择图片返回的相对路径
                             encoding: 'base64', //编码格式
@@ -161,7 +167,7 @@ Page({
     onLoad: function (options) {
         // 使用 wx.createContext 获取绘图上下文 context
         context = wx.createCanvasContext('canvas');
-        context.beginPath()
+        context.beginPath();
         context.setStrokeStyle('#000000');
         context.setLineWidth(4);
         context.setLineCap('round');
@@ -171,5 +177,9 @@ Page({
             canvasHeight:app.globalData.userInfo.windowHeight-120,
             width:width,
         })
+    },
+
+    onShow:function () {
+        this.cleardraw();
     }
 })
