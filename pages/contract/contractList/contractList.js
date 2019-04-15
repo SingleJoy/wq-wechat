@@ -2,8 +2,8 @@ import {
     contractFilings,
     getAccounts,
     contracts,
-    b2bContrants, getAccountInformation,
-
+    b2bContrants,
+    getAccountInformation,
 } from '../../../wxapi/api';
 const app = getApp();
 
@@ -143,7 +143,6 @@ Page({
                     accountList:dataList,
                     accountTypeName:app.globalData.searchParam.accountTypeName?app.globalData.searchParam.accountTypeName:dataList[0].accountName,
                 });
-
 
             }else{
                 //没有二级账号

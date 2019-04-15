@@ -311,6 +311,19 @@ Page({
                 wx.reLaunch({
                     url:'/pages/contract/b2bContractSuccess/b2bContractSuccess'
                 });
+            }else if(res.data.responseCode == 2){
+                wx.showToast({
+                    title: res.data.resultMessage,
+                    icon:'none',
+                    duration: 2000
+                });
+                wx.reLaunch({
+                    url: '/pages/contract/contractList/contractList',
+                });
+            }else{
+                wx.reLaunch({
+                    url:'/pages/index/index'
+                });
             }
         }).catch(err=>{
 
