@@ -28,6 +28,7 @@
     bottom:20rpx;
     left: 20rpx;
     height: auto;
+    transform:rotate(90deg);
 }
 .btn-style{
     width: 120rpx;
@@ -38,14 +39,12 @@
     line-height: 120rpx;
     background-color: #1e91f9;
     color: #fff;
-    transform:rotate(90deg);
-
 }
 .clear-sign{
     left: 20rpx;
-    bottom: 30rpx;
+    bottom: 70rpx;
 }
 .sign-submit{
-    left:160rpx;
-    bottom: -90rpx;
+    left:20rpx;
+    bottom: 80rpx;
 }

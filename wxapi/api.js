@@ -7,7 +7,14 @@ function tenant(data){
 }
 //登录接口
 function login(data){
-    return request(api +'/v1/tenant/login','get',data)
+    // return request(api +'/v1/tenant/login','get',data)
+    return request(api +'/v1.8/applet/tenant/login','post',data)
+}
+
+//登出
+function exitAndDeleteSession(){
+    // return request(api+'/v1/tenant/exitAndDeleteSession','get')
+    return request(api+'/v1.8/applet/tenant/exit','post')
 }
 //查询企业数量
 function bindEnterprises(data){
@@ -57,10 +64,6 @@ function getSignatures(interfaceCode){
     return request(api+'/v1.5/tenant/'+interfaceCode+'/getSignatures', 'get')
 }
 
-//退出
-function exitAndDeleteSession(){
-    return request(api+'/v1/tenant/exitAndDeleteSession','get')
-}
 
 //首页查询合同状态、数量
 const contractNum  = {
@@ -128,11 +131,11 @@ function getSignatureImg(contractNo,userCode){
 function verifySignPassword(accountCode,data){
     return request(api+'/v1.7/tenant/account/'+accountCode+'/verifySignPassword','post',data) 
 }
-//我的合同签署提交
+//我的合同b2c签署提交
 function contractmoresign(interfaceCode,contractNo,data){
     return request(api+'/v1/tenant/'+interfaceCode+'/user/'+interfaceCode+'/contractmoresign/'+contractNo,'post',data)
 }
-//我的合同签署提交
+//我的合同b2b签署提交
 function b2bContractmoresign(interfaceCode,userCode,contractNo,data){
     return request(api+'/v1.4/tenant/'+interfaceCode+'/user/'+userCode+'/contractmoresign/'+contractNo,'post',data)
 }

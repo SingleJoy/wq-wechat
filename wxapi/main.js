@@ -19,13 +19,13 @@ const request = (url, method, data, contentType) => {
         data: data,
             header: {
                 'Content-Type':content_type,
-                'cookie':wx.getStorageSync("sessionid")
+                'cookie':wx.getStorageSync("wesign_token")
             },
         success(res) {
 
-            let sessionid=res.header["Set-Cookie"];
-            if(sessionid){
-                wx.setStorageSync("sessionid",sessionid)
+            let wesign_token=res.header["Set-Cookie"];
+            if(wesign_token){
+                wx.setStorageSync("wesign_token",wesign_token)
             }
 
             if (res.statusCode == 200) {

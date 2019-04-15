@@ -24,7 +24,7 @@
                         <button type="button" class="waitMe" wx:if="{{item.contractStatus==1}}">待我签署</button>
                         <button type="button" class="waitOther" wx:if="{{item.contractStatus==2}}">待他人签署</button>
                         <button type="button" class="effective" wx:if="{{item.contractStatus==3}}">已生效</button>
-                        <button type="button" class="close" wx:if="{{item.contractStatus==4}}">已截止</button>
+                        <button type="button" class="close" wx:if="{{item.contractStatus==0}}">已截止</button>
                     </view>
                 </view>
 
