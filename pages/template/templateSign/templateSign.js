@@ -140,6 +140,12 @@ Page({
                 wx.reLaunch({
                     url: '/pages/template/templateSuccess/templateSuccess',
                 })
+            }else if(res.data.responseCode == 2){
+                wx.showToast({
+                    title: res.data.resultMessage,
+                    icon:'none',
+                    duration: 2000
+                });
             }else{
                 wx.showToast({
                     title: res.data.responseMsg,
