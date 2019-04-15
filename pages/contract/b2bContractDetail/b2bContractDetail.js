@@ -68,10 +68,6 @@ Page({
 
     onLoad: function (options) {
         let param_data = app.globalData.searchParam;
-
-        console.log("operator"+param_data.operator);
-        console.log("accountCode"+wx.getStorageSync('accountCode'));
-        console.log(app.globalData.searchParam);
         this.setData({
             creater:app.globalData.searchParam.creater,
             contractStatus:param_data.contractStatus,

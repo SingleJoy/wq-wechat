@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/start/start",
+    "pages/canvas/canvas",
     "pages/auth/auth/auth",     
     "pages/contract/contractList/contractList",
     "pages/auth/login/login",
@@ -19,8 +20,7 @@
     "pages/template/templateList/templateList",
     "pages/template/templateDetail/templateDetail",
     "pages/index/index",
-    "pages/logs/logs",
-    "pages/canvas/canvas"
+    "pages/logs/logs"
   ],
   "window": {
     "backgroundTextStyle": "light",

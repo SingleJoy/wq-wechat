@@ -143,7 +143,6 @@ Page({
                     accountList:dataList,
                     accountTypeName:app.globalData.searchParam.accountTypeName?app.globalData.searchParam.accountTypeName:dataList[0].accountName,
                 });
-                console.log(this.data.accountList)
 
             }else{
                 //没有二级账号
