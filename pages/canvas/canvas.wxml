@@ -4,7 +4,7 @@
     </view>
 
     <view class="sign-operation">
-        <button type="button" value="提交" bindtouchstart="getImg"     class="btn-style sign-submit">提交</button>
+        <button type="button" value="提交" bindtouchstart="getImg" class="btn-style sign-submit">提交</button>
 
         <button type="button" value="" bindtouchstart="cleardraw"  class="btn-style clear-sign">清屏</button>
     </view>

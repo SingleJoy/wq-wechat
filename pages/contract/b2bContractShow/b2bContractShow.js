@@ -121,7 +121,7 @@ Page({
     },
     //获取签名图片
     getSignatureImg(){
-        let contractNo=app.globalData.searchParam.contractNo;
+        let contractNo = "applet" + app.globalData.searchParam.contractNo;
         let userCode=wx.getStorageSync('userCode');
         getSignatureImg(contractNo,userCode).then((res)=>{
             let base64Image=res.data;

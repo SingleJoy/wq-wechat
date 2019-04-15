@@ -94,72 +94,63 @@ Page({
                 title: '加载中',
                 mask: true
             });
-            this.cleardraw();
             this.submit()
         }
     },
         //提交保存
-        submit(){
-            wx.canvasToTempFilePath({
-                    canvasId: 'canvas',
-                    success: (res) => {
-                        //设置保存的图片
-
-
-                        wx.getFileSystemManager().readFile({
-                            filePath: res.tempFilePath, //选择图片返回的相对路径
-                            encoding: 'base64', //编码格式
-                            success: (res) => { //成功的回调
-                                 console.log('data:image/png;base64,' + res.data)
-                                let base64=res.data;
-                                let base64Image={
-                                    'base64':base64
-                                };
-
-                                //往全局变量派发一个base64img 对象
-                                Object.assign(app.globalData.contractParam,base64Image);
-                                let num=app.globalData.contractParam.num;
-                                let contractNo=app.globalData.searchParam.contractNo;
-                                let  userCode=wx.getStorageSync('userCode');
-                                let dataParams={
-                                    signatureImg:'data:image/png;base64,'+base64
-                                };
-                                wx.showLoading({
-                                    title: '提交中...',
-                                    mask: true
-                                });
-                                saveSignatureImg(contractNo,userCode,dataParams).then((res)=>{
-                                    if(res.data.resultCode==1){
-                                        wx.showToast({
-                                            title: '签署成功',
-                                            icon: 'none',
-                                            duration: 1000
-                                        });
-                                        if(num==1){
-                                            wx.navigateTo({
-                                                url: '/pages/contract/contractDetail/contractDetail'
-                                            });
-                                        }else {
-                                            wx.navigateTo({
-                                                url: '/pages/contract/b2bContractShow/b2bContractShow'
-                                            });
-                                        }
-                                    }
-
-                                }).catch(error=>{
-
-                                })
-
-
-
-                            }
-                        })
-
+      submit(){
+        wx.canvasToTempFilePath({
+          canvasId: 'canvas',
+          success: (res) => {
+            //设置保存的图片
+            wx.getFileSystemManager().readFile({
+            filePath: res.tempFilePath, //选择图片返回的相对路径
+            encoding: 'base64', //编码格式
+            success: (res) => { //成功的回调
+                  console.log('data:image/png;base64,' + res.data)
+                let base64=res.data;
+                let base64Image={
+                    'base64':base64
+                };
+              console.log(base64Image)
+                //往全局变量派发一个base64img 对象
+                Object.assign(app.globalData.contractParam,base64Image);
+                let num=app.globalData.contractParam.num;
+                let contractNo = "applet" + app.globalData.searchParam.contractNo;
+                let userCode=wx.getStorageSync('userCode');
+                let dataParams={
+                    signatureImg:'data:image/png;base64,'+base64
+                };
+                wx.showLoading({
+                    title: '提交中...',
+                    mask: true
+                });
+                saveSignatureImg(contractNo,userCode,dataParams).then((res)=>{
+                    if(res.data.resultCode==1){
+                        wx.showToast({
+                            title: '签署成功',
+                            icon: 'none',
+                            duration: 1000
+                        });
+                        if(num==1){
+                            wx.navigateTo({
+                                url: '/pages/contract/contractDetail/contractDetail'
+                            });
+                        }else {
+                            wx.navigateTo({
+                                url: '/pages/contract/b2bContractShow/b2bContractShow'
+                            });
+                        }
                     }
-
+                  this.cleardraw();
+                }).catch(error=>{
 
                 })
-        },
+              }
+            })
+          }
+        })
+      },
 
     /**
      * 生命周期函数--监听页面加载
