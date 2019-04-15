@@ -399,7 +399,7 @@ Page({
         conNum(interfaceCode).then((res)=>{
             if(res.data.resultCode==1){
                 let b2cNum=res.data.data.b2cNum;
-                if(b2cNum<this.data.dataList.length){
+                if(b2cNum<=this.data.dataList.length){
                     wx.showModal({
                         title: '提示',
                         content: '合同余量不足,当前剩余合同份数'+b2cNum+'份',
