@@ -23,11 +23,11 @@
     color: #999;
 }
 .sign-operation{
-    transform:rotate(90deg);
-    position: absolute;
+    position: fixed;
     z-index: 9999;
-    bottom:120rpx;
-    left: 90rpx;
+    bottom:20rpx;
+    left: 20rpx;
+    height: auto;
 }
 .btn-style{
     width: 120rpx;
@@ -38,12 +38,14 @@
     line-height: 120rpx;
     background-color: #1e91f9;
     color: #fff;
+    transform:rotate(90deg);
 
 }
 .clear-sign{
-    left: 132rpx;
+    left: 20rpx;
     bottom: 30rpx;
 }
 .sign-submit{
-    left:132rpx;
+    left:160rpx;
+    bottom: -90rpx;
 }

@@ -19,14 +19,12 @@ Page({
       key:'dataList',
       success(res){
           let list = JSON.parse(res.data);
-        console.log(list[0])
           that.setData({
             accountList:list[0],
             subAccountList:list[1]
             })
       }
     });
-    console.log(this.data.accountList);
   },
 
   /**
