@@ -1,6 +1,6 @@
 import {contractNum,} from '../../wxapi/api'
 import { checkSession} from '../../utils/util.js';
-const app = getApp()
+const app = getApp();
 
 Page({
     data: {
