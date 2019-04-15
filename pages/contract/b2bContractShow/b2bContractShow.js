@@ -297,12 +297,12 @@ Page({
             'userSignCode':this.data.userCode,
             'enterpriseSignImg':this.data.signImg.split(",")[1],  //企业签章
             'signatureImg':app.globalData.contractParam.base64,      //
-            'phoneHeight':this.data.windowHeight,
-            'phoneWidth':this.data.windowWidth,
-            'signH':this.data.windowWidth*19/90,
-            'signW':this.data.windowWidth*19/90,
-            'signatureW':this.data.windowWidth*19/90,
-            'signatureH':this.data.windowWidth*19/180,
+            'phoneHeight':844,
+            'phoneWidth':593,
+            'signH':125,
+            'signW':125,
+            'signatureW':125,
+            'signatureH':63,
             'enterprisePositionStr':this.data.signPositionStr,
             'personalPositionStr':this.data.signPositionStr2,
         };
