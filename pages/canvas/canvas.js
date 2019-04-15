@@ -107,12 +107,11 @@ Page({
             filePath: res.tempFilePath, //选择图片返回的相对路径
             encoding: 'base64', //编码格式
             success: (res) => { //成功的回调
-                  console.log('data:image/png;base64,' + res.data)
+                  // console.log('data:image/png;base64,' + res.data)
                 let base64=res.data;
                 let base64Image={
                     'base64':base64
                 };
-              console.log(base64Image)
                 //往全局变量派发一个base64img 对象
                 Object.assign(app.globalData.contractParam,base64Image);
                 let num=app.globalData.contractParam.num;
