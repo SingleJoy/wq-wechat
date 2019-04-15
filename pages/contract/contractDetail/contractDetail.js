@@ -337,7 +337,7 @@ Page({
         contractmoresign(this.data.interfaceCode,contractNo,data).then(res=>{
             if(res.data.responseCode == 0){
                 wx.reLaunch({
-                    url:'/pages/contract/b2bContractSuccess/b2bContractSuccess'
+                    url:'/pages/template/templateSuccess/templateSuccess'
                 });
             }else if(res.data.responseCode == 2){
                 wx.showToast({
