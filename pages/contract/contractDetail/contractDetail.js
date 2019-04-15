@@ -335,10 +335,23 @@ Page({
             passwordDialog:false
         });
         contractmoresign(this.data.interfaceCode,contractNo,data).then(res=>{
-            if(res.data.responseCode == 0){
+            if(res.data.responseCode == 1){
                 wx.reLaunch({
-                    url:'/pages/contract/b2cContractSuccess/b2cContractSuccess'
-                })
+                    url:'/pages/contract/b2bContractSuccess/b2bContractSuccess'
+                });
+            }else if(res.data.responseCode == 2){
+                wx.showToast({
+                    title: res.data.resultMessage,
+                    icon:'none',
+                    duration: 2000
+                });
+                wx.reLaunch({
+                    url: '/pages/contract/contractList/contractList',
+                });
+            }else{
+                wx.reLaunch({
+                    url:'/pages/index/index'
+                });
             }
         }).catch(err=>{
 

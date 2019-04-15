@@ -1,6 +1,6 @@
 
 import { getAccountInformation,getCertificate,getSignatures,exitAndDeleteSession} from '../../wxapi/api.js';
-
+const app = getApp();
 
 Page({
     data: {
@@ -19,7 +19,6 @@ Page({
         signaturePath:'',
         accountName:' //账户名称',
         accountLevel:'' //1为一级账号， 2为二级账号
-
     },
     onPullDownRefresh() {
         wx.stopPullDownRefresh()
@@ -37,6 +36,8 @@ Page({
                         try {
                             //清除缓存数据
                             wx.clearStorageSync();
+                            app.globalData.searchParam={};
+                            app.globalData.contractParam={};
                             //清除成功后跳转登录页
                             wx.redirectTo({
                                 url:'/pages/auth/login/login'

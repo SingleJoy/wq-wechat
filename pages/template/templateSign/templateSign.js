@@ -146,6 +146,9 @@ Page({
                     icon:'none',
                     duration: 2000
                 });
+                wx.reLaunch({
+                    url: '/pages/template/templateList/templateList',
+                });
             }else{
                 wx.showToast({
                     title: res.data.responseMsg,
