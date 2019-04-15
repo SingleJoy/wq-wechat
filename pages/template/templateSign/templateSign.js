@@ -1,7 +1,9 @@
+
+
 const md5 = require('../../../utils/md5.js')
 import {
     contracttempimgs,
-    getSignature,
+    homePage,
     contractkeywordsign,
     verifySignPassword,
     contractmoresign,} from '../../../wxapi/api.js';
@@ -41,6 +43,7 @@ Page({
           interfaceCode: wx.getStorageSync('interfaceCode'),
           accountCode: wx.getStorageSync('accountCode'),
           signVerify: wx.getStorageSync('signVerify'),
+            mobile: wx.getStorageSync('mobile'),
           windowHeight:app.globalData.userInfo.windowHeight,
           windowWidth:app.globalData.userInfo.windowWidth,
           imgHeight:app.globalData.imgHeight,
@@ -61,13 +64,32 @@ Page({
     },
     // 签署验证是否需要签署密码
     signContract(){
-        if(this.data.signVerify){
-            this.setData({
-                showModal:true
-            })
-        }else{
-            this.signSubmit()
-        }
+        let data={
+            'mobile':this.data.mobile
+        };
+        homePage(this.data.interfaceCode,data).then(res=>{
+            if (res.data.resultCode == 1) {
+
+                 let  signVerify= res.data.dataList[1].signVerify;
+
+               this.setData({
+                   signVerify:signVerify
+               });
+
+                if(this.data.signVerify){
+                    this.setData({
+                        showModal:true
+                    });
+                }else{
+                    this.signSubmit();
+                }
+            }else{
+
+            }
+        }).catch(err=>{
+
+        });
+
     },
     //提交表单数据并验证
     formSubmitModel: function(e) {

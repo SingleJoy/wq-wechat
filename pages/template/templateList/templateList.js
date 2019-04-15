@@ -20,6 +20,10 @@ Page({
         totalItemNumber: 0,
     },
     onShow: function () {
+      pageNum = 1;
+      useStatus = 1;
+      pageSize = 10;
+      console.log(pageNum)
       wx.showLoading({
         title: '加载中',
         mask: true
@@ -52,8 +56,8 @@ Page({
             operateType:'',
             templateName:e.target.dataset.templatename,
             strCreateTime: e.target.dataset.strcreatetime
-        }
-        Object.assign(app.globalData.contractParam,signParams)
+        };
+        Object.assign(app.globalData.contractParam,signParams);
         wx.navigateTo({
             url: '../templateDetail/templateDetail'
         })

@@ -222,7 +222,7 @@
     font-size: 26rpx;
     color:#ff0000;
     text-align: left;
-    margin-left: 40rpx;
+    margin-left: 60rpx;
 }
 .email-content{
     display: flex;

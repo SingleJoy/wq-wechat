@@ -2,7 +2,8 @@ import {
     contractFilings,
     getAccounts,
     contracts,
-    b2bContrants
+    b2bContrants, getAccountInformation,
+
 } from '../../../wxapi/api';
 const app = getApp();
 
@@ -45,7 +46,7 @@ Page({
      */
 
     onPullDownRefresh() {
-      wx.showNavigationBarLoading()
+      wx.showNavigationBarLoading();
         this.setData({
             // refreshing: true
         });
@@ -81,7 +82,27 @@ Page({
                 accountLevel:accountLevel,
             })
         }
+        if(this.data.accountLevel==2){
+            this.setData({
+                queryAccountCode:accountCode,
+            });
+            this.getAccountInformation();
+        }
 
+    },
+    getAccountInformation(){
+
+        let accountCode=this.data.accountCode;
+        getAccountInformation(accountCode).then(res=> {
+            if(res.data.resultCode=='1'){
+                this.setData({
+                    accountName: res.data.data.accountName,
+                })
+
+            }
+        }).catch(error=>{
+
+        });
     },
     //查询所有规定文件夹
     contractFilings(){
@@ -108,21 +129,28 @@ Page({
         let enterpriseName=this.data.enterpriseName;
         getAccounts(interfaceCode).then(res=>{
             let dataList=[];
+            //有二级账号角色
             if(res.data.resultCode == 1){
-                if(res.data.dataList){
+                if(res.data.dataList&&res.data.dataList.length){
                      dataList=res.data.dataList;
                 }
-                //一级账号 把一级账号数据
+                //一级账号 把一级账号数据Push进入数组
                 if(this.data.accountLevel==1){
                     dataList.unshift({accountCode:'',accountName:'全部账号'},{accountCode:accountCode,accountName:enterpriseName})
                 }
+
                 this.setData({
                     accountList:dataList,
-                    accountTypeName:dataList[0].accountName
+                    accountTypeName:app.globalData.searchParam.accountTypeName?app.globalData.searchParam.accountTypeName:dataList[0].accountName,
                 });
+                console.log(this.data.accountList)
 
             }else{
-
+                //没有二级账号
+                this.setData({
+                    accountList:dataList,
+                    accountTypeName:app.globalData.searchParam.accountTypeName?app.globalData.searchParam.accountTypeName:'',
+                });
             }
         })
     },
@@ -147,10 +175,10 @@ Page({
     contracts(param){
 
         let interfaceCode=this.data.interfaceCode;
-        // wx.showLoading({
-        //     title: '加载中...',
-        //     mask: true
-        // });
+        wx.showLoading({
+            title: '加载中...',
+            mask: true
+        });
         contracts(interfaceCode,param).then(res=>{
           wx.stopPullDownRefresh();
           wx.hideNavigationBarLoading();
@@ -189,10 +217,10 @@ Page({
       wx.stopPullDownRefresh();
       wx.hideNavigationBarLoading()
         let interfaceCode=this.data.interfaceCode;
-        // wx.showLoading({
-        //     title: '加载中...',
-        //     mask: true
-        // });
+        wx.showLoading({
+            title: '加载中...',
+            mask: true
+        });
         b2bContrants(interfaceCode,param).then(res=>{
 
             let totalItemNumber=res.data.totalItemNumber;
@@ -248,12 +276,7 @@ Page({
         this.resetStyle();
         let folderNo=e.currentTarget.dataset.filingno;
         let filingName=e.currentTarget.dataset.filingname;
-        // console.log(e.currentTarget.dataset)
-        if(folderNo!=this.data.folderNo){
-            this.setData({
-                flag:true,
-            })
-        }
+
         this.setData({
             pageNo:1,
             contractDataList:[],
@@ -298,11 +321,7 @@ Page({
     chooseContractType(e){
         this.resetStyle();
         let num=e.currentTarget.dataset.num;
-        if(num!=this.data.num){
-            this.setData({
-                flag:true,
-            });
-        }
+
         this.setData({
             pageNo:1,
             num:num,
@@ -325,13 +344,9 @@ Page({
         this.resetStyle();
         let accountName=e.currentTarget.dataset.accountname;
         let queryAccountCode=e.currentTarget.dataset.accountcode;
-        if(queryAccountCode!=this.data.queryAccountCode){
-            this.setData({
-                flag:true,
-                pageNo:1,
-            });
-        }
+
         this.setData({
+            pageNo:1,
             contractDataList:[],
             accountTypeName:accountName,
             queryAccountCode:queryAccountCode,
@@ -393,6 +408,7 @@ Page({
         this.setData({
             show:true
         });
+
         let signParams={
             'contractNo':contractNo,
             'contractStatus':contractStatus,
@@ -427,7 +443,7 @@ Page({
     },
     // 上滑懒加载
     onReachBottom(){
-        // console.log("onReachBottom");
+
         if(this.data.flag){
             this.setData({
                 pageNo:this.data.pageNo+1
@@ -481,21 +497,25 @@ Page({
             this.setData({
                 contractDataList:[]
             });
-            // console.log(this.data.contractStatus)
+
             this.setData({
                 contractStatus:this.data.contractStatus==0?4:this.data.contractStatus,
             });
             // console.log(this.data.contractStatus)
             //查询所有归档文件夹
             this.contractFilings();
-            this.getAccounts();
+            if(this.data.accountLevel==1){
+                this.getAccounts();
+            }
             this.searchData();
 
         }else{
 
             //查询所有归档文件夹
             this.contractFilings();
-            this.getAccounts();
+            if(this.data.accountLevel==1){
+                this.getAccounts();
+            }
             this.searchData();
         }
 

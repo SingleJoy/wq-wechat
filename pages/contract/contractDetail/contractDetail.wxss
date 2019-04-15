@@ -269,6 +269,9 @@
     line-height: 56rpx;
     
 }
+.bind-email-center {
+  text-align: center;
+}
 .close-model {
     position: absolute;
     right: 10rpx;

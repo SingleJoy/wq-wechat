@@ -1,17 +1,15 @@
-import {TrimAll,formatTime} from '../../../utils/util.js';
+import {formatTime,TrimAll,validateEmail} from '../../../utils/util.js';
 import {
+    sendEmailForUser,
     b2bContractImgs,
-    getContractDetails,
+    b2bsignFinish,
     remind,
     showSignRoomInfo,
-    sendEmailForUser,
     getSignature,
-    verifySignPassword,
-    contractmoresign,
     signerpositions,
     updateContractTime} from '../../../wxapi/api.js';
 const app = getApp();
-const md5 = require('../../../utils/md5.js')
+
 Page({
 
     /**
@@ -28,7 +26,7 @@ Page({
         errMessage:'',
         permanentLimit:false,
         animationData:'',
-
+        enterpriseName:'',//企业名称
         accountLevel:'',
         contractNo:'',
         contractType:'',
@@ -42,12 +40,14 @@ Page({
         passwordDialog:false,
         signPassword:'123456',
         signImg:'',
+        sponsorInterfaceCode:'',
         signPositionList:[],
         signPositionStr:'',
         submitBtn:false,  //签署按钮和提交按钮展示
         signPawssword:'',//签署密码
         validTime:'',//签署截止日期
         remindOnce:'',//提醒按钮单点操作
+        signParams:''
     },
 
     /**
@@ -67,7 +67,11 @@ Page({
     },
 
     onLoad: function (options) {
-        let param_data = app.globalData.searchParam;1
+        let param_data = app.globalData.searchParam;
+
+        console.log("operator"+param_data.operator);
+        console.log("accountCode"+wx.getStorageSync('accountCode'));
+        console.log(app.globalData.searchParam);
         this.setData({
             creater:app.globalData.searchParam.creater,
             contractStatus:param_data.contractStatus,
@@ -77,6 +81,7 @@ Page({
             accountLevel:app.globalData.searchParam.accountLevel,
             accountCode:wx.getStorageSync('accountCode'),
             interfaceCode:wx.getStorageSync('interfaceCode'),
+            enterpriseName:wx.getStorageSync('enterpriseName'),
             defaultEmail:wx.getStorageSync('email'),
             num:app.globalData.searchParam.num,
             windowHeight:app.globalData.userInfo.windowHeight,
@@ -100,10 +105,13 @@ Page({
         }).catch(err=>{
 
         });
-        getContractDetails(this.data.interfaceCode,this.data.contractNo).then(res=>{
+        b2bsignFinish(this.data.contractNo).then(res=>{
+
             this.setData({
-                contractVo:res.data.contractVo,
-                signUserVo:res.data.signUserVo
+                contractVo:res.data.data,
+                signUserVo:res.data.dataList,
+                sponsorInterfaceCode:res.data.data.interfaceCode,
+
             });
             setTimeout(function () {
                 wx.hideLoading()
@@ -322,7 +330,48 @@ Page({
             sendEmail:input_email
         });
     },
+// 邮箱发送
+    emailSubmit:function(e){
+        let data={
+            email:'',
+            type:'1',
+            contractNo:this.data.contractNo
+        };
+        if(e.target.dataset.type == 'default'){
+            data.email = TrimAll(this.data.defaultEmail)
+        }else{
+            if(!this.data.sendEmail){
+                this.setData({
+                    errMessage:'邮箱不可为空！'
+                });
+                return false
+            }else if(this.data.sendEmail&&!validateEmail(this.data.sendEmail)){
+                this.setData({
+                    errMessage:'邮箱格式不正确'
+                });
+                return false
+            }
+            else{
+                data.email = TrimAll(this.data.sendEmail);
+                this.setData({
+                    errMessage:''
+                });
+            }
+        }
+        this.setData({
+            showModalStatus:false
+        });
+        sendEmailForUser(this.data.interfaceCode,data).then((res)=>{
+            wx.showToast({
+                title: '邮件发送成功',
+                icon: 'none',
+                duration: 2000
+            })
+        }).catch(err=>{
 
+        })
+
+    },
     /**
      * 生命周期函数--监听页面初次渲染完成
      */

@@ -5,7 +5,7 @@
         <image src="/images/success.png"></image>
     </view>
       <view style="margin: 20rpx 0;">
-          <view class="success-text1">合同签署成功啦</view>
+          <view class="success-text1">合同签署成功</view>
           <!-- <view class="success-text2">众签已将该合同最新动态通过短信方式通知到其他人</view> -->
           <view class="success-text2">短信通知已发出</view>
       </view>

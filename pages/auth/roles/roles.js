@@ -19,12 +19,14 @@ Page({
       key:'dataList',
       success(res){
           let list = JSON.parse(res.data);
+        console.log(list[0])
           that.setData({
             accountList:list[0],
             subAccountList:list[1]
             })
       }
     });
+    console.log(this.data.accountList);
   },
 
   /**
@@ -76,7 +78,7 @@ Page({
 
   },
   goIndex:function(e){
-    let accountInfo = e.target.dataset.info;
+    let accountInfo = e.currentTarget.dataset.info;
     wx.setStorage({key: 'accountCode',data: accountInfo.accountCode})
     wx.setStorage({key: 'interfaceCode',data: accountInfo.interfaceCode})
     wx.setStorage({key: 'enterpriseName',data: accountInfo.enterpriseName})
