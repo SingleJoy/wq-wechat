@@ -83,6 +83,9 @@ Page({
             })
         }
         if(this.data.accountLevel==2){
+            this.setData({
+                queryAccountCode:accountCode,
+            });
             this.getAccountInformation();
         }
 
@@ -494,7 +497,7 @@ Page({
             this.setData({
                 contractDataList:[]
             });
-           console.log(this.data.queryAccountCode)
+
             this.setData({
                 contractStatus:this.data.contractStatus==0?4:this.data.contractStatus,
             });
