@@ -23,7 +23,6 @@ Page({
       pageNum = 1;
       useStatus = 1;
       pageSize = 10;
-      console.log(pageNum)
       wx.showLoading({
         title: '加载中',
         mask: true

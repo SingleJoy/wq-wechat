@@ -25,7 +25,8 @@
                     </view>
                     <view class="swiper-tab-list {{currentTab==3 ? 'on' : ''}}" data-current="3"   wx:if="{{accountLevel==2}}">
                         <view>{{accountName}}</view>
-                        <i></i>
+                        <!--二级账号 不显示下拉三角箭头不显示-->
+                        <i wx:if="{{accountLevel==1}}"></i>
                     </view>
                 </view>
 

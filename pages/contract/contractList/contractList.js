@@ -144,6 +144,7 @@ Page({
                     accountTypeName:app.globalData.searchParam.accountTypeName?app.globalData.searchParam.accountTypeName:dataList[0].accountName,
                 });
 
+
             }else{
                 //没有二级账号
                 this.setData({
@@ -155,6 +156,11 @@ Page({
     },
     //列表查询  包括b2c,b2b数据
     searchData(){
+        if(this.data.accountLevel==2){
+            this.setData({
+                queryAccountCode:wx.getStorageSync('accountCode')
+            })
+        }
         let  param ={
             'pageNo':this.data.pageNo,
             'pageSize':10,
