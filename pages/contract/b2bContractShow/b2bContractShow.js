@@ -2,7 +2,7 @@
 import {
     accountInformation,
     b2bContractImgs,
-    getContractDetails,
+    b2bsignFinish,
     showSignRoomInfo,
     getSignature,
     verifySignPassword,
@@ -85,10 +85,10 @@ Page({
         }).catch(err=>{
 
         });
-        getContractDetails(this.data.interfaceCode,this.data.contractNo).then(res=>{
+        b2bsignFinish(this.data.contractNo).then(res=>{
             this.setData({
-                contractVo:res.data.contractVo,
-                signUserVo:res.data.signUserVo
+                contractVo:res.data.data,
+                signUserVo:res.data.dataList,
             });
             setTimeout(function () {
                 wx.hideLoading();
