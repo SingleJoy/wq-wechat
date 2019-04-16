@@ -194,8 +194,6 @@ Page({
   //提交表单数据
   formSubmitModel: function(e) {
     //验证姓名
-
-
     if (!e.detail.value.name) {
       this.setData({
         model: {
@@ -288,23 +286,44 @@ Page({
         isShowIdcardHint: false,
       }
     });
-    //添加签署人提交/修改签署人提交
-    if (this.data.identification == "添加签署人") {
-        let dataList = this.data.dataList;
-        dataList.push(e.detail.value)
-        this.setData({
-            dataList
-        });
-        this.hideModal()
-    } else {
-        let dataList = this.data.dataList;
-        dataList[this.data.listIndex] = e.detail.value;
+    let interfaceCode = this.data.interfaceCode;
+    conNum(interfaceCode).then((res) => {
+      if (res.data.resultCode == 1) {
+        let b2cNum = res.data.data.b2cNum;
+        if (b2cNum < 0) {
+          wx.showModal({
+            title: '提示',
+            content: '合同余量不足,当前剩余合同份数' + b2cNum + '份',
+            success(res) {
+            }
+          });
+          wx.hideLoading();
+          return;
+        } else {
+          //添加签署人提交/修改签署人提交
+          if (this.data.identification == "添加签署人") {
+            let dataList = this.data.dataList;
+            dataList.push(e.detail.value)
             this.setData({
-                dataList
+              dataList
             });
-        this.hideModal()
+            this.hideModal()
+          } else {
+            let dataList = this.data.dataList;
+            dataList[this.data.listIndex] = e.detail.value;
+            this.setData({
+              dataList
+            });
+            this.hideModal()
+          }
         }
-    },
+      } else {
+
+      }
+    }).catch(error => {
+
+    });
+  },
 
   
    //生成合同
@@ -394,34 +413,11 @@ Page({
                 "accountCode": accountCode
             }
         }
-        //查询合同余量
-        let interfaceCode=this.data.interfaceCode;
-        conNum(interfaceCode).then((res)=>{
-            if(res.data.resultCode==1){
-                let b2cNum=res.data.data.b2cNum;
-                if(b2cNum<=this.data.dataList.length){
-                    wx.showModal({
-                        title: '提示',
-                        content: '合同余量不足,当前剩余合同份数'+b2cNum+'份',
-                        success(res) {
-                        }
-                    });
-                    wx.hideLoading();
-                }else{
-                    wx.showLoading({
-                        title: '加载中',
-                        mask: true
-                    });
-                    this.submitSigner(zqUserContractTempVo,creater)
-                }
-            }else{
-                
-            }
-        }).catch(error=>{
-
-        });
-   
     return false;
+  },
+  //查询合同余量
+  searchConNum() {
+    
   },
   //提交签署人
   submitSigner(zqUserContractTempVo,creater){
