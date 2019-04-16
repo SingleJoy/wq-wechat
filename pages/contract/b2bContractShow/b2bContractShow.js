@@ -241,53 +241,62 @@ Page({
       this.setData({
         psdHint: false
       })
+      wx.showLoading({
+        title: '加载中',
+        mask: true
+      });
       let data={
           signVerifyPassword:md5(this.data.signPassword)
       };
-        verifySignPassword(this.data.accountCode,data).then(res=>{
-            if(res.data.resultCode == 1){
-                this.verifySuccess();    //校验成功提交签署
-                this.setData({
-                    passwordDialog:true
-                });
-            }else{
-                wx.showToast({
-                    title: "签署密码错误",
-                    icon:'none',
-                    duration: 2000
-                });
-            }
-        }).catch(err=>{
+      verifySignPassword(this.data.accountCode,data).then(res=>{
+          if(res.data.resultCode == 1){
+              this.verifySuccess();    //校验成功提交签署
+              this.setData({
+                  passwordDialog:true
+              });
+          }else{
+              wx.showToast({
+                  title: "签署密码错误",
+                  icon:'none',
+                  duration: 2000
+              });
+          }
+      }).catch(err=>{
 
-        })
+      })
     },
 
     signSubmit(){
-        accountInformation(this.data.interfaceCode, this.data.accountCode).then(res=>{
-            if (res.data.resultCode == 1) {
-                let signVerify = res.data.data.signVerify;
+      wx.showLoading({
+        title: '加载中',
+        mask: true,
+      })
+      accountInformation(this.data.interfaceCode, this.data.accountCode).then(res=>{
+          if (res.data.resultCode == 1) {
+              wx.hideLoading();
+              let signVerify = res.data.data.signVerify;
+              this.setData({
+                  signVerify:signVerify
+              });
+              if(this.data.signVerify){
                 this.setData({
-                    signVerify:signVerify
+                    passwordDialog:true
                 });
-                if(this.data.signVerify){
-                    this.setData({
-                        passwordDialog:true
-                    });
-                }else{
-                    this.verifySuccess();         //提交签署
-                }
-            }else{
+              }else{
+                  this.verifySuccess();         //提交签署
+              }
+          }else{
 
-            }
-        }).catch(err=>{
+          }
+      }).catch(err=>{
 
-        });
+      });
 
     },
     //密码校验成功提交操作
     verifySuccess:function(){
       wx.showLoading({
-        title: '提交中',
+        title: '加载中',
         mask: true
       });
         let contractNo = app.globalData.searchParam.contractNo;
@@ -311,22 +320,21 @@ Page({
                     url:'/pages/contract/b2bContractSuccess/b2bContractSuccess'
                 });
             }else if(res.data.responseCode == 2){
-                wx.showModal({
-                    title: '提示',
-                    content: res.data.responseMsg,
-                    success(res) {
-                        if (res.confirm) {
-                            wx.reLaunch({
-                                url: '/pages/contract/contractList/contractList',
-                            });
-                        } else if (res.cancel) {
-                            wx.reLaunch({
-                                url: '/pages/contract/contractList/contractList',
-                            });
-                        }
-                    }
-                });
-
+              wx.showModal({
+                  title: '提示',
+                  content: res.data.responseMsg,
+                  success(res) {
+                      if (res.confirm) {
+                          wx.reLaunch({
+                              url: '/pages/contract/contractList/contractList',
+                          });
+                      } else if (res.cancel) {
+                          wx.reLaunch({
+                              url: '/pages/contract/contractList/contractList',
+                          });
+                      }
+                  }
+              });
             }else{
                 wx.reLaunch({
                     url:'/pages/index/index'

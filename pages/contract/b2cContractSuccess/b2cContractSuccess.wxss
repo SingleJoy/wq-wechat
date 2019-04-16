@@ -56,7 +56,6 @@
 }
 .signer-item{
     width:490rpx;
-    height: 56rpx;
     margin-bottom:24rpx;
     font-size: 28rpx;
     display: flex;
@@ -64,16 +63,19 @@
 }
 .signer-name{
     font-size: 28rpx;
+    flex: 3;
 }
 .sign-status{
-    width: 137rpx;
+    flex: 1;
+    height: 56rpx;
     line-height: 56rpx;
     font-size: 28rpx;
     color:#fff;
     background: #999999;
     border-radius: 40rpx;
     text-align: center;
-    float: right;
+    margin-left: 15rpx;
+    margin-top: -8rpx;
 }
 .signed{
     background: #ff1111;
