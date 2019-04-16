@@ -3,7 +3,7 @@
     <view class="sign-tips">
         <text>{{tips}}</text>
     </view>
-    <view class="sign-operation" style="width:60px;height:100vh;">
+    <view class="sign-operation" style="width:45px;height:100vh;">
 
         <button type="button" value="" bindtouchstart="cleardraw"  class="btn-style clear-sign">清屏</button>
 
