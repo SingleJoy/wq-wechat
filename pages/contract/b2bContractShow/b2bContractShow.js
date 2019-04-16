@@ -286,6 +286,10 @@ Page({
     },
     //密码校验成功提交操作
     verifySuccess:function(){
+      wx.showLoading({
+        title: '提交中',
+        mask: true
+      });
         let contractNo = app.globalData.searchParam.contractNo;
         let data = {
             'tenantSignCode':this.data.interfaceCode,
