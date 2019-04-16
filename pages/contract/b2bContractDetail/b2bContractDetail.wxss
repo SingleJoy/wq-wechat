@@ -33,7 +33,7 @@
     border-left:none;
     border-top:none;
     position: absolute;
-    right: 20rpx;
+    right: 276rpx;
     top:16rpx;
 }
 .angle-transform{
