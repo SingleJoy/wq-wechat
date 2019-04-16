@@ -12,6 +12,7 @@ import {
     contractmoresign,
     updateContractTime,
     signerpositions,
+    getAccountName
 } from '../../../wxapi/api.js';
 
 const app = getApp();
@@ -85,7 +86,8 @@ Page({
             accountCode:wx.getStorageSync('accountCode'),
             defaultEmail:wx.getStorageSync('email'),
             mobile:wx.getStorageSync('mobile'),
-            enterpriseName:wx.getStorageSync('enterpriseName'),
+            creater:app.globalData.searchParam.creater,
+            operator:app.globalData.searchParam.operator,
             validTime:param_data.validTime.substring(0,10),
             num:param_data.num,
             contractInfo:param_data,
@@ -137,6 +139,21 @@ Page({
         }).catch(err=>{
 
         });
+        // 一级账号查看二级账号合同
+        if(this.data.accountLevel==1&&(this.data.operator!=this.data.accountCode)){
+            let data={
+                'accountCode':this.data.operator
+            };
+            getAccountName(this.data.interfaceCode,data).then((res)=>{
+                if(res.data.resultCode == 1){
+                    this.setData({
+                        enterpriseName: res.data.data
+                    });
+                }
+            }).catch(error=>{
+
+            })
+        }
 
     },
 

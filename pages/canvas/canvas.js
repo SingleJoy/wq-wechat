@@ -25,6 +25,7 @@ Page({
     data: {
         src: "",
         canvasWidth:'',
+        flag:false,
         canvasHeight:'',
         width:'',
         tips:'请横屏签署'
@@ -81,12 +82,20 @@ Page({
     },
     //导出图片
     getImg: function () {
-
+        if(this.data.flag) {
+            return false
+        }
+        this.setData({
+            flag:true
+        });
         if (arrx.length == 0) {
             wx.showToast({
                 title: '签名内容不能为空！',
                 icon: 'none',
                 duration: 1000
+            });
+            this.setData({
+                flag:false
             });
             return false;
         }else{
@@ -124,17 +133,23 @@ Page({
                     mask: true
                 });
                 saveSignatureImg(contractNo,userCode,dataParams).then((res)=>{
+                    this.setData({
+                        flag:false
+                    });
                     if(res.data.resultCode==1){
+
                         wx.showToast({
                             title: '签署成功',
                             icon: 'none',
                             duration: 1000
                         });
+                        this.cleardraw();
                             wx.navigateTo({
                                 url: '/pages/contract/b2bContractShow/b2bContractShow'
                             });
+
                     }
-                  this.cleardraw();
+
                 }).catch(error=>{
 
                 })
