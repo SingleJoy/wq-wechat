@@ -239,7 +239,8 @@ Page({
         return false;
       }
       this.setData({
-        psdHint: false
+        psdHint: false,
+        passwordDialog: false
       })
       wx.showLoading({
         title: '加载中',
