@@ -27,6 +27,7 @@ Page({
         canvasWidth:'',
         canvasHeight:'',
         width:'',
+        tips:'请横屏签署'
     },
 
     canvasIdErrorCallback: function (e) {
@@ -87,7 +88,6 @@ Page({
                 icon: 'none',
                 duration: 1000
             });
-
             return false;
         }else{
             wx.showLoading({
@@ -114,13 +114,11 @@ Page({
                 };
                 //往全局变量派发一个base64img 对象
                 Object.assign(app.globalData.contractParam,base64Image);
-
                 let contractNo = "applet" + app.globalData.searchParam.contractNo;
                 let userCode=wx.getStorageSync('userCode');
                 let dataParams={
                     signatureImg:'data:image/png;base64,'+base64
                 };
-                console.log('data:image/png;base64,'+base64);
                 wx.showLoading({
                     title: '提交中...',
                     mask: true
@@ -132,7 +130,6 @@ Page({
                             icon: 'none',
                             duration: 1000
                         });
-
                             wx.navigateTo({
                                 url: '/pages/contract/b2bContractShow/b2bContractShow'
                             });
@@ -159,8 +156,8 @@ Page({
         context.setLineCap('round');
         context.setLineJoin('round');
         this.setData({
-            canvasWidth:app.globalData.userInfo.windowWidth,
-            canvasHeight:app.globalData.userInfo.windowHeight-120,
+            canvasWidth:app.globalData.userInfo.windowWidth-45,
+            canvasHeight:app.globalData.userInfo.windowHeight,
             width:width,
         })
     },
