@@ -77,7 +77,6 @@ Page({
 
     onLoad: function (options) {
         let param_data = app.globalData.searchParam;
-        console.log(param_data.contractStatus)
         this.setData({
             contractStatus:param_data.contractStatus,
             contractNo:param_data.contractNo,
@@ -93,6 +92,7 @@ Page({
             windowHeight:app.globalData.userInfo.windowHeight,
             windowWidth:app.globalData.userInfo.windowWidth,
             imgHeight:app.globalData.imgHeight,
+            imgWidth:app.globalData.imgWidth,
             signVerify:app.globalData.signVerify, //签署密码设置
             baseUrl:app.globalData.baseUrl,
             startDate:formatTime(new Date(),false,'-')

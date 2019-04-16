@@ -92,16 +92,13 @@ Page({
         wx.showLoading({
             title: '加载中',
         });
-        let imgList=[];
+
         b2bContractImgs(this.data.interfaceCode,this.data.contractNo).then(res=>{
 
             if(res.data.resultCode == 1){
-                for(let i=0;i<res.data.dataList.length;i++){
-                    let contractUrl = res.data.dataList[i].contractUrl;
-                    imgList[i] = contractUrl
-                }
+
                 this.setData({
-                    contractImgList:imgList
+                    contractImgList:res.data.dataList
                 });
             }
             

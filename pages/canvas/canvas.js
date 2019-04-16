@@ -27,6 +27,7 @@ Page({
         canvasWidth:'',
         canvasHeight:'',
         width:'',
+        tips:'请横屏签署'
     },
 
     canvasIdErrorCallback: function (e) {
@@ -159,8 +160,8 @@ Page({
         context.setLineCap('round');
         context.setLineJoin('round');
         this.setData({
-            canvasWidth:app.globalData.userInfo.windowWidth,
-            canvasHeight:app.globalData.userInfo.windowHeight-120,
+            canvasWidth:app.globalData.userInfo.windowWidth-60,
+            canvasHeight:app.globalData.userInfo.windowHeight,
             width:width,
         })
     },
