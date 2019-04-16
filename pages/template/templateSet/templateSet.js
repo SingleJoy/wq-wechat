@@ -194,8 +194,6 @@ Page({
   //提交表单数据
   formSubmitModel: function(e) {
     //验证姓名
-
-
     if (!e.detail.value.name) {
       this.setData({
         model: {
@@ -288,140 +286,160 @@ Page({
         isShowIdcardHint: false,
       }
     });
-    //添加签署人提交/修改签署人提交
-    if (this.data.identification == "添加签署人") {
-        let dataList = this.data.dataList;
-        dataList.push(e.detail.value)
-        this.setData({
-            dataList
-        });
-        this.hideModal()
-    } else {
-        let dataList = this.data.dataList;
-        dataList[this.data.listIndex] = e.detail.value;
-            this.setData({
-                dataList
-            });
-        this.hideModal()
-        }
-    },
-
-  
-   //生成合同
-    formSubmit: function(e) {
-        let value = e.detail.value;
-        if(!value.input) {
-            wx.showModal({
-                title: '提示',
-                content: '合同名称不能为空',
-                confirmColor: '#4091fb',
-                cancelColor: '#666',
-                success: function (res) {}
-            });
-            return;
-        }
-        if (!value.time && !this.data.perpetualValid) {
-            wx.showModal({
-                title: '提示',
-                content: '签署截止日期不能为空',
-                confirmColor: '#4091fb',
-                cancelColor: '#666',
-                success: function (res) {}
-            });
-            return;
-        }
-        if (!this.data.dataList.length) {
-            wx.showModal({
-                title: '提示',
-                content: '您还没有添加签署人',
-                confirmColor: '#4091fb',
-                cancelColor: '#666',
-                success: function (res) {}
-            });
-            return;
-        }
-        let dataList = this.data.dataList;
-        let names = "",
-            idCards = "",
-            mobiles = "";
-        for (let i = 0; i < dataList.length; i++) {
-            names += TrimAll(dataList[i].name) + ",";
-            idCards += TrimAll(dataList[i].idCard)+ ",";
-            mobiles += TrimAll(dataList[i].mobile) + ",";
-        }
-            names = names.substring(0, names.length - 1);
-            idCards = idCards.substring(0, idCards.length - 1);
-            mobiles = mobiles.substring(0, mobiles.length - 1);
-        let creater = wx.getStorageSync('interfaceCode'),
-            contractName = value.input,
-            accountCode = wx.getStorageSync('accountCode'),
-            contractTempNo = app.globalData.contractParam.contractTempNo,
-            templateNo = app.globalData.contractParam.templateNo,
-            operateType = app.globalData.contractParam.operateType,
-            validTime = this.data.date,
-            perpetualValid = this.data.perpetualValid?1:0,
-            templateSpecificType = app.globalData.contractParam.templateSpecificType;
-            if(validTime){
-                validTime += ' 23:59:59'
+    let interfaceCode = this.data.interfaceCode;
+    conNum(interfaceCode).then((res) => {
+      if (res.data.resultCode == 1) {
+        let b2cNum = res.data.data.b2cNum;
+        if (b2cNum <= 0) {
+          wx.showModal({
+            title: '提示',
+            content: '合同余量不足,当前剩余合同份数' + b2cNum + '份',
+            success(res) {
             }
-        let zqUserContractTempVo = {};
-        if (operateType != '') {
-            zqUserContractTempVo = {
-                "creater": creater,
-                "operateType": operateType,
-                "contractTempNo": contractTempNo,
-                "contractName": contractName,
-                "templateNo": templateNo,
-                "validTime": validTime,
-                "perpetualValid": perpetualValid,
-                "names": names,
-                "idCards": idCards,
-                "mobiles": mobiles,
-                "templateSpecificType": templateSpecificType,
-                "accountCode": accountCode
-            }
+          });
+          wx.hideLoading();
+          return;
         } else {
-            zqUserContractTempVo = {
-                "creater": creater,
-                "contractName": contractName,
-                "templateNo": templateNo,
-                "validTime": validTime,
-                "perpetualValid": perpetualValid,
-                "names": names,
-                "idCards": idCards,
-                "mobiles": mobiles,
-                "templateSpecificType": templateSpecificType,
-                "accountCode": accountCode
-            }
+          //添加签署人提交/修改签署人提交
+          if (this.data.identification == "添加签署人") {
+            let dataList = this.data.dataList;
+            dataList.push(e.detail.value)
+            this.setData({
+              dataList
+            });
+            this.hideModal()
+          } else {
+            let dataList = this.data.dataList;
+            dataList[this.data.listIndex] = e.detail.value;
+            this.setData({
+              dataList
+            });
+            this.hideModal()
+          }
         }
-        //查询合同余量
-        let interfaceCode=this.data.interfaceCode;
-        conNum(interfaceCode).then((res)=>{
-            if(res.data.resultCode==1){
-                let b2cNum=res.data.data.b2cNum;
-                if(b2cNum<=this.data.dataList.length){
-                    wx.showModal({
-                        title: '提示',
-                        content: '合同余量不足,当前剩余合同份数'+b2cNum+'份',
-                        success(res) {
-                        }
-                    });
-                    wx.hideLoading();
-                }else{
-                    wx.showLoading({
-                        title: '加载中',
-                        mask: true
-                    });
-                    this.submitSigner(zqUserContractTempVo,creater)
-                }
-            }else{
-                
-            }
-        }).catch(error=>{
+      } else {
 
+      }
+    }).catch(error => {
+
+    });
+  },
+
+  //生成合同
+  formSubmit: function(e) {
+    console.log(212111)
+    let value = e.detail.value;
+    if(!value.input) {
+        wx.showModal({
+            title: '提示',
+            content: '合同名称不能为空',
+            confirmColor: '#4091fb',
+            cancelColor: '#666',
+            success: function (res) {}
         });
-   
+        return;
+    }
+    if (!value.time && !this.data.perpetualValid) {
+        wx.showModal({
+            title: '提示',
+            content: '签署截止日期不能为空',
+            confirmColor: '#4091fb',
+            cancelColor: '#666',
+            success: function (res) {}
+        });
+        return;
+    }
+    if (!this.data.dataList.length) {
+        wx.showModal({
+            title: '提示',
+            content: '您还没有添加签署人',
+            confirmColor: '#4091fb',
+            cancelColor: '#666',
+            success: function (res) {}
+        });
+        return;
+    }
+    let dataList = this.data.dataList;
+    let names = "",
+        idCards = "",
+        mobiles = "";
+    for (let i = 0; i < dataList.length; i++) {
+        names += TrimAll(dataList[i].name) + ",";
+        idCards += TrimAll(dataList[i].idCard)+ ",";
+        mobiles += TrimAll(dataList[i].mobile) + ",";
+    }
+    names = names.substring(0, names.length - 1);
+    idCards = idCards.substring(0, idCards.length - 1);
+    mobiles = mobiles.substring(0, mobiles.length - 1);
+    let creater = wx.getStorageSync('interfaceCode'),
+        contractName = value.input,
+        accountCode = wx.getStorageSync('accountCode'),
+        contractTempNo = app.globalData.contractParam.contractTempNo,
+        templateNo = app.globalData.contractParam.templateNo,
+        operateType = app.globalData.contractParam.operateType,
+        validTime = this.data.date,
+        perpetualValid = this.data.perpetualValid?1:0,
+        templateSpecificType = app.globalData.contractParam.templateSpecificType;
+        if(validTime){
+            validTime += ' 23:59:59'
+        }
+    let zqUserContractTempVo = {};
+    if (operateType != '') {
+      zqUserContractTempVo = {
+        "creater": creater,
+        "operateType": operateType,
+        "contractTempNo": contractTempNo,
+        "contractName": contractName,
+        "templateNo": templateNo,
+        "validTime": validTime,
+        "perpetualValid": perpetualValid,
+        "names": names,
+        "idCards": idCards,
+        "mobiles": mobiles,
+        "templateSpecificType": templateSpecificType,
+        "accountCode": accountCode
+      }
+    } else {
+      zqUserContractTempVo = {
+        "creater": creater,
+        "contractName": contractName,
+        "templateNo": templateNo,
+        "validTime": validTime,
+        "perpetualValid": perpetualValid,
+        "names": names,
+        "idCards": idCards,
+        "mobiles": mobiles,
+        "templateSpecificType": templateSpecificType,
+        "accountCode": accountCode
+      }
+    }
+    this.submitSigner(zqUserContractTempVo, creater);
     return false;
+  },
+  //查询合同余量
+  searchConNum() {
+    
+  },
+  //验证合同余量
+  searchConNum() {
+    let interfaceCode = this.data.interfaceCode;
+    conNum(interfaceCode).then((res) => {
+      if (res.data.resultCode == 1) {
+        let b2cNum = res.data.data.b2cNum;
+        if (b2cNum <= 0) {
+          wx.showModal({
+            title: '提示',
+            content: '合同余量不足,当前剩余合同份数' + b2cNum + '份',
+            success(res) {
+            }
+          });
+          wx.hideLoading();
+          return;
+        } else {
+          this.submitSigner();
+        }
+      }
+    }).catch(error => {})
   },
   //提交签署人
   submitSigner(zqUserContractTempVo,creater){
@@ -443,8 +461,7 @@ Page({
                 icon:'none',
                 duration: 2000
             });
-        }
-        
+        }   
     }).catch(res => {
 
     });
@@ -467,10 +484,10 @@ Page({
       date: e.detail.value
     })
     if (this.data.date) {
-        this.setData({
-            isChecked: false,
-            perpetualValid:false
-        })
+      this.setData({
+        isChecked: false,
+        perpetualValid:false
+      })
     } else {
       this.setData({
         isChecked: true,

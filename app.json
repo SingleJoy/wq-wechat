@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/canvas/canvas",
     "pages/start/start",
+    "pages/canvas/canvas",
     "pages/auth/auth/auth",     
     "pages/contract/contractList/contractList",
     "pages/auth/login/login",
