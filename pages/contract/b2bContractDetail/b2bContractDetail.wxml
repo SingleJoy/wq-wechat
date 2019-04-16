@@ -60,11 +60,12 @@
             <view class="sign-contract-imgs">
                 <!-- 合同图片 -->
                 <view class="contract-img">
-                    <image style="height:{{imgHeight}}px" 
+                    <image style="width:{{imgWidth}}px"
+
                     class="contractImg" 
-                    data-src="{{baseUrl}}/restapi/wesign/v1/tenant/contract/img?contractUrl={{item.contractUrl}}" 
-                    src='{{baseUrl}}/restapi/wesign/v1/tenant/contract/img?contractUrl={{item.contractUrl}}' 
-                    wx:for="{{contractImgList}}" wx:key="{{item.contractUrlId}}" bindtap="previewImage"></image>
+                    data-src="{{baseUrl}}/restapi/wesign/v1/tenant/contract/img?contractUrl={{item.contractUrl}}"
+                    src='{{baseUrl}}/restapi/wesign/v1/tenant/contract/img?contractUrl={{item.contractUrl}}'
+                    wx:for="{{contractImgList}}" wx:key="{{item.contractUrlId}}" bindtap="previewImage" title="{{item.contractUrl}}"></image>
                     <image src="{{signImg}}" style="{{item.style}}" wx:if="{{signPositionList.length>0}}" wx:for="{{signPositionList}}" wx:key="item.pageNum"></image>
                 </view>
             </view>

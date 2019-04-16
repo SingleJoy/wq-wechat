@@ -69,6 +69,7 @@ Page({
             windowHeight:app.globalData.userInfo.windowHeight,
             windowWidth:app.globalData.userInfo.windowWidth,
             imgHeight:app.globalData.imgHeight,
+            imgWidth:app.globalData.imgWidth,
             signVerify:app.globalData.signVerify, //签署密码设置
         });
 

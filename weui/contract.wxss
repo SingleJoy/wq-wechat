@@ -59,7 +59,7 @@
     padding-top: 10rpx;
 }
 .search-data .data-lists .sign-user{
-    width: 600rpx;
+    width: 560rpx;
     overflow: hidden;
     text-overflow:ellipsis;
     white-space: nowrap;

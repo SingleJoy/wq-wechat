@@ -83,6 +83,7 @@ Page({
             windowHeight:app.globalData.userInfo.windowHeight,
             windowWidth:app.globalData.userInfo.windowWidth,
             imgHeight:app.globalData.imgHeight,
+            imgWidth:app.globalData.imgWidth,
             signVerify:app.globalData.signVerify, //签署密码设置
             baseUrl:app.globalData.baseUrl,
             startDate:formatTime(new Date(),false,'-')
@@ -91,10 +92,16 @@ Page({
         wx.showLoading({
             title: '加载中',
         });
+        let imgList=[];
         b2bContractImgs(this.data.interfaceCode,this.data.contractNo).then(res=>{
+
             if(res.data.resultCode == 1){
+                for(let i=0;i<res.data.dataList.length;i++){
+                    let contractUrl = res.data.dataList[i].contractUrl;
+                    imgList[i] = contractUrl
+                }
                 this.setData({
-                    contractImgList:res.data.dataList
+                    contractImgList:imgList
                 });
             }
             
