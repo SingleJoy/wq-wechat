@@ -271,3 +271,7 @@ input-holder {
   margin-right: -140rpx;
   /* margin-top: -2rpx; */
 }
+button[disabled]:not([type]) {
+  background-color: #4091FB !important;
+  color: #fff !important;
+} 

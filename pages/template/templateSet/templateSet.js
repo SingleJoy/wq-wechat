@@ -1,7 +1,5 @@
 import { backContractTempSigner, contractTemp,conNum } from '../../../wxapi/api.js';
 import { validateCard, validateMoblie,TrimAll ,formatTime} from '../../../utils/util.js';
-
-
 const app = getApp();
 Page({
   /**
@@ -14,6 +12,8 @@ Page({
       nameIdcard: "",
       namePhone: ""
     },
+    //单点操作
+    isDisabled: false,
     date: '',
     //合同名称
     contactName: "1", 
@@ -39,8 +39,7 @@ Page({
       isShowMobileHint: false,
     },
     //添加签署人信息保存
-    dataList: [
-    ],
+    dataList: [],
     showModal: false,
     //删除样式
     delate: "9",
@@ -125,6 +124,7 @@ Page({
   },
   //添加签署人（显示弹框）操作
   showDialogBtn: function (e) {
+    this.isDisabled = false;
     let value = e._relatedInfo.anchorTargetText;
     this.setData({
       identification: value
@@ -286,6 +286,24 @@ Page({
         isShowIdcardHint: false,
       }
     });
+    let dataListALL = this.data.dataList;
+    if (dataListALL) {
+      let currentSigner = e.detail.value.mobile;
+      let isRepetitionSign = dataListALL.find((element) => {
+        return element.mobile == currentSigner;
+      });
+      if (isRepetitionSign) {
+        wx.showToast({
+          title: '此手机号已添加',
+          icon: 'none'
+        })
+        return false;
+      }
+    } 
+    this.setData({
+      showModal: false
+    });
+    this.hideModal();
     let interfaceCode = this.data.interfaceCode;
     conNum(interfaceCode).then((res) => {
       if (res.data.resultCode == 1) {
@@ -307,14 +325,13 @@ Page({
             this.setData({
               dataList
             });
-            this.hideModal()
           } else {
+            this.hideModal();
             let dataList = this.data.dataList;
             dataList[this.data.listIndex] = e.detail.value;
             this.setData({
               dataList
             });
-            this.hideModal()
           }
         }
       } else {
@@ -327,7 +344,6 @@ Page({
 
   //生成合同
   formSubmit: function(e) {
-    console.log(212111)
     let value = e.detail.value;
     if(!value.input) {
         wx.showModal({
@@ -468,7 +484,10 @@ Page({
   },
   //弹框确定操作
   onConfirm: function (e) {
-    
+    this.setData({
+      showModal: false
+    });
+    this.hideModal();
   },
   //多选框操作
   checkboxChange: function (e) {
@@ -476,7 +495,6 @@ Page({
         perpetualValid:!this.data.perpetualValid,
         date:''
       })
-      console.log(this.data.perpetualValid)
   }, 
   //日期时间选择控件
   bindDateChange(e) {
