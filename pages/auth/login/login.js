@@ -95,7 +95,9 @@ Page({
                         isSubmit:false
                     })
                     login(login_data).then(res=>{
+                      console.log(res.data.data)
                         if(res.data.resultCode==1){
+                          wx.setStorageSync("wesign_token", res.data.data);
                             //获取登录列表
                             bindEnterprises(hompage_data).then(res=>{
                                 if (res.data.bindTenantNum == 1) {
