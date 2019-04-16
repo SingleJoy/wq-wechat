@@ -1,6 +1,6 @@
-import { backContractTempSigner, contractTemp } from '../../../wxapi/api.js';
+import { backContractTempSigner, contractTemp,conNum } from '../../../wxapi/api.js';
 import { validateCard, validateMoblie,TrimAll ,formatTime} from '../../../utils/util.js';
-import {conNum} from "../../../wxapi/api";
+
 
 const app = getApp();
 Page({
@@ -51,7 +51,7 @@ Page({
       contactName: app.globalData.contractParam.templateName,
       interfaceCode:wx.getStorageSync('interfaceCode'),
       startDate:formatTime(new Date(),false,'-')
-    })
+    });
     if (app.globalData.contractParam.operateType) {
       this.getSignInfo(); 
     }
@@ -419,7 +419,7 @@ Page({
             }
         }).catch(error=>{
 
-        })
+        });
    
     return false;
   },

@@ -114,12 +114,13 @@ Page({
                 };
                 //往全局变量派发一个base64img 对象
                 Object.assign(app.globalData.contractParam,base64Image);
-                let num=app.globalData.contractParam.num;
+
                 let contractNo = "applet" + app.globalData.searchParam.contractNo;
                 let userCode=wx.getStorageSync('userCode');
                 let dataParams={
                     signatureImg:'data:image/png;base64,'+base64
                 };
+                console.log('data:image/png;base64,'+base64);
                 wx.showLoading({
                     title: '提交中...',
                     mask: true
@@ -131,15 +132,10 @@ Page({
                             icon: 'none',
                             duration: 1000
                         });
-                        if(num==1){
-                            wx.navigateTo({
-                                url: '/pages/contract/contractDetail/contractDetail'
-                            });
-                        }else {
+
                             wx.navigateTo({
                                 url: '/pages/contract/b2bContractShow/b2bContractShow'
                             });
-                        }
                     }
                   this.cleardraw();
                 }).catch(error=>{

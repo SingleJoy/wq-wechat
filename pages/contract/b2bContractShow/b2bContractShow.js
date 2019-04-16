@@ -145,7 +145,7 @@ Page({
             detailMask:!this.data.detailMask
         });
     },
-//隐藏mask
+    //隐藏mask
     powerDrawer:function(e){
         this.setData({
             detailMask:false
@@ -155,20 +155,13 @@ Page({
         return false
     },
 
-//弹框关闭
+     //弹框关闭
     cancelDialog:function(){
         this.setData({
           showModalStatus:false,
           passwordDialog:false,
           psdHint: false,
           signPassword: '',
-        });
-    },
-//签署合同
-    signContract(){
-
-        wx.navigateTo({
-            url:'/pages/canvas/canvas'
         });
     },
 
@@ -268,6 +261,7 @@ Page({
 
         })
     },
+
     signSubmit(){
         accountInformation(this.data.interfaceCode, this.data.accountCode).then(res=>{
             if (res.data.resultCode == 1) {
@@ -313,14 +307,22 @@ Page({
                     url:'/pages/contract/b2bContractSuccess/b2bContractSuccess'
                 });
             }else if(res.data.responseCode == 2){
-                wx.showToast({
-                    title: res.data.resultMessage,
-                    icon:'none',
-                    duration: 2000
+                wx.showModal({
+                    title: '提示',
+                    content: res.data.responseMsg,
+                    success(res) {
+                        if (res.confirm) {
+                            wx.reLaunch({
+                                url: '/pages/contract/contractList/contractList',
+                            });
+                        } else if (res.cancel) {
+                            wx.reLaunch({
+                                url: '/pages/contract/contractList/contractList',
+                            });
+                        }
+                    }
                 });
-                wx.reLaunch({
-                    url: '/pages/contract/contractList/contractList',
-                });
+
             }else{
                 wx.reLaunch({
                     url:'/pages/index/index'

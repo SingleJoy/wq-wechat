@@ -324,8 +324,8 @@ Page({
             phoneHeight:this.data.windowHeight,
             phoneWidth: this.data.windowWidth,
             signatureImg:this.data.signImg.split(',')[1],
-            signH:this.data.windowWidth*0.21,
-            signW:this.data.windowWidth*0.21,
+            signH:this.data.windowWidth*19/90,
+            signW:this.data.windowWidth*19/90,
             signPositionStr:this.data.signPositionStr
         };
         this.setData({
@@ -337,14 +337,23 @@ Page({
                     url:'/pages/contract/b2cContractSuccess/b2cContractSuccess'
                 });
             }else if(res.data.responseCode == 2){
-                wx.showToast({
-                    title: res.data.responseMsg,
-                    icon:'none',
-                    duration: 2000
-                });
-                wx.reLaunch({
-                    url: '/pages/contract/contractList/contractList',
-                });
+                wx.showModal({
+                    title: '提示',
+                    content: res.data.responseMsg,
+                    success(res) {
+                        if (res.confirm) {
+                            wx.reLaunch({
+                                url: '/pages/contract/contractList/contractList',
+                            });
+                        } else if (res.cancel) {
+                            wx.reLaunch({
+                                url: '/pages/contract/contractList/contractList',
+                            });
+                        }
+                    }
+                })
+
+
             }else{
                 wx.reLaunch({
                     url:'/pages/index/index'
