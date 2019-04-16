@@ -52,7 +52,6 @@
                     <view wx:for="{{folderList}}" wx:key="index">
                         <view class="{{item.filingNo == filingNo?'list-item-on':'list-item'}}"  bindtap="chooseFolder" data-filingNo="{{item.filingNo}}" data-filingName="{{item.filingName}}" >
                             {{filter.filterString(item.filingName)}}
-
                         </view>
                     </view>
 

@@ -10,7 +10,7 @@
             <!-- 合同基本信息 -->
             <view class="contract-info-box" animation="{{animationData}}" wx:if="{{detailMask}}" catchtouchmove="move">
                 <view class="info-item" wx:if="{{(accountLevel==1)&&(accountCode!=contractVo.operator)&&(sponsorInterfaceCode==interfaceCode)}}">
-                    <span wx:if="{{accountLevel==1&&accountCode!=contractVo.operator}}"></span>
+
                     <text class="info-name">所属账号：</text>
                     <text class="info-value">{{enterpriseName}}</text>
                 </view>

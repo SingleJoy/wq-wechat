@@ -22,6 +22,7 @@ Page({
     data: {
       windowHeight:'',
       windowWidth:'',
+        flag:false,
       imgHeight:'',
       signVerify:'', //签署密码设置
       contractStatus:'',   //合同状态:1 待我签署 2待他人签署 3已生效 4已截止
@@ -290,7 +291,12 @@ Page({
             title: '提交中...',
             mask: true
         });
-
+         if(this.data.flag) {
+             return false
+         }
+         this.setData({
+             flag:true
+         });
         let contractNo = app.globalData.searchParam.contractNo;
         let data = {
             'tenantSignCode':this.data.interfaceCode,
@@ -307,14 +313,21 @@ Page({
             'personalPositionStr':this.data.signPositionStr2,
         };
         b2bContractmoresign(this.data.interfaceCode,this.data.userCode,contractNo,data).then(res=>{
+
             setTimeout(()=>{
                 wx.hideLoading();
             },500);
             if(res.data.responseCode == 1){
+                this.setData({
+                    flag:false
+                });
                 wx.reLaunch({
                     url:'/pages/contract/b2bContractSuccess/b2bContractSuccess'
                 });
             }else if(res.data.responseCode == 2){
+                this.setData({
+                    flag:false
+                });
                 wx.showModal({
                     title: '提示',
                     content: res.data.responseMsg,
@@ -332,6 +345,9 @@ Page({
                 });
 
             }else{
+                this.setData({
+                    flag:false
+                });
                 wx.reLaunch({
                     url:'/pages/index/index'
                 });
