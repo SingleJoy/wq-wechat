@@ -21,7 +21,7 @@ Page({
     //获取合同成功信息
     getContractInfo() {
         getContractDetails(this.data.interfaceCode,this.data.contractNo).then(res => {
-          console.log(res)
+
           this.setData({
               signList:res.data.signUserVo,
               contractName:res.data.contractVo.contractName,

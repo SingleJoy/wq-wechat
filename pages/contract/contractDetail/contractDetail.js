@@ -71,7 +71,7 @@ Page({
         wx.previewImage({
             current: current,
             urls: list
-        })
+        });
 
     },
 
@@ -103,18 +103,18 @@ Page({
         contractImgs(this.data.interfaceCode,this.data.contractNo).then(res=>{
             this.setData({
                 contractImgList:res.data
-            })
+            });
         }).catch(err=>{
 
-        })
+        });
         getContractDetails(this.data.interfaceCode,this.data.contractNo).then(res=>{
             this.setData({
                 contractVo:res.data.contractVo,
                 signUserVo:res.data.signUserVo
-            })
+            });
             setTimeout(function () {
                 wx.hideLoading()
-            }, 1000)
+            }, 1000);
         }).catch(err=>{
 
         });
@@ -123,7 +123,7 @@ Page({
             showSignRoomInfo(this.data.interfaceCode).then(res=>{
                 this.setData({
                     signRoomLink:res.data.data.signRoomLink
-                })
+                });
             }).catch(err=>{
 
             });
@@ -133,7 +133,7 @@ Page({
             let imgBase64 = res.data
             this.setData({
                 signImg:imgBase64
-            })
+            });
         }).catch(err=>{
 
         });
@@ -150,10 +150,10 @@ Page({
     powerDrawer:function(e){
         this.setData({
             detailMask:false
-        })
+        });
     },
     move:function(e){
-        return
+        return false;
     },
 //短信提醒
     smsTip:function(e){
@@ -175,13 +175,13 @@ Page({
                 wx.showToast({
                     title: '提醒成功',
                     duration: 2000
-                })
+                });
             }else{
                 wx.showToast({
                     title: '每日仅可提醒一次，提醒次数已用尽',
                     icon:'none',
                     duration: 2000
-                })
+                });
             }
         }).catch(err=>{
 
@@ -203,21 +203,21 @@ Page({
     downContract:function(e){
         this.setData({
             showModalStatus:true
-        })
+        });
     },
 //延长签署日期
     extendDate:function(e){
 
         this.setData({
             showModalStatus:true
-        })
+        });
     },
     //是否永久有效
     changePermanent:function(e){
         this.setData({
             permanentLimit:!this.data.permanentLimit,
             date:''
-        })
+        });
     },
     //弹框关闭
     cancelDialog:function(){
@@ -226,14 +226,11 @@ Page({
           passwordDialog:false,
           psdHint: false,
           signPawssword: '',
-        })
+        });
     },
     //签署合同
     signContract:function(e){
-
-
-
-        this.getSignPosition()
+        this.getSignPosition();
     },
     // 签署合同获取签章位置并展示签章图片
     getSignPosition(){
@@ -269,12 +266,12 @@ Page({
       if (!this.data.signPawssword) {
         this.setData({
           psdHint: true,
-        })
+        });
         return false;
       }
       this.setData({
         psdHint: false,
-      })
+      });
         let data={
             signVerifyPassword:md5(this.data.signPawssword)
         };
@@ -337,7 +334,7 @@ Page({
         contractmoresign(this.data.interfaceCode,contractNo,data).then(res=>{
             if(res.data.responseCode == 0){
                 wx.reLaunch({
-                    url:'/pages/template/templateSuccess/templateSuccess'
+                    url:'/pages/contract/b2cContractSuccess/b2cContractSuccess'
                 });
             }else if(res.data.responseCode == 2){
                 wx.showToast({
