@@ -249,18 +249,18 @@ Page({
           signVerifyPassword:md5(this.data.signPassword)
       };
       verifySignPassword(this.data.accountCode,data).then(res=>{
-          if(res.data.resultCode == 1){
-              this.verifySuccess();    //校验成功提交签署
-              this.setData({
-                  passwordDialog:true
-              });
-          }else{
-              wx.showToast({
-                  title: "签署密码错误",
-                  icon:'none',
-                  duration: 2000
-              });
-          }
+        if(res.data.resultCode == 1){
+            this.verifySuccess();    //校验成功提交签署
+            this.setData({
+                passwordDialog:true
+            });
+        }else{
+            wx.showToast({
+                title: "签署密码错误",
+                icon:'none',
+                duration: 2000
+            });
+        }
       }).catch(err=>{
 
       })
@@ -283,7 +283,7 @@ Page({
                     passwordDialog:true
                 });
               }else{
-                  this.verifySuccess();         //提交签署
+                this.verifySuccess("noSignVerify");         //提交签署
               }
           }else{
 
@@ -291,58 +291,59 @@ Page({
       }).catch(err=>{
 
       });
-
     },
     //密码校验成功提交操作
-    verifySuccess:function(){
-      wx.showLoading({
-        title: '加载中',
-        mask: true
-      });
-        let contractNo = app.globalData.searchParam.contractNo;
-        let data = {
-            'tenantSignCode':this.data.interfaceCode,
-            'userSignCode':this.data.userCode,
-            'enterpriseSignImg':this.data.signImg.split(",")[1],  //企业签章
-            'signatureImg':app.globalData.contractParam.base64,      //
-            'phoneHeight':844,
-            'phoneWidth':593,
-            'signH':125,
-            'signW':125,
-            'signatureW':125,
-            'signatureH':63,
-            'enterprisePositionStr':this.data.signPositionStr,
-            'personalPositionStr':this.data.signPositionStr2,
-        };
-        b2bContractmoresign(this.data.interfaceCode,this.data.userCode,contractNo,data).then(res=>{
-            if(res.data.responseCode == 1){
-                wx.reLaunch({
-                    url:'/pages/contract/b2bContractSuccess/b2bContractSuccess'
-                });
-            }else if(res.data.responseCode == 2){
-              wx.showModal({
-                  title: '提示',
-                  content: res.data.responseMsg,
-                  success(res) {
-                      if (res.confirm) {
-                          wx.reLaunch({
-                              url: '/pages/contract/contractList/contractList',
-                          });
-                      } else if (res.cancel) {
-                          wx.reLaunch({
-                              url: '/pages/contract/contractList/contractList',
-                          });
-                      }
-                  }
+  verifySuccess: function (noSignVerify){
+    // if (noSignVerify = "noSignVerify") {
+    //   wx.showLoading({
+    //     title: '加载中',
+    //     mask: true
+    //   });
+    // }
+      let contractNo = app.globalData.searchParam.contractNo;
+      let data = {
+          'tenantSignCode':this.data.interfaceCode,
+          'userSignCode':this.data.userCode,
+          'enterpriseSignImg':this.data.signImg.split(",")[1],  //企业签章
+          'signatureImg':app.globalData.contractParam.base64,      //
+          'phoneHeight':844,
+          'phoneWidth':593,
+          'signH':125,
+          'signW':125,
+          'signatureW':125,
+          'signatureH':63,
+          'enterprisePositionStr':this.data.signPositionStr,
+          'personalPositionStr':this.data.signPositionStr2,
+      };
+      b2bContractmoresign(this.data.interfaceCode,this.data.userCode,contractNo,data).then(res=>{
+          if(res.data.responseCode == 1){
+              wx.reLaunch({
+                  url:'/pages/contract/b2bContractSuccess/b2bContractSuccess'
               });
-            }else{
-                wx.reLaunch({
-                    url:'/pages/index/index'
-                });
-            }
-        }).catch(err=>{
+          }else if(res.data.responseCode == 2){
+            wx.showModal({
+                title: '提示',
+                content: res.data.responseMsg,
+                success(res) {
+                    if (res.confirm) {
+                        wx.reLaunch({
+                            url: '/pages/contract/contractList/contractList',
+                        });
+                    } else if (res.cancel) {
+                        wx.reLaunch({
+                            url: '/pages/contract/contractList/contractList',
+                        });
+                    }
+                }
+            });
+          }else{
+              wx.reLaunch({
+                  url:'/pages/index/index'
+              });
+          }
+      }).catch(err=>{
 
-        })
+      })
     },
     
     //获取签署密码
