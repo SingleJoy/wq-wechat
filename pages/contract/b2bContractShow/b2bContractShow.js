@@ -2,7 +2,7 @@
 import {
     accountInformation,
     b2bContractImgs,
-    getContractDetails,
+    b2bsignFinish,
     showSignRoomInfo,
     getSignature,
     verifySignPassword,
@@ -85,10 +85,10 @@ Page({
         }).catch(err=>{
 
         });
-        getContractDetails(this.data.interfaceCode,this.data.contractNo).then(res=>{
+        b2bsignFinish(this.data.contractNo).then(res=>{
             this.setData({
-                contractVo:res.data.contractVo,
-                signUserVo:res.data.signUserVo
+                contractVo:res.data.data,
+                signUserVo:res.data.dataList,
             });
             setTimeout(function () {
                 wx.hideLoading();
@@ -286,6 +286,11 @@ Page({
     },
     //密码校验成功提交操作
     verifySuccess:function(){
+        wx.showLoading({
+            title: '提交中...',
+            mask: true
+        });
+
         let contractNo = app.globalData.searchParam.contractNo;
         let data = {
             'tenantSignCode':this.data.interfaceCode,
@@ -302,6 +307,9 @@ Page({
             'personalPositionStr':this.data.signPositionStr2,
         };
         b2bContractmoresign(this.data.interfaceCode,this.data.userCode,contractNo,data).then(res=>{
+            setTimeout(()=>{
+                wx.hideLoading();
+            },500);
             if(res.data.responseCode == 1){
                 wx.reLaunch({
                     url:'/pages/contract/b2bContractSuccess/b2bContractSuccess'
