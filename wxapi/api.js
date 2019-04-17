@@ -260,6 +260,6 @@ module.exports = {
     getSignatureImg,
     b2bsignFinish,
     conNum,
-  accountInformation,
+    accountInformation,
     getAccountName
 }
