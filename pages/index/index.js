@@ -125,7 +125,7 @@ Page({
     },
 
     tapBanner: function (event) {
-        console.log(event.currentTarget.dataset.list)
+
         var src = event.currentTarget.dataset.src;     //获取data-src
         var imgList = event.currentTarget.dataset.list;//获取data-list
         var list = [];

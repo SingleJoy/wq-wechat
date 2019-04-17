@@ -40,7 +40,7 @@ Page({
   //显示弹框
   powerDrawer:function(e){
     var currentStatus = e.currentTarget.dataset.status;
-    console.log(currentStatus)
+
     this.init(currentStatus)
   },
   //弹框初始化
@@ -100,7 +100,7 @@ Page({
   
   },
   swiperchange: function (e) {
-    console.log(e.detail.current)
+
     this.setData({
       swiperCurrent: e.detail.current
     })
