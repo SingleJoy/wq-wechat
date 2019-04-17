@@ -84,7 +84,7 @@ Page({
                 username: this.data.username,
                 password:md5(this.data.password)
             }
-            let hompage_data = {
+            let homepage_data = {
                 mobile: this.data.username
             }
             //验证账户
@@ -99,7 +99,7 @@ Page({
                         if(res.data.resultCode==1){
                           wx.setStorageSync("wesign_token", res.data.data);
                             //获取登录列表
-                            bindEnterprises(hompage_data).then(res=>{
+                            bindEnterprises(homepage_data).then(res=>{
                                 if (res.data.bindTenantNum == 1) {
                                     let res_data = '';
                                     if (res.data.dataList[0].length > 0) {   //判断是一级账号还是二级账号直接进首页
