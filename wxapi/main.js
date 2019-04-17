@@ -19,7 +19,7 @@ const request = (url, method, data, contentType) => {
         data: data,
             header: {
               'Content-Type':content_type,
-              'cookie': 'wesign_token=' + wx.getStorageSync("wesign_token") + ';SESSION=62903821-116f-483a-9fcd-8ceac0eca37a; Path=/; HttpOnly'
+              'cookie': 'wesign_token=' + wx.getStorageSync("wesign_token")
             },
         success(res) {
             // let wesign_token=res.header["Set-Cookie"];
