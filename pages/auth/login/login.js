@@ -116,6 +116,14 @@ Page({
                                     //登录=>主页
                                     let data={
                                         mobile:res_data.mobile
+                                    };
+
+                                    if(res.data.dataList[1].length&&res.data.dataList[1][0].accountStatus!=3){
+                                        wx.navigateTo({
+                                            url: '/pages/auth/auth/auth'
+                                        });
+                                        wx.hideLoading()
+                                        return false;
                                     }
                                     homePage(res_data.interfaceCode,data).then(res=>{
                                       let signVerify = {
