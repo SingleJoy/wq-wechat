@@ -20,7 +20,7 @@ Page({
             signUserName: "11",
           },
           {
-            signUserName: "体会到发挥司法厚大司体会到发挥司法厚大司体会到发挥司法厚大司体会到发挥司法厚大司体会到发挥司法厚大司",
+            signUserName: "",
           },
         ],
         interfaceCode: ''
