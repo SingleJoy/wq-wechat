@@ -19,14 +19,9 @@ const request = (url, method, data, contentType) => {
             data: data,
             header: {
                 'Content-Type':content_type,
-                'cookie':wx.getStorageSync("wesign_token")
+                'cookie': 'wesign_token=' + wx.getStorageSync("wesign_token")
             },
             success(res) {
-
-                let wesign_token=res.header["Set-Cookie"];
-                if(wesign_token){
-                    wx.setStorageSync("wesign_token",wesign_token)
-                }
 
                 if (res.statusCode == 200) {
 
@@ -51,4 +46,3 @@ const request = (url, method, data, contentType) => {
 }
 
 module.exports = request;
-

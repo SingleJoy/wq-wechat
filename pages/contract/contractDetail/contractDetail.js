@@ -56,7 +56,8 @@ Page({
         signPawssword:'',//签署密码
         contractInfo:'',      //合同信息
         remindOnce:'',      //短信提醒单击操作
-        psdHint: false //签署密码为空提示
+        psdHint: false, //签署密码为空提示
+        flag: false //单点击
     },
 
     /**
@@ -312,8 +313,15 @@ Page({
     },
     //提交签署
     signSubmit(){
+        if(this.data.flag){
+            return false
+        }
+        this.setData({
+            flag:true
+        });
         accountInformation(this.data.interfaceCode, this.data.accountCode).then(res=>{
             if (res.data.resultCode == 1) {
+
                 let signVerify = res.data.data.signVerify;
                 this.setData({
                     signVerify:signVerify
@@ -335,6 +343,7 @@ Page({
     },
     //密码校验成功提交操作
     verifySuccess:function(){
+
         let contractNo = app.globalData.searchParam.contractNo;
         let data = {
             contractNum:contractNo,
@@ -349,6 +358,9 @@ Page({
             passwordDialog:false
         });
         contractmoresign(this.data.interfaceCode,contractNo,data).then(res=>{
+            this.setData({
+                flag:false
+            });
             if(res.data.responseCode == 0){
                 wx.reLaunch({
                     url:'/pages/contract/b2cContractSuccess/b2cContractSuccess'
@@ -369,7 +381,6 @@ Page({
                         }
                     }
                 })
-
 
             }else{
                 wx.reLaunch({
