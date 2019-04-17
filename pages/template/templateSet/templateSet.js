@@ -44,6 +44,7 @@ Page({
     //删除样式
     delate: "9",
     hasContract:true,
+      flag:false
   },
   onLoad: function (options) {
     this.setData({
@@ -442,8 +443,16 @@ Page({
   },
   //提交签署人
   submitSigner(zqUserContractTempVo,creater){
+     if(this.data.flag){
+       return false
+     }
+     this.setData({
+         flag:true
+     });
+
     contractTemp(zqUserContractTempVo, creater).then(res => {
         if(res.data.resultCode=="0"){
+
             //临时合同编号
             let signParams = {
                 contractTempNo: res.data.data
@@ -451,6 +460,9 @@ Page({
             Object.assign(app.globalData.contractParam,signParams);
             wx.navigateTo({
                 url: '../templateAddInfo/templateAddInfo'
+            });
+            this.setData({
+                flag:false
             });
             wx.hideLoading();
         }else{
