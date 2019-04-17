@@ -12,9 +12,9 @@ function login(data){
 }
 
 //登出
-function exitAndDeleteSession(){
+function exitAndDeleteSession(data){
     // return request(api+'/v1/tenant/exitAndDeleteSession','get')
-    return request(api+'/v1.8/applet/tenant/exit','post')
+    return request(api+'/v1.8/applet/tenant/exit','post',data)
 }
 //查询企业数量
 function bindEnterprises(data){

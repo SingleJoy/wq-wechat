@@ -32,8 +32,12 @@ Page({
             cancelColor: '#666',
             success(res) {
                 if (res.confirm) {
-                    exitAndDeleteSession().then((res)=>{
-                        try {
+                    let data={
+                        'token':wx.getStorageSync("wesign_token")
+                    };
+                    exitAndDeleteSession(data).then((res)=>{
+
+                        if(res.data.status){
                             //清除缓存数据
                             wx.clearStorageSync();
                             app.globalData.searchParam={};
@@ -42,9 +46,8 @@ Page({
                             wx.redirectTo({
                                 url:'/pages/auth/login/login'
                             })
-                        } catch (e) {
-
                         }
+
 
                     }).catch(error=>{
 
