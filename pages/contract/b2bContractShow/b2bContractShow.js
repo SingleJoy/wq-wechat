@@ -271,15 +271,15 @@ Page({
       wx.showLoading({
         title: '加载中',
         mask: true,
-      })
+      });
       accountInformation(this.data.interfaceCode, this.data.accountCode).then(res=>{
           if (res.data.resultCode == 1) {
-              wx.hideLoading();
               let signVerify = res.data.data.signVerify;
               this.setData({
                   signVerify:signVerify
               });
               if(this.data.signVerify){
+                wx.hideLoading();
                 this.setData({
                     passwordDialog:true
                 });
