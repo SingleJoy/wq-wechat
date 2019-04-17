@@ -141,12 +141,12 @@ Page({
         }).catch(err=>{
 
         });
-        // 一级账号查看二级账号合同
+
         if(this.data.accountLevel==1&&(this.data.operator!=this.data.accountCode)){
             let data={
                 'accountCode':this.data.operator
             };
-            getAccountName(this.data.interfaceCode,data).then((res)=>{
+            getAccountName(data,this.data.interfaceCode).then((res)=>{
                 if(res.data.resultCode == 1){
                     this.setData({
                         enterpriseName: res.data.data

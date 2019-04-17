@@ -441,9 +441,18 @@ Page({
     },
 //延期确定按钮
     dateSubmit:function(){
+
+        if((!this.data.date)&&!(this.data.permanentLimit)){
+            wx.showToast({
+                title: '请选择日期',
+                icon:'none',
+                duration: 1000
+            });
+            return false;
+        }
         let data={
-           'validTime':this.data.date+' 23:59:59',
-           'perpetualValid':this.data.permanentLimit?1:0,
+            'validTime':this.data.date+' 23:59:59',
+            'perpetualValid':this.data.permanentLimit?1:0,
         };
         this.setData({
             showModalStatus:false
