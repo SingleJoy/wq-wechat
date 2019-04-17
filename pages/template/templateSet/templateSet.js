@@ -129,54 +129,83 @@ Page({
     this.setData({
       identification: value
     });
-    this.setData({
-      showModal: true
-    });
     //添加签署人
     if (value == "添加签署人") {
+      let interfaceCode = this.data.interfaceCode;
+      conNum(interfaceCode).then((res) => {
+        if (res.data.resultCode == 1) {
+          let b2cNum = res.data.data.b2cNum;
+          if (b2cNum <= 0) {
+            wx.showModal({
+              title: '提示',
+              content: '合同余量不足,当前剩余合同份数' + b2cNum + '份',
+              success(res) {
+              }
+            });
+            wx.hideLoading();
+          } else if (b2cNum <= this.data.dataList.length) {
+            wx.showModal({
+              title: '提示',
+              content: '不可添加更多签署人，当前合同余量' + b2cNum + '份，至多可添加' + b2cNum + '个签署人',
+              success(res) {
+              }
+            });
+          } else {
+            this.setData({
+              showModal: true
+            });
+            this.setData({
+              listValue: {
+                nameValue: "",
+                nameIdcard: "",
+                namePhone: ""
+              },
+              addSignature: "添加签署人",
+              model: {
+                nameHint: "请输入姓名",
+                isShowNameHint: false,
+                idcardHint: "请输入身份证",
+                isShowIdcardHint: false,
+                mobileHint: "请输入手机号",
+                isShowMobileHint: false,
+              }
+            });
+            return;
+          }
+        }
+      }).catch(error => {})
+      
+    } else {
+      //修改签署人
+      this.setData({
+        showModal: true
+      });
+      let modelList = this.data.dataList[e.target.dataset.id];
+      this.setData({
+        listIndex: e.target.dataset.id || e.target.dataset.id == 0 ? e.target.dataset.id : ''
+      });
+      if (!modelList) {
+        modelList = [];
+      }
       this.setData({
         listValue: {
-          nameValue: "",
-          nameIdcard: "",
-          namePhone: ""
+          nameValue: modelList.name,
+          nameIdcard: modelList.idCard,
+          namePhone: modelList.mobile
         },
-        addSignature: "添加签署人",
+        addSignature: "修改签署人",
         model: {
-          nameHint: "请输入姓名",
+          nameHint: modelList.name,
           isShowNameHint: false,
-          idcardHint: "请输入身份证",
+          idcardHint: modelList.idCard,
           isShowIdcardHint: false,
-          mobileHint: "请输入手机号",
+          mobileHint: modelList.mobile,
           isShowMobileHint: false,
         }
       });
-      return;
-    } 
-    //修改签署人
-    let modelList = this.data.dataList[e.target.dataset.id];
-    this.setData({
-      listIndex: e.target.dataset.id || e.target.dataset.id==0 ?e.target.dataset.id:''
-    });
-    if(!modelList){
-        modelList=[];
+      return false;
     }
-    this.setData({
-      listValue: {
-        nameValue: modelList.name,
-        nameIdcard: modelList.idCard,
-        namePhone: modelList.mobile
-      },
-      addSignature: "修改签署人",
-      model: {
-        nameHint: modelList.name,
-        isShowNameHint: false,
-        idcardHint: modelList.idCard,
-        isShowIdcardHint: false,
-        mobileHint: modelList.mobile,
-        isShowMobileHint: false,
-      }
-    });
-    return false;
+    
   },
   preventTouchMove() {
     
@@ -304,42 +333,21 @@ Page({
       showModal: false
     });
     this.hideModal();
-    let interfaceCode = this.data.interfaceCode;
-    conNum(interfaceCode).then((res) => {
-      if (res.data.resultCode == 1) {
-        let b2cNum = res.data.data.b2cNum;
-        if (b2cNum <= 0) {
-          wx.showModal({
-            title: '提示',
-            content: '合同余量不足,当前剩余合同份数' + b2cNum + '份',
-            success(res) {
-            }
-          });
-          wx.hideLoading();
-          return;
-        } else {
-          //添加签署人提交/修改签署人提交
-          if (this.data.identification == "添加签署人") {
-            let dataList = this.data.dataList;
-            dataList.push(e.detail.value)
-            this.setData({
-              dataList
-            });
-          } else {
-            this.hideModal();
-            let dataList = this.data.dataList;
-            dataList[this.data.listIndex] = e.detail.value;
-            this.setData({
-              dataList
-            });
-          }
-        }
-      } else {
-
-      }
-    }).catch(error => {
-
-    });
+    //添加签署人提交/修改签署人提交
+    if (this.data.identification == "添加签署人") {
+      let dataList = this.data.dataList;
+      dataList.push(e.detail.value)
+      this.setData({
+        dataList
+      });
+    } else {
+      this.hideModal();
+      let dataList = this.data.dataList;
+      dataList[this.data.listIndex] = e.detail.value;
+      this.setData({
+        dataList
+      });
+    }
   },
 
   //生成合同
@@ -431,31 +439,6 @@ Page({
     }
     this.submitSigner(zqUserContractTempVo, creater);
     return false;
-  },
-  //查询合同余量
-  searchConNum() {
-    
-  },
-  //验证合同余量
-  searchConNum() {
-    let interfaceCode = this.data.interfaceCode;
-    conNum(interfaceCode).then((res) => {
-      if (res.data.resultCode == 1) {
-        let b2cNum = res.data.data.b2cNum;
-        if (b2cNum <= 0) {
-          wx.showModal({
-            title: '提示',
-            content: '合同余量不足,当前剩余合同份数' + b2cNum + '份',
-            success(res) {
-            }
-          });
-          wx.hideLoading();
-          return;
-        } else {
-          this.submitSigner();
-        }
-      }
-    }).catch(error => {})
   },
   //提交签署人
   submitSigner(zqUserContractTempVo,creater){
