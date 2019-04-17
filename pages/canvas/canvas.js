@@ -189,7 +189,7 @@ Page({
         });
     },
     onHide:function () {
-       console.log("onHide");
+
         this.setData({
             flag:false
         });

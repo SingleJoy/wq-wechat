@@ -252,15 +252,15 @@ Page({
       verifySignPassword(this.data.accountCode,data).then(res=>{
         if(res.data.resultCode == 1){
             this.verifySuccess();    //校验成功提交签署
-            this.setData({
-                passwordDialog:true
-            });
+            // this.setData({
+            //     passwordDialog:true
+            // });
         }else{
-            wx.showToast({
-                title: "签署密码错误",
-                icon:'none',
-                duration: 2000
-            });
+          wx.showToast({
+              title: "签署密码错误",
+              icon:'none',
+              duration: 2000
+          });
         }
       }).catch(err=>{
 
@@ -271,15 +271,15 @@ Page({
       wx.showLoading({
         title: '加载中',
         mask: true,
-      })
+      });
       accountInformation(this.data.interfaceCode, this.data.accountCode).then(res=>{
           if (res.data.resultCode == 1) {
-              wx.hideLoading();
               let signVerify = res.data.data.signVerify;
               this.setData({
                   signVerify:signVerify
               });
               if(this.data.signVerify){
+                wx.hideLoading();
                 this.setData({
                     passwordDialog:true
                 });
