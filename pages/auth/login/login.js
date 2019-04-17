@@ -130,9 +130,11 @@ Page({
                                         if(res.data.resultCode==1){
                                           wx.hideLoading()
                                             if(res.data.dataList[1].auditSteps=='3'){
-                                                wx.switchTab({
-                                                    url: '/pages/index/index'
-                                                })
+                                                if(res.data.dataList[1].accountStatus=='3'){
+                                                    wx.switchTab({
+                                                        url: '/pages/index/index'
+                                                    })
+                                                }
                                             }else{
                                                 wx.navigateTo({
                                                     url: '/pages/auth/auth/auth'

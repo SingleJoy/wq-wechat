@@ -30,6 +30,7 @@ Page({
         show:false,
         selected:0,
         num:1,
+        folderNo:'',
         contractStatus:3,
         folderList:[], //归档文件夹列表
         accountList:[], //账户角色列表

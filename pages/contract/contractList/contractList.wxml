@@ -50,8 +50,9 @@
 
                 <view class="{{selected==1?'show':'hidden'}}">
                     <view wx:for="{{folderList}}" wx:key="index">
-                        <view class="{{item.filingNo == filingNo?'list-item-on':'list-item'}}"  bindtap="chooseFolder" data-filingNo="{{item.filingNo}}" data-filingName="{{item.filingName}}" >
+                        <view class="{{item.filingNo == folderNo?'list-item-on':'list-item'}}"  bindtap="chooseFolder" data-filingNo="{{item.filingNo}}" data-filingName="{{item.filingName}}" >
                             {{filter.filterString(item.filingName)}}
+
                         </view>
                     </view>
 

@@ -17,10 +17,10 @@ Page({
         //签署人员信息
         signList:[
           {
-            signUserName: "11",
+            signUserName: "",
           },
           {
-            signUserName: "体会到发挥司法厚大司体会到发挥司法厚大司体会到发挥司法厚大司体会到发挥司法厚大司体会到发挥司法厚大司",
+            signUserName: "",
           },
         ],
         interfaceCode: ''
@@ -28,14 +28,10 @@ Page({
     //获取合同成功信息
     getContractInfo() {
         b2bsignFinish(this.data.contractNo).then(res => {
-
-
-
                 this.setData({
                     contractName: res.data.data.contractName,
                     validTime: res.data.data.validTime,
                     signList: res.data.dataList,
-
                 });
 
         }).catch(res => {
