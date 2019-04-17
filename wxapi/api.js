@@ -52,8 +52,8 @@ function signFinish(contractTempNo) {
   return request(api + '/v1.8/contract/' + contractTempNo + '/signFinish', 'get')
 }
 //b2b合同签署成功
-function b2bsignFinish(contract) {
-    return request(api + '/v1.4/contract/' + contract + '/signFinish', 'get')
+function b2bsignFinish(contractNo) {
+    return request(api + '/v1.4/contract/' + contractNo + '/signFinish', 'get')
 }
 //获取合同连接
 function getSignLink(interfaceCode, contractNo) {
@@ -63,7 +63,10 @@ function getSignLink(interfaceCode, contractNo) {
 function getSignatures(interfaceCode){
     return request(api+'/v1.5/tenant/'+interfaceCode+'/getSignatures', 'get')
 }
-
+//获取详情页账户名
+function getAccountName(interfaceCode,data) {
+    return request( api+'/v1.5/tenant/' + interfaceCode + '/getAccountName','get',data);
+}
 
 //首页查询合同状态、数量
 const contractNum  = {
@@ -257,5 +260,6 @@ module.exports = {
     getSignatureImg,
     b2bsignFinish,
     conNum,
-  accountInformation
+  accountInformation,
+    getAccountName
 }

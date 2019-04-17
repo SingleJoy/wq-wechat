@@ -15,13 +15,20 @@ Page({
         //签署链接
         signRoomLink: '',
         //签署人员信息
-        signList:[],
+        signList:[
+          {
+            signUserName: "11",
+          },
+          {
+            signUserName: "体会到发挥司法厚大司体会到发挥司法厚大司体会到发挥司法厚大司体会到发挥司法厚大司体会到发挥司法厚大司",
+          },
+        ],
         interfaceCode: ''
     },
     //获取合同成功信息
     getContractInfo() {
         getContractDetails(this.data.interfaceCode,this.data.contractNo).then(res => {
-          console.log(res)
+
           this.setData({
               signList:res.data.signUserVo,
               contractName:res.data.contractVo.contractName,

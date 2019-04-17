@@ -26,15 +26,15 @@
     padding: 0 20rpx;
 }
 .operate button.waitMe{
-    background: #4091fb;
+    background: #75AFF8;
 
  }
 .operate button.waitOther{
-    background: #09a13b;
+    background: #98D98E;
 }
 .operate button.effective {
-  background: #ff8400;
+  background: #F8B862;
 }
 .operate button.close {
-    background:red;
+    background:#EC6071;
 }

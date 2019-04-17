@@ -1,12 +1,13 @@
 <view class="canvasBox" style="width:{{width}}px;height:100vh;">
+
     <view class="sign-tips">
         <text>{{tips}}</text>
     </view>
-
-    <view class="sign-operation">
-        <button type="button" value="提交" bindtouchstart="getImg" class="btn-style sign-submit">提交</button>
+    <view class="sign-operation" style="width:45px;height:100vh;">
 
         <button type="button" value="" bindtouchstart="cleardraw"  class="btn-style clear-sign">清屏</button>
+
+        <button type="button" value="提交" bindtouchstart="getImg" class="btn-style sign-submit">提交</button>
     </view>
 
     <canvas id="canvas" canvas-id="canvas" disable-scroll="true" bindtouchstart="canvasStart"

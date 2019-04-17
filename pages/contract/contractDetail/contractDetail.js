@@ -12,6 +12,7 @@ import {
     contractmoresign,
     updateContractTime,
     signerpositions,
+    getAccountName
 } from '../../../wxapi/api.js';
 
 const app = getApp();
@@ -71,13 +72,12 @@ Page({
         wx.previewImage({
             current: current,
             urls: list
-        })
+        });
 
     },
 
     onLoad: function (options) {
         let param_data = app.globalData.searchParam;
-        console.log(param_data.contractStatus)
         this.setData({
             contractStatus:param_data.contractStatus,
             contractNo:param_data.contractNo,
@@ -86,13 +86,15 @@ Page({
             accountCode:wx.getStorageSync('accountCode'),
             defaultEmail:wx.getStorageSync('email'),
             mobile:wx.getStorageSync('mobile'),
-            enterpriseName:wx.getStorageSync('enterpriseName'),
+            creater:app.globalData.searchParam.creater,
+            operator:app.globalData.searchParam.operator,
             validTime:param_data.validTime.substring(0,10),
             num:param_data.num,
             contractInfo:param_data,
             windowHeight:app.globalData.userInfo.windowHeight,
             windowWidth:app.globalData.userInfo.windowWidth,
             imgHeight:app.globalData.imgHeight,
+            imgWidth:app.globalData.imgWidth,
             signVerify:app.globalData.signVerify, //签署密码设置
             baseUrl:app.globalData.baseUrl,
             startDate:formatTime(new Date(),false,'-')
@@ -103,18 +105,18 @@ Page({
         contractImgs(this.data.interfaceCode,this.data.contractNo).then(res=>{
             this.setData({
                 contractImgList:res.data
-            })
+            });
         }).catch(err=>{
 
-        })
+        });
         getContractDetails(this.data.interfaceCode,this.data.contractNo).then(res=>{
             this.setData({
                 contractVo:res.data.contractVo,
                 signUserVo:res.data.signUserVo
-            })
+            });
             setTimeout(function () {
                 wx.hideLoading()
-            }, 1000)
+            }, 1000);
         }).catch(err=>{
 
         });
@@ -123,7 +125,7 @@ Page({
             showSignRoomInfo(this.data.interfaceCode).then(res=>{
                 this.setData({
                     signRoomLink:res.data.data.signRoomLink
-                })
+                });
             }).catch(err=>{
 
             });
@@ -133,10 +135,25 @@ Page({
             let imgBase64 = res.data
             this.setData({
                 signImg:imgBase64
-            })
+            });
         }).catch(err=>{
 
         });
+        // 一级账号查看二级账号合同
+        if(this.data.accountLevel==1&&(this.data.operator!=this.data.accountCode)){
+            let data={
+                'accountCode':this.data.operator
+            };
+            getAccountName(this.data.interfaceCode,data).then((res)=>{
+                if(res.data.resultCode == 1){
+                    this.setData({
+                        enterpriseName: res.data.data
+                    });
+                }
+            }).catch(error=>{
+
+            })
+        }
 
     },
 
@@ -150,10 +167,10 @@ Page({
     powerDrawer:function(e){
         this.setData({
             detailMask:false
-        })
+        });
     },
     move:function(e){
-        return
+        return false;
     },
 //短信提醒
     smsTip:function(e){
@@ -175,13 +192,13 @@ Page({
                 wx.showToast({
                     title: '提醒成功',
                     duration: 2000
-                })
+                });
             }else{
                 wx.showToast({
                     title: '每日仅可提醒一次，提醒次数已用尽',
                     icon:'none',
                     duration: 2000
-                })
+                });
             }
         }).catch(err=>{
 
@@ -203,21 +220,21 @@ Page({
     downContract:function(e){
         this.setData({
             showModalStatus:true
-        })
+        });
     },
 //延长签署日期
     extendDate:function(e){
 
         this.setData({
             showModalStatus:true
-        })
+        });
     },
     //是否永久有效
     changePermanent:function(e){
         this.setData({
             permanentLimit:!this.data.permanentLimit,
             date:''
-        })
+        });
     },
     //弹框关闭
     cancelDialog:function(){
@@ -226,14 +243,11 @@ Page({
           passwordDialog:false,
           psdHint: false,
           signPawssword: '',
-        })
+        });
     },
     //签署合同
     signContract:function(e){
-
-
-
-        this.getSignPosition()
+        this.getSignPosition();
     },
     // 签署合同获取签章位置并展示签章图片
     getSignPosition(){
@@ -269,12 +283,12 @@ Page({
       if (!this.data.signPawssword) {
         this.setData({
           psdHint: true,
-        })
+        });
         return false;
       }
       this.setData({
         psdHint: false,
-      })
+      });
         let data={
             signVerifyPassword:md5(this.data.signPawssword)
         };
@@ -327,8 +341,8 @@ Page({
             phoneHeight:this.data.windowHeight,
             phoneWidth: this.data.windowWidth,
             signatureImg:this.data.signImg.split(',')[1],
-            signH:this.data.windowWidth*0.21,
-            signW:this.data.windowWidth*0.21,
+            signH:this.data.windowWidth*19/90,
+            signW:this.data.windowWidth*19/90,
             signPositionStr:this.data.signPositionStr
         };
         this.setData({
@@ -337,17 +351,26 @@ Page({
         contractmoresign(this.data.interfaceCode,contractNo,data).then(res=>{
             if(res.data.responseCode == 0){
                 wx.reLaunch({
-                    url:'/pages/template/templateSuccess/templateSuccess'
+                    url:'/pages/contract/b2cContractSuccess/b2cContractSuccess'
                 });
             }else if(res.data.responseCode == 2){
-                wx.showToast({
-                    title: res.data.responseMsg,
-                    icon:'none',
-                    duration: 2000
-                });
-                wx.reLaunch({
-                    url: '/pages/contract/contractList/contractList',
-                });
+                wx.showModal({
+                    title: '提示',
+                    content: res.data.responseMsg,
+                    success(res) {
+                        if (res.confirm) {
+                            wx.reLaunch({
+                                url: '/pages/contract/contractList/contractList',
+                            });
+                        } else if (res.cancel) {
+                            wx.reLaunch({
+                                url: '/pages/contract/contractList/contractList',
+                            });
+                        }
+                    }
+                })
+
+
             }else{
                 wx.reLaunch({
                     url:'/pages/index/index'

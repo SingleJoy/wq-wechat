@@ -34,7 +34,7 @@
     float: right;
 }
 .signed{
-    background: #ff1111;
+    background: #EC6D71;
 }
 view,text{
   font-family: PingFangSC-Light,helvetica,'Heiti SC';

@@ -7,7 +7,10 @@ import {
     showSignRoomInfo,
     getSignature,
     signerpositions,
-    updateContractTime} from '../../../wxapi/api.js';
+    updateContractTime,
+    getAccountName
+} from '../../../wxapi/api.js';
+
 const app = getApp();
 
 Page({
@@ -47,7 +50,8 @@ Page({
         signPawssword:'',//签署密码
         validTime:'',//签署截止日期
         remindOnce:'',//提醒按钮单点操作
-        signParams:''
+        signParams:'',
+
     },
 
     /**
@@ -77,12 +81,12 @@ Page({
             accountLevel:app.globalData.searchParam.accountLevel,
             accountCode:wx.getStorageSync('accountCode'),
             interfaceCode:wx.getStorageSync('interfaceCode'),
-            enterpriseName:wx.getStorageSync('enterpriseName'),
             defaultEmail:wx.getStorageSync('email'),
             num:app.globalData.searchParam.num,
             windowHeight:app.globalData.userInfo.windowHeight,
             windowWidth:app.globalData.userInfo.windowWidth,
             imgHeight:app.globalData.imgHeight,
+            imgWidth:app.globalData.imgWidth,
             signVerify:app.globalData.signVerify, //签署密码设置
             baseUrl:app.globalData.baseUrl,
             startDate:formatTime(new Date(),false,'-')
@@ -91,8 +95,11 @@ Page({
         wx.showLoading({
             title: '加载中',
         });
+
         b2bContractImgs(this.data.interfaceCode,this.data.contractNo).then(res=>{
+
             if(res.data.resultCode == 1){
+
                 this.setData({
                     contractImgList:res.data.dataList
                 });
@@ -133,7 +140,22 @@ Page({
             });
         }).catch(err=>{
 
-        })
+        });
+        // 一级账号查看二级账号合同
+        if(this.data.accountLevel==1&&(this.data.operator!=this.data.accountCode)){
+            let data={
+                'accountCode':this.data.operator
+            };
+            getAccountName(this.data.interfaceCode,data).then((res)=>{
+                if(res.data.resultCode == 1){
+                    this.setData({
+                        enterpriseName: res.data.data
+                    });
+                }
+            }).catch(error=>{
+
+            })
+        }
 
     },
 
