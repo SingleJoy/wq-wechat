@@ -117,6 +117,23 @@ Page({
                                     //登录=>主页
                                     let data={
                                         mobile:res_data.mobile
+                                    };
+
+                                    if(res.data.dataList[1][0]&&res.data.dataList[1][0].accountStatus==6){
+                                        wx.showToast({
+                                            title: '此账号已被冻结',
+                                            icon: 'none',
+                                            duration: 1500
+                                        })
+                                        wx.hideLoading();
+                                        return false;
+                                    }
+                                    if(res.data.dataList[1][0]&&res.data.dataList[1][0].accountStatus==2){
+                                        wx.navigateTo({
+                                            url: '/pages/auth/auth/auth'
+                                        });
+                                        wx.hideLoading();
+                                        return false;
                                     }
                                     homePage(res_data.interfaceCode,data).then(res=>{
                                       let signVerify = {
@@ -131,9 +148,11 @@ Page({
                                         if(res.data.resultCode==1){
                                           wx.hideLoading()
                                             if(res.data.dataList[1].auditSteps=='3'){
-                                                wx.switchTab({
-                                                    url: '/pages/index/index'
-                                                })
+
+                                                    wx.switchTab({
+                                                        url: '/pages/index/index'
+                                                    })
+
                                             }else{
                                                 wx.navigateTo({
                                                     url: '/pages/auth/auth/auth'
