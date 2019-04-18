@@ -42,6 +42,7 @@ Page({
       optionAuthority:true,  //合同详情按钮权限
       signRoomLink:'',
       passwordDialog:false,
+      flag:false,
       signImg:'',
       signPositionList:[],
       signPositionStr:'',
@@ -301,6 +302,12 @@ Page({
     //     mask: true
     //   });
     // }
+      if(this.data.flag){
+          return false
+      }
+      this.setData({
+          flag:true
+      });
       let contractNo = app.globalData.searchParam.contractNo;
       let data = {
           'tenantSignCode':this.data.interfaceCode,
@@ -327,6 +334,9 @@ Page({
               wx.reLaunch({
                   url:'/pages/contract/b2bContractSuccess/b2bContractSuccess'
               });
+              this.setData({
+                  flag:false
+              });
           }else if(res.data.responseCode == 2){
             wx.showModal({
                 title: '提示',
@@ -343,9 +353,15 @@ Page({
                     }
                 }
             });
+              this.setData({
+                  flag:false
+              });
           }else{
               wx.reLaunch({
                   url:'/pages/index/index'
+              });
+              this.setData({
+                  flag:false
               });
           }
       }).catch(err=>{

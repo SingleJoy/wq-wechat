@@ -103,7 +103,7 @@
       </view>
       <view class="modal-footer">
         <button form-type="" class="cancel btn-confirm" bindtap="hideModal" data-status="confirm">取消</button>
-        <button form-type="submit" class="btn-confirm" disabled='{{isDisabled}}' bindtap='getForm' data-status="confirm">确定</button>
+        <button form-type="submit" class="btn-confirm" disabled='{{isDisabled}}' data-status="confirm">确定</button>
       </view>
     </view>
   </form>
