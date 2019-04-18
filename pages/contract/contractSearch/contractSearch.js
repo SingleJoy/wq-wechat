@@ -28,7 +28,8 @@ wx.getSystemInfo({
          */
         onPullDownRefresh() {
             this.setData({
-                pageNo:1
+                pageNo:1,
+                contractDataList:[]
             });
             this.searchData();
             wx.stopPullDownRefresh();
