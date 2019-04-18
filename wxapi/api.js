@@ -64,7 +64,7 @@ function getSignatures(interfaceCode){
     return request(api+'/v1.5/tenant/'+interfaceCode+'/getSignatures', 'get')
 }
 //获取详情页账户名
-function getAccountName(data,interfaceCode) {
+function getAccountName(interfaceCode,data) {
     return request( api+'/v1.5/tenant/' + interfaceCode + '/getAccountName','get',data);
 }
 
