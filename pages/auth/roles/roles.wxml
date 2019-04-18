@@ -28,7 +28,7 @@
             <text class="account-title">企业子账号</text>
             <view class="account-list">
                 <block wx:if="{{subAccountList.length>0}}">
-                    <view class="account-item" wx:for="{{subAccountList}}" wx:key="item.name" bindtap="goIndex" data-info="{{item}}">
+                    <view class="account-item" wx:for="{{subAccountList}}" wx:key="item.name" bindtap="goIndex" data-info="{{item}}" >
                         <text class="account-name">{{item.accountName}}</text>
                         <view class="">
                             <block wx:if="{{item.accountStatus==0}}">

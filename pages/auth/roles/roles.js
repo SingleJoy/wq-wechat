@@ -76,7 +76,17 @@ Page({
 
   },
   goIndex:function(e){
+
     let accountInfo = e.currentTarget.dataset.info;
+    let accountStatus = e.currentTarget.dataset.info.accountStatus;
+    let accountLevel = e.currentTarget.dataset.info.accountLevel;
+   
+    if (accountLevel==2&&accountStatus!=3){
+      wx.navigateTo({
+        url: '/pages/auth/auth/auth'
+      });
+      return false
+    }
     wx.setStorage({key: 'accountCode',data: accountInfo.accountCode})
     wx.setStorage({key: 'interfaceCode',data: accountInfo.interfaceCode})
     wx.setStorage({key: 'enterpriseName',data: accountInfo.enterpriseName})
