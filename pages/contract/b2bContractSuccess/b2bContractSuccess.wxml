@@ -22,7 +22,7 @@
       <view class="info-item signer-box">
                     <text class="info-name signer-title">签署人员：</text>
                     <view class="signer-list">
-                        <view wx:for="{{signList}}" wx:key="{{item.signUserName}}" class="signer-item">
+                        <view wx:for="{{signList}}" wx:key="{{item.signUserName}}" class="signer-item" wx:if="{{signList.length>0}}">
                             <text class="signer-name">{{item.signUserName}}</text>
                             <block wx:if="{{item.signStatus == 0}}">
                                 <text class="sign-status unsign">未签署</text>

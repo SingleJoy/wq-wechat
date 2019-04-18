@@ -16,12 +16,7 @@ Page({
         signRoomLink: '',
         //签署人员信息
         signList:[
-          {
-            signUserName: "",
-          },
-          {
-            signUserName: "",
-          },
+
         ],
         interfaceCode: ''
     },
