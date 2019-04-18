@@ -27,6 +27,8 @@ Page({
     identification: "",
     //编辑/添加签署人数据索引
     listIndex: "",
+    //编辑索引id
+    editId: "",
     //弹框标题
     addSignature: "添加签署人",
     //model弹框验证
@@ -39,7 +41,8 @@ Page({
       isShowMobileHint: false,
     },
     //添加签署人信息保存
-    dataList: [],
+    dataList: [
+    ],
     showModal: false,
     //删除样式
     delate: "9",
@@ -125,6 +128,11 @@ Page({
   },
   //添加签署人（显示弹框）操作
   showDialogBtn: function (e) {
+    if (e.target.dataset.id == 0 || e.target.dataset.id) {
+      this.setData({
+        editId: e.target.dataset.id
+      })
+    };
     this.isDisabled = false;
     let value = e._relatedInfo.anchorTargetText;
     this.setData({
@@ -316,23 +324,45 @@ Page({
         isShowIdcardHint: false,
       }
     });
-    let dataListALL = this.data.dataList;
-    if (dataListALL) {
+    if (this.data.identification == "添加签署人") {
+      let dataListALL = this.data.dataList;
+      if (dataListALL) {
+        let currentSigner = e.detail.value.mobile;
+        let isRepetitionSign = dataListALL.find((element) => {
+          return element.mobile == currentSigner;
+        });
+        if (isRepetitionSign) {
+          wx.showToast({
+            title: '此手机号已添加',
+            icon: 'none'
+          })
+          return false;
+        }
+      }
+      this.setData({
+        showModal: false
+      });
+    } else {
+      let edutValueAll = this.data.dataList;
+      let newValue = [];
+      for (var i = 0; i < edutValueAll.length; i++) {
+        if (i != this.data.editId) {
+          newValue.push(edutValueAll[i])
+        }
+      }
       let currentSigner = e.detail.value.mobile;
-      let isRepetitionSign = dataListALL.find((element) => {
+      let isEditRepetitionSign = newValue.find((element) => {
         return element.mobile == currentSigner;
       });
-      if (isRepetitionSign) {
+      if (isEditRepetitionSign) {
         wx.showToast({
           title: '此手机号已添加',
           icon: 'none'
         })
         return false;
       }
-    } 
-    this.setData({
-      showModal: false
-    });
+    }
+
     this.hideModal();
     //添加签署人提交/修改签署人提交
     if (this.data.identification == "添加签署人") {
