@@ -9,6 +9,7 @@ Page({
      * 页面的初始数据
      */
     data: {
+        baseUrl:app.globalData.baseUrl,
         username:'',
         password:'',
         usernameErr:'',
@@ -267,6 +268,7 @@ Page({
     //长按识别二维码
     previewImage:function(e) {
         var current = e.target.dataset.src;
+        console.log(e)
         wx.previewImage({
             current: current,
             urls: [current]

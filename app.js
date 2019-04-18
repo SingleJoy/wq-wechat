@@ -34,8 +34,8 @@ App({
         //导航高度
         this.globalData.navHeight = res.statusBarHeight + 46;
         this.globalData.userInfo = res;
-        this.globalData.imgWidth = res.windowWidth;  //合同图片高度
-        this.globalData.imgHeight = res.windowWidth*1.414;  //合同图片高度
+        this.globalData.imgWidth = res.windowWidth;  //合同图片宽度
+        this.globalData.imgHeight = res.windowWidth*842/595;  //合同图片高度
       }, fail(err) {
         // console.log(err);
       }

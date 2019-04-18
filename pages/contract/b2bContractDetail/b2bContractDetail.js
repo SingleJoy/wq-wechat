@@ -260,6 +260,7 @@ Page({
     getSignPosition(){
         signerpositions(this.data.interfaceCode,this.data.contractNo).then(res=>{
             let arr = res.data.list;
+            let signPositionStr = ''
             for(let i=0;i<arr.length;i++){
                 let item = arr[i];
                 let pageNum = item.pageNum;
@@ -271,14 +272,14 @@ Page({
                 let signImgW = this.data.windowWidth*19/90;  //宽高相等
                 item.style='position:absolute;top:'+topY+'px;left:'+leftX+'px;width:'+signImgW+'px;height:'+signImgW+'px;';
                 if(i == arr.length-1){
-                    this.data.signPositionStr += pageNum+","+leftX+","+offsetY * (imgHeight);
+                    signPositionStr += pageNum+","+leftX+","+offsetY * (imgHeight);
                 }else{
-                    this.data.signPositionStr+= pageNum+","+leftX+","+offsetY * (imgHeight)+"&";
+                    signPositionStr+= pageNum+","+leftX+","+offsetY * (imgHeight)+"&";
                 }
                 this.setData({
                     signPositionList:arr,
                     submitBtn:true,
-                    signPositionStr:this.data.signPositionStr
+                    signPositionStr:signPositionStr
                 });
             }
         }).catch(err=>{

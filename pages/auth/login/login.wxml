@@ -32,7 +32,7 @@
             </form>
             
             <view class="QR-code">
-                <image class="QRimg" mode='widthFix' src="https://img.fetow.com/Public/Index/images/shewm.jpg" data-src="https://img.fetow.com/Public/Index/images/shewm.jpg" bindtap="previewImage"></image>
+                <image class="QRimg" mode='widthFix' src="/images/wx.jpg" data-src="{{baseUrl}}/images/wx.jpg" bindtap="previewImage"></image>
                 <text class="scan-QRcode">长按识别图中二维码</text>
             </view>
             <view class="login-link">

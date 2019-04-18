@@ -254,25 +254,26 @@ Page({
     getSignPosition(){
         signerpositions(this.data.interfaceCode,this.data.contractNo).then(res=>{
             let arr = res.data.list;
+            let signPositionStr = ''
             for(let i=0;i<arr.length;i++){
                 let item = arr[i];
                 let pageNum = item.pageNum;
                 let offsetX = item.offsetX;
-                let offsetY = item.offsetY;
+                let offsetY = item.offsetY;  //比例
                 let imgHeight = this.data.imgHeight;
                 let leftX = offsetX * this.data.windowWidth;
                 let topY = (pageNum-1 + offsetY)*imgHeight;
-                let signImgW = this.data.windowWidth*0.21;  //宽高相等
-                item.style='position:absolute;top:'+topY+'px;left:'+leftX+'px;width:'+signImgW+'px;height:'+signImgW+'px;';
+                let signImgW = this.data.windowWidth*19/90;  //宽高相等
+                item.style='position:absolute;top:'+ topY +'px;left:'+leftX+'px;width:'+signImgW+'px;height:'+signImgW+'px;';
                 if(i == arr.length-1){
-                    this.data.signPositionStr += pageNum+","+leftX+","+offsetY * (imgHeight);
+                    signPositionStr += pageNum+","+leftX+","+(offsetY * imgHeight);
                 }else{
-                    this.data.signPositionStr+= pageNum+","+leftX+","+offsetY * (imgHeight)+"&";
+                    signPositionStr+= pageNum+","+leftX+","+(offsetY * imgHeight)+"&";
                 }
                 this.setData({
                     signPositionList:arr,
                     submitBtn:true,
-                    signPositionStr:this.data.signPositionStr
+                    signPositionStr:signPositionStr
                 })
             }
         }).catch(err=>{
@@ -347,7 +348,7 @@ Page({
         let contractNo = app.globalData.searchParam.contractNo;
         let data = {
             contractNum:contractNo,
-            phoneHeight:this.data.windowHeight,
+            phoneHeight:this.data.imgHeight,
             phoneWidth: this.data.windowWidth,
             signatureImg:this.data.signImg.split(',')[1],
             signH:this.data.windowWidth*19/90,
