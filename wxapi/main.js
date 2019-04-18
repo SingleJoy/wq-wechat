@@ -25,8 +25,10 @@ const request = (url, method, data, contentType) => {
 
                 if (res.statusCode == 200) {
 
-                    if (res.data.sessionStatus == '000000') {
-
+                    if (res.data.sessionStatus == '000001') {
+                      wx.redirectTo({
+                        url: '/pages/auth/login/login',
+                      })
                         // return util.getToken()
                     } else {
                         resolve(res)
