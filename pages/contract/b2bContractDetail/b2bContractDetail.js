@@ -146,7 +146,7 @@ Page({
             let data={
                 'accountCode':this.data.operator
             };
-            getAccountName(data,this.data.interfaceCode).then((res)=>{
+            getAccountName(this.data.interfaceCode,data).then((res)=>{
                 if(res.data.resultCode == 1){
                     this.setData({
                         enterpriseName: res.data.data
