@@ -120,12 +120,13 @@ Page({
                                     };
 
                                     if(res.data.dataList[1][0]&&res.data.dataList[1][0].accountStatus==6){
+                                        wx.hideLoading();
                                         wx.showToast({
                                             title: '此账号已被冻结',
                                             icon: 'none',
-                                            duration: 1500
+                                            duration: 3000
                                         })
-                                        wx.hideLoading();
+
                                         return false;
                                     }
                                     if(res.data.dataList[1][0]&&res.data.dataList[1][0].accountStatus==2){
