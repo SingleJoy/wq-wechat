@@ -144,7 +144,7 @@ wx.getSystemInfo({
                 'contractStatus':contractStatus,
                 'operator':operator,
                 'creater':creater,
-                'num':contractType,
+                // 'num':contractType,
                 'validTime':validTime,
             };
 

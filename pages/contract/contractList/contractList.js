@@ -189,9 +189,7 @@ Page({
           wx.hideNavigationBarLoading();
             let totalItemNumber=res.data.totalItemNumber;
             if(this.data.num==1){
-                setTimeout(()=>{
-                    wx.hideLoading();
-                },500);
+
                 this.setData({
                     contractDataList:this.data.contractDataList.concat(res.data.content)
                 });
@@ -199,7 +197,11 @@ Page({
                 this.setData({
                     contractDataList:res.data.content
                 });
+
             }
+            setTimeout(()=>{
+                wx.hideLoading();
+            },500);
             //判断是否允许继续请求
             if(this.data.contractDataList.length<totalItemNumber){
                 this.setData({
@@ -220,7 +222,7 @@ Page({
     //b2b列表
     b2bContrants(param){
       wx.stopPullDownRefresh();
-      wx.hideNavigationBarLoading()
+      wx.hideNavigationBarLoading();
         let interfaceCode=this.data.interfaceCode;
         wx.showLoading({
             title: '加载中...',
@@ -230,9 +232,6 @@ Page({
 
             let totalItemNumber=res.data.totalItemNumber;
             if(this.data.num==2){
-                setTimeout(()=>{
-                    wx.hideLoading();
-                },500);
                 this.setData({
                     contractDataList:this.data.contractDataList.concat(res.data.content)
                 });
@@ -241,7 +240,9 @@ Page({
                     contractDataList:res.data.content
                 });
             }
-
+            setTimeout(()=>{
+                wx.hideLoading();
+            },500);
             //判断是否允许继续请求
             if(this.data.contractDataList.length<totalItemNumber){
                 this.setData({
