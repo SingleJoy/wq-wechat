@@ -17,6 +17,7 @@
 .account-hidden{
     visibility: hidden;
 }
+
 .account-title{
   font-size: 32rpx;
   color:#4091fb;
@@ -38,6 +39,13 @@
 .account-name{
   font-size: 28rpx;
   line-height:100rpx;
+  flex:2;
+  overflow: hidden;
+text-overflow:ellipsis;
+white-space: nowrap
+}
+.account-isreal{
+    flex: 1;
 }
 .account-status{
   float:left;
