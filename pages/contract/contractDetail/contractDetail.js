@@ -244,6 +244,7 @@ Page({
           passwordDialog:false,
           psdHint: false,
           signPawssword: '',
+          flag:false
         });
     },
     //签署合同
