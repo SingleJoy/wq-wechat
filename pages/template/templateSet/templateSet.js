@@ -257,24 +257,26 @@ Page({
       }
     })
     //验证身份证
-    if (!e.detail.value.idCard) {
-      this.setData({
-        model: {
-          idcardHint: "请输入身份证",
-          isShowIdcardHint: true,
-        }
-      })
-      return;
+    // if (!e.detail.value.idCard) {
+    //   this.setData({
+    //     model: {
+    //       idcardHint: "请输入身份证",
+    //       isShowIdcardHint: true,
+    //     }
+    //   })
+    //   return;
+    // }
+    if (e.detail.value.idCard) {
+      if (!validateCard(e.detail.value.idCard)) {
+        this.setData({
+          model: {
+            idcardHint: "身份证格式错误",
+            isShowIdcardHint: true,
+          }
+        });
+        return;
+      } 
     }
-    if (!validateCard(e.detail.value.idCard)) {
-      this.setData({
-        model: {
-          idcardHint: "身份证格式错误",
-          isShowIdcardHint: true,
-        }
-      });
-      return;
-    } 
     this.setData({
       model: {
         idcardHint: "请输入身份证",
