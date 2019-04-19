@@ -1,5 +1,3 @@
-
-
 const md5 = require('../../../utils/md5.js')
 import {
     contracttempimgs,
@@ -10,19 +8,19 @@ import {
 const app = getApp();
 Page({
     data: {
-        //弹框显示标识
-        showModal: false,
-        //密码提示信息标识
-        psdHint: false,
-        windowHeight:'',
-        windowWidth:'',
-        imgHeight:'',
-        signVerify:"", //签署密码设置
-        interfaceCode: "",
-        accountCode: "",
-        contractTempNo:'',  //合同编号
-        baseUrl:app.globalData.baseUrl,
-
+      //弹框显示标识
+      showModal: false,
+      //密码提示信息标识
+      psdHint: false,
+      windowHeight:'',
+      windowWidth:'',
+      imgHeight:'',
+      signVerify:"", //签署密码设置
+      interfaceCode: "",
+      accountCode: "",
+      contractTempNo:'',  //合同编号
+      baseUrl:app.globalData.baseUrl,
+      isSubmitCon: true
     },
     //图片预览
     previewImage:function(e) {
@@ -55,9 +53,7 @@ Page({
             this.setData({
                 contractImgList:res.data
             })
-            setTimeout(function () {
-                wx.hideLoading()
-            }, 1000)
+            wx.hideLoading()
         }).catch(err=>{
 
         })
@@ -87,15 +83,15 @@ Page({
     },
     //提交表单数据并验证
     formSubmitModel: function(e) {
-        if (!e.detail.value.input) {
-          this.setData({
-              psdHint: true
-          });
-          return false;
-        } 
+      if (!e.detail.value.input) {
         this.setData({
-          psdHint: false,
+            psdHint: true
         });
+        return false;
+      } 
+      this.setData({
+        psdHint: false,
+      });
       this.verifySignPwd(e.detail.value.input);
     },
     //验证签署密码
@@ -103,68 +99,75 @@ Page({
       let data = {
         signVerifyPassword: md5(value)
       }
+      if (!this.data.isSubmitCon) {
+        return false;
+      }
+      wx.showLoading({
+        title: '加载中',
+        mask: true
+      })
+      this.setData({
+        isSubmitCon: false
+      })
       verifySignPassword(this.data.accountCode,data).then(res=>{
           if(res.data.resultCode == 1){
-            this.setData({
-              showModal: false
-            });
-            this.signSubmit()    //校验成功提交签署
+            this.signSubmit();    //校验成功提交签署
           }else{
             wx.showToast({
               title: "签署密码错误",
               icon: 'none',
               duration: 2000
             })
+            this.setData({
+              isSubmitCon: true
+            })
           }
       }).catch(err=>{
 
       })
     },
-
     //签署提交
     signSubmit(){
-        wx.showLoading({
-            title: '提交中...',
-            mask: true
-        });
-        contractkeywordsign(this.data.interfaceCode,this.data.contractTempNo).then(res=>{
-            if(res.data.responseCode==0){
-                setTimeout(()=>{
-                    wx.hideLoading();
-                },500);
-                wx.showToast({
-                    title: '签署成功',
-                    icon:'none',
-                    duration: 2000
-                })
-                wx.reLaunch({
-                    url: '/pages/template/templateSuccess/templateSuccess',
-                })
-            }else if(res.data.responseCode == 2){
-                wx.showToast({
-                    title: res.data.resultMessage,
-                    icon:'none',
-                    duration: 2000
-                });
-                wx.reLaunch({
-                    url: '/pages/template/templateList/templateList',
-                });
-            }else{
-                wx.showToast({
-                    title: res.data.responseMsg,
-                    icon:'none',
-                    duration: 2000
-                })
-            }
-        }).catch(err=>{
-            wx.hideLoading();
-        })
+      wx.showLoading({
+        title: '加载中',
+        mask: true
+      })
+      contractkeywordsign(this.data.interfaceCode,this.data.contractTempNo).then(res=>{
+          if(res.data.responseCode==0){
+            wx.showToast({
+                title: '签署成功',
+                icon:'none',
+                duration: 2000
+            })
+            wx.reLaunch({
+              url: '/pages/template/templateSuccess/templateSuccess',
+            })
+          }else if(res.data.responseCode == 2){
+            wx.showToast({
+                title: res.data.resultMessage,
+                icon:'none',
+                duration: 2000
+            });
+            wx.reLaunch({
+                url: '/pages/template/templateList/templateList',
+            });
+          }else{
+            wx.showToast({
+                title: res.data.responseMsg,
+                icon:'none',
+                duration: 2000
+            })
+          }
+      }).catch(err=>{
+          wx.hideLoading();
+      })
     },
     //签署密码取消
   formReset() {
     this.setData({
       showModal: false,
-      psdHint: false
+      psdHint: false,
+      isSubmitCon: true
     })
   },
     //取消合同签署
