@@ -61,6 +61,10 @@ Page({
     },
     // 签署验证是否需要签署密码
     signContract(){
+      wx.showLoading({
+        title: '加载中',
+        mask: true
+      })
       accountInformation(this.data.interfaceCode, this.data.accountCode).then(res=>{
         if (res.data.resultCode == 1) {
           let signVerify = res.data.data.signVerify;
@@ -72,7 +76,7 @@ Page({
                   showModal:true
               });
           }else{
-              this.signSubmit();
+            this.signSubmit();
           }
         }else{
 
@@ -129,6 +133,7 @@ Page({
     },
     //签署提交
     signSubmit(){
+
       wx.showLoading({
         title: '加载中',
         mask: true
@@ -139,6 +144,7 @@ Page({
         this.setData({
             flag:true
         });
+
 
       contractkeywordsign(this.data.interfaceCode,this.data.contractTempNo).then(res=>{
           if(res.data.responseCode==0){
@@ -176,7 +182,7 @@ Page({
               });
           }
       }).catch(err=>{
-          wx.hideLoading();
+          // wx.hideLoading();
       })
     },
     //签署密码取消
