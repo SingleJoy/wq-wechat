@@ -21,7 +21,9 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        // console.log(app.globalData)
+       this.setData({
+           baseUrl:app.globalData.baseUrl,
+       })
     },
     /**
      * 生命周期函数--监听页面初次渲染完成
@@ -287,8 +289,7 @@ Page({
     },
     //长按识别二维码
     previewImage:function(e) {
-        var current = e.target.dataset.src;
-        console.log(e)
+        let current = e.target.dataset.src;
         wx.previewImage({
             current: current,
             urls: [current]
