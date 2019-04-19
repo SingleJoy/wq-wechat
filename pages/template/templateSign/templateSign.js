@@ -94,7 +94,7 @@ Page({
           return false;
         } 
         this.setData({
-            psdHint: false
+          psdHint: false,
         });
       this.verifySignPwd(e.detail.value.input);
     },
@@ -105,10 +105,10 @@ Page({
       }
       verifySignPassword(this.data.accountCode,data).then(res=>{
           if(res.data.resultCode == 1){
-              this.signSubmit()    //校验成功提交签署
-              this.setData({
-                  showModal:false
-              });
+            this.setData({
+              showModal: false
+            });
+            this.signSubmit()    //校验成功提交签署
           }else{
             wx.showToast({
               title: "签署密码错误",
