@@ -12,6 +12,7 @@ Page({
       showModal: false,
       //密码提示信息标识
       psdHint: false,
+      flag: false,
       windowHeight:'',
       windowWidth:'',
       imgHeight:'',
@@ -132,16 +133,26 @@ Page({
         title: '加载中',
         mask: true
       })
+        if(this.data.flag){
+            return false
+        }
+        this.setData({
+            flag:true
+        });
+
       contractkeywordsign(this.data.interfaceCode,this.data.contractTempNo).then(res=>{
           if(res.data.responseCode==0){
             wx.showToast({
                 title: '签署成功',
                 icon:'none',
                 duration: 2000
-            })
+            });
             wx.reLaunch({
               url: '/pages/template/templateSuccess/templateSuccess',
-            })
+            });
+              this.setData({
+                  flag:false
+              });
           }else if(res.data.responseCode == 2){
             wx.showToast({
                 title: res.data.resultMessage,
@@ -151,12 +162,18 @@ Page({
             wx.reLaunch({
                 url: '/pages/template/templateList/templateList',
             });
+              this.setData({
+                  flag:false
+              });
           }else{
             wx.showToast({
                 title: res.data.responseMsg,
                 icon:'none',
                 duration: 2000
-            })
+            });
+              this.setData({
+                  flag:false
+              });
           }
       }).catch(err=>{
           wx.hideLoading();
