@@ -21,7 +21,8 @@ Page({
       accountCode: "",
       contractTempNo:'',  //合同编号
       baseUrl:app.globalData.baseUrl,
-      isSubmitCon: true
+      isSubmitCon: false,
+      once: false,
     },
     //图片预览
     previewImage:function(e) {
@@ -49,7 +50,7 @@ Page({
         })
         wx.showLoading({
             title: '加载中',
-        })
+        });
         contracttempimgs(this.data.interfaceCode,this.data.contractTempNo).then(res=>{
             this.setData({
                 contractImgList:res.data
@@ -61,10 +62,12 @@ Page({
     },
     // 签署验证是否需要签署密码
     signContract(){
-      wx.showLoading({
-        title: '加载中',
-        mask: true
-      })
+        if (this.data.once) {
+            return false;
+        }
+        this.setData({
+            once: true
+        });
       accountInformation(this.data.interfaceCode, this.data.accountCode).then(res=>{
         if (res.data.resultCode == 1) {
           let signVerify = res.data.data.signVerify;
@@ -78,8 +81,13 @@ Page({
           }else{
             this.signSubmit();
           }
+            this.setData({
+                once: false
+            });
         }else{
-
+            this.setData({
+                once: false
+            });
         }
       }).catch(err=>{
 
@@ -103,29 +111,29 @@ Page({
     verifySignPwd(value){
       let data = {
         signVerifyPassword: md5(value)
-      }
-      if (!this.data.isSubmitCon) {
+      };
+      if (this.data.isSubmitCon) {
         return false;
       }
-      wx.showLoading({
-        title: '加载中',
-        mask: true
-      })
+
       this.setData({
-        isSubmitCon: false
-      })
+        isSubmitCon: true
+      });
       verifySignPassword(this.data.accountCode,data).then(res=>{
           if(res.data.resultCode == 1){
             this.signSubmit();    //校验成功提交签署
+              this.setData({
+                  isSubmitCon: false
+              })
           }else{
             wx.showToast({
               title: "签署密码错误",
               icon: 'none',
               duration: 2000
-            })
-            this.setData({
-              isSubmitCon: true
-            })
+            });
+              this.setData({
+                  isSubmitCon: false
+              })
           }
       }).catch(err=>{
 
@@ -137,14 +145,13 @@ Page({
       wx.showLoading({
         title: '加载中',
         mask: true
-      })
+      });
         if(this.data.flag){
             return false
         }
         this.setData({
             flag:true
         });
-
 
       contractkeywordsign(this.data.interfaceCode,this.data.contractTempNo).then(res=>{
           if(res.data.responseCode==0){
@@ -159,6 +166,7 @@ Page({
               this.setData({
                   flag:false
               });
+              wx.hideLoading();
           }else if(res.data.responseCode == 2){
             wx.showToast({
                 title: res.data.resultMessage,
@@ -171,6 +179,7 @@ Page({
               this.setData({
                   flag:false
               });
+              wx.hideLoading();
           }else{
             wx.showToast({
                 title: res.data.responseMsg,
@@ -180,6 +189,7 @@ Page({
               this.setData({
                   flag:false
               });
+              wx.hideLoading();
           }
       }).catch(err=>{
           // wx.hideLoading();
@@ -190,7 +200,7 @@ Page({
     this.setData({
       showModal: false,
       psdHint: false,
-      isSubmitCon: true
+      isSubmitCon: false
     })
   },
     //取消合同签署
