@@ -94,12 +94,19 @@ Page({
           return false;
         } 
         this.setData({
-            psdHint: false
+          psdHint: false,
         });
       this.verifySignPwd(e.detail.value.input);
     },
     //验证签署密码
     verifySignPwd(value){
+      this.setData({
+        showModal: false
+      });
+      wx.showLoading({
+        title: '加载中',
+        mask: true
+      })
       let data = {
         signVerifyPassword: md5(value)
       }
