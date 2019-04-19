@@ -298,10 +298,10 @@ Page({
 
         verifySignPassword(this.data.accountCode,data).then(res=>{
             if(res.data.resultCode == 1){
-                this.verifySuccess();    //校验成功提交签署
-                this.setData({
-                    passwordDialog:true
-                })
+              this.setData({
+                passwordDialog: true
+              })
+              this.verifySuccess();    //校验成功提交签署  
             }else{
                 wx.showToast({
                     title: "签署密码错误",
@@ -345,7 +345,10 @@ Page({
     },
     //密码校验成功提交操作
     verifySuccess:function(){
-
+      wx.showLoading({
+        title: '加载中',
+        mask: true
+      })
         let contractNo = app.globalData.searchParam.contractNo;
         let data = {
             contractNum:contractNo,
