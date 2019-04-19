@@ -322,9 +322,9 @@ Page({
         //   'signatureH':63,
             'phoneHeight':this.data.imgHeight,
             'phoneWidth':this.data.windowWidth,
-            'signH':this.data.windowWidth*19/90,
+            'signH':this.data.windowWidth*19/90, //签章
             'signW':this.data.windowWidth*19/90,
-            'signatureW':this.data.windowWidth*19/90,
+            'signatureW':this.data.windowWidth*19/90,  //签名
             'signatureH':(this.data.windowWidth*19/90)/2,
           'enterprisePositionStr':this.data.signPositionStr,
           'personalPositionStr':this.data.signPositionStr2,
