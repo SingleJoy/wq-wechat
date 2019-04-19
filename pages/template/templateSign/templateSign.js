@@ -100,22 +100,15 @@ Page({
     },
     //验证签署密码
     verifySignPwd(value){
-      this.setData({
-        showModal: false
-      });
-      wx.showLoading({
-        title: '加载中',
-        mask: true
-      })
       let data = {
         signVerifyPassword: md5(value)
       }
       verifySignPassword(this.data.accountCode,data).then(res=>{
           if(res.data.resultCode == 1){
-              this.signSubmit()    //校验成功提交签署
-              this.setData({
-                  showModal:false
-              });
+            this.setData({
+              showModal: false
+            });
+            this.signSubmit()    //校验成功提交签署
           }else{
             wx.showToast({
               title: "签署密码错误",
