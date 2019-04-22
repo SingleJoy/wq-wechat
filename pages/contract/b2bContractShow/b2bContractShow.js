@@ -308,27 +308,21 @@ Page({
       this.setData({
           flag:true
       });
-      let contractNo = app.globalData.searchParam.contractNo;
-      let data = {
-          'tenantSignCode':this.data.interfaceCode,
-          'userSignCode':this.data.userCode,
-          'enterpriseSignImg':this.data.signImg.split(",")[1],  //企业签章
-          'signatureImg':app.globalData.contractParam.base64,      //
-        //   'phoneHeight':844,
-        //   'phoneWidth':593,
-        //   'signH':125,
-        //   'signW':125,
-        //   'signatureW':125,
-        //   'signatureH':63,
+        let contractNo = app.globalData.searchParam.contractNo;
+        let data = {
+            'tenantSignCode':this.data.interfaceCode,
+            'userSignCode':this.data.userCode,
+            'enterpriseSignImg':this.data.signImg.split(",")[1],  //企业签章
+            'signatureImg':app.globalData.contractParam.base64,
             'phoneHeight':this.data.imgHeight,
             'phoneWidth':this.data.windowWidth,
             'signH':this.data.windowWidth*19/90, //签章
             'signW':this.data.windowWidth*19/90,
             'signatureW':this.data.windowWidth*19/90,  //签名
             'signatureH':(this.data.windowWidth*19/90)/2,
-          'enterprisePositionStr':this.data.signPositionStr,
-          'personalPositionStr':this.data.signPositionStr2,
-      };
+            'enterprisePositionStr':this.data.signPositionStr,
+            'personalPositionStr':this.data.signPositionStr2,
+        };
       b2bContractmoresign(this.data.interfaceCode,this.data.userCode,contractNo,data).then(res=>{
           if(res.data.responseCode == 1){
               wx.reLaunch({

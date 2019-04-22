@@ -177,7 +177,7 @@ Page({
 //短信提醒
     smsTip:function(e){
         let data ={
-            contractType:1,
+            contractType:0,
             remindType:0
         };
         if(this.data.remindOnce){
