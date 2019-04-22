@@ -78,45 +78,42 @@ Page({
   goIndex:function(e){
 
     let accountInfo = e.currentTarget.dataset.info;
-    let accountStatus = e.currentTarget.dataset.info.accountStatus;
-    let accountLevel = e.currentTarget.dataset.info.accountLevel;
-   
-    if (accountLevel==2&&accountStatus!=3){
-      wx.navigateTo({
-        url: '/pages/auth/auth/auth'
-      });
-      return false
-    }
-    wx.setStorage({key: 'accountCode',data: accountInfo.accountCode})
-    wx.setStorage({key: 'interfaceCode',data: accountInfo.interfaceCode})
-    wx.setStorage({key: 'enterpriseName',data: accountInfo.enterpriseName})
-    wx.setStorage({key: 'accountLevel',data: accountInfo.accountLevel})
-    wx.setStorage({key: 'mobile',data: accountInfo.mobile})
-    let interfaceCode = accountInfo.interfaceCode
-    let login_mobile = accountInfo.mobile
-    let data = {
-          mobile:login_mobile
-    }
-    homePage(interfaceCode,data).then(res=>{
-        if (res.data.resultCode == 1) {
-          let signVerify = {
-              signVerify: res.data.dataList[1].signVerify
-          }
-          Object.assign(app.globalData, signVerify)
-          wx.setStorage({ key: 'mobileTemplate', data: res.data.dataList[1].mobileTemplate });
-          app.globalData.signVerify = res.data.dataList[1].signVerify;
-          wx.setStorage({key:'email',data:res.data.dataList[0].email});
-          wx.setStorage({key:'userCode',data:res.data.dataList[0].userCode});
-          wx.setStorage({ key: 'parentAccountmobile', data: res.data.dataList[1].parentAccountmobile });
-          wx.switchTab({
-              url:'/pages/index/index'
-          })
-       }else{
-           
-       }
-    }).catch(err=>{
+    let accountStatus = accountInfo.accountStatus;  //子账号激活状态
+    let auditSteps = accountInfo.auditSteps;    //一级账号可登陆进入
+    let accountLevel = accountInfo.accountLevel;
 
-    })
     
+   if( (accountLevel == 1 && auditSteps == 3) || (accountLevel == 2 && accountStatus == 3) ){
+        wx.setStorage({key: 'accountCode',data: accountInfo.accountCode})
+        wx.setStorage({key: 'interfaceCode',data: accountInfo.interfaceCode})
+        wx.setStorage({key: 'enterpriseName',data: accountInfo.enterpriseName})
+        wx.setStorage({key: 'accountLevel',data: accountInfo.accountLevel})
+        wx.setStorage({key: 'mobile',data: accountInfo.mobile})
+        let interfaceCode = accountInfo.interfaceCode
+        let login_mobile = accountInfo.mobile
+        let data = {
+            mobile:login_mobile
+        }
+        homePage(interfaceCode,data).then(res=>{
+            if (res.data.resultCode == 1) {
+            let signVerify = {
+                signVerify: res.data.dataList[1].signVerify
+            }
+            Object.assign(app.globalData, signVerify)
+            wx.setStorage({ key: 'mobileTemplate', data: res.data.dataList[1].mobileTemplate });
+            app.globalData.signVerify = res.data.dataList[1].signVerify;
+            wx.setStorage({key:'email',data:res.data.dataList[0].email});
+            wx.setStorage({key:'userCode',data:res.data.dataList[0].userCode});
+            wx.setStorage({ key: 'parentAccountmobile', data: res.data.dataList[1].parentAccountmobile });
+            wx.switchTab({
+                url:'/pages/index/index'
+            })
+        }else{
+            
+        }
+        }).catch(err=>{
+        })
+    }
+   
   }
 })

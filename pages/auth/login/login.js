@@ -103,15 +103,14 @@ Page({
                           wx.setStorageSync("wesign_token", res.data.data);
                             //获取登录列表
                             bindEnterprises(homepage_data).then(res=>{
-                                if (res.data.bindTenantNum == 1) {
+                                if (res.data.bindTenantNum == 1) {       //只有一个企业
                                     let res_data = '';
-                                    if (res.data.dataList[0].length > 0) {   //判断是一级账号还是二级账号直接进首页
+                                    if (res.data.dataList[0].length > 0) {   //判断是一级账号还是二级账号直接进首页【一级账号放在数组第一个 二级账号放在数组第二个，但必有一个为空】
                                         res_data = res.data.dataList[0][0];
                                     } else {
                                         res_data = res.data.dataList[1][0];
                                     }
                                     wx.setStorage({ key: 'accountCode',data: res_data.accountCode})
-
                                     wx.setStorage({ key: 'interfaceCode',data: res_data.interfaceCode})
                                     wx.setStorage({key: 'accountLevel',data: res_data.accountLevel})
                                     wx.setStorage({key: 'enterpriseName',data: res_data.enterpriseName})
@@ -120,8 +119,8 @@ Page({
                                     let data={
                                         mobile:res_data.mobile
                                     };
-
-                                    if(res.data.dataList[1][0]&&res.data.dataList[1][0].accountStatus==6){
+                                    //二级账号： res.data.dataList[1]不为空 说明是二级
+                                    if(res.data.dataList[1][0]&&res.data.dataList[1][0].accountStatus==6){  //冻结
                                         wx.hideLoading();
                                         wx.showToast({
                                             title: '此账号已被冻结',
@@ -131,7 +130,7 @@ Page({
 
                                         return false;
                                     }
-                                    if(res.data.dataList[1][0]&&res.data.dataList[1][0].accountStatus==2){
+                                    if(res.data.dataList[1][0]&&res.data.dataList[1][0].accountStatus==2){  //未激活
                                         wx.navigateTo({
                                             url: '/pages/auth/auth/auth'
                                         });
@@ -139,22 +138,21 @@ Page({
                                         return false;
                                     }
                                     homePage(res_data.interfaceCode,data).then(res=>{
-                                      let signVerify = {
-                                        signVerify: res.data.dataList[1].signVerify
-                                      }
-                                      Object.assign(app.globalData, signVerify)
-                                      wx.setStorage({ key: 'mobileTemplate', data: res.data.dataList[1].mobileTemplate });
-                                        wx.setStorage({key:'signVerify',data:res.data.dataList[1].signVerify});
-                                        wx.setStorage({key:'email',data:res.data.dataList[0].email});
-                                        wx.setStorage({ key: 'userCode',data:res.data.dataList[0].userCode});
-                                        wx.setStorage({ key: 'parentAccountmobile', data: res.data.dataList[1].parentAccountmobile })
                                         if(res.data.resultCode==1){
-                                          wx.hideLoading()
-                                            if(res.data.dataList[1].auditSteps=='3'){
-
-                                                    wx.switchTab({
-                                                        url: '/pages/index/index'
-                                                    })
+                                            wx.hideLoading()
+                                            if(res.data.dataList[1].auditSteps=='3'){    //只有一个企业且实名的
+                                                let signVerify = {
+                                                    signVerify: res.data.dataList[1].signVerify
+                                                }
+                                                Object.assign(app.globalData, signVerify)
+                                                wx.setStorage({ key: 'mobileTemplate', data: res.data.dataList[1].mobileTemplate });
+                                                wx.setStorage({key:'signVerify',data:res.data.dataList[1].signVerify});
+                                                wx.setStorage({key:'email',data:res.data.dataList[0].email});
+                                                wx.setStorage({ key: 'userCode',data:res.data.dataList[0].userCode});
+                                                wx.setStorage({ key: 'parentAccountmobile', data: res.data.dataList[1].parentAccountmobile })
+                                                wx.switchTab({
+                                                    url: '/pages/index/index'
+                                                })
 
                                             }else{
                                                 wx.navigateTo({
@@ -170,7 +168,7 @@ Page({
                                     })
                                 } else {
                                     wx.setStorage({key: 'dataList',data: JSON.stringify(res.data.dataList)})
-                                  wx.hideLoading()
+                                    wx.hideLoading()
                                     wx.redirectTo({
                                         url: '/pages/auth/roles/roles'
                                     })
