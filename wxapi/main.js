@@ -34,6 +34,7 @@ const request = (url, method, data, contentType) => {
                         resolve(res)
                     }
                 } else {
+                    wx.hideLoading();
                     reject(res.errMsg)
                 }
             },

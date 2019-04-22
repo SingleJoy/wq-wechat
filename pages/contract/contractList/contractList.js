@@ -184,7 +184,7 @@ Page({
             title: '加载中...',
             mask: true
         });
-        contracts(interfaceCode,param).then(res=>{
+        contracts(param).then(res=>{
           wx.stopPullDownRefresh();
           wx.hideNavigationBarLoading();
             let totalItemNumber=res.data.totalItemNumber;

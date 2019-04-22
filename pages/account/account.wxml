@@ -26,7 +26,7 @@
                         </view>
                     </view>
 
-                    <image src="../../images/real-name@2x.png" class="real-name"></image>
+                    <image src="../../images/real-name@2x.png" class="real-name" wx:if="{{enterpriseName}}"></image>
                 </view>
 
             </view>
