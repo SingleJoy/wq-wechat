@@ -83,19 +83,30 @@ Page({
     let accountLevel = accountInfo.accountLevel;
 
     
-   if( (accountLevel == 1 && auditSteps == 3) || (accountLevel == 2 && accountStatus == 3) ){
-        wx.setStorage({key: 'accountCode',data: accountInfo.accountCode})
-        wx.setStorage({key: 'interfaceCode',data: accountInfo.interfaceCode})
-        wx.setStorage({key: 'enterpriseName',data: accountInfo.enterpriseName})
-        wx.setStorage({key: 'accountLevel',data: accountInfo.accountLevel})
-        wx.setStorage({key: 'mobile',data: accountInfo.mobile})
-        let interfaceCode = accountInfo.interfaceCode
-        let login_mobile = accountInfo.mobile
-        let data = {
-            mobile:login_mobile
-        }
-        homePage(interfaceCode,data).then(res=>{
-            if (res.data.resultCode == 1) {
+    if(accountLevel == 1 && auditSteps != 3){
+        wx.navigateTo({
+            url: '/pages/auth/auth/auth'
+        });
+        return
+    }
+    if(accountLevel == 2 && accountStatus !=3){
+        wx.navigateTo({
+            url: '/pages/auth/auth/auth'
+        });
+        return false
+    }
+    wx.setStorage({key: 'accountCode',data: accountInfo.accountCode})
+    wx.setStorage({key: 'interfaceCode',data: accountInfo.interfaceCode})
+    wx.setStorage({key: 'enterpriseName',data: accountInfo.enterpriseName})
+    wx.setStorage({key: 'accountLevel',data: accountInfo.accountLevel})
+    wx.setStorage({key: 'mobile',data: accountInfo.mobile})
+    let interfaceCode = accountInfo.interfaceCode
+    let login_mobile = accountInfo.mobile
+    let data = {
+        mobile:login_mobile
+    }
+    homePage(interfaceCode,data).then(res=>{
+        if (res.data.resultCode == 1) {
             let signVerify = {
                 signVerify: res.data.dataList[1].signVerify
             }
@@ -111,9 +122,9 @@ Page({
         }else{
             
         }
-        }).catch(err=>{
-        })
-    }
+    }).catch(err=>{
+
+    })
    
-  }
+    }
 })
