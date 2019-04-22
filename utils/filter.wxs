@@ -2,7 +2,7 @@
 // 字符串过滤器
 function filterString(value) {
 
- if (value.length > 25) {
+ if (value.length > 20) {
     return value.slice(0,10)+'....'+value.slice(value.length-10,value.length)
   }else{
     return  value
