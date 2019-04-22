@@ -110,11 +110,6 @@ Page({
                                     } else {
                                         res_data = res.data.dataList[1][0];
                                     }
-                                    wx.setStorage({ key: 'accountCode',data: res_data.accountCode})
-                                    wx.setStorage({ key: 'interfaceCode',data: res_data.interfaceCode})
-                                    wx.setStorage({key: 'accountLevel',data: res_data.accountLevel})
-                                    wx.setStorage({key: 'enterpriseName',data: res_data.enterpriseName})
-                                    wx.setStorage({key: 'mobile',data: res_data.mobile})
                                     //登录=>主页
                                     let data={
                                         mobile:res_data.mobile
@@ -129,13 +124,18 @@ Page({
                                         })
 
                                         return false;
-                                    }
-                                    if(res.data.dataList[1][0]&&res.data.dataList[1][0].accountStatus==2){  //未激活
+                                    }else if(res.data.dataList[1][0]&&res.data.dataList[1][0].accountStatus==2){  //未激活
                                         wx.navigateTo({
                                             url: '/pages/auth/auth/auth'
                                         });
                                         wx.hideLoading();
                                         return false;
+                                    }else{
+                                        wx.setStorage({ key: 'accountCode', data: res_data.accountCode })
+                                        wx.setStorage({ key: 'interfaceCode', data: res_data.interfaceCode })
+                                        wx.setStorage({ key: 'accountLevel', data: res_data.accountLevel })
+                                        wx.setStorage({ key: 'enterpriseName', data: res_data.enterpriseName })
+                                        wx.setStorage({ key: 'mobile', data: res_data.mobile })
                                     }
                                     homePage(res_data.interfaceCode,data).then(res=>{
                                         if(res.data.resultCode==1){
