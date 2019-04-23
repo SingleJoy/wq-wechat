@@ -15,14 +15,7 @@ Page({
         //签署链接
         signRoomLink: '',
         //签署人员信息
-        signList:[
-          {
-            signUserName: "11",
-          },
-          {
-            signUserName: "",
-          },
-        ],
+        signList:[],
         interfaceCode: ''
     },
     //获取合同成功信息
