@@ -37,6 +37,11 @@
     color: #666;
     font-size: 28rpx;
     line-height: 28rpx;
+    word-break: keep-all;
+    word-wrap: break-word; 
+    white-space: pre-wrap; 
+    text-align:justify;  
+    text-justify:inter-ideograph;
 }
 .sign-link {
     white-space:nowrap;

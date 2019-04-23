@@ -305,7 +305,7 @@ Page({
     if (e.detail.value.mobile == wx.getStorageSync('mobile')) {
       this.setData({
         model: {
-          mobileHint: "手机号不能与发起方手机号相同",
+          mobileHint: "不能与发起方手机号相同",
           isShowMobileHint: true,
         }
       });
@@ -314,7 +314,7 @@ Page({
     if (e.detail.value.mobile == wx.getStorageSync('parentAccountmobile')) {
       this.setData({
         model: {
-          mobileHint: "手机号不能与一级账号的手机号相同",
+          mobileHint: "不能与一级账号的手机号相同",
           isShowMobileHint: true,
         }
       });
