@@ -38,7 +38,7 @@
             <view class='list-operate list-title-operate'>操作</view> 
           </view>
         </view>
-        <view class='add-contract' bindtap="showDialogBtn">
+        <view class='add-contract' bindtap="showDialogBtn" data-type="添加签署人">
           <image src='../../../images/add-signtory.png'></image>
           <text class='add-contract-text'>添加签署人</text>
         </view>
@@ -48,7 +48,7 @@
               <view class='list-name list-size' data-id="{{index}}">{{item.name}}</view>
               <view class='list-idcard list-size' data-id="{{index}}">{{item.idCard}}</view>
               <view class='list-mobile list-size' data-id="{{index}}">{{item.mobile}}</view>
-              <view wx-if='{{delate !== index ? "delate" : ""}}' class='list-operate list-size {{delate == index ? "edit" : ""}}' data-id="{{index}}" bindtap='showDialogBtn'>编辑</view>
+              <view wx-if='{{delate !== index ? "delate" : ""}}' class='list-operate list-size {{delate == index ? "edit" : ""}}' data-id="{{index}}" data-type="编辑签署人" bindtap='showDialogBtn'>编辑</view>
               <view wx-if='{{delate == index ? "delate" : ""}}' class='delate-style del' data-id="{{index}}" bindtap='delDialogBtn'>删除</view>
             </view>
           </view>

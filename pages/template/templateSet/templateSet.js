@@ -134,7 +134,7 @@ Page({
       })
     };
     this.isDisabled = false;
-    let value = e._relatedInfo.anchorTargetText;
+    let value = e.target.dataset.type?e.target.dataset.type:e._relatedInfo.anchorTargetText
     this.setData({
       identification: value
     });
@@ -422,7 +422,7 @@ Page({
         mobiles = "";
     for (let i = 0; i < dataList.length; i++) {
         names += TrimAll(dataList[i].name) + ",";
-        idCards += TrimAll(dataList[i].idCard)+ ",";
+        idCards += (dataList[i].idCard?TrimAll(dataList[i].idCard):' ') + ",";
         mobiles += TrimAll(dataList[i].mobile) + ",";
     }
     names = names.substring(0, names.length - 1);
