@@ -5,7 +5,7 @@
       <form bindsubmit="formSubmit" bindreset="formReset">
         <view class='sign-set'>
           <label class='contract-name contract-style'>合同名称：</label>
-          <input name="input" class='contract-content' placeholder='请输入合同名称' value='{{contactName}}'></input>
+          <input name="input" maxlength='50' class='contract-content' placeholder='请输入合同名称' value='{{contactName}}'></input>
         </view>
         <view class='sign-set'>
           <label class='contract-name'>签署截止日：</label>
