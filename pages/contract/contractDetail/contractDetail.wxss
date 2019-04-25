@@ -66,6 +66,12 @@
 .info-value{
     font-size:26rpx;
     color:#333;
+    line-height: 28rpx;
+    word-break: keep-all;
+    word-wrap: break-word; 
+    white-space: pre-wrap; 
+    text-align:justify;  
+    text-justify:inter-ideograph;
 }
 .color-them{
     color:#4091FB;
