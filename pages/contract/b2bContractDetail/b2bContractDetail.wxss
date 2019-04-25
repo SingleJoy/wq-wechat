@@ -79,6 +79,7 @@
 }
 .drawer-content{
     padding: 0 10rpx;
+    margin-bottom:56rpx;
 }
 .contract-img image{
     width:100%;

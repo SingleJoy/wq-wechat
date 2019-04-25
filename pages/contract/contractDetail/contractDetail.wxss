@@ -81,6 +81,7 @@
 .drawer-content{
     padding: 0 10rpx;
     margin: 10rpx 0;
+    margin-bottom: 56rpx;
 }
 .contract-img image{
     width:100%;

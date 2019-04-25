@@ -429,7 +429,8 @@ Page({
             mask: true
         });
         this.setData({
-            showModalStatus:false
+            showModalStatus:false,
+            sendEmail:''
         });
         sendEmailForUser(this.data.interfaceCode,data).then((res)=>{
             wx.hideLoading();
@@ -438,6 +439,7 @@ Page({
                 icon: 'none',
                 duration: 2000
             });
+
 
         }).catch(err=>{
 

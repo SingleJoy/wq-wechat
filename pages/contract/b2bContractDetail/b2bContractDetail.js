@@ -148,9 +148,12 @@ Page({
             };
             getAccountName(this.data.interfaceCode,data).then((res)=>{
                 if(res.data.resultCode == 1){
+                  wx.hideLoading()
                     this.setData({
                         enterpriseName: res.data.data
                     });
+                }else{
+                  wx.hideLoading()
                 }
             }).catch(error=>{
 
@@ -378,7 +381,8 @@ Page({
             }
         }
         this.setData({
-            showModalStatus:false
+            showModalStatus:false,
+            sendEmail:''
         });
         sendEmailForUser(this.data.interfaceCode,data).then((res)=>{
             wx.showToast({
