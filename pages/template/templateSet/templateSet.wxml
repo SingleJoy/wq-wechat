@@ -38,9 +38,9 @@
             <view class='list-operate list-title-operate'>操作</view> 
           </view>
         </view>
-        <view class='add-contract' bindtap="showDialogBtn" data-type="添加签署人">
+        <view class='add-contract' bindtap="showDialogBtn" >
           <image src='../../../images/add-signtory.png'></image>
-          <text class='add-contract-text'>添加签署人</text>
+          <text class='add-contract-text' data-type="添加签署人">添加签署人</text>
         </view>
         <view class="signtory-list-body">
           <view wx:for="{{dataList}}" wx:key="key" class="signtory-list">
